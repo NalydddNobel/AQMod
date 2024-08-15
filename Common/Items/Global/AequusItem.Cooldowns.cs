@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.UI;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 
 namespace Aequus;
@@ -11,6 +12,7 @@ public partial class AequusItem : GlobalItem {
     /// <summary>
     /// Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
     /// </summary>
+    [Obsolete("Replaced with new ICooldownItem system.")]
     public static HashSet<int> HasCooldown { get; private set; }
 
     internal void Load_Cooldown() {

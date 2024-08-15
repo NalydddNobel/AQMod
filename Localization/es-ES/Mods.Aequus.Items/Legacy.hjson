@@ -679,11 +679,6 @@ BalloonKit: {
 	// Tooltip: Allows you to ride a hot air balloon
 }
 
-CelesitalEightBall: {
-	// DisplayName: Celestial 8-Ball
-	// Tooltip: "'Ask it questions, and let it answer you'"
-}
-
 ArtFragment: {
 }
 
@@ -2703,49 +2698,6 @@ AncientScorchingDye: {
 AncientFrostbiteDye: {
 	// DisplayName: Ancient Frostbite Dye
 	// Tooltip: ""
-}
-
-FrolicEnergy: {
-	// DisplayName: Frolic Energy
-	// Tooltip: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
-}
-
-HorrificEnergy: {
-	// DisplayName: Horrific Energy
-	// Tooltip: A dark blessing from the Pumpkin Moon, a celestial object which signifies the cropfield's bloody harvest
-}
-
-OrganicEnergy: {
-}
-
-DemonicEnergy: {
-}
-
-CosmicEnergy: {
-}
-
-AtmosphericEnergy: {
-}
-
-AquaticEnergy: {
-}
-
-UltimateEnergy: {
-}
-
-MonoGem: {
-}
-
-OmniGem: {
-}
-
-SoulGem: {
-}
-
-SoulGemFilled: {
-}
-
-BloodyTearstone: {
 }
 
 Fluorescence: {

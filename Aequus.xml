@@ -3129,6 +3129,9 @@
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CelesitalEightBall">
+            <summary>Full Path: Content/Items/Vanity/CelesitalEightBall</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
         </member>
@@ -4169,9 +4172,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CarpenterResetSheet">
             <summary>Full Path: Items/Misc/CarpenterResetSheet</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CelesitalEightBall">
-            <summary>Full Path: Items/Misc/CelesitalEightBall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
             <summary>Full Path: Items/Misc/Dyes/AncientHellBeamDye</summary>

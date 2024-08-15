@@ -613,6 +613,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SentryPotionBuff = new("Content/Items/Potions/Buff/Sentry/SentryPotionBuff");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
+    /// <summary>Full Path: Content/Items/Vanity/CelesitalEightBall</summary>
+    public static readonly RequestCache<Texture2D> CelesitalEightBall = new("Content/Items/Vanity/CelesitalEightBall");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
     public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
@@ -1307,8 +1309,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BeyondPlatinumCoin_World = new("Items/Misc/BeyondCoin/BeyondPlatinumCoin_World");
     /// <summary>Full Path: Items/Misc/CarpenterResetSheet</summary>
     public static readonly RequestCache<Texture2D> CarpenterResetSheet = new("Items/Misc/CarpenterResetSheet");
-    /// <summary>Full Path: Items/Misc/CelesitalEightBall</summary>
-    public static readonly RequestCache<Texture2D> CelesitalEightBall = new("Items/Misc/CelesitalEightBall");
     /// <summary>Full Path: Items/Misc/Dyes/AncientHellBeamDye</summary>
     public static readonly RequestCache<Texture2D> AncientHellBeamDye = new("Items/Misc/Dyes/AncientHellBeamDye");
     /// <summary>Full Path: Items/Misc/Dyes/AncientHueshiftDye</summary>

@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.SplitSupport.ItemContent.Envelopes;
 
@@ -15,7 +14,7 @@ public class EnvelopeGlimmer : BaseEnvelope {
            ModContent.ItemType<Items.Weapons.Summon.StariteMinion.StariteStaff>(),
            ModContent.ItemType<Items.Equipment.Accessories.Combat.HyperCrystal>(),
         }));
-        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Misc.CelesitalEightBall>(), 4));
+        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Vanity.CelesitalEightBall>(), 4));
         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Glimmer.StariteMaterial>(), minimumDropped: 3, maximumDropped: 10));
     }
 }

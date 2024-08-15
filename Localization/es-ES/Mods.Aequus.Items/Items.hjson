@@ -52,6 +52,34 @@ Meathook: {
 }
 
 //# Misc
+CelesitalEightBall: {
+	DisplayName: Bola 8 Mágica
+	// Tooltip: "'Ask it questions, and let it answer you'"
+
+	Result: {
+		0: Si
+		1: Mis fuentes dicen No
+		2: Es cierto
+		3: Es decididamante No
+		4: Sin duda
+		5: Si definitivamente
+		6: Puedes contar en ello
+		7: Como yo lo veo, Si
+		8: Probablemente
+		9: Se ve bien
+		10: Las señales apuntan a Si
+		11: No cuentes en ello
+		12: Mi respuesta es No
+		13: No se muy bien
+		14: Muy improbable
+		15: Respuesta borrosa, intenta denuevo
+		16: Pregunta mas tarde
+		17: Mejor no decirte ahora
+		18: No se puede predecir ahora
+		19: Concentrate y pregunta denuevo
+	}
+}
+
 PollutedOceanCrate: {
 	// DisplayName: Shipping Container
 	// Tooltip: ""
@@ -427,34 +455,6 @@ RedSpriteMask: {
 SpaceSquidMask: {
 	DisplayName: Mascara del Calamar Espacial
 	Tooltip: ""
-}
-
-CelestialEightBall: {
-	DisplayName: Bola 8 Mágica
-	// Tooltip: ""
-
-	Answer: {
-		0: Si
-		1: Mis fuentes dicen No
-		2: Es cierto
-		3: Es decididamante No
-		4: Sin duda
-		5: Si definitivamente
-		6: Puedes contar en ello
-		7: Como yo lo veo, Si
-		8: Probablemente
-		9: Se ve bien
-		10: Las señales apuntan a Si
-		11: No cuentes en ello
-		12: Mi respuesta es No
-		13: No se muy bien
-		14: Muy improbable
-		15: Respuesta borrosa, intenta denuevo
-		16: Pregunta mas tarde
-		17: Mejor no decirte ahora
-		18: No se puede predecir ahora
-		19: Concentrate y pregunta denuevo
-	}
 }
 
 CosmicMonolith: {
