@@ -184,7 +184,7 @@ Mods: {
 		}
 
 		WorldGeneration: {
-			// SkyMeadows: Adding Magic...
+			SkyMeadows: 正在添加魔法...
 			OmniGem: 正在添加闪光宝石...
 			BigGems: 正在添加更大的宝石...
 			RadonBiome: 迷雾正在到来...
@@ -442,7 +442,7 @@ Mods: {
 					Princess_LovesNPC: "{NPCName}真的很可爱! 我很想让他给我盖一栋房子!"
 				}
 
-				// Census.SpawnCondition: Build a house with 4 unique furniture objects (Excluding tables, chairs, and torches)
+				Census.SpawnCondition: 用4件独特的家具物件建造一座房屋 (不包括桌子、椅子和火把)
 			}
 
 			SkyMerchant: {
@@ -505,7 +505,7 @@ Mods: {
 					Princess_LovesNPC: "{NPCName}如此神秘...我希望她能留下来!"
 				}
 
-				// Census.SpawnCondition: Defeat an Ultra Starite
+				Census.SpawnCondition: 击败终耀源星
 			}
 
 			PhysicistPet: {
@@ -546,7 +546,7 @@ Mods: {
 					Princess_LovesNPC: "{NPCName}总是愿意给我高档珠宝!"
 				}
 
-				// Census.SpawnCondition: Defeat Crabson
+				Census.SpawnCondition: 击败巨蟹蛤
 			}
 
 			CleanserDrone: {

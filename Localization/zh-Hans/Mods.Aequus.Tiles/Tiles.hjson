@@ -225,12 +225,12 @@ HiddenChest.MapEntry: 隐藏宝箱
 
 MeadowGrass: {
 	ItemDisplayName: 草地种
-	// ItemTooltip: ""
+	ItemTooltip: ""
 }
 
 MeadowWood: {
-	ItemDisplayName: 草地木
-	// ItemTooltip: ""
+	ItemDisplayName: 飞龙木
+	ItemTooltip: ""
 }
 
 SeaFireflyBlock: {

@@ -1,6 +1,6 @@
 MeadowStaff: {
-	// DisplayName: Wyvernwood Staff
-	// Tooltip: ""
+	DisplayName: 飞龙木法杖
+	Tooltip: ""
 }
 
 TrashStaff: {

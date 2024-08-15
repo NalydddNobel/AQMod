@@ -1,14 +1,14 @@
 Configs: {
 	GameplayConfig: {
 		MoveTreasureMagnet: {
-			// Label: "[i:TreasureMagnet] [i:CelestialMagnet] Move Treasure Magnet"
-			/* Tooltip:
+			Label: "[i:TreasureMagnet] [i:CelestialMagnet] 移动宝藏磁石"
+			Tooltip:
 				'''
-				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
-				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+				[{$ColorImportant}:启用后], [{$ColorImportant}:宝藏磁石]将会由[{$ColorImportant}:天空商人]出售,
+				并且[{$ColorImportant2}:暗影箱]或[{$ColorImportant2}:黑曜石锁盒]中的[{$ColorImportant}:不会再出现].
 
 				{$NoteExploit}
-				''' */
+				'''
 		}
 
 		PollutedOceanSide: {

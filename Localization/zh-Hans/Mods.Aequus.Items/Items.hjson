@@ -6,19 +6,19 @@ Keywords: {
 }
 
 MeadowHammer: {
-	// DisplayName: Wyvernwood Hammer
-	// Tooltip: ""
+	DisplayName: 飞龙木锤
+	Tooltip: ""
 }
 
 MeadowBow: {
-	// DisplayName: Wyvernwood Bow
-	// Tooltip: ""
+	DisplayName: 飞龙木弓
+	Tooltip: ""
 }
 
 //# Equipment: Armor
 GravetenderHood: {
 	DisplayName: 守墓人兜帽
-	Tooltip: 增加10%召唤伤害
+	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 	Setbonus: 召唤一缕能够强化与你最近的幽魂仆从的游魂
 }
 
@@ -26,8 +26,8 @@ GravetenderRobes: {
 	DisplayName: 守墓人长袍
 	Tooltip:
 		'''
-		延长30秒幽魂仆从的存在时间
-		增加最大幽魂仆从栏位
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots@1}
 		'''
 }
 
@@ -39,7 +39,6 @@ LeechHook: {
 		无视敌人{0}点的防御力
 		吸住敌人并治疗你
 		伤害被吸住的敌人以获得额外治疗
-		{$Items.Prefixable}
 		'''
 }
 
@@ -49,7 +48,6 @@ Meathook: {
 		'''
 		你的钩爪会抓住敌人
 		你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
-		{$Items.Prefixable}
 		'''
 }
 
@@ -289,8 +287,10 @@ PhasePhone: {
 	DisplayName: 相位手机
 	Tooltip:
 		'''
-		{$Items.PhasePhone.TooltipTop}
-		{$Items.PhasePhone.TooltipBottom}
+		显示一切
+		{0}
+		通过在大地图上点击队友的头像来传送至对方位置
+		右键切换目的地
 		'''
 
 	Home: {
@@ -339,7 +339,6 @@ Pumpinator: {
 		'''
 		渐进更改风速
 		强大的风可以几乎推动一切
-		由一位来自天空的神秘商人出售
 		'''
 }
 
@@ -465,11 +464,7 @@ CosmicMonolith: {
 
 StariteMaterial: {
 	DisplayName: 核心碎片
-	Tooltip:
-		'''
-		能够利用星宇能量
-		自掉落柔光敌人
-		'''
+	Tooltip: ""
 }
 
 UnopenedChestItem: {

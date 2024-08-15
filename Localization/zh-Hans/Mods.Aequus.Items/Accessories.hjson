@@ -1,11 +1,11 @@
 // Equipment: Accessories
 HorseshoeCombination: {
-	// DisplayName: Braced Hoof
-	/* Tooltip:
+	DisplayName: 加固蹄
+	Tooltip:
 		'''
 		{$ItemTooltip.ObsidianHorseshoe}
 		{$WeightedHorseshoe.Function}
-		''' */
+		'''
 }
 
 BreathConserver: {
@@ -25,20 +25,24 @@ GoldenWind: {
 	DisplayName: 黄金之风
 	Tooltip:
 		'''
+		每秒恢复{1}点生命值
 		{$Items.GoldenFeather.Tooltip}
-		每秒为你所处队伍中的所有玩家和你恢复{1}点生命值
 		'''
-	/* BuffDescription:
+	BuffDescription:
 		'''
-		Regenerate {1} health per second
+		每秒恢复{1}点生命值
 		{$GoldenFeather.BuffDescription}
-		''' */
+		'''
 }
 
 GoldenFeather: {
 	DisplayName: 奇迹之羽
-	Tooltip: 你和你队友的重生速度缩短{0}秒
-	// BuffDescription: You respawn {0} seconds faster
+	Tooltip:
+		'''
+		重生速度缩短{0}秒
+		此饰品的效果会对附近的队友生效
+		'''
+	BuffDescription: 加快{0}秒重生速度
 }
 
 FlashwayShield: {
@@ -73,15 +77,14 @@ WeightedHorseshoe: {
 	DisplayName: 重力马蹄铁
 	Tooltip:
 		'''
-		翻倍最大下落速度
-		在速度较高时会伤害并穿过敌人
+		{$WeightedHorseshoe.Function}
 		'你应该在这上面使用韦尔莱链, 这样它就不会出错了!'
 		'''
-	/* Function:
+	Function:
 		'''
-		Doubled maximum fall speed
-		Damage and fall through enemies while at high speeds
-		''' */
+		翻倍最大下落速度
+		在速度较高时会伤害并穿过敌人
+		'''
 }
 
 //# Equipment: Misc
@@ -131,8 +134,8 @@ Calendar: {
 }
 
 UnusedItem: {
-	// DisplayName: Unused Item
-	// Tooltip: ""
+	DisplayName: 未使用物品
+	Tooltip: ""
 }
 
 SteampunkerFishingPole: {
