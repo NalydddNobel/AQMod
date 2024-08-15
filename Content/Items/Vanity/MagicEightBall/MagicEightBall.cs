@@ -180,19 +180,21 @@ public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
         Rectangle itemFrame = texture.Bounds;
 
         Vector2 drawLocation = info.ItemLocation;
+        Vector2 drawOffset = Vector2.Zero;
         if (player.itemAnimation > 0) {
             // Animation timer
             float x = (player.itemAnimationMax - player.itemAnimation) * 0.9f;
 
-            float drawOffsetX = 16f - MathF.Cos(x % MathHelper.PiOver2) * 2f;
-            drawLocation.X += drawOffsetX * player.direction;
-            drawLocation.Y += MathF.Sin(x) * 6f + 4f;
+            drawOffset.X += 18f - MathF.Cos(x % MathHelper.PiOver2) * 2f;
+            drawOffset.Y += MathF.Sin(x) * 6f + 4f;
         }
+
+        drawLocation += player.GetDrawOffset(drawOffset);
 
         Color color = item.GetAlpha(Lighting.GetColor(drawLocation.ToTileCoordinates()));
         Vector2 origin = itemFrame.Size() / 2f;
         float rotation = player.bodyRotation;
-        SpriteEffects effects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        SpriteEffects effects = player.GetSpriteEffect();
 
         info.DrawDataCache.Add(new DrawData(texture, (drawLocation - Main.screenPosition).Floor(), itemFrame, Color.White, rotation, origin, 1f, effects, 0f));
     }

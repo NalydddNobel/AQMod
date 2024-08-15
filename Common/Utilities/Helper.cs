@@ -1026,6 +1026,15 @@ public static partial class Helper {
         return player.HeldItem;
     }
 
+    public static Vector2 GetDrawOffset(this Player player, Vector2 offset) {
+        Vector2 offsetVector = new Vector2(player.direction, player.gravDir);
+        return offset * offsetVector;
+    }
+
+    public static SpriteEffects GetSpriteEffect(this Player player) {
+        return (player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None) | (player.gravDir == -1 ? SpriteEffects.FlipVertically : SpriteEffects.None);
+    }
+
     public static Point GetSpawn(this Player player) {
         return new Point(GetSpawnX(player), GetSpawnY(player));
     }
