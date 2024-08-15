@@ -22,4 +22,7 @@ public sealed partial class AequusSounds {
     private static ImplicitLazy<SoundStyle> NewMultisound(Func<SoundStyle> getFirstSoundFactory, int variantCount) {
         return new ImplicitLazy<SoundStyle>(() => new(getFirstSoundFactory().SoundPath[..^1], 0, variantCount));
     }
+    public static SoundStyle NewMultisound(SoundStyle sound, int variantCount) {
+        return new SoundStyle(sound.SoundPath[..^1], 0, variantCount);
+    }
 }

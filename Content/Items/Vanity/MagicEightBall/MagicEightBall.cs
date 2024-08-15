@@ -1,17 +1,21 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common.Entities.Players;
+using Aequus.Common.Items;
 using Aequus.Common.Utilities.Helpers;
 using Aequus.Systems;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Items.Vanity;
+namespace Aequus.Content.Items.Vanity.MagicEightBall;
 
-public class CelesitalEightBall : ModItem, ICooldownItem {
+[LegacyName("CelesitalEightBall")]
+public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
     const byte Invalid = byte.MaxValue;
 
     const string TagKey = "Text2";
@@ -21,10 +25,15 @@ public class CelesitalEightBall : ModItem, ICooldownItem {
     byte _textId = Invalid;
 
     int ICooldownItem.CooldownTime => 60;
+    bool ICooldownItem.ShowCooldownTip => false;
+    bool ICooldownItem.HasCooldownShakeEffect => false;
 
-    static Color TextColor => Color.Lerp(Main.mouseColor, Color.White, 0.5f);
+    static Color TextColor => Color.Lerp(Main.mouseColor, Color.White, 0.5f) with { A = byte.MaxValue };
+
+    static SoundStyle UseSound;
 
     public override void SetStaticDefaults() {
+        UseSound = AequusSounds.NewMultisound(AequusSounds.UseEightBall0, 4);
         for (int i = 0; i < Text.Length; i++) {
             Text[i] = this.GetLocalization($"Result.{i}");
         }
@@ -39,6 +48,8 @@ public class CelesitalEightBall : ModItem, ICooldownItem {
         Item.useStyle = ItemUseStyleID.HoldUp;
         Item.value = Item.sellPrice(silver: 20);
         Item.holdStyle = ItemHoldStyleID.HoldFront;
+        Item.UseSound = UseSound;
+        Item.noUseGraphic = true;
         _textId = Invalid;
     }
 
@@ -51,6 +62,10 @@ public class CelesitalEightBall : ModItem, ICooldownItem {
     }
 
     public override bool? UseItem(Player player) {
+        if (player.itemAnimation > 3) {
+            return false;
+        }
+
         if (Main.myPlayer == player.whoAmI) {
             var old = _textId;
             while (old == _textId) {
@@ -152,5 +167,37 @@ public class CelesitalEightBall : ModItem, ICooldownItem {
                 _textId = (byte)legacyIdValue;
             }
         }
+    }
+
+    public override void HoldItemFrame(Player player) {
+        base.HoldItemFrame(player);
+    }
+
+    public override void UseItemFrame(Player player) {
+        player.bodyFrame.Y = player.bodyFrame.Height * 3;
+    }
+
+    void ICustomHeldItemGraphics.Draw(ref PlayerDrawSet info) {
+        Item item = info.heldItem;
+        Texture2D texture = AequusTextures.MagicEightBall_Held;
+        Player player = info.drawPlayer;
+        Rectangle itemFrame = texture.Bounds;
+
+        Vector2 drawLocation = info.ItemLocation;
+        if (player.itemAnimation > 0) {
+            // Animation timer
+            float x = (player.itemAnimationMax - player.itemAnimation) * 0.9f;
+
+            float drawOffsetX = 16f - MathF.Cos(x % MathHelper.PiOver2) * 2f;
+            drawLocation.X += drawOffsetX * player.direction;
+            drawLocation.Y += MathF.Sin(x) * 6f + 4f;
+        }
+
+        Color color = item.GetAlpha(Lighting.GetColor(drawLocation.ToTileCoordinates()));
+        Vector2 origin = itemFrame.Size() / 2f;
+        float rotation = player.bodyRotation;
+        SpriteEffects effects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+        info.DrawDataCache.Add(new DrawData(texture, drawLocation - Main.screenPosition, itemFrame, Color.White, rotation, origin, 1f, effects, 0f));
     }
 }

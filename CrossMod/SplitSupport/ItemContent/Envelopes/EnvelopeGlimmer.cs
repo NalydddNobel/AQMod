@@ -14,7 +14,7 @@ public class EnvelopeGlimmer : BaseEnvelope {
            ModContent.ItemType<Items.Weapons.Summon.StariteMinion.StariteStaff>(),
            ModContent.ItemType<Items.Equipment.Accessories.Combat.HyperCrystal>(),
         }));
-        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Vanity.CelesitalEightBall>(), 4));
+        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Vanity.MagicEightBall.MagicEightBall>(), 4));
         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Glimmer.StariteMaterial>(), minimumDropped: 3, maximumDropped: 10));
     }
 }

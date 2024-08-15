@@ -52,7 +52,7 @@ Meathook: {
 }
 
 //# Misc
-CelesitalEightBall: {
+MagicEightBall: {
 	DisplayName: Bola 8 Mágica
 	// Tooltip: "'Ask it questions, and let it answer you'"
 

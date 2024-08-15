@@ -1870,7 +1870,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 115)</summary>
+            <summary>(Total Sounds: 119)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -1934,6 +1934,18 @@
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowShoot">
             <summary>Full Path: Assets/Sounds/CrossbowShoot</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.UseEightBall0">
+            <summary>Full Path: Assets/Sounds/EightBall/UseEightBall0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.UseEightBall1">
+            <summary>Full Path: Assets/Sounds/EightBall/UseEightBall1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.UseEightBall2">
+            <summary>Full Path: Assets/Sounds/EightBall/UseEightBall2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.UseEightBall3">
+            <summary>Full Path: Assets/Sounds/EightBall/UseEightBall3</summary>
         </member>
         <member name="F:Aequus.AequusSounds.goreNestStart">
             <summary>Full Path: Assets/Sounds/goreNestStart</summary>
@@ -2218,7 +2230,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1353)</summary>
+            <summary>(Total Textures: 1354)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3129,8 +3141,11 @@
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CelesitalEightBall">
-            <summary>Full Path: Content/Items/Vanity/CelesitalEightBall</summary>
+        <member name="F:Aequus.AequusTextures.MagicEightBall">
+            <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MagicEightBall_Held">
+            <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>

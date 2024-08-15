@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 115)</summary>
+/// <summary>(Total Sounds: 119)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -48,6 +48,14 @@ public partial class AequusSounds {
     public static readonly SoundStyle CrossbowReload = new("Aequus/Assets/Sounds/CrossbowReload");
     /// <summary>Full Path: Assets/Sounds/CrossbowShoot</summary>
     public static readonly SoundStyle CrossbowShoot = new("Aequus/Assets/Sounds/CrossbowShoot");
+    /// <summary>Full Path: Assets/Sounds/EightBall/UseEightBall0</summary>
+    public static readonly SoundStyle UseEightBall0 = new("Aequus/Assets/Sounds/EightBall/UseEightBall0");
+    /// <summary>Full Path: Assets/Sounds/EightBall/UseEightBall1</summary>
+    public static readonly SoundStyle UseEightBall1 = new("Aequus/Assets/Sounds/EightBall/UseEightBall1");
+    /// <summary>Full Path: Assets/Sounds/EightBall/UseEightBall2</summary>
+    public static readonly SoundStyle UseEightBall2 = new("Aequus/Assets/Sounds/EightBall/UseEightBall2");
+    /// <summary>Full Path: Assets/Sounds/EightBall/UseEightBall3</summary>
+    public static readonly SoundStyle UseEightBall3 = new("Aequus/Assets/Sounds/EightBall/UseEightBall3");
     /// <summary>Full Path: Assets/Sounds/goreNestStart</summary>
     public static readonly SoundStyle goreNestStart = new("Aequus/Assets/Sounds/goreNestStart");
     /// <summary>Full Path: Assets/Sounds/inflictaetherfire</summary>

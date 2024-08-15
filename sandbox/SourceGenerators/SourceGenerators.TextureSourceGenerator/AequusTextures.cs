@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1353)</summary>
+/// <summary>(Total Textures: 1354)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -613,8 +613,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SentryPotionBuff = new("Content/Items/Potions/Buff/Sentry/SentryPotionBuff");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
-    /// <summary>Full Path: Content/Items/Vanity/CelesitalEightBall</summary>
-    public static readonly RequestCache<Texture2D> CelesitalEightBall = new("Content/Items/Vanity/CelesitalEightBall");
+    /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall</summary>
+    public static readonly RequestCache<Texture2D> MagicEightBall = new("Content/Items/Vanity/MagicEightBall/MagicEightBall");
+    /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
+    public static readonly RequestCache<Texture2D> MagicEightBall_Held = new("Content/Items/Vanity/MagicEightBall/MagicEightBall_Held");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
     public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>

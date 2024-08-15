@@ -5,7 +5,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Items.Vanity;
+using Aequus.Content.Items.Vanity.MagicEightBall;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Potions.NeutronYogurt;
 using Aequus.Particles;
@@ -46,7 +46,7 @@ namespace Aequus.NPCs.Monsters.Glimmer {
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             this.CreateLoot(npcLoot)
                 .Add<StariteMaterial>(chance: 2, stack: 1)
-                .Add<CelesitalEightBall>(chance: 50, stack: 1)
+                .Add<MagicEightBall>(chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 5, stack: 1);
         }
 

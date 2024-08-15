@@ -1,8 +1,8 @@
-﻿using Aequus.Common.GUI;
+﻿using Aequus;
+using Aequus.Common.GUI;
 using Aequus.Common.Items;
 using Aequus.Common.UI;
 using Aequus.Common.Utilities;
-using Aequus;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -15,6 +15,7 @@ public interface ICooldownItem {
 
     string TimerId => GetType().Name;
     bool ShowCooldownTip => true;
+    bool HasCooldownShakeEffect => true;
 
     void CustomPreDraw(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -76,12 +77,15 @@ public sealed class CooldownGlobalItem : GlobalItem {
             spriteBatch.Draw(AequusTextures.Bloom, position, null, Color.Black * Math.Min(timer.TimeElapsed / 5f, 1f) * (1f - timer.TimeElapsed / timer.Duration), 0f, AequusTextures.Bloom.Size() / 2f, Main.inventoryScale * 0.8f, SpriteEffects.None, 0f);
             DrawBackground(timer.TimeElapsed, timer.Duration, spriteBatch, position);
 
-            float shakeIntensity = 1f - Math.Min(timer.TimeElapsed / 15f, 1f);
-            position += Main.rand.NextVector2Square(-shakeIntensity * 7f, shakeIntensity * 7f) * Main.inventoryScale;
-            float shakeAnim = timer.TimeElapsed % 120f;
-            if (shakeAnim > 100f) {
-                float shakeAmount = (shakeAnim - 100f) * 0.15f * Main.inventoryScale;
-                position += Main.rand.NextVector2Square(-shakeAmount, shakeAmount) * Main.inventoryScale;
+            // Shake effect
+            if (cooldownItem.HasCooldownShakeEffect) {
+                float shakeIntensity = 1f - Math.Min(timer.TimeElapsed / 15f, 1f);
+                position += Main.rand.NextVector2Square(-shakeIntensity * 7f, shakeIntensity * 7f) * Main.inventoryScale;
+                float shakeAnim = timer.TimeElapsed % 120f;
+                if (shakeAnim > 100f) {
+                    float shakeAmount = (shakeAnim - 100f) * 0.15f * Main.inventoryScale;
+                    position += Main.rand.NextVector2Square(-shakeAmount, shakeAmount) * Main.inventoryScale;
+                }
             }
         }
 
