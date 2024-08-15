@@ -31,7 +31,7 @@ public class UnopenedChestItem : ModItem {
             Chest chest = Main.chest[chestId];
             for (int i = 0; i < chest.item.Length; i++) {
                 Item item = chest.item[i];
-                if (item.type == unopenedChestItemId) {
+                if (item != null && item.type == unopenedChestItemId) {
                     chest.item[i].TurnToAir();
                 }
             }
