@@ -169,10 +169,6 @@ public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
         }
     }
 
-    public override void HoldItemFrame(Player player) {
-        base.HoldItemFrame(player);
-    }
-
     public override void UseItemFrame(Player player) {
         player.bodyFrame.Y = player.bodyFrame.Height * 3;
     }
@@ -198,6 +194,6 @@ public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
         float rotation = player.bodyRotation;
         SpriteEffects effects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-        info.DrawDataCache.Add(new DrawData(texture, drawLocation - Main.screenPosition, itemFrame, Color.White, rotation, origin, 1f, effects, 0f));
+        info.DrawDataCache.Add(new DrawData(texture, (drawLocation - Main.screenPosition).Floor(), itemFrame, Color.White, rotation, origin, 1f, effects, 0f));
     }
 }
