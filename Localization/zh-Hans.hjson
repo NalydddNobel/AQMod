@@ -570,7 +570,7 @@ Mods: {
 			ShadowMimic.DisplayName: 暗影宝箱怪
 			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
 			DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
-			// SkyMerchantBalloon.DisplayName: Sky Merchant Balloon
+			SkyMerchantBalloon.DisplayName: 热气球
 		}
 
 		PaintingSignature: {
