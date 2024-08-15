@@ -78,7 +78,7 @@ public class TileDrawSystem : ModSystem {
 
 public class TileDrawSystemGlobalTile : GlobalTile {
     public override bool TileFrame(int i, int j, int type, ref bool resetFrame, ref bool noBreak) {
-        if (TileLoader.GetTile(type) is ITileDrawSystem system) {
+        if (Main.netMode != NetmodeID.Server && TileLoader.GetTile(type) is ITileDrawSystem system) {
             Point nextPoint = new Point(i, j);
             if (system.Accept(nextPoint)) {
                 TileDrawSystem.Add(system, nextPoint);
@@ -88,7 +88,7 @@ public class TileDrawSystemGlobalTile : GlobalTile {
     }
 
     public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem) {
-        if (TileLoader.GetTile(type) is ITileDrawSystem system) {
+        if (Main.netMode != NetmodeID.Server && TileLoader.GetTile(type) is ITileDrawSystem system) {
             Point nextPoint = new Point(i, j);
             if (system.Accept(nextPoint)) {
                 TileDrawSystem.Remove(system, nextPoint);
