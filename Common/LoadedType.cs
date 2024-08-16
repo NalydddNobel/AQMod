@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Common;
 
-public class AContent : ILoadable {
+public class LoadedType : ILoadable {
     protected Mod? Mod { get; private set; }
 
     protected virtual void Load() { }

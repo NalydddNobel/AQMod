@@ -4,7 +4,7 @@ using Terraria.GameContent.Drawing;
 
 namespace Aequus.Common.Drawing;
 
-internal class TileDrawHooks : AContent {
+internal class TileDrawHooks : LoadedType {
     public static TileDrawHooks Instance => ModContent.GetInstance<TileDrawHooks>();
 
     public readonly Dictionary<int, int> HangingTile = [];
