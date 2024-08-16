@@ -180,7 +180,6 @@ public partial class AequusNPC {
             return;
         }
 
-        PreHardmodeMimics(pool, spawnInfo);
         TrapSkeleton.CheckSpawn(spawnInfo, pool);
         AddHardmodeTierEnemies(pool, spawnInfo);
     }

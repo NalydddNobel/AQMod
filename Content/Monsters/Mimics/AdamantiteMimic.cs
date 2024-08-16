@@ -1,37 +1,42 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Aequus.Common.Utilities;
-using Terraria.GameContent.Bestiary;
+﻿using Aequus;
 using Aequus.Common.NPCs;
-using System;
+using Aequus.Common.Preferences;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.NPCs.Monsters.ChestMimics;
+namespace Aequus.Content.Monsters.Mimics;
 
-public class ShadowMimic : ModNPC, IAddRecipes {
-    public override string Texture => Aequus.NPCTexture(NPCID.Mimic);
+public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipes {
+    protected virtual int CloneNPC => NPCID.Mimic;
+    protected virtual int DustType => DustID.Adamantite;
+    protected virtual SpawnConditionBestiaryInfoElement Biome => BestiaryBuilder.CavernsBiome;
 
     public override void SetStaticDefaults() {
-        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Mimic];
+        Main.npcFrameCount[Type] = 6;
         NPCID.Sets.TrailingMode[Type] = 7;
         NPCID.Sets.DontDoHardmodeScaling[Type] = true;
         NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
         NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
-        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
-        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowFlame] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
         NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
-        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowCandle] = true;
+
+        if (!GameplayConfig.Instance.AdamantiteMimics) {
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+                Hide = true,
+            };
+        }
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
-        BestiaryBuilder.MoveBestiaryEntry(this, NPCID.Mimic);
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        bestiaryEntry.AddTags(
+            new FlavorTextBestiaryInfoElement("CommonBestiaryFlavor.Mimic"),
+            Biome
+        );
     }
 
     public override void SetDefaults() {
+        int cloneNPC = CloneNPC;
         NPC.width = 24;
         NPC.height = 24;
         NPC.aiStyle = 25;
@@ -43,14 +48,18 @@ public class ShadowMimic : ModNPC, IAddRecipes {
         NPC.value = 100000f;
         NPC.knockBackResist = 0.3f;
         NPC.rarity = 4;
-        AIType = NPCID.Mimic;
-        AnimationType = NPCID.Mimic;
-        Banner = Item.NPCtoBanner(NPCID.Mimic);
+        AIType = cloneNPC;
+        AnimationType = cloneNPC;
+        Banner = Item.NPCtoBanner(cloneNPC);
         BannerItem = Item.BannerToItem(Banner);
     }
 
+    public virtual void AddRecipes(Aequus aequus) {
+        BestiaryBuilder.MoveBestiaryEntry(this, CloneNPC);
+    }
+
     public override void HitEffect(NPC.HitInfo hit) {
-        int dustId = DustID.Demonite;
+        int dustId = DustType;
         if (NPC.life > 0) {
             for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50.0; i++) {
                 var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, dustId, 0f, 0f, 50, default(Color), 1.5f);
@@ -75,31 +84,17 @@ public class ShadowMimic : ModNPC, IAddRecipes {
         gore.velocity *= 0.3f;
     }
 
-    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        bestiaryEntry.AddTags(
-            new FlavorTextBestiaryInfoElement("CommonBestiaryFlavor.Mimic"),
-            BestiaryBuilder.Underworld
-        );
-    }
-
-    public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(new Conditions.NotRemixSeed(), ItemDropRule.OneFromOptions(1, ItemID.DarkLance, ItemID.Sunfury, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.HellwingBow));
-    }
-
     public override void AI() {
-        NPC.ai[3] = 3f;
-        base.AI();
+        NPC.ai[1] = 1f;
     }
 
     public override void FindFrame(int frameHeight) {
-        NPC.ai[3] = 3f;
+        NPC.frame.Y %= frameHeight * Main.npcFrameCount[Type];
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
-        var frame = NPC.frame;
-        frame.Y = Math.Max(frame.Y, NPC.frame.Height * Main.npcFrameCount[Type] / 3 * 2);
-
+        var frame = texture.Frame(verticalFrames: 6, frameY: NPC.frame.Y / NPC.frame.Height % 6);
         int trailLength = NPCID.Sets.TrailCacheLength[NPC.type];
         var offset = NPC.Size / 2f + new Vector2(0f, -7f);
         var origin = frame.Size() / 2f;
@@ -109,10 +104,14 @@ public class ShadowMimic : ModNPC, IAddRecipes {
                 continue;
             }
             spriteBatch.Draw(texture, (NPC.oldPos[i] - screenPos + offset).Floor(), frame,
-                (Color.BlueViolet with { A = 0 }) * Helper.CalcProgress(trailLength, i) * 0.2f, NPC.rotation, origin, NPC.scale, spriteDirection, 0f);
+                Helper.GetColor(NPC.oldPos[i] + offset) * Helper.CalcProgress(trailLength, i) * 0.4f, NPC.rotation, origin, NPC.scale, spriteDirection, 0f);
         }
         spriteBatch.Draw(texture, (NPC.position - screenPos + offset).Floor(), frame,
             drawColor, NPC.rotation, origin, NPC.scale, spriteDirection, 0f);
         return false;
+    }
+
+    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+        Helper.InheritDropRules(CloneNPC, Type, database);
     }
 }

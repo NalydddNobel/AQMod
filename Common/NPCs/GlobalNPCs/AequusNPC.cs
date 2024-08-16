@@ -20,7 +20,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs;
-public partial class AequusNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
+public partial class AequusNPC : GlobalNPC {
     public static float spawnNPCYOffset;
 
     public override bool InstancePerEntity => true;
@@ -107,12 +107,6 @@ public partial class AequusNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
             npc.defense /= 3;
             npc.damage /= 2;
         }
-        else if ((npc.type == NPCID.Mimic || npc.type == NPCID.IceMimic) && !Main.remixWorld && GameplayConfig.Instance.EarlyMimics) {
-            npc.damage = 30;
-            npc.defense = 12;
-            npc.lifeMax = 300;
-            npc.value = Item.buyPrice(gold: 2);
-        }
     }
     public override void SetDefaults(NPC npc) {
         if (NPCSets.DealsHeatDamage.Contains(npc.type)) {
@@ -154,15 +148,6 @@ public partial class AequusNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
                     //zombieInfo.Inherit(aequus.zombieInfo);
                 }
             }
-        }
-
-        //Main.NewText(source?.ToString() ?? "Null Source");
-        bool naturalSpawn = source is EntitySource_SpawnNPC;
-#if DEBUG
-        naturalSpawn |= source == null;
-#endif
-        if (naturalSpawn) {
-            OnSpawn_MimicConversion(npc);
         }
 
         if (Main.netMode == NetmodeID.MultiplayerClient) {

@@ -3186,6 +3186,12 @@
         <member name="F:Aequus.AequusTextures.GlimmerMenu_Glow">
             <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteMimic">
+            <summary>Full Path: Content/Monsters/Mimics/AdamantiteMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostMimic">
+            <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
         </member>
@@ -5105,12 +5111,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhu">
             <summary>Full Path: NPCs/Monsters/BreadOfCthulhu</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AdamantiteMimic">
-            <summary>Full Path: NPCs/Monsters/ChestMimics/AdamantiteMimic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostMimic">
-            <summary>Full Path: NPCs/Monsters/ChestMimics/FrostMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CoconutCrab">
             <summary>Full Path: NPCs/Monsters/CrabCrevice/CoconutCrab</summary>

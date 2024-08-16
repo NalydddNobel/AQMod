@@ -7,6 +7,12 @@ namespace Aequus.Common.DataSets;
 public class ItemSets : DataSet {
     protected override ContentFileInfo ContentFileInfo => new(ItemID.Search);
 
+    public static readonly HashSet<int> IceChestPrimaryLoot = [
+        ItemID.IceBlade, ItemID.IceBoomerang, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
+    ];
+    public static readonly HashSet<int> GoldChestPrimaryLoot = [
+        ItemID.BandofRegeneration, ItemID.MagicMirror, ItemID.CloudinaBottle, ItemID.HermesBoots, ItemID.Mace, ItemID.ShoeSpikes,
+    ];
     public static Dictionary<int, LocalizedText> RarityNames = new();
     public static List<int> LegendaryFish = new();
     /// <summary>

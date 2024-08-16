@@ -643,6 +643,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu_Glow = new("Content/MainMenu/GlimmerMenu_Glow");
+    /// <summary>Full Path: Content/Monsters/Mimics/AdamantiteMimic</summary>
+    public static readonly RequestCache<Texture2D> AdamantiteMimic = new("Content/Monsters/Mimics/AdamantiteMimic");
+    /// <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
+    public static readonly RequestCache<Texture2D> FrostMimic = new("Content/Monsters/Mimics/FrostMimic");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Content/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
@@ -1923,10 +1927,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BloodMimic = new("NPCs/Monsters/BloodMoon/BloodMimic");
     /// <summary>Full Path: NPCs/Monsters/BreadOfCthulhu</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhu = new("NPCs/Monsters/BreadOfCthulhu");
-    /// <summary>Full Path: NPCs/Monsters/ChestMimics/AdamantiteMimic</summary>
-    public static readonly RequestCache<Texture2D> AdamantiteMimic = new("NPCs/Monsters/ChestMimics/AdamantiteMimic");
-    /// <summary>Full Path: NPCs/Monsters/ChestMimics/FrostMimic</summary>
-    public static readonly RequestCache<Texture2D> FrostMimic = new("NPCs/Monsters/ChestMimics/FrostMimic");
     /// <summary>Full Path: NPCs/Monsters/CrabCrevice/CoconutCrab</summary>
     public static readonly RequestCache<Texture2D> CoconutCrab = new("NPCs/Monsters/CrabCrevice/CoconutCrab");
     /// <summary>Full Path: NPCs/Monsters/CrabCrevice/CoconutCrab_Glow</summary>
