@@ -11,6 +11,12 @@
     "8": "255, 255, 233"
   },
 
+  "SpiritMod": {
+    "AsteroidPylonTile": "178, 126, 125",
+    "BriarPylonTile": "207, 253, 52",
+    "SpiritPylonTile": "56, 91, 234"
+  },
+
   "CalamityMod": {
     "AstralPylonTile": "143, 0, 255",
     "CragsPylonTile": "255, 200, 0",
