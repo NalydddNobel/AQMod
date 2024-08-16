@@ -52,5 +52,6 @@ public enum PacketType : byte {
     NewNameTag,
     AddNewNameTagMarker,
     RemoveNewNameTagMarker,
+    CartographyTable,
     Count
 }

@@ -42,3 +42,5 @@ Furniture: {
 		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
 }
+
+// CartographyTable.ItemDisplayName: Mods.Aequus.Tiles.CartographyTable.ItemDisplayName

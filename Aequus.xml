@@ -2230,7 +2230,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1355)</summary>
+            <summary>(Total Textures: 1357)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3185,6 +3185,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu_Glow">
             <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CartographyTable">
+            <summary>Full Path: Content/Maps/CartographyTable/CartographyTable</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CartographyTableItem">
+            <summary>Full Path: Content/Maps/CartographyTable/CartographyTableItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteMimic">
             <summary>Full Path: Content/Monsters/Mimics/AdamantiteMimic</summary>
