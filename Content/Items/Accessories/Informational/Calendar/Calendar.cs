@@ -17,4 +17,12 @@ public class Calendar : ModItem {
     public override void UpdateInfoAccessory(Player player) {
         player.GetModPlayer<AequusPlayer>().accInfoDayCalendar = true;
     }
+
+    public static bool IsActive(Player player) {
+        return CalendarSystem.IsCalendarNearby || player.GetModPlayer<AequusPlayer>().accInfoDayCalendar;
+    }
+
+    public static bool IsInfoVisible(Player player) {
+        return IsActive(player) && !player.hideInfo[ModContent.GetInstance<CalendarInfoDisplay>().Type];
+    }
 }

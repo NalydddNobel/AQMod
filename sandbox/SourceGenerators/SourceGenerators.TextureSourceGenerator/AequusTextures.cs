@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1354)</summary>
+/// <summary>(Total Textures: 1355)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -579,6 +579,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Calendar = new("Content/Items/Accessories/Informational/Calendar/Calendar");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
     public static readonly RequestCache<Texture2D> CalendarInfoDisplay = new("Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarMapDisplay</summary>
+    public static readonly RequestCache<Texture2D> CalendarMapDisplay = new("Content/Items/Accessories/Informational/Calendar/CalendarMapDisplay");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarTile</summary>
     public static readonly RequestCache<Texture2D> CalendarTile = new("Content/Items/Accessories/Informational/Calendar/CalendarTile");
     /// <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>

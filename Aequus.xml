@@ -2230,7 +2230,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1354)</summary>
+            <summary>(Total Textures: 1355)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3089,6 +3089,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
             <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarMapDisplay">
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarMapDisplay</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CalendarTile">
             <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarTile</summary>

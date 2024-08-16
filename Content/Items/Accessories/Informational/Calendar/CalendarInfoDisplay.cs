@@ -11,7 +11,7 @@ public class CalendarInfoDisplay : InfoDisplay {
     }
 
     public override bool Active() {
-        return CalendarSystem.IsCalendarNearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDayCalendar;
+        return Calendar.IsActive(Main.LocalPlayer);
     }
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
