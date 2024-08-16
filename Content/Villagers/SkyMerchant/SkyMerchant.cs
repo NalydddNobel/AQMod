@@ -421,19 +421,19 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
             key = "Eclipse";
         }
         if (NPC.AnyNPCs(NPCID.Merchant) && Main.rand.NextBool(5)) {
-            key = "Merchant";
+            key = "NPC_Merchant";
         }
         if (NPC.AnyNPCs(NPCID.Pirate) && Main.rand.NextBool(5)) {
-            key = "Pirate";
+            key = "NPC_Pirate";
         }
         if (NPC.AnyNPCs(NPCID.Steampunker) && Main.rand.NextBool(5)) {
-            key = "Steampunker";
+            key = "NPC_Steampunker";
         }
         if (NPC.AnyNPCs(NPCID.TravellingMerchant) && Main.rand.NextBool(3)) {
-            key = "TravellingMerchant";
+            key = "NPC_TravellingMerchant";
         }
         if (NPC.AnyNPCs(NPCID.Demolitionist) && Main.rand.NextBool(5)) {
-            key = "Demolitionist";
+            key = "NPC_Demolitionist";
         }
         return this.GetLocalization("Dialogue." + key).FormatWith(Lang.CreateDialogSubstitutionObject(NPC));
     }
