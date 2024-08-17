@@ -45,4 +45,8 @@
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 			
+  <ItemGroup>
+    <None Remove="Content\Maps\CartographyTable\CartographyTable_Highlight.png" />
+  </ItemGroup>
+			
 </Project>
