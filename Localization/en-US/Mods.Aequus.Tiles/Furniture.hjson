@@ -45,5 +45,5 @@ Furniture: {
 
 CartographyTable: {
 	ItemDisplayName: Cartography Table
-	ItemTooltip: "<right> to share your map discoveries between your friends"
+	ItemTooltip: <right> to share your map discoveries between your friends
 }

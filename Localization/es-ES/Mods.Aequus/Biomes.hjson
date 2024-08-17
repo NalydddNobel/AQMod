@@ -58,4 +58,9 @@ Biomes: {
 		// DisplayName: Organic Energy Biome Manager
 		// TownNPCDialogueName: the Organic Energy Biome Manager
 	}
+
+	MeadowsBiome: {
+		// DisplayName: Meadows Biome
+		// TownNPCDialogueName: the Meadows Biome
+	}
 }

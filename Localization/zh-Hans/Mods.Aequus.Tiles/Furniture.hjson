@@ -43,4 +43,7 @@ Furniture: {
 	}
 }
 
-CartographyTable.ItemDisplayName: 绘图桌
+CartographyTable: {
+	ItemDisplayName: 绘图桌
+	// ItemTooltip: <right> to share your map discoveries between your friends
+}

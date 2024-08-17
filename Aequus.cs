@@ -59,6 +59,12 @@ public class Aequus : Mod {
     /// </summary>
     public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
+    public static int GetMusicOrDefault(string musicName, int defaultValue) {
+        int slot = MusicLoader.GetMusicSlot($"AequusMusic/Assets/Music/{musicName}");
+
+        return slot != 0 ? slot : defaultValue;
+    }
+
     public static Hook Detour(MethodInfo source, MethodInfo target) {
         //MonoModHooks.RequestNativeAccess();
         var hook = new Hook(source, target);

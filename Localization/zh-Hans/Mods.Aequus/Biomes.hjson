@@ -58,4 +58,9 @@ Biomes: {
 		DisplayName: 自然能量
 		TownNPCDialogueName: 自然能量
 	}
+
+	MeadowsBiome: {
+		// DisplayName: Meadows Biome
+		// TownNPCDialogueName: the Meadows Biome
+	}
 }
