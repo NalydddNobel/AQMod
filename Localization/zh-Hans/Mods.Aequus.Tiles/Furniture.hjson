@@ -45,5 +45,5 @@ Furniture: {
 
 CartographyTable: {
 	ItemDisplayName: 绘图桌
-	// ItemTooltip: <right> to share your map discoveries between your friends
+	ItemTooltip: 右键向你的朋友分享你已探明的地图
 }
