@@ -51,19 +51,24 @@ public struct ServerMapTile {
         return MapTile.Create(type, Light, 0);
     }
 
-    public void ApplyToClient(int x, int y) {
-        if (Main.netMode != NetmodeID.Server) {
-            MapTile tile = Main.Map[x, y];
-            if (tile.Light <= 0) {
-                tile.Color = 0;
-                tile.Type = MapTypeConvert.Instance.ToClientType(Type);
-            }
-            tile.Light = Math.Max(tile.Light, Light);
-
-
-            Main.Map.SetTile(x, y, ref tile);
-
-            Main.refreshMap = true;
+    public bool ApplyToClient(int x, int y) {
+        if (Main.netMode == NetmodeID.Server) {
+            return false;
         }
+
+        bool usesUnknownTile = false;
+        MapTile tile = Main.Map[x, y];
+        tile.Light = Math.Max(tile.Light, Light);
+        if (tile.Light <= 0) {
+            tile.Color = 0;
+            tile.Type = MapTypeConvert.Instance.ToClientType(Type);
+            usesUnknownTile = true;
+        }
+
+        Main.Map.SetTile(x, y, ref tile);
+
+        Main.refreshMap = true;
+
+        return usesUnknownTile;
     }
 }

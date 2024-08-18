@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Maps.CartographyTable;
 
-public class ServerMap(int Width, int Height) {
+public class ServerMap {
     public const int ChunkWidth = 200;
     public const int ChunkHeight = 16;
 
@@ -14,10 +14,20 @@ public class ServerMap(int Width, int Height) {
     public int ChunkColumns => Helper.DivCeiling(Width, ChunkHeight);
     public int MaxChunks => ChunkRows * ChunkColumns;
 
-    public readonly int Width = Width;
-    public readonly int Height = Height;
+    public readonly int Width;
+    public readonly int Height;
+    public readonly bool[] NoDownload;
+    public readonly bool[] NoUpload;
 
-    private readonly ServerMapTile[] _map = new ServerMapTile[Width * Height];
+    private readonly ServerMapTile[] _map;
+
+    public ServerMap(int Width, int Height) {
+        this.Width = Width;
+        this.Height = Height;
+        _map = new ServerMapTile[Width * Height];
+        NoDownload = new bool[MaxChunks];
+        NoUpload = new bool[MaxChunks];
+    }
 
     public ServerMapTile this[int x, int y] {
         get => _map[Math.Clamp(x + y * Width, 0, _map.Length)];
@@ -99,5 +109,19 @@ public class ServerMap(int Width, int Height) {
 
     public float GetChunkProgress(int chunk) {
         return chunk / (float)MaxChunks;
+    }
+
+    public void ResetNoUploadList() {
+        for (int i = 0; i < NoUpload.Length; i++) {
+            NoUpload[i] = false;
+        }
+    }
+
+    public void SetNoUpload(int chunk, bool value) {
+        if (chunk <= 0 || chunk >= MaxChunks) {
+            return;
+        }
+
+        NoUpload[chunk] = value;
     }
 }

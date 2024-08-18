@@ -1,17 +1,16 @@
 ﻿using Aequus.Common.Net;
 using System.IO;
-using Terraria.Map;
 
 namespace Aequus.Content.Maps.CartographyTable;
 
-public class ServerMapClientSubmitPacket : PacketHandler {
-    public override PacketType LegacyPacketType => PacketType.CartographyTableSubmit;
+public class ServerMapDownloadPacket : PacketHandler {
+    public override PacketType LegacyPacketType => PacketType.CartographyTable;
 
-    private ushort _nextChunk;
+    private readonly ushort[] _nextSection = new ushort[Main.maxPlayers];
 
-    private int TrySendClientChunk(int player) {
+    private int TrySendServerChunk(int player) {
         ModPacket p = GetPacket();
-        ushort chunk = _nextChunk;
+        ushort chunk = _nextSection[player];
         p.Write(chunk);
 
         ServerMap map = ModContent.GetInstance<CartographyTableSystem>().Map!;
@@ -26,9 +25,7 @@ public class ServerMapClientSubmitPacket : PacketHandler {
 
         for (int i = x; i < x + w; i++) {
             for (int j = y; j < y + h; j++) {
-                MapTile tile = Main.Map[i, j];
-                p.Write(tile.Light);
-                any |= tile.Light > 0;
+                any |= map[i, j].Write(p);
             }
         }
 
@@ -36,72 +33,72 @@ public class ServerMapClientSubmitPacket : PacketHandler {
             return 0;
         }
 
-        p.Send();
+        p.Send(toClient: player);
 
         return 1;
     }
 
     public void SendReset(int player) {
-        if (Main.netMode == NetmodeID.Server) {
+        if (Main.netMode == NetmodeID.MultiplayerClient) {
             ModPacket p = GetPacket();
             p.Write((byte)1);
-            p.Send(toClient: player);
+            p.Send();
 
-            ModContent.GetInstance<CartographyTableSystem>().Map.CreateDebugMap();
+            CartographyTableSystem.Instance.Map!.ResetNoUploadList();
         }
     }
 
     public void Send(int player) {
-        if (Main.netMode == NetmodeID.MultiplayerClient) {
-            // Set download bar to max when sending
-            if (_nextChunk == 0) {
-                CartographyTable.Instance.SetDownloadProgress(1f);
-            }
-
+        if (Main.netMode == NetmodeID.Server) {
             int result;
-            while ((result = TrySendClientChunk(player)) == 0) {
-                _nextChunk++;
+            while ((result = TrySendServerChunk(player)) == 0) {
+                _nextSection[player]++;
             }
 
             if (result == 2) {
-                CartographyTable.Instance.EndNet();
-                _nextChunk = 0;
+                _nextSection[player] = 0;
+                ModContent.GetInstance<ServerMapUploadPacket>().SendReset(player);
             }
             else {
-                // Set cartography table upload progress bar.
-                CartographyTable.Instance.SetUploadProgress(CartographyTableSystem.Instance.Map!.GetChunkProgress(_nextChunk));
-
-                _nextChunk++;
+                _nextSection[player]++;
             }
         }
         else {
             ModPacket p = GetPacket();
             p.Write((byte)0);
-            p.Send(toClient: player);
+            p.Send();
         }
     }
 
     public override void Receive(BinaryReader reader, int sender) {
-        if (Main.netMode == NetmodeID.Server) {
+        if (Main.netMode == NetmodeID.MultiplayerClient) {
             ushort chunk = reader.ReadUInt16();
 
             ServerMap map = ModContent.GetInstance<CartographyTableSystem>().Map!;
 
             map.GetChunkDimensions(chunk, out int x, out int y, out int w, out int h);
+            map.SetNoUpload(chunk, true);
             for (int i = x; i < x + w; i++) {
                 for (int j = y; j < y + h; j++) {
-                    byte light = reader.ReadByte();
-                    if (light > map[i, j].Light) {
-                        map.SetLight(i, j, light);
+                    map[i, j] = ServerMapTile.FromReader(reader);
+                    if (map[i, j].ApplyToClient(i, j)) {
+                        map.SetNoUpload(chunk, false);
                     }
-                    map.ScanType(i, j);
                 }
             }
+
+            // Set cartography table download progress bar.
+            ServerMapDownloadUI.Instance.SetDownloadProgress(map.GetChunkProgress(chunk));
         }
-        else {
+
+        if (Main.netMode == NetmodeID.Server) {
+            if (sender < 0 || sender >= Main.maxPlayers) {
+                return;
+            }
+
             byte note = reader.ReadByte();
             if (note == 1) {
-                _nextChunk = 0;
+                _nextSection[sender] = 0;
             }
         }
 
