@@ -60,7 +60,7 @@ Biomes: {
 	}
 
 	MeadowsBiome: {
-		// DisplayName: Meadows
-		// TownNPCDialogueName: the Meadows
+		DisplayName: 草地
+		TownNPCDialogueName: 草地
 	}
 }
