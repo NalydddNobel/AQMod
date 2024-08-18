@@ -2230,7 +2230,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1358)</summary>
+            <summary>(Total Textures: 1359)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3188,6 +3188,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.CartographyTable">
             <summary>Full Path: Content/Maps/CartographyTable/CartographyTable</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CartographyTableDownloadBar">
+            <summary>Full Path: Content/Maps/CartographyTable/CartographyTableDownloadBar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CartographyTableItem">
             <summary>Full Path: Content/Maps/CartographyTable/CartographyTableItem</summary>

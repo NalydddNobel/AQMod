@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1358)</summary>
+/// <summary>(Total Textures: 1359)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -645,6 +645,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerMenu_Glow = new("Content/MainMenu/GlimmerMenu_Glow");
     /// <summary>Full Path: Content/Maps/CartographyTable/CartographyTable</summary>
     public static readonly RequestCache<Texture2D> CartographyTable = new("Content/Maps/CartographyTable/CartographyTable");
+    /// <summary>Full Path: Content/Maps/CartographyTable/CartographyTableDownloadBar</summary>
+    public static readonly RequestCache<Texture2D> CartographyTableDownloadBar = new("Content/Maps/CartographyTable/CartographyTableDownloadBar");
     /// <summary>Full Path: Content/Maps/CartographyTable/CartographyTableItem</summary>
     public static readonly RequestCache<Texture2D> CartographyTableItem = new("Content/Maps/CartographyTable/CartographyTableItem");
     /// <summary>Full Path: Content/Maps/CartographyTable/CartographyTable_Highlight</summary>

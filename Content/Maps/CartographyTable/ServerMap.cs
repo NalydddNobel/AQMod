@@ -10,6 +10,10 @@ public class ServerMap(int Width, int Height) {
     public const int ChunkWidth = 200;
     public const int ChunkHeight = 16;
 
+    public int ChunkRows => Helper.DivCeiling(Width, ChunkWidth);
+    public int ChunkColumns => Helper.DivCeiling(Width, ChunkHeight);
+    public int MaxChunks => ChunkRows * ChunkColumns;
+
     public readonly int Width = Width;
     public readonly int Height = Height;
 
@@ -91,5 +95,9 @@ public class ServerMap(int Width, int Height) {
             }
             img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
         }
+    }
+
+    public float GetChunkProgress(int chunk) {
+        return chunk / (float)MaxChunks;
     }
 }

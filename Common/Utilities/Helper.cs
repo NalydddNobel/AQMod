@@ -76,6 +76,10 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static int DivCeiling(int numerator, int denominator) {
+        return (int)MathF.Ceiling(numerator / (float)denominator);
+    }
+
     public static float GetIconScale(float iconMaxSize, Texture2D texture) {
         return Math.Min(iconMaxSize / Math.Max(texture.Width, texture.Height), 1f);
     }

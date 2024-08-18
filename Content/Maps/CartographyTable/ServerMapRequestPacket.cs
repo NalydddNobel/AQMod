@@ -73,6 +73,7 @@ public class ServerMapRequestPacket : PacketHandler {
             ushort chunk = reader.ReadUInt16();
 
             ServerMap map = ModContent.GetInstance<CartographyTableSystem>().Map!;
+
             map.GetChunkDimensions(chunk, out int x, out int y, out int w, out int h);
             for (int i = x; i < x + w; i++) {
                 for (int j = y; j < y + h; j++) {
@@ -81,7 +82,8 @@ public class ServerMapRequestPacket : PacketHandler {
                 }
             }
 
-            Main.NewText($"Getting chunk: {chunk}");
+            // Set cartography table download progress bar.
+            CartographyTable.Instance.SetDownloadProgress(map.GetChunkProgress(chunk));
         }
 
         if (Main.netMode == NetmodeID.Server) {

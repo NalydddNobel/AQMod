@@ -4,6 +4,8 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Content.Maps.CartographyTable;
 
 public class CartographyTableSystem : ModSystem {
+    public static CartographyTableSystem Instance => ModContent.GetInstance<CartographyTableSystem>();
+
     public ServerMap? Map { get; private set; }
 
     public override void Load() {

@@ -7,11 +7,11 @@ namespace Aequus.Content.Maps.CartographyTable;
 public class ServerMapClientSubmitPacket : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.CartographyTableSubmit;
 
-    private ushort _nextSection;
+    private ushort _nextChunk;
 
     private int TrySendClientChunk(int player) {
         ModPacket p = GetPacket();
-        ushort chunk = _nextSection;
+        ushort chunk = _nextChunk;
         p.Write(chunk);
 
         ServerMap map = ModContent.GetInstance<CartographyTableSystem>().Map!;
@@ -53,18 +53,25 @@ public class ServerMapClientSubmitPacket : PacketHandler {
 
     public void Send(int player) {
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            Main.NewText($"Sending chunk: {_nextSection}");
+            // Set download bar to max when sending
+            if (_nextChunk == 0) {
+                CartographyTable.Instance.SetDownloadProgress(1f);
+            }
 
             int result;
             while ((result = TrySendClientChunk(player)) == 0) {
-                _nextSection++;
+                _nextChunk++;
             }
 
             if (result == 2) {
-                _nextSection = 0;
+                CartographyTable.Instance.EndNet();
+                _nextChunk = 0;
             }
             else {
-                _nextSection++;
+                // Set cartography table upload progress bar.
+                CartographyTable.Instance.SetUploadProgress(CartographyTableSystem.Instance.Map!.GetChunkProgress(_nextChunk));
+
+                _nextChunk++;
             }
         }
         else {
@@ -94,7 +101,7 @@ public class ServerMapClientSubmitPacket : PacketHandler {
         else {
             byte note = reader.ReadByte();
             if (note == 1) {
-                _nextSection = 0;
+                _nextChunk = 0;
             }
         }
 
