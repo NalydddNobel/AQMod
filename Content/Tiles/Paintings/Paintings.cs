@@ -69,22 +69,20 @@ public sealed class Paintings : ModType, ILocalizedModType {
         ).AddEntry(Sets.DesertPictures);
 
         New("Yin", AequusTextures.YinPainting.FullPath,
-            W: 2, H: 2,
-            Rare: ItemRarityID.White,
-            Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray,
-            Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.DesertPictures)
-        .RegisterLegacy(0);
+            W: 2, H: 3,
+            Rare: ItemRarityID.LightRed,
+            Value: Item.sellPrice(gold: 1),
+            MapColor: new Color(77, 4, 149),
+            Tooltip: SignatureNiker
+        ).AddEntry(Sets.DungeonPictures);
 
         New("Yang", AequusTextures.YangPainting.FullPath,
-            W: 2, H: 2,
-            Rare: ItemRarityID.White,
-            Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray,
-            Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.DesertPictures)
-        .RegisterLegacy(1);
+            W: 2, H: 3,
+            Rare: ItemRarityID.LightRed,
+            Value: Item.sellPrice(gold: 1),
+            MapColor: new Color(132, 4, 149),
+            Tooltip: SignatureNiker
+        ).AddEntry(Sets.DungeonPictures);
 
         New("Narry", AequusTextures.NarryPainting.FullPath,
             W: 2, H: 3,

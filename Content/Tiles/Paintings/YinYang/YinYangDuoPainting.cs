@@ -1,9 +1,9 @@
-﻿using Aequus.Common.Utilities.Helpers;
-using Aequus.Systems.Shimmer;
+﻿using Aequus.Systems.Shimmer;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.GameContent;
 using Terraria.Localization;
+using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Paintings.YinYang;
@@ -124,13 +124,26 @@ public class YinYangDuoPaintingItem : ModItem, IShimmerOverride {
         Texture2D texture = GetTexture();
         Main.GetItemDrawFrame(Type, out _, out Rectangle frame);
         Vector2 drawCoordinates = Helper.WorldDrawPos(Item, frame);
-        Color drawColor = LightingHelper.Get(Item.Center);
         Vector2 origin = frame.Size() / 2f;
-        spriteBatch.Draw(texture, drawCoordinates, frame, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frame, alphaColor, rotation, origin, scale, SpriteEffects.None, 0f);
         return false;
     }
 
     #region IO
+    public const string SaveTag = "ShimmerAlt";
+
+    public override void SaveData(TagCompound tag) {
+        if (_shimmerAlt) {
+            tag[SaveTag] = _shimmerAlt;
+        }
+    }
+
+    public override void LoadData(TagCompound tag) {
+        if (tag.TryGet(SaveTag, out bool value)) {
+            _shimmerAlt = value;
+        }
+    }
+
     public override void NetSend(BinaryWriter writer) {
         writer.Write(_shimmerAlt);
     }
@@ -153,6 +166,7 @@ public class YinYangDuoPaintingItem : ModItem, IShimmerOverride {
 
         _shimmerAlt = !_shimmerAlt;
         Shimmer.GetShimmered(item);
+        Item.shimmered = true;
         return true;
     }
     #endregion

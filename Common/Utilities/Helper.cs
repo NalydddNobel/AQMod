@@ -10,6 +10,7 @@ using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Helpers;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Projectiles;
 using log4net;
