@@ -2230,7 +2230,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1359)</summary>
+            <summary>(Total Textures: 1360)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3433,28 +3433,31 @@
             <summary>Full Path: Content/Tiles/Paintings/WallPaintings6x4</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YangPainting">
-            <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YangPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YangPaintingItem">
-            <summary>Full Path: Content/Tiles/Paintings/YangPaintingItem</summary>
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YangPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YinPainting">
-            <summary>Full Path: Content/Tiles/Paintings/YinPainting</summary>
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YinPaintingItem">
-            <summary>Full Path: Content/Tiles/Paintings/YinPaintingItem</summary>
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinPaintingItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.YinYangPainting">
-            <summary>Full Path: Content/Tiles/Paintings/YinYangPainting</summary>
+        <member name="F:Aequus.AequusTextures.YinYangDuoPainting">
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangDuoPainting</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.YinYangPaintingItem">
-            <summary>Full Path: Content/Tiles/Paintings/YinYangPaintingItem</summary>
+        <member name="F:Aequus.AequusTextures.YinYangDuoPaintingHardmodeItem">
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangDuoPaintingHardmodeItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinYangDuoPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangDuoPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
-            <summary>Full Path: Content/Tiles/Paintings/YinYangXmasPainting</summary>
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YinYangXmasPaintingItem">
-            <summary>Full Path: Content/Tiles/Paintings/YinYangXmasPaintingItem</summary>
+            <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountySelection">
             <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>

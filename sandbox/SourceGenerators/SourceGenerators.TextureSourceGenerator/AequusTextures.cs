@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1359)</summary>
+/// <summary>(Total Textures: 1360)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -807,22 +807,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpacePaintingItem = new("Content/Tiles/Paintings/SpacePaintingItem");
     /// <summary>Full Path: Content/Tiles/Paintings/WallPaintings6x4</summary>
     public static readonly RequestCache<Texture2D> WallPaintings6x4 = new("Content/Tiles/Paintings/WallPaintings6x4");
-    /// <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
-    public static readonly RequestCache<Texture2D> YangPainting = new("Content/Tiles/Paintings/YangPainting");
-    /// <summary>Full Path: Content/Tiles/Paintings/YangPaintingItem</summary>
-    public static readonly RequestCache<Texture2D> YangPaintingItem = new("Content/Tiles/Paintings/YangPaintingItem");
-    /// <summary>Full Path: Content/Tiles/Paintings/YinPainting</summary>
-    public static readonly RequestCache<Texture2D> YinPainting = new("Content/Tiles/Paintings/YinPainting");
-    /// <summary>Full Path: Content/Tiles/Paintings/YinPaintingItem</summary>
-    public static readonly RequestCache<Texture2D> YinPaintingItem = new("Content/Tiles/Paintings/YinPaintingItem");
-    /// <summary>Full Path: Content/Tiles/Paintings/YinYangPainting</summary>
-    public static readonly RequestCache<Texture2D> YinYangPainting = new("Content/Tiles/Paintings/YinYangPainting");
-    /// <summary>Full Path: Content/Tiles/Paintings/YinYangPaintingItem</summary>
-    public static readonly RequestCache<Texture2D> YinYangPaintingItem = new("Content/Tiles/Paintings/YinYangPaintingItem");
-    /// <summary>Full Path: Content/Tiles/Paintings/YinYangXmasPainting</summary>
-    public static readonly RequestCache<Texture2D> YinYangXmasPainting = new("Content/Tiles/Paintings/YinYangXmasPainting");
-    /// <summary>Full Path: Content/Tiles/Paintings/YinYangXmasPaintingItem</summary>
-    public static readonly RequestCache<Texture2D> YinYangXmasPaintingItem = new("Content/Tiles/Paintings/YinYangXmasPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YangPainting</summary>
+    public static readonly RequestCache<Texture2D> YangPainting = new("Content/Tiles/Paintings/YinYang/YangPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YangPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YangPaintingItem = new("Content/Tiles/Paintings/YinYang/YangPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinPainting</summary>
+    public static readonly RequestCache<Texture2D> YinPainting = new("Content/Tiles/Paintings/YinYang/YinPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YinPaintingItem = new("Content/Tiles/Paintings/YinYang/YinPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangDuoPainting</summary>
+    public static readonly RequestCache<Texture2D> YinYangDuoPainting = new("Content/Tiles/Paintings/YinYang/YinYangDuoPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangDuoPaintingHardmodeItem</summary>
+    public static readonly RequestCache<Texture2D> YinYangDuoPaintingHardmodeItem = new("Content/Tiles/Paintings/YinYang/YinYangDuoPaintingHardmodeItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangDuoPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YinYangDuoPaintingItem = new("Content/Tiles/Paintings/YinYang/YinYangDuoPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPainting</summary>
+    public static readonly RequestCache<Texture2D> YinYangXmasPainting = new("Content/Tiles/Paintings/YinYang/YinYangXmasPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YinYangXmasPaintingItem = new("Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem");
     /// <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
     public static readonly RequestCache<Texture2D> BountySelection = new("Content/UI/BountyBoard/BountySelection");
     /// <summary>Full Path: Content/UI/BountyBoard/BountyUIArrow</summary>

@@ -105,15 +105,6 @@ public sealed class Paintings : ModType, ILocalizedModType {
         .RegisterLegacy(0)
         .RegisterLegacy(1);
 
-        New("YinYang", AequusTextures.YinYangPainting.FullPath,
-            W: 3, H: 2,
-            Rare: ItemRarityID.White,
-            Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray,
-            Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.DesertPictures)
-        .RegisterLegacy(2);
-
         New("RockForce", AequusTextures.RockForce.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
@@ -265,30 +256,6 @@ public sealed class Paintings : ModType, ILocalizedModType {
     public sealed override void SetupContent() {
         // Add sky paintings to skyware chest loot pool.
         ChestLootDatabase.Instance.RegisterIndexed(1, ChestPool.Sky, Sets.SkyPictures.Select((p) => new CommonChestRule(p.ItemType)).ToArray());
-
-        // Generic paintings which spawn in underground houses.
-        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.BongBongPainting });
-        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.OliverPainting });
-        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings6x4>(), style = WallPaintings6x4.BreadRoachPainting });
-
-        // Paintings which spawn on rock walls.
-        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.Fus });
-        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.Ro });
-        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.DAH });
-
-        // Paintings which spawn in the Desert.
-        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.YinYangPainting });
-        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings2x2.YinPainting });
-        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings2x2.YangPainting });
-
-        // Paintings which spawn in the Dungeon.
-        //DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings2x3.NarryPainting });
-        //DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.RockFromAnAlternateUniversePainting });
-
-        // Paintings which spawn in the Underworld.
-        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.GoreNestPainting });
-        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.GoreNest2Painting });
-        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.InsurgentPainting });
 
         SetStaticDefaults();
     }

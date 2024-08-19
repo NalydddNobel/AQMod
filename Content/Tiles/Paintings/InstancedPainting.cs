@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
-using Aequus.Common.Utilities.Helpers;
 using System;
 using Terraria.Localization;
 using Terraria.ObjectData;
@@ -41,20 +40,13 @@ internal class InstancedPainting : InstancedModTile, IPainting {
     }
 
     public override void SetStaticDefaults() {
-        Main.tileFrameImportant[Type] = true;
-        Main.tileLavaDeath[Type] = true;
-        Main.tileSpelunker[Type] = true;
-        TileID.Sets.FramesOnKillWall[Type] = true;
-        TileID.Sets.DisableSmartCursor[Type] = true;
-        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
-        TileObjectData.newTile.Width = Width;
-        TileObjectData.newTile.Height = Height;
-        TileObjectData.newTile.CoordinateHeights = ArrayTools.New(Height, (i) => 16);
-        TileObjectData.newTile.StyleHorizontal = true;
-        TileObjectData.newTile.StyleWrapLimit = 36;
+        new PaintingInitInfo(Width, Height)
+            .SetupPainting(this, TileObjectData.newTile);
         TileObjectData.addTile(Type);
+
         DustType = DustID.WoodFurniture;
         Paintings p = ModContent.GetInstance<Paintings>();
         AddMapEntry(MapColor ?? p.DefaultPaintingColor, TileName?.Value ?? p.DefaultPaintingName);
+
     }
 }

@@ -5,12 +5,20 @@ Paintings: {
 		// Torra: T. Torra
 	}
 
+	YinYangDuoPainting: {
+		// MapEntry: The Polarity
+		/* Tooltip:
+			'''
+			'Equality has parted its ways'
+			{$Signature.Niker}
+			''' */
+	}
+
 	// RockmanLemonsPainting.ItemDisplayName: Life & Lemons
 	// YinPainting.ItemDisplayName: Yet Darker
 	// YangPainting.ItemDisplayName: Feel the Sunshine
 	// NarryPainting.ItemDisplayName: A Spirit's Rambling
 	// BongBongPainting.ItemDisplayName: BongBong
-	// YinYangPainting.ItemDisplayName: The Polarity
 
 	RockForcePainting: {
 		// ItemDisplayName: Stone Tablet - Force

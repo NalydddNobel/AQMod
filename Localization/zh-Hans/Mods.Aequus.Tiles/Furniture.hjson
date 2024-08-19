@@ -46,6 +46,6 @@ Furniture: {
 CartographyTable: {
 	ItemDisplayName: 绘图桌
 	ItemTooltip: 右键向你的朋友分享你已探明的地图
-	DownloadingMap: "正在下载地图..."
-	UploadingMap: "正在上传地图..."
+	DownloadingMap: 正在下载地图...
+	UploadingMap: 正在上传地图...
 }

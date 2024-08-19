@@ -1,12 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 
 namespace Aequus.Systems.Shimmer;
 
-public class Shimmer {
+public class Shimmer : LoadedType {
     private readonly Dictionary<int, List<IShimmerOverride>> _byTypeOverride = [];
     private readonly List<IShimmerOverride> _globalOverrides = [];
+
+    protected override void Load() {
+        On_ShimmerTransforms.IsItemTransformLocked += On_ShimmerTransforms_IsItemTransformLocked;
+        On_Item.CanShimmer += On_Item_CanShimmer;
+        On_Item.GetShimmered += On_Item_GetShimmered;
+    }
+
+
+    #region Hooks
+    private bool On_ShimmerTransforms_IsItemTransformLocked(On_ShimmerTransforms.orig_IsItemTransformLocked orig, int type) {
+        return ModContent.GetInstance<Shimmer>().IsItemTransformLocked(type) ?? orig(type);
+    }
+
+    private static bool On_Item_CanShimmer(On_Item.orig_CanShimmer orig, Item item) {
+        return ModContent.GetInstance<Shimmer>().CanShimmer(item) ?? orig(item);
+    }
+
+    private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item self) {
+        if (ModContent.GetInstance<Shimmer>().OverrideTransformation(self)) {
+            return;
+        }
+
+        orig(self);
+    }
+    #endregion
 
     public void AddShimmerOverride(int type, IShimmerOverride effect) {
         (CollectionsMarshal.GetValueRefOrAddDefault(_byTypeOverride, type, out bool _) ??= []).Add(effect);

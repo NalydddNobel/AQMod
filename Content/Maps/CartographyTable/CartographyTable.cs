@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Content.Biomes.Meadows.Tiles;
 using System;
-using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
@@ -51,9 +50,9 @@ public class CartographyTable : ModTile, IAddRecipes {
             .SortBeforeFirstRecipesOf(ItemID.GlassKiln);
     }
 
-    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+    public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
         int offset = Math.Clamp(WorldGen.GetWorldSize(), 0, 2);
-        drawData.addFrX = offset * 72;
+        tileFrameX += (short)(offset * 72);
     }
 
     public override bool RightClick(int i, int j) {
