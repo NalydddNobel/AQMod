@@ -46,4 +46,6 @@ Furniture: {
 CartographyTable: {
 	// ItemDisplayName: Cartography Table
 	// ItemTooltip: <right> to share your map discoveries between your friends
+	// DownloadingMap: Downloading map...
+	// UploadingMap: Uploading map...
 }
