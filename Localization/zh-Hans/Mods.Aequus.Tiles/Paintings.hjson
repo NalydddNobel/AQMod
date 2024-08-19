@@ -6,12 +6,12 @@ Paintings: {
 	}
 
 	YinYangDuoPainting: {
-		// MapEntry: The Polarity
-		/* Tooltip:
+		MapEntry: 两极
+		Tooltip:
 			'''
-			'Equality has parted its ways'
+			'平等已裂分'
 			{$Signature.Niker}
-			''' */
+			'''
 	}
 
 	RockmanLemonsPainting.ItemDisplayName: 生命 & 柠檬
