@@ -72,6 +72,7 @@ public class ServerMapDownloadPacket : PacketHandler {
 
     public override void Receive(BinaryReader reader, int sender) {
         if (Main.netMode == NetmodeID.MultiplayerClient) {
+            // Read the chunk Id.
             ushort chunk = reader.ReadUInt16();
 
             ServerMap map = ModContent.GetInstance<CartographyTableSystem>().Map!;
