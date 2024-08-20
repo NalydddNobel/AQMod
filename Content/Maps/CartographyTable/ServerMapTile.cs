@@ -8,28 +8,24 @@ public struct ServerMapTile {
     public byte Light;
     public byte Type;
 
-    public bool Equals(ServerMapTile other) {
+    public readonly bool Equals(ServerMapTile other) {
         return other.Light == Light && other.Type == Type;
     }
 
-    public bool Write(BinaryWriter writer) {
-        writer.Write(Light);
-
-        if (Light == 0) {
-            return false;
-        }
-
-        writer.Write(Type);
+    public readonly bool Write(BinaryWriter writer) {
+        // We dont really care about tiles which have less than 4 light.
+        byte value = (byte)(Light << 2);
+        value |= (byte)(Type >> 6);
+        writer.Write(value);
         return true;
     }
 
     public static ServerMapTile FromReader(BinaryReader reader) {
         ServerMapTile next = new ServerMapTile();
 
-        next.Light = reader.ReadByte();
-        if (next.Light > 0) {
-            next.Type = reader.ReadByte();
-        }
+        byte value = reader.ReadByte();
+        next.Light = (byte)(value >> 2);
+        next.Type = (byte)(value << 6);
 
         return next;
     }
@@ -37,21 +33,21 @@ public struct ServerMapTile {
     public static ServerMapTile FromMapTile(int x, int y) {
         Tile tile = Main.tile[x, y];
         MapTile mapTile = Main.Map[x, y];
-        ServerMapTile next = new ServerMapTile();
-
-        next.Light = mapTile.Light;
-        next.Type = MapTypeConvert.Instance.ToServerType(tile, mapTile.Type);
+        ServerMapTile next = new ServerMapTile {
+            Light = mapTile.Light,
+            Type = MapTypeConvert.Instance.ToServerType(tile, mapTile.Type)
+        };
 
         return next;
     }
 
-    public MapTile Create() {
+    public readonly MapTile Create() {
         ushort type = MapTypeConvert.Instance.ToClientType(Type);
 
         return MapTile.Create(type, Light, 0);
     }
 
-    public bool ApplyToClient(int x, int y) {
+    public readonly bool ApplyToClient(int x, int y) {
         if (Main.netMode == NetmodeID.Server) {
             return false;
         }

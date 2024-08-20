@@ -8,7 +8,7 @@ namespace Aequus.Content.Maps.CartographyTable;
 
 public class ServerMap {
     public const int ChunkWidth = 200;
-    public const int ChunkHeight = 16;
+    public const int ChunkHeight = 100;
 
     public int ChunkRows => Helper.DivCeiling(Width, ChunkWidth);
     public int ChunkColumns => Helper.DivCeiling(Width, ChunkHeight);
