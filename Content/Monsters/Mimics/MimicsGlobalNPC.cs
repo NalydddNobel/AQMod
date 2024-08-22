@@ -43,24 +43,24 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
     }
 
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        if (!GameplayConfig.Instance.EarlyMimics || Main.hardMode || Main.remixWorld || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || spawnInfo.Water) {
+        if (!GameplayConfig.Instance.EarlyMimics || Main.hardMode || Main.remixWorld || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || spawnInfo.Water || spawnInfo.DesertCave || spawnInfo.PlayerInTown) {
             return;
         }
 
         Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
         if (TileID.Sets.IcesSnow[tile.TileType]) {
-            pool[NPCID.IceMimic] = 0.05f;
+            pool[NPCID.IceMimic] = 0.025f;
             return;
         }
 
         if (spawnInfo.SpawnTileY >= Main.UnderworldLayer) {
             // Prevent mimics spawning in the Underworld if Skeletron hasn't been defeated.
             if (NPC.downedBoss3) {
-                pool[NPCID.Mimic] = 0.05f;
+                pool[NPCID.Mimic] = 0.025f;
             }
         }
         else {
-            pool[NPCID.Mimic] = spawnInfo.SpawnTileY >= Main.rockLayer ? 0.04f : 0.01f;
+            pool[NPCID.Mimic] = spawnInfo.SpawnTileY >= Main.rockLayer ? 0.02f : 0.005f;
         }
     }
 
