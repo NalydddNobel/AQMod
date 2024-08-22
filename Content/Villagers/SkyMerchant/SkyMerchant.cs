@@ -8,6 +8,7 @@ using Aequus.NPCs;
 using Aequus.NPCs.Town;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
@@ -15,7 +16,7 @@ using Terraria.Localization;
 namespace Aequus.Content.Villagers.SkyMerchant;
 
 public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
-    public enum MovementState {
+    public enum MovementState : byte {
         Init,
         Walking,
         Ballooning,
@@ -144,15 +145,6 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
 
             return false;
         }
-    }
-
-    private bool NearStoppingPoint() {
-        for (int i = 0; i < Main.maxPlayers; i++) {
-            if (Main.player[i].active && !Main.player[i].DeadOrGhost && NPC.Distance(Main.player[i].Center) < 200f) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void BalloonMovement() {
@@ -462,6 +454,16 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
             "Gelebor",
             "Vyrthur",
         };
+    }
+    #endregion
+
+    #region IO
+    public override void SendExtraAI(BinaryWriter writer) {
+        writer.Write((byte)state);
+    }
+
+    public override void ReceiveExtraAI(BinaryReader reader) {
+        state = (MovementState)reader.ReadByte();
     }
     #endregion
 }

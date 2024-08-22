@@ -14,6 +14,7 @@ public class SkyMerchantBalloon : ModNPC {
         NPC.aiStyle = -1;
         NPC.lifeMax = 250;
         NPC.defense = 10;
+        NPC.friendly = true;
         //NPC.hide = true;
         NPC.behindTiles = true;
         NPC.dontTakeDamage = true;
