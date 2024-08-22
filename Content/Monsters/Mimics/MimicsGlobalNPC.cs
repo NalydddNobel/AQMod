@@ -43,7 +43,7 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
     }
 
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        if (!GameplayConfig.Instance.EarlyMimics || Main.hardMode || Main.remixWorld || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || spawnInfo.Water || spawnInfo.DesertCave || spawnInfo.PlayerInTown) {
+        if (!GameplayConfig.Instance.EarlyMimics || Main.hardMode || Main.remixWorld || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || !spawnInfo.Allowed()) {
             return;
         }
 

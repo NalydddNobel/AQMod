@@ -15,6 +15,7 @@ using Aequus.Projectiles;
 using log4net;
 using ReLogic.Content;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -75,6 +76,49 @@ public static partial class Helper {
     private const char FULL_NAME_SEPERATOR = '/';
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
+    public static bool Allowed(this NPCSpawnInfo info, bool sky = false, bool dungeon = false, bool temple = false, bool town = false, bool water = false, bool desertCave = false, bool spider = false, bool marble = false, bool granite = false) {
+        Tile spawnTile = Main.tile[info.SpawnTileX, info.SpawnTileY];
+        ushort wall = spawnTile.WallType;
+        if (info.Invasion) {
+            return false;
+        }
+        if (info.Sky && !sky) {
+            return false;
+        }
+        if (Main.wallDungeon[wall] && !dungeon) {
+            return false;
+        }
+        if (wall == WallID.LihzahrdBrickUnsafe && !temple) {
+            return false;
+        }
+        if (info.PlayerInTown && !town) {
+            return false;
+        }
+        if (info.Water && !water) {
+            return false;
+        }
+        if (info.DesertCave && !desertCave) {
+            return false;
+        }
+        if (info.SpiderCave && !spider) {
+            return false;
+        }
+        if (info.Marble && !marble) {
+            return false;
+        }
+        if (info.Granite && !granite) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static byte[] ConvertToByte(BitArray bits) {
+        var bytes = new byte[(bits.Length - 1) / 8 + 1];
+        bits.CopyTo(bytes, 0);
+        return bytes;
+    }
 
     public static int DivCeiling(int numerator, int denominator) {
         return (int)MathF.Ceiling(numerator / (float)denominator);

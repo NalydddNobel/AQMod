@@ -1062,6 +1062,7 @@ Mods: {
 		}
 
 		Emotes.SkyMerchant.Command: skymerchant
+		// ItemDropCondition.BlockExists: Mods.Aequus.ItemDropCondition.BlockExists
 	}
 }
 
