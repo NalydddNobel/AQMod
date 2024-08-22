@@ -109,6 +109,15 @@ Configs: {
 				'''
 		}
 
+		EarlyHallow: {
+			// Label: "[i:PixieDust] Early Hallow"
+			/* Tooltip:
+				'''
+				Allows for Hallowed Seeds to be sold by the Dryad after defeating Omega Starite.
+				This also allows for Pixies and Gastropods to spawn in artifical Pre-Hardmode Hallows.
+				''' */
+		}
+
 		EarlyGreenJellyfish: {
 			Label: "[i:JellyfishNecklace] 困难模式前绿色水母"
 			Tooltip:

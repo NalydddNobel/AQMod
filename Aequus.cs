@@ -57,7 +57,7 @@ public class Aequus : Mod {
     /// <summary>
     /// Shorthand for checking <code><see cref="Main.hardMode"/> || <see cref="AequusWorld.downedOmegaStarite"/></code>
     /// </summary>
-    public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
+    public static bool MediumMode => Main.hardMode || AequusWorld.downedOmegaStarite;
 
     public static int GetMusicOrDefault(string musicName, int defaultValue) {
         int slot = MusicLoader.GetMusicSlot($"AequusMusic/Assets/Music/{musicName}");

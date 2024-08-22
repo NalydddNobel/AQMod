@@ -260,7 +260,7 @@ public class StreamingBalloon : ModNPC {
             NPCID.SpikedJungleSlime,
             NPCID.SpikedIceSlime,
         };
-        if (Aequus.HardmodeTier) {
+        if (Aequus.MediumMode) {
             selectableEnemies.Add(NPCID.ToxicSludge);
         }
         if (Main.hardMode && Main.player[NPC.target].ZoneHallow) {

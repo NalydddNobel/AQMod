@@ -60,7 +60,7 @@ namespace Aequus.NPCs.Monsters.GaleStreams {
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
         {
-            if (Aequus.HardmodeTier) {
+            if (Aequus.MediumMode) {
                 NPC.lifeMax = (int)(NPC.lifeMax * 1.375f);
             }
             else {

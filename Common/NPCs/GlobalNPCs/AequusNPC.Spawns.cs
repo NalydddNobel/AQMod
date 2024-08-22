@@ -125,7 +125,7 @@ public partial class AequusNPC {
     }
     private static void GaleStreamsEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
         AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
-        if (Aequus.HardmodeTier && !(IsClose<RedSprite.RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid.SpaceSquid>(spawnInfo.Player))) {
+        if (Aequus.MediumMode && !(IsClose<RedSprite.RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid.SpaceSquid>(spawnInfo.Player))) {
             pool.Add(ModContent.NPCType<RedSprite.RedSprite>(), (!AequusWorld.downedRedSprite ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
             pool.Add(ModContent.NPCType<SpaceSquid.SpaceSquid>(), (!AequusWorld.downedSpaceSquid ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
         }
@@ -185,7 +185,7 @@ public partial class AequusNPC {
     }
 
     private static void AddHardmodeTierEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        if (Main.hardMode || !Aequus.HardmodeTier) {
+        if (Main.hardMode || !Aequus.MediumMode) {
             return;
         }
 

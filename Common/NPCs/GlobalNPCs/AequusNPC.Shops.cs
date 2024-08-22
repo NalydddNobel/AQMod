@@ -9,6 +9,7 @@ using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Terraria.GameContent.Bestiary;
 
 namespace Aequus.NPCs;
+
 public partial class AequusNPC {
     public override void ModifyShop(NPCShop shop) {
         switch (shop.NpcType) {

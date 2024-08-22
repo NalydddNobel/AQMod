@@ -487,7 +487,6 @@ public partial class AequusNPC : GlobalNPC {
 
     #region Hooks
     private static void LoadHooks() {
-        On_Chest.SetupShop_int += On_Chest_SetupShop_int;
         On_NPC.Transform += NPC_Transform;
         On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
         On_NPC.HitEffect_HitInfo += On_NPC_HitEffect_HitInfo;
@@ -529,20 +528,6 @@ public partial class AequusNPC : GlobalNPC {
         }
     Orig:
         orig(self, hit);
-    }
-
-    private static void On_Chest_SetupShop_int(On_Chest.orig_SetupShop_int orig, Chest self, int type) {
-        bool hardMode = Main.hardMode;
-        Main.hardMode |= Aequus.HardmodeTier;
-
-        try {
-            orig(self, type);
-        }
-        catch {
-
-        }
-
-        Main.hardMode = hardMode;
     }
 
     private static void NPC_SpawnNPC(On_NPC.orig_SpawnNPC orig) {

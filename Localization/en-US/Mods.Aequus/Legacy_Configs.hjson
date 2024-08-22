@@ -73,7 +73,6 @@ Configs: {
 				'''
 				Allows you to get the Gravity Globe before Moonlord's defeat.
 				This has a small chance to break important progression locks for other mods.
-				{$Configs.ReloadRequired}
 				'''
 		}
 
@@ -83,7 +82,6 @@ Configs: {
 				'''
 				Allows you to get the Portal Gun before Moonlord's defeat.
 				This has a small chance to break important progression locks for other mods.
-				{$Configs.ReloadRequired}
 				'''
 		}
 
@@ -93,7 +91,6 @@ Configs: {
 				'''
 				Allows you to get the Wrench before Skeletron's defeat.
 				This has a small chance to break important progression locks for other mods.
-				{$Configs.ReloadRequired}
 				'''
 		}
 
@@ -105,26 +102,26 @@ Configs: {
 				[i:GoldChest] Regular Mimics drop Gold Chest loot in Pre-Hardmode.
 				[i:ShadowChest] Shadow Mimics drop Shadow Chest loot in Pre-Hardmode.
 				[i:IceChest] Ice Mimics drop Frozen Chest loot in Pre-Hardmode.
-				{$Configs.ReloadRequired}
+				'''
+		}
+
+		EarlyHallow: {
+			Label: "[i:PixieDust] Early Hallow"
+			Tooltip:
+				'''
+				Allows for Hallowed Seeds to be sold by the Dryad after defeating Omega Starite.
+				This also allows for Pixies and Gastropods to spawn in artifical Pre-Hardmode Hallows.
 				'''
 		}
 
 		EarlyGreenJellyfish: {
 			Label: "[i:JellyfishNecklace] Green Jellyfish in Pre-Hardmode"
-			Tooltip:
-				'''
-				Allows for Green Jellyfish to spawn in Pre-Hardmode, in the Crab Crevice.
-				{$Configs.ReloadRequired}
-				'''
+			Tooltip: Allows for Green Jellyfish to spawn in Pre-Hardmode, in the Crab Crevice.
 		}
 
 		EarlyAnglerFish: {
 			Label: "[i:RobotHat] Angler Fish in Pre-Hardmode"
-			Tooltip:
-				'''
-				Allows for Angler Fish to spawn in Pre-Hardmode, in the Crab Crevice.
-				{$Configs.ReloadRequired}
-				'''
+			Tooltip: Allows for Angler Fish to spawn in Pre-Hardmode, in the Crab Crevice.
 		}
 
 		CaveVariety: {
@@ -144,7 +141,6 @@ Configs: {
 				'''
 				Disables EoC from dropping Demonite & Crimtane, instead generating it Underground on defeat.
 				This is to promote going underground after defeating the Eye of Cthulhu.
-				{$Configs.ReloadRequired}
 				'''
 		}
 

@@ -19,7 +19,7 @@
             Shorthand for <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.InfoDebugLogs">HighQuality</see>.
             </summary>
         </member>
-        <member name="P:Aequus.Aequus.HardmodeTier">
+        <member name="P:Aequus.Aequus.MediumMode">
             <summary>
             Shorthand for checking <code><see cref="F:Terraria.Main.hardMode"/> || <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></code>
             </summary>

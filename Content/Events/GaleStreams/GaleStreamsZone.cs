@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Events.GaleStreams {
     public class GaleStreamsZone : ModBiome {
-        public static bool EventActive => Aequus.HardmodeTier && Main.WindyEnoughForKiteDrops;
+        public static bool EventActive => Aequus.MediumMode && Main.WindyEnoughForKiteDrops;
 
         public static ConfiguredMusicData music { get; private set; }
 

@@ -3,11 +3,11 @@
 namespace Aequus.Common.Items.DropRules {
     internal class HardmodeTierCondition : IItemDropRuleCondition {
         public bool CanDrop(DropAttemptInfo info) {
-            return Aequus.HardmodeTier;
+            return Aequus.MediumMode;
         }
 
         bool IItemDropRuleCondition.CanShowItemDropInUI() {
-            return Aequus.HardmodeTier;
+            return Aequus.MediumMode;
         }
 
         public string GetConditionDescription() {

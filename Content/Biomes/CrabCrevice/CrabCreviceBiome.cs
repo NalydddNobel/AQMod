@@ -64,7 +64,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             }
 
             pool.Clear();
-            if (Aequus.HardmodeTier) {
+            if (Aequus.MediumMode) {
                 pool[ModContent.NPCType<SummonerCrab>()] = 0.2f;
             }
             pool.Add(NPCID.SeaSnail, 0.08f);

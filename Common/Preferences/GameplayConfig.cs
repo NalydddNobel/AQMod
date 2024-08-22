@@ -39,6 +39,11 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [DefaultBackgroundColor]
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool EarlyHallow { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool AdamantiteMimics { get; set; }
 
     [DefaultBackgroundColor]
