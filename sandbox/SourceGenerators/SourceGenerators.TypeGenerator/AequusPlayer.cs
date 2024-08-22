@@ -9,6 +9,14 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [CompilerGenerated]
+    public Item accStariteExpert;
+    [CompilerGenerated]
+    public global::Aequus.Content.Items.Accessories.CelesteTorus.CelesteTorusDrawData stariteExpertDrawData;
+    [CompilerGenerated]
+    public int stariteExpertStacks;
+    [CompilerGenerated]
+    public int stariteExpertDye;
+    [CompilerGenerated]
     public Item accGoldenFeather;
     [CompilerGenerated]
     public int accGoldenFeatherRespawnTimeModifier;
@@ -31,6 +39,10 @@ public partial class AequusPlayer {
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
+        SourceGeneratorTools.ResetObj(ref accStariteExpert);
+        SourceGeneratorTools.ResetObj(ref stariteExpertDrawData);
+        SourceGeneratorTools.ResetObj(ref stariteExpertStacks);
+        SourceGeneratorTools.ResetObj(ref stariteExpertDye);
         SourceGeneratorTools.ResetObj(ref accGoldenFeather);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);

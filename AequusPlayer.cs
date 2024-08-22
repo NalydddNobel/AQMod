@@ -254,10 +254,6 @@ public partial class AequusPlayer : ModPlayer {
     [Obsolete("Mendshroom was removed")]
     public int cMendshroom;
 
-    public Item accCelesteTorus;
-    public float celesteTorusDamage;
-    public int cCelesteTorus;
-
     /// <summary>
     /// Set by <see cref="Sentry6502"/> and <see cref="Sentinel6510"/>
     /// </summary>
@@ -610,9 +606,6 @@ public partial class AequusPlayer : ModPlayer {
 
         accMendshroom = null;
 
-        accCelesteTorus = null;
-        celesteTorusDamage = 1f;
-
         accAmmoRenewalPack = null;
         accMothmanMask = null;
         accSentryInheritence = null;
@@ -692,7 +685,6 @@ public partial class AequusPlayer : ModPlayer {
         cGlowCore = -1;
         cHyperCrystal = 0;
         cMendshroom = 0;
-        cCelesteTorus = 0;
     }
 
     public void UpdateItemFields() {
@@ -728,7 +720,7 @@ public partial class AequusPlayer : ModPlayer {
     public override void ResetEffects() {
         try {
             PlayerContext = Player.whoAmI;
-
+            ResetEffectsInner();
             ResetEffects_Monoliths();
             ResetDyables();
             ResetArmor();

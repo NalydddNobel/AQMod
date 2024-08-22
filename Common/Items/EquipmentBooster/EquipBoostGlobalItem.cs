@@ -9,7 +9,7 @@ public class EquipBoostGlobalItem : GlobalItem {
 
     public override bool InstancePerEntity => true;
 
-    public EquipBoostInfo equipEmpowerment = null;
+    public EquipBoostInfo? equipEmpowerment = null;
 
     public override void SetDefaults(Item entity) {
         equipEmpowerment = null;
@@ -29,6 +29,12 @@ public class EquipBoostGlobalItem : GlobalItem {
         if (!AequusPlayer.EquipmentModifierUpdate) {
             player.GetModPlayer<CrownOfBloodPlayer>().UpdateEquipBoost(item);
             equipEmpowerment = null;
+        }
+    }
+
+    public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage) {
+        if (equipEmpowerment?.HasAbilityBoost == true) {
+            damage += 1f;
         }
     }
 }

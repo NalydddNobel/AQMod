@@ -10,7 +10,6 @@ using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
-using Aequus.Common.Utilities.Helpers;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Projectiles;
 using log4net;
@@ -2149,6 +2148,17 @@ public static partial class Helper {
 
     public static string GenderString(this Player player) {
         return player.Male ? "Male" : "Female";
+    }
+
+    public static Vector2 GetEdge(this Rectangle rectangle, Vector2 direction) {
+        return rectangle.Center.ToVector2() + Vector2.Normalize(direction) * rectangle.Size() / 2f;
+    }
+
+    public static float DistanceRectangleVCircle(Vector2 circleCenter, float radius, Rectangle rectangle) {
+        if (rectangle.Contains(circleCenter.ToPoint())) {
+            return 0f;
+        }
+        return Vector2.Distance(circleCenter, GetEdge(rectangle, circleCenter - rectangle.Center.ToVector2()));
     }
 
     public static bool IsRectangleCollidingWithCircle(Vector2 circle, float circleRadius, Rectangle rectangle) {

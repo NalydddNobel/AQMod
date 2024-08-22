@@ -559,6 +559,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorus</summary>
+    public static readonly RequestCache<Texture2D> CelesteTorus = new("Content/Items/Accessories/CelesteTorus/CelesteTorus");
+    /// <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorusProj</summary>
+    public static readonly RequestCache<Texture2D> CelesteTorusProj = new("Content/Items/Accessories/CelesteTorus/CelesteTorusProj");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
@@ -977,10 +981,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PhoenixRing_HandsOn = new("Items/Equipment/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing_HandsOn");
     /// <summary>Full Path: Items/Equipment/Accessories/Combat/OnHitAbility/FlameCrystal</summary>
     public static readonly RequestCache<Texture2D> FlameCrystal = new("Items/Equipment/Accessories/Combat/OnHitAbility/FlameCrystal");
-    /// <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorus</summary>
-    public static readonly RequestCache<Texture2D> CelesteTorus = new("Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorus");
-    /// <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj</summary>
-    public static readonly RequestCache<Texture2D> CelesteTorusProj = new("Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj");
     /// <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/Stormcloak/Stormcloak</summary>
     public static readonly RequestCache<Texture2D> Stormcloak = new("Items/Equipment/Accessories/Combat/Passive/Stormcloak/Stormcloak");
     /// <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown</summary>

@@ -1,13 +1,10 @@
 ﻿using Aequus.Common.Projectiles.SentryChip;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
+namespace Aequus.Content.Items.Accessories.CelesteTorus;
+
 public class CelesteTorusProj : ModProjectile {
     public Vector3 rotation;
     public Vector3 rotation2;
@@ -31,10 +28,12 @@ public class CelesteTorusProj : ModProjectile {
         _hitboxesCache = new Rectangle[13];
     }
 
-    public override bool? CanCutTiles() => false;
+    public override bool? CanCutTiles() {
+        return false;
+    }
 
     public override bool? CanHitNPC(NPC target) {
-        return target.friendly ? false : null;
+        return NPCID.Sets.CountsAsCritter[target.type] ? false : null;
     }
 
     private void UpdateHitboxes() {
@@ -74,13 +73,13 @@ public class CelesteTorusProj : ModProjectile {
         Projectile.scale = 1f;
 
         var player = Main.player[Projectile.owner];
-        if (!player.active || player.dead || (aequus?.accCelesteTorus) == null) {
+        if (!player.active || player.dead || (aequus?.accStariteExpert) == null) {
             return;
         }
         Projectile.timeLeft = 2;
 
         if (Projectile.active) {
-            int damage = player.GetWeaponDamage(aequus.accCelesteTorus);
+            int damage = player.GetWeaponDamage(aequus.accStariteExpert);
             if (Projectile.damage != damage) {
                 if (Projectile.damage < damage) {
                     Projectile.damage = Math.Min(Projectile.damage + 2, damage);
@@ -114,7 +113,7 @@ public class CelesteTorusProj : ModProjectile {
             rotation.Y %= MathHelper.TwoPi;
             rotation.Z %= MathHelper.TwoPi;
 
-            show2ndRing = aequus.accCelesteTorus?.GetEquipEmpowerment()?.HasAbilityBoost == true;
+            show2ndRing = aequus.accStariteExpert?.GetEquipEmpowerment()?.HasAbilityBoost == true;
             if (danger) {
                 rotation.X = rotation.X.AngleLerp(0f, 0.01f);
                 rotation.Y = rotation.Y.AngleLerp(0f, 0.0075f);
@@ -138,6 +137,26 @@ public class CelesteTorusProj : ModProjectile {
 
             Lighting.AddLight(Projectile.Center, new Vector3(0.3f, 0.3f, 0.8f));
             UpdateHitboxes();
+
+            // Create orb draw data.
+            // Also really bad, but whatever, its 2 am and im tired.
+            if (aequus != null) {
+                List<Vector3> orbs = [];
+
+                for (int i = 0; i < 5; i++) {
+                    orbs.Add(GetRot(i, rotation, currentRadius, 5));
+                }
+
+                if (show2ndRing) {
+                    for (int i = 0; i < 8; i++) {
+                        orbs.Add(GetRot(i, rotation2, currentRadius * 2f, 8));
+                    }
+                }
+
+                orbs.Sort((v, v2) => -v.Z.CompareTo(v2.Z));
+
+                aequus.stariteExpertDrawData = new CelesteTorusDrawData(orbs);
+            }
         }
     }
 
@@ -182,13 +201,6 @@ public class CelesteTorusProj : ModProjectile {
         rotation2.X = reader.ReadSingle();
         rotation2.Y = reader.ReadSingle();
         rotation2.Z = reader.ReadSingle();
-    }
-
-    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
-        CelesteTorus.AddDrawData(new(Main.player[Projectile.owner], rotation, Projectile.Center, currentRadius, Projectile.scale, 5));
-        if (show2ndRing) {
-            CelesteTorus.AddDrawData(new(Main.player[Projectile.owner], rotation2, Projectile.Center, currentRadius * 2f, Projectile.scale * 1.3f, 8));
-        }
     }
 
     public static Vector3 GetRot(int i, Vector3 rotation, float currentRadius, int max = 5) {

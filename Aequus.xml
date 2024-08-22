@@ -3060,6 +3060,12 @@
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CelesteTorus">
+            <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorus</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CelesteTorusProj">
+            <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorusProj</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
         </member>
@@ -3686,12 +3692,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlameCrystal">
             <summary>Full Path: Items/Equipment/Accessories/Combat/OnHitAbility/FlameCrystal</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CelesteTorus">
-            <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorus</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CelesteTorusProj">
-            <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak">
             <summary>Full Path: Items/Equipment/Accessories/Combat/Passive/Stormcloak/Stormcloak</summary>
@@ -6371,21 +6371,6 @@
             <item><see cref="F:Terraria.ID.BuffID.ShadowFlame"/></item>
             </list>
             </summary>
-        </member>
-        <member name="M:Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.DrawDrawData(System.Collections.Generic.IEnumerable{Terraria.Player},Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.CullingRule,Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.ColorRule,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean,System.Boolean)">
-            <summary>
-            Do not run this method if "<see cref="F:Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.DrawData"/>.Count == 0".
-            </summary>
-            <param name="players"></param>
-            <param name="cullingRule"></param>
-            <param name="colorRule"></param>
-            <param name="texture"></param>
-            <param name="frame"></param>
-            <param name="origin"></param>
-            <param name="DefaultDye"></param>
-            <param name="GlobalScale"></param>
-            <param name="End"></param>
-            <param name="Reversed"></param>
         </member>
         <member name="F:Aequus.Items.Equipment.Accessories.Combat.Ranged.LaserReticle.BulletSpreadMultiplier">
             <summary>

@@ -8,7 +8,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
+using Aequus.Content.Items.Accessories.CelesteTorus;
 using Aequus.Items.Equipment.PetsUtility.OmegaStarite;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
