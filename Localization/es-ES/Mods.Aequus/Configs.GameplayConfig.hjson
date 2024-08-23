@@ -62,5 +62,20 @@ Configs: {
 				Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
 				''' */
 		}
+
+		EarlyHardmodeMonsters: {
+			// Label: Early Hardmode Monsters
+			// Tooltip: ""
+		}
+
+		EarlyHardmodeVillagers: {
+			// Label: Early Hardmode Villagers
+			// Tooltip: ""
+		}
+
+		EarlyHardmodeShops: {
+			// Label: Early Hardmode Shops
+			// Tooltip: ""
+		}
 	}
 }

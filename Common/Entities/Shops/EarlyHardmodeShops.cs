@@ -7,6 +7,10 @@ namespace Aequus.Common.Entities.Shops;
 public class EarlyHardmodeShops : LoadedType {
     public readonly HashSet<int> Blacklist = [];
 
+    protected override bool IsLoadingEnabled(Mod mod) {
+        return GameplayConfig.Instance.EarlyHardmodeShops;
+    }
+
     protected override void Load() {
         On_Chest.SetupShop_int += On_Chest_SetupShop_int;
 

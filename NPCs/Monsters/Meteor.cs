@@ -2,6 +2,7 @@
 using Aequus.Common.Entities.DropRules;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Helpers;
 using Aequus.Content;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Monster;
@@ -11,6 +12,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace Aequus.NPCs.Monsters;
@@ -155,8 +157,10 @@ public class Meteor : ModNPC {
             }
         }
 
-        if (Main.netMode != NetmodeID.MultiplayerClient)
+        if (Main.netMode != NetmodeID.MultiplayerClient) {
+            WorldGen.BroadcastText(NetworkText.FromKey(ALanguage.GetKey("Announcement.MiniMeteor")), CommonColor.TextEvent);
             NetMessage.SendTileSquare(-1, minX, minY, size);
+        }
         return true;
     }
 
@@ -178,7 +182,7 @@ public class Meteor : ModNPC {
         NPC.HitSound = SoundID.NPCHit7;
         NPC.aiStyle = -1;
         NPC.noGravity = true;
-        NPC.knockBackResist = 0f;
+        NPC.knockBackResist = 0.1f;
         NPC.value = Item.buyPrice(silver: 2);
         NPC.npcSlots = 1f;
         NPC.DeathSound = AequusSounds.sonicmeteor;

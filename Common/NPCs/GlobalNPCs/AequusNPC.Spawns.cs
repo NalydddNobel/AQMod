@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Biomes;
+﻿using Aequus.Common.Preferences;
+using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
@@ -189,17 +190,22 @@ public partial class AequusNPC {
             return;
         }
 
-        if (spawnInfo.Player.ZoneMarble) {
-            pool[NPCID.Medusa] = 0.1f;
-        }
-        if (spawnInfo.Player.ZoneRockLayerHeight) {
-            if (!NPC.savedWizard && !NPC.AnyNPCs(NPCID.Wizard)) {
-                pool[NPCID.BoundWizard] = 0.01f;
+        if (GameplayConfig.Instance.EarlyHardmodeMonsters) {
+            if (spawnInfo.Player.ZoneMarble) {
+                pool[NPCID.Medusa] = 0.1f;
             }
         }
-        if (spawnInfo.Player.ZoneUnderworldHeight) {
-            if (!NPC.savedTaxCollector && !NPC.AnyNPCs(NPCID.DemonTaxCollector)) {
-                pool[NPCID.DemonTaxCollector] = 0.05f;
+
+        if (GameplayConfig.Instance.EarlyHardmodeVillagers) {
+            if (spawnInfo.Player.ZoneRockLayerHeight) {
+                if (!NPC.savedWizard && !NPC.AnyNPCs(NPCID.Wizard)) {
+                    pool[NPCID.BoundWizard] = 0.01f;
+                }
+            }
+            if (spawnInfo.Player.ZoneUnderworldHeight) {
+                if (!NPC.savedTaxCollector && !NPC.AnyNPCs(NPCID.DemonTaxCollector)) {
+                    pool[NPCID.DemonTaxCollector] = 0.05f;
+                }
             }
         }
     }

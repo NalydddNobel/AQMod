@@ -46,12 +46,15 @@ public class OblivionAltar : ModTile, ITileDrawSystem {
         TileObjectData.addTile(Type);
         DustType = DustID.Blood;
         AdjTiles = [TileID.DemonAltar];
-        MinPick = 110;
         AddMapEntry(new Color(175, 15, 15), CreateMapEntryName());
     }
 
     public override void Unload() {
         GoreNestPortal = null;
+    }
+
+    public override bool CanKillTile(int i, int j, ref bool blockDamaged) {
+        return Aequus.MediumMode;
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {

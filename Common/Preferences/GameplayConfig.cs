@@ -19,6 +19,42 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [DefaultBackgroundColor]
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool AdamantiteMimics { get; set; }
+
+    [Header("World")]
+
+    [DefaultBackgroundColor]
+    [DefaultValue(1f)]
+    [Range(0f, 1f)]
+    public float CaveVariety { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool HardmodeChests { get; set; }
+
+    [Header("Recipes")]
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool VoidBagRecipe { get; set; }
+
+    [Header("VanillaChanges")]
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool EyeOfCthulhuOres { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool MoveTreasureMagnet { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool EarlyGravityGlobe { get; set; }
 
     [DefaultBackgroundColor]
@@ -44,7 +80,17 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [DefaultBackgroundColor]
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool AdamantiteMimics { get; set; }
+    public bool EarlyHardmodeMonsters { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool EarlyHardmodeVillagers { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool EarlyHardmodeShops { get; set; }
 
     [DefaultBackgroundColor]
     [DefaultValue(true)]
@@ -55,37 +101,6 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [DefaultValue(true)]
     [ReloadRequired]
     public bool EarlyAnglerFish { get; set; }
-
-    [Header("World")]
-
-    [DefaultBackgroundColor]
-    [DefaultValue(1f)]
-    [Range(0f, 1f)]
-    public float CaveVariety { get; set; }
-
-    [DefaultBackgroundColor]
-    [DefaultValue(true)]
-    [ReloadRequired]
-    public bool EyeOfCthulhuOres { get; set; }
-
-    [DefaultBackgroundColor]
-    [DefaultValue(true)]
-    [ReloadRequired]
-    public bool HardmodeChests { get; set; }
-
-    [Header("Recipes")]
-
-    [DefaultBackgroundColor]
-    [DefaultValue(true)]
-    [ReloadRequired]
-    public bool VoidBagRecipe { get; set; }
-
-    [Header("VanillaChanges")]
-
-    [DefaultBackgroundColor]
-    [DefaultValue(true)]
-    [ReloadRequired]
-    public bool MoveTreasureMagnet { get; set; }
 
     public static Condition ConditionEarlyPortalGun => new(TextHelper.GetOrRegister("Condition.EarlyPortalGun"), () => Instance.EarlyPortalGun);
     public static Condition ConditionEarlyGravityGlobe => new(TextHelper.GetOrRegister("Condition.EarlyGravityGlobe"), () => Instance.EarlyGravityGlobe);

@@ -130,7 +130,7 @@ public class TypeGenerator : ISourceGenerator {
 
                     string existingCallArguments = "";
                     string generatedMethodArguments = "";
-                    foreach ((string type, string name) arg in method.GetArguments()) {
+                    foreach ((string type, string identifier, string callName) arg in method.GetArguments()) {
                         if (!string.IsNullOrEmpty(existingCallArguments)) {
                             existingCallArguments += ", ";
                         }
@@ -143,8 +143,8 @@ public class TypeGenerator : ISourceGenerator {
                                 generatedMethodArguments += ", ";
                             }
 
-                            generatedMethodArguments += $"{arg.type} {arg.name}";
-                            existingCallArguments += arg.name;
+                            generatedMethodArguments += $"{arg.type} {arg.identifier}";
+                            existingCallArguments += arg.callName;
                         }
                     }
                     constructor.AddMethod($"{action}Inner({generatedMethodArguments})", $"{namespaceSyntax.GetNamespace()}.{definedClass.Identifier.Text}.{method.Identifier.Text}({existingCallArguments});");

@@ -22,31 +22,35 @@ public static class Utilities {
         return result;
     }
 
-    public static IEnumerable<(string, string)> GetArguments(this MethodDeclarationSyntax method) {
+    public static IEnumerable<(string, string, string)> GetArguments(this MethodDeclarationSyntax method) {
         return method.ParameterList.Parameters.Select(parameter => {
-            (string type, string name) = (parameter.Type.GetText().ToString().Trim(), parameter.Identifier.ToString().Trim());
+            (string type, string identifier) = (parameter.Type.GetText().ToString().Trim(), parameter.Identifier.ToString().Trim());
+            string callName = identifier;
 
             SyntaxTokenList modifiers = parameter.Modifiers;
             if (modifiers.Any(SyntaxKind.RefKeyword)) {
                 type = $"ref {type}";
-                name = $"ref {name}";
+                callName = $"ref {callName}";
             }
             else if (modifiers.Any(SyntaxKind.OutKeyword)) {
                 type = $"out {type}";
-                name = $"out {name}";
+                callName = $"out {callName}";
             }
             else if (modifiers.Any(SyntaxKind.InKeyword)) {
                 type = $"in {type}";
-                name = $"in {name}";
+                callName = $"in {callName}";
             }
 
-            return (type, name);
+            return (type, identifier, callName);
         });
     }
     public static IEnumerable<string> GetArgumentTypes(this MethodDeclarationSyntax method) {
         return GetArguments(method).Select((ss) => ss.Item1);
     }
     public static IEnumerable<string> GetArgumentNames(this MethodDeclarationSyntax method) {
+        return GetArguments(method).Select((ss) => ss.Item3);
+    }
+    public static IEnumerable<string> GetArgumentIdentifiers(this MethodDeclarationSyntax method) {
         return GetArguments(method).Select((ss) => ss.Item2);
     }
 

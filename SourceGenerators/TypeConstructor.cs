@@ -27,6 +27,7 @@ public class TypeConstructor(string Name, string Namespace, string[] Usings, Dic
 
         _fields.Add(fieldDefinition);
     }
+
     public void AddMethod(string Define, string Code) {
         if (_methods.TryGetValue(Define, out string existingCode)) {
             Code = $"{existingCode}\n{Code}";

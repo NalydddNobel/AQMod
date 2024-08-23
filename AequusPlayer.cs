@@ -1196,6 +1196,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
+        ModifyHitNPCInner(target, ref modifiers);
         modifiers.CritDamage += highSteaksDamage;
         ModifyHit_SoulDamage(target, ref modifiers);
         if (NPCSets.IsHallow.Contains(target.whoAmI)) {
@@ -1248,6 +1249,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+        OnHitNPCInner(target);
         LegacyHitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
         OnHit_SoulDamage(target, hit, damageDone);
         OnHit_BoneRing(target);

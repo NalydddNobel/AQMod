@@ -72,4 +72,14 @@ public partial class AequusPlayer {
         accInfoMoneyMonocle |= other.accInfoMoneyMonocle;
         accInfoShimmerMonocle |= other.accInfoShimmerMonocle;
     }
+    
+    [CompilerGenerated]
+    private void ModifyHitNPCInner(NPC target, ref NPC.HitModifiers modifiers) {
+        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookDamage(target, ref modifiers);
+    }
+    
+    [CompilerGenerated]
+    private void OnHitNPCInner(NPC target) {
+        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(target);
+    }
 }

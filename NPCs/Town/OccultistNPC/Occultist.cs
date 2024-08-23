@@ -12,7 +12,6 @@ using Aequus.Content.Necromancy.Sceptres.Dungeon;
 using Aequus.CrossMod.ThoriumModSupport;
 using Aequus.Items.Equipment.Accessories.Combat;
 using Aequus.Items.Equipment.Accessories.CrownOfBlood;
-using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
@@ -129,7 +128,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             .Add<CrownOfBloodItem>()
             .Add<CrownOfDarkness>()
             .Add<CrownOfTheGrounded>()
-            .Add<Meathook>()
+            .Add<Content.Items.GrapplingHooks.Meathook.Meathook>()
             .Add<UnholyCore>()
 
             .Add<BottleOSpirits>(Condition.TimeNight)

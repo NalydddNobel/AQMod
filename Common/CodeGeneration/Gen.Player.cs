@@ -34,4 +34,12 @@ internal partial class Gen {
     /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.PostUpdateEquips"/>-<see cref="AequusPlayer.PostUpdateEquipsInner"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_PostUpdateEquips : Attribute { }
+
+    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.ModifyHitNPC(NPC, ref NPC.HitModifiers)"/>-<see cref="AequusPlayer.ModifyHitNPCInner(NPC, ref NPC.HitModifiers)"/>.</summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    internal class AequusPlayer_ModifyHitNPC : Attribute { }
+
+    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.OnHitNPC(NPC, NPC.HitInfo, int)"/>-<see cref="AequusPlayer.OnHitNPCInner(NPC)"/>.</summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    internal class AequusPlayer_OnHitNPC : Attribute { }
 }

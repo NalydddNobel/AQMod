@@ -607,6 +607,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
+    /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
+    public static readonly RequestCache<Texture2D> Meathook = new("Content/Items/GrapplingHooks/Meathook/Meathook");
+    /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj</summary>
+    public static readonly RequestCache<Texture2D> MeathookProj = new("Content/Items/GrapplingHooks/Meathook/MeathookProj");
+    /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj_Chain</summary>
+    public static readonly RequestCache<Texture2D> MeathookProj_Chain = new("Content/Items/GrapplingHooks/Meathook/MeathookProj_Chain");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
     public static readonly RequestCache<Texture2D> MonoGem = new("Content/Items/Materials/MonoGem/MonoGem");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
@@ -1141,8 +1147,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MoonlunaHat_Head = new("Items/Equipment/Armor/SetWizard/MoonlunaHat_Head");
     /// <summary>Full Path: Items/Equipment/GrapplingHooks/LeechHook</summary>
     public static readonly RequestCache<Texture2D> LeechHook = new("Items/Equipment/GrapplingHooks/LeechHook");
-    /// <summary>Full Path: Items/Equipment/GrapplingHooks/Meathook</summary>
-    public static readonly RequestCache<Texture2D> Meathook = new("Items/Equipment/GrapplingHooks/Meathook");
     /// <summary>Full Path: Items/Equipment/PetsUtility/Drone/DroneBuff</summary>
     public static readonly RequestCache<Texture2D> DroneBuff = new("Items/Equipment/PetsUtility/Drone/DroneBuff");
     /// <summary>Full Path: Items/Equipment/PetsUtility/Drone/PersonalDronePack</summary>
@@ -2217,10 +2221,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LeechHookProj = new("Projectiles/Misc/GrapplingHooks/LeechHookProj");
     /// <summary>Full Path: Projectiles/Misc/GrapplingHooks/LeechHookProj_Chain</summary>
     public static readonly RequestCache<Texture2D> LeechHookProj_Chain = new("Projectiles/Misc/GrapplingHooks/LeechHookProj_Chain");
-    /// <summary>Full Path: Projectiles/Misc/GrapplingHooks/MeathookProj</summary>
-    public static readonly RequestCache<Texture2D> MeathookProj = new("Projectiles/Misc/GrapplingHooks/MeathookProj");
-    /// <summary>Full Path: Projectiles/Misc/GrapplingHooks/MeathookProj_Chain</summary>
-    public static readonly RequestCache<Texture2D> MeathookProj_Chain = new("Projectiles/Misc/GrapplingHooks/MeathookProj_Chain");
     /// <summary>Full Path: Projectiles/Misc/PhysicsGunProj</summary>
     public static readonly RequestCache<Texture2D> PhysicsGunProj = new("Projectiles/Misc/PhysicsGunProj");
     /// <summary>Full Path: Projectiles/Misc/ProtectiveProbe</summary>

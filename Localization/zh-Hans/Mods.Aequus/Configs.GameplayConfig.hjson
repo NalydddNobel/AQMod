@@ -62,5 +62,20 @@ Configs: {
 				任何使用个人数字助手及其上位升级的物品的配方中都会自动继承Aequus的信息饰品.
 				'''
 		}
+
+		EarlyHardmodeMonsters: {
+			// Label: Early Hardmode Monsters
+			// Tooltip: ""
+		}
+
+		EarlyHardmodeVillagers: {
+			// Label: Early Hardmode Villagers
+			// Tooltip: ""
+		}
+
+		EarlyHardmodeShops: {
+			// Label: Early Hardmode Shops
+			// Tooltip: ""
+		}
 	}
 }

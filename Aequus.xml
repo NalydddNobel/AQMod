@@ -462,16 +462,6 @@
             Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.meathookDamage">
-            <summary>
-            Local variable for the meathook damage increase. Is not synced between clients and server.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.meathookDamageTime">
-            <summary>
-            Local variable for how long the meathook damage increase lasts before it gets cleared. Is not synced between clients and server.
-            </summary>
-        </member>
         <member name="M:Aequus.NPCs.BossMonsters.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
@@ -534,6 +524,12 @@
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_PostUpdateEquips">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.PostUpdateEquips"/>-<see cref="M:Aequus.AequusPlayer.PostUpdateEquipsInner"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_ModifyHitNPC">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.ModifyHitNPC(Terraria.NPC,Terraria.NPC.HitModifiers@)"/>-<see cref="M:Aequus.AequusPlayer.ModifyHitNPCInner(Terraria.NPC,Terraria.NPC.HitModifiers@)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_OnHitNPC">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.OnHitNPC(Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/>-<see cref="M:Aequus.AequusPlayer.OnHitNPCInner(Terraria.NPC)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
@@ -1992,8 +1988,8 @@
         <member name="F:Aequus.AequusSounds.JunkJetShoot1">
             <summary>Full Path: Assets/Sounds/Item/JunkJet/JunkJetShoot1</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.meathookConnect">
-            <summary>Full Path: Assets/Sounds/Item/Meathook/meathookConnect</summary>
+        <member name="F:Aequus.AequusSounds.MeathookActivate">
+            <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookActivate</summary>
         </member>
         <member name="F:Aequus.AequusSounds.MeathookDamageBonusProc0">
             <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookDamageBonusProc0</summary>
@@ -2001,8 +1997,8 @@
         <member name="F:Aequus.AequusSounds.MeathookDamageBonusProc1">
             <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookDamageBonusProc1</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.meathookPull">
-            <summary>Full Path: Assets/Sounds/Item/Meathook/meathookPull</summary>
+        <member name="F:Aequus.AequusSounds.MeathookNearEnemy">
+            <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookNearEnemy</summary>
         </member>
         <member name="F:Aequus.AequusSounds.necromancySpawn">
             <summary>Full Path: Assets/Sounds/Item/necromancySpawn</summary>
@@ -3132,6 +3128,15 @@
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Meathook">
+            <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeathookProj">
+            <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeathookProj_Chain">
+            <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj_Chain</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MonoGem">
             <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
         </member>
@@ -3932,9 +3937,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.LeechHook">
             <summary>Full Path: Items/Equipment/GrapplingHooks/LeechHook</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Meathook">
-            <summary>Full Path: Items/Equipment/GrapplingHooks/Meathook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DroneBuff">
             <summary>Full Path: Items/Equipment/PetsUtility/Drone/DroneBuff</summary>
@@ -5546,12 +5548,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.LeechHookProj_Chain">
             <summary>Full Path: Projectiles/Misc/GrapplingHooks/LeechHookProj_Chain</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeathookProj">
-            <summary>Full Path: Projectiles/Misc/GrapplingHooks/MeathookProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeathookProj_Chain">
-            <summary>Full Path: Projectiles/Misc/GrapplingHooks/MeathookProj_Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsGunProj">
             <summary>Full Path: Projectiles/Misc/PhysicsGunProj</summary>

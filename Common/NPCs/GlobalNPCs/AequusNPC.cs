@@ -189,7 +189,6 @@ public partial class AequusNPC : GlobalNPC {
     }
 
     public override void ResetEffects(NPC npc) {
-        ResetEffects_Meathook();
         //ResetEffects_Necromancy(npc);
         debuffWindFan = false;
         debuffSnowgrave = false;

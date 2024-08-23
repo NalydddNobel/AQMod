@@ -86,14 +86,14 @@ public partial class AequusSounds {
     public static readonly SoundStyle JunkJetShoot0 = new("Aequus/Assets/Sounds/Item/JunkJet/JunkJetShoot0");
     /// <summary>Full Path: Assets/Sounds/Item/JunkJet/JunkJetShoot1</summary>
     public static readonly SoundStyle JunkJetShoot1 = new("Aequus/Assets/Sounds/Item/JunkJet/JunkJetShoot1");
-    /// <summary>Full Path: Assets/Sounds/Item/Meathook/meathookConnect</summary>
-    public static readonly SoundStyle meathookConnect = new("Aequus/Assets/Sounds/Item/Meathook/meathookConnect");
+    /// <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookActivate</summary>
+    public static readonly SoundStyle MeathookActivate = new("Aequus/Assets/Sounds/Item/Meathook/MeathookActivate");
     /// <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookDamageBonusProc0</summary>
     public static readonly SoundStyle MeathookDamageBonusProc0 = new("Aequus/Assets/Sounds/Item/Meathook/MeathookDamageBonusProc0");
     /// <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookDamageBonusProc1</summary>
     public static readonly SoundStyle MeathookDamageBonusProc1 = new("Aequus/Assets/Sounds/Item/Meathook/MeathookDamageBonusProc1");
-    /// <summary>Full Path: Assets/Sounds/Item/Meathook/meathookPull</summary>
-    public static readonly SoundStyle meathookPull = new("Aequus/Assets/Sounds/Item/Meathook/meathookPull");
+    /// <summary>Full Path: Assets/Sounds/Item/Meathook/MeathookNearEnemy</summary>
+    public static readonly SoundStyle MeathookNearEnemy = new("Aequus/Assets/Sounds/Item/Meathook/MeathookNearEnemy");
     /// <summary>Full Path: Assets/Sounds/Item/necromancySpawn</summary>
     public static readonly SoundStyle necromancySpawn = new("Aequus/Assets/Sounds/Item/necromancySpawn");
     /// <summary>Full Path: Assets/Sounds/Item/Nightfall/pushDown</summary>

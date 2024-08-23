@@ -32,11 +32,22 @@ public static class ALanguage {
 
     /// <param name="key"></param>
     /// <returns>A <see cref="LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.Aequus"</returns>
+    public static string GetKey(string key) {
+#if DEBUG
+        Language.GetOrRegister($"Mods.Aequus.{key}");
+#endif
+
+        return $"Mods.Aequus.{key}";
+    }
+
+    /// <param name="key"></param>
+    /// <returns>A <see cref="LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.Aequus"</returns>
     public static LocalizedText GetText(string key) {
+        key = GetKey(key);
 #if !DEBUG
-        return Language.GetText($"Mods.Aequus.{key}");
+        return Language.GetText(key);
 #else
-        return Language.GetOrRegister($"Mods.Aequus.{key}");
+        return Language.GetOrRegister(key);
 #endif
     }
 

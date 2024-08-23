@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.NPCs.Global;
+using System;
 
 namespace Aequus.Content.Items.Weapons.Classless.StunGun;
 
@@ -24,29 +25,34 @@ public class StunGunNPC : GlobalNPC {
     }
 
     private static void On_NPC_VanillaAI_Inner(On_NPC.orig_VanillaAI_Inner orig, NPC npc) {
-        if (npc.TryGetGlobalNPC(out StunGunNPC stunNPC)) {
-            bool updateFields = stunNPC.stunnedOld != stunNPC.stunned;
-            if (stunNPC.stunned) {
-                if (updateFields) {
-                    stunNPC.oldNoTileCollide = npc.noTileCollide;
-                    stunNPC.oldNoGravity = npc.noGravity;
-                    npc.noTileCollide = false;
-                    npc.noGravity = false;
-                    stunNPC.stunnedOld = true;
+        try {
+            if (npc.active && npc.EntityGlobals.Length > 0 && npc.TryGetGlobalNPC(out StunGunNPC stunNPC)) {
+                bool updateFields = stunNPC.stunnedOld != stunNPC.stunned;
+                if (stunNPC.stunned) {
+                    if (updateFields) {
+                        stunNPC.oldNoTileCollide = npc.noTileCollide;
+                        stunNPC.oldNoGravity = npc.noGravity;
+                        npc.noTileCollide = false;
+                        npc.noGravity = false;
+                        stunNPC.stunnedOld = true;
+                    }
+                    stunNPC.stunned = false;
+                    npc.velocity.X *= 0.8f;
+                    if (npc.velocity.Y < 0f) {
+                        npc.velocity.Y *= 0.8f;
+                    }
+                    return;
                 }
-                stunNPC.stunned = false;
-                npc.velocity.X *= 0.8f;
-                if (npc.velocity.Y < 0f) {
-                    npc.velocity.Y *= 0.8f;
-                }
-                return;
-            }
 
-            if (updateFields) {
-                npc.noTileCollide = stunNPC.oldNoTileCollide;
-                npc.noGravity = stunNPC.oldNoGravity;
-                stunNPC.stunnedOld = false;
+                if (updateFields) {
+                    npc.noTileCollide = stunNPC.oldNoTileCollide;
+                    npc.noGravity = stunNPC.oldNoGravity;
+                    stunNPC.stunnedOld = false;
+                }
             }
+        }
+        catch (Exception ex) {
+            Aequus.Instance.Logger.Error(ex);
         }
 
         orig(npc);
@@ -85,6 +91,6 @@ public class StunGunNPC : GlobalNPC {
         //if (npc.ModNPC?.Mod?.Name == "CalamityMod") {
         //    return true;
         //}
-        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCSets.StatSpeedBlacklist.Contains(npc.type)/* || NPCDataSet.StunnableByAI.Contains(npc.aiStyle)*/);
+        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && !npc.buffImmune[BuffID.Confused] && !NPCSets.StatSpeedBlacklist.Contains(npc.type)/* && NPCDataSet.StunnableByAI.Contains(npc.aiStyle)*/;
     }
 }

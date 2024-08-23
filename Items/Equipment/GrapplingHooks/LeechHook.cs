@@ -1,19 +1,15 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
 using Aequus.Common.Recipes;
+using Aequus.Content.Items.GrapplingHooks.Meathook;
 using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
 using Aequus.Projectiles.Misc.GrapplingHooks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.GrapplingHooks {
     public class LeechHook : ModItem {
@@ -71,7 +67,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
             Projectile.timeLeft *= 10;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 20;
-            connectedNPC = -1;
+            ConnectedNPC = -1;
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox) {
@@ -89,11 +85,11 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
                 Projectile.Kill();
             }
             var player = Main.player[Projectile.owner];
-            if (connectedNPC > -1 && (!Main.npc[connectedNPC].active || ProjectileLoader.GrappleOutOfRange(Projectile.Distance(Main.player[Projectile.owner].Center) * 0.75f, Projectile))) {
-                connectedNPC = -1;
+            if (ConnectedNPC > -1 && (!Main.npc[ConnectedNPC].active || ProjectileLoader.GrappleOutOfRange(Projectile.Distance(Main.player[Projectile.owner].Center) * 0.75f, Projectile))) {
+                ConnectedNPC = -1;
             }
-            player.Aequus().leechHookNPC = connectedNPC;
-            if (connectedNPC != -1 && !player.dead) {
+            player.Aequus().leechHookNPC = ConnectedNPC;
+            if (ConnectedNPC != -1 && !player.dead) {
                 Projectile.ai[0] = 2f;
                 if (Main.myPlayer == Projectile.owner && Main.GameUpdateCount % 20 == 0) {
                     player.Heal(2);
@@ -108,7 +104,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
                     return false;
                 }
                 Projectile.velocity = Vector2.Zero;
-                Projectile.Center = Main.npc[connectedNPC].Center;
+                Projectile.Center = Main.npc[ConnectedNPC].Center;
                 Projectile.rotation = (Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + MathHelper.PiOver2;
                 return false;
             }
@@ -137,7 +133,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             Projectile.ai[0] = 0f;
-            connectedNPC = target.whoAmI;
+            ConnectedNPC = target.whoAmI;
             Projectile.tileCollide = false;
             Projectile.netUpdate = true;
         }
@@ -189,11 +185,11 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
         }
 
         public override void SendExtraAI(BinaryWriter writer) {
-            writer.Write(connectedNPC);
+            writer.Write(ConnectedNPC);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader) {
-            connectedNPC = reader.ReadInt32();
+            ConnectedNPC = reader.ReadInt32();
         }
     }
 }
