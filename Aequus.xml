@@ -1683,6 +1683,10 @@
             Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetKey(System.String)">
+            <param name="key"></param>
+            <returns>A <see cref="T:Terraria.Localization.LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.Aequus"</returns>
+        </member>
         <member name="M:Aequus.Common.Utilities.ALanguage.GetText(System.String)">
             <param name="key"></param>
             <returns>A <see cref="T:Terraria.Localization.LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.Aequus"</returns>
