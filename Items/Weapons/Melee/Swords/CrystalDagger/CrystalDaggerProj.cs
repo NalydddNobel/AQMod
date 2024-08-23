@@ -1,11 +1,7 @@
 ﻿using Aequus;
 using Aequus.Particles.Dusts;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.IO;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.CrystalDagger;
 
@@ -67,10 +63,14 @@ public class CrystalDaggerProj : ModProjectile {
                 d.velocity += Vector2.Normalize(Projectile.velocity).UnNaN() * 1.35f;
             }
         }
-        if (player.itemAnimation == 0)
-            Projectile.Kill();
-        if (Main.myPlayer == player.whoAmI && lerpAmount > 0f)
-            Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0], lerpAmount * 0.4f);
+        if (Main.myPlayer == player.whoAmI) {
+            if (player.itemAnimation == 0) {
+                Projectile.Kill();
+            }
+            if (lerpAmount > 0f) {
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0], lerpAmount * 0.4f);
+            }
+        }
         Projectile.direction = Projectile.velocity.X <= 0f ? -1 : 1;
         Projectile.spriteDirection = Projectile.direction;
         Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
