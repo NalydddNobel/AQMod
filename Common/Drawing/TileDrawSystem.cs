@@ -13,7 +13,8 @@ public class TileDrawSystem : ModSystem {
     }
 
     public override void PostDrawTiles() {
-        Rectangle bounds = new Rectangle((int)((Main.screenPosition.X - Main.offScreenRange) / 16), (int)((Main.screenPosition.Y - Main.offScreenRange) / 16), (Main.screenWidth + Main.offScreenRange) / 16, (Main.screenHeight + Main.offScreenRange) / 16);
+        int offScreenRange = Main.offScreenRange * 2 / 16;
+        Rectangle bounds = new Rectangle((int)(Main.screenPosition.X / 16 - offScreenRange), (int)(Main.screenPosition.Y / 16 - offScreenRange), Main.screenWidth / 16 + offScreenRange * 2, Main.screenHeight / 16 + offScreenRange * 2);
 
         if (!_bounds.Equals(bounds)) {
             UpdateTileCaches(bounds);
