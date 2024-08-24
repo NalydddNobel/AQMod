@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.NPCs.Global;
+using Aequus.Common.Utilities.Helpers;
 using System;
 
 namespace Aequus.Content.Items.Weapons.Classless.StunGun;
@@ -20,11 +21,11 @@ public class StunGunNPC : GlobalNPC {
     }
 
     public override void Load() {
-        On_NPC.VanillaAI_Inner += On_NPC_VanillaAI_Inner;
+        DetourTool.Apply(typeof(NPCLoader), typeof(StunGunNPC), nameof(On_NPCLoader_NPCAI));
         On_Main.DrawNPC += On_Main_DrawNPC;
     }
 
-    private static void On_NPC_VanillaAI_Inner(On_NPC.orig_VanillaAI_Inner orig, NPC npc) {
+    private static void On_NPCLoader_NPCAI(Action<NPC> orig, NPC npc) {
         try {
             if (npc.active && npc.EntityGlobals.Length > 0 && npc.TryGetGlobalNPC(out StunGunNPC stunNPC)) {
                 bool updateFields = stunNPC.stunnedOld != stunNPC.stunned;

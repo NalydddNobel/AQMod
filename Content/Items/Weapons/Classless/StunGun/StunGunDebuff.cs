@@ -12,19 +12,9 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     }
 
     #region On Add Buff
-    public void PostAddBuff(NPC npc, bool alreadyHasBuff, int duration, bool quiet) {
+    void IOnAddBuff.PostAddBuff(NPC npc, int duration, bool quiet) {
         if (npc.HasBuff<StunGunDebuff>()) {
             SoundEngine.PlaySound(AequusSounds.InflictStunned with { Volume = 0.3f, Pitch = 0.175f, PitchVariance = 0.05f });
-        }
-        //else {
-        //    npc.buffImmune[ModContent.BuffType<StunGunDebuff>()] = false;
-        //    npc.AddBuff(ModContent.BuffType<StunGunDebuff>(), duration, quiet);
-        //}
-    }
-
-    public void PostAddBuff(Player player, bool alreadyHasBuff, int duration, bool quiet, bool foodHack) {
-        if (player.HasBuff<StunGunDebuff>()) {
-            SoundEngine.PlaySound(AequusSounds.InflictStunned);
         }
     }
     #endregion

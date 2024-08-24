@@ -18,6 +18,7 @@ public class StunGun : ModItem, ICooldownItem {
 
     public override void SetStaticDefaults() {
         //Element.Flame.AddItem(Type);
+        ItemID.Sets.CanGetPrefixes[Type] = true;
     }
 
     public override void SetDefaults() {
