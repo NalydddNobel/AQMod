@@ -811,11 +811,7 @@ GoozmaFish: {
 
 ScarabDynamite: {
 	DisplayName: Scarab Dynamite
-	Tooltip:
-		'''
-		{$ItemTooltip.ScarabBomb}
-		'It'll help you take your mind off things'
-		'''
+	Tooltip: "{$ItemTooltip.ScarabBomb}"
 }
 
 BottleOSpirits: {

@@ -183,4 +183,6 @@ Projectiles: {
 	PixelCameraHeldProj.DisplayName: 像素摄像机手持
 	UpriserNecromancyAttack.DisplayName: 暴乱者死灵攻击
 	SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"
+	// ScarabDynamiteProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
+	// ScarabDynamiteTunnelExtenderProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
 }

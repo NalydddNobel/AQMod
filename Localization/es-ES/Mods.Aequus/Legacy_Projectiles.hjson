@@ -183,4 +183,6 @@ Projectiles: {
 	// PixelCameraHeldProj.DisplayName: Pixel Camera Held Proj
 	// UpriserNecromancyAttack.DisplayName: Upriser Necromancy Attack
 	// SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"
+	// ScarabDynamiteProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
+	// ScarabDynamiteTunnelExtenderProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
 }

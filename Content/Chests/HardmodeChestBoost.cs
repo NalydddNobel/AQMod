@@ -149,7 +149,7 @@ public sealed class HardmodeChestBoost : ModSystem {
             new CommonChestRule(ItemID.CrossNecklace),
             new CommonChestRule(ItemID.StarCloak),
         ]);
-        ChestLootDatabase.Instance.Register(ChestPool.DesertHard, bombs);
+        ChestLootDatabase.Instance.Register(ChestPool.DesertHard, new CommonChestRule(ModContent.ItemType<Items.Tools.Consumable.ScarabDynamite.ScarabDynamite>(), minBombs, maxBombs, ChanceDenominator: 3));
         ChestLootDatabase.Instance.Register(ChestPool.DesertHard, angelStatue);
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.DesertHard, bars);
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.DesertHard, ammo);

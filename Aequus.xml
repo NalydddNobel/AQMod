@@ -3165,6 +3165,9 @@
         <member name="F:Aequus.AequusTextures.SentryPotionBuff">
             <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ScarabDynamite">
+            <summary>Full Path: Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
         </member>
@@ -4412,9 +4415,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.FertilePowder">
             <summary>Full Path: Items/Misc/Powders/FertilePowder</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScarabDynamite">
-            <summary>Full Path: Items/Misc/ScarabDynamite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerSundialCharge">
             <summary>Full Path: Items/Misc/ShimmerSundialCharge</summary>

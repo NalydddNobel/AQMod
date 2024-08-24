@@ -815,20 +815,16 @@ GoozmaFish: {
 
 ScarabDynamite: {
 	// DisplayName: Scarab Dynamite
-	/* Tooltip:
-		'''
-		{$ItemTooltip.ScarabBomb}
-		'It'll help you take your mind off things'
-		''' */
+	// Tooltip: "{$ItemTooltip.ScarabBomb}"
 }
 
 BottleOSpirits: {
-	// DisplayName: Bottle O Spirits
+	// DisplayName: Bottle O' Spirits
 	// Tooltip: Increases your maximum number of ghost minions by 1
 }
 
 KegOSpirits: {
-	// DisplayName: Keg O Spirits
+	// DisplayName: Keg O' Spirits
 	/* Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}

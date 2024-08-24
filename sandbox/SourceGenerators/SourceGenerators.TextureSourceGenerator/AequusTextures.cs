@@ -629,6 +629,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SentryPotion = new("Content/Items/Potions/Buff/Sentry/SentryPotion");
     /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
     public static readonly RequestCache<Texture2D> SentryPotionBuff = new("Content/Items/Potions/Buff/Sentry/SentryPotionBuff");
+    /// <summary>Full Path: Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite</summary>
+    public static readonly RequestCache<Texture2D> ScarabDynamite = new("Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
     /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall</summary>
@@ -1461,8 +1463,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ChlorophytePowder = new("Items/Misc/Powders/ChlorophytePowder");
     /// <summary>Full Path: Items/Misc/Powders/FertilePowder</summary>
     public static readonly RequestCache<Texture2D> FertilePowder = new("Items/Misc/Powders/FertilePowder");
-    /// <summary>Full Path: Items/Misc/ScarabDynamite</summary>
-    public static readonly RequestCache<Texture2D> ScarabDynamite = new("Items/Misc/ScarabDynamite");
     /// <summary>Full Path: Items/Misc/ShimmerSundialCharge</summary>
     public static readonly RequestCache<Texture2D> ShimmerSundialCharge = new("Items/Misc/ShimmerSundialCharge");
     /// <summary>Full Path: Items/Misc/Spawners/GalacticStarfruit</summary>

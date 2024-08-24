@@ -6,6 +6,16 @@ using System.Reflection;
 namespace Aequus.Common.Utilities;
 
 public static class ReflectionHelper {
+    public static T GetMethodAsDelegate<T>(this Type type, string name, BindingFlags bindingAttr = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static) where T : Delegate {
+        MethodInfo? method = type.GetMethod(name, bindingAttr);
+
+        if (method == null) {
+            throw new Exception($"Method {name} was not found int {type.FullName}");
+        }
+
+        return (T)Delegate.CreateDelegate(typeof(T), method);
+    }
+
     public static IEnumerable<(T attributeInstance, MemberInfo memberInfo)> GetMembersWithAttribute<T>(Type t) where T : Attribute {
         var l = new List<(T, MemberInfo)>();
         foreach (var f in t.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {

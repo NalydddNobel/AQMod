@@ -77,6 +77,10 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static void CloneResearchUnlockCount(this Item item, int TypeToClone) {
+        item.ResearchUnlockCount = CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[TypeToClone];
+    }
+
     public static bool Allowed(this NPCSpawnInfo info, bool sky = false, bool dungeon = false, bool temple = false, bool town = false, bool water = false, bool desertCave = false, bool spider = false, bool marble = false, bool granite = false) {
         Tile spawnTile = Main.tile[info.SpawnTileX, info.SpawnTileY];
         ushort wall = spawnTile.WallType;
