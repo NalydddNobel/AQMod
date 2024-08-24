@@ -159,8 +159,8 @@ public partial class AequusPlayer : ModPlayer {
             }
         }
 
-        if (attempt.heightLevel >= HeightLevel.Underground && Main.rand.NextBool()) {
-            if (attempt.veryrare || (Aequus.ZenithSeed && attempt.rare)) {
+        if (attempt.heightLevel >= HeightLevel.Underground && Main.rand.NextBool(3)) {
+            if (attempt.legendary || (Aequus.ZenithSeed && attempt.veryrare)) {
                 switch (Main.rand.Next(4)) {
                     case 0:
                         itemDrop = ModContent.ItemType<ArgonFish>();
