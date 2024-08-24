@@ -106,7 +106,7 @@ Configs: {
 		}
 
 		EarlyHallow: {
-			Label: "[i:PixieDust] 早期神圣之地w"
+			Label: "[i:PixieDust] 早期神圣之地"
 			Tooltip:
 				'''
 				允许你在击败终末之星后从树妖处购买神圣种子.
