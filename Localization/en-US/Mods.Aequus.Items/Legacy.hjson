@@ -819,12 +819,12 @@ ScarabDynamite: {
 }
 
 BottleOSpirits: {
-	DisplayName: Bottle O Spirits
+	DisplayName: Bottle O' Spirits
 	Tooltip: Increases your maximum number of ghost minions by 1
 }
 
 KegOSpirits: {
-	DisplayName: Keg O Spirits
+	DisplayName: Keg O' Spirits
 	Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
