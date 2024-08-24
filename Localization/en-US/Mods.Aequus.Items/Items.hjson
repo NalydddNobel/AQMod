@@ -316,7 +316,6 @@ PhasePhone: {
 	Tooltip:
 		'''
 		Displays everything
-		{0}
 		Teleport to party members by clicking their head on the fullscreen map
 		<right> to toggle destination
 		'''
