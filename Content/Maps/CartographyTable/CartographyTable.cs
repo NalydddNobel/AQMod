@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Content.Biomes.Meadows.Tiles;
 using System;
+using Terraria.Audio;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
@@ -56,9 +57,23 @@ public class CartographyTable : ModTile, IAddRecipes {
     }
 
     public override bool RightClick(int i, int j) {
-        if (Main.netMode == NetmodeID.MultiplayerClient) {
-            ModContent.GetInstance<ServerMapDownloadPacket>().SendReset(Main.myPlayer);
+        if (!Main.LocalPlayer.TryGetModPlayer(out TimerPlayer timer) || timer.IsTimerActive(nameof(CartographyTable))) {
+            return false;
         }
+
+        int cd =
+#if DEBUG
+            30;
+#else
+            600;
+#endif
+        if (Main.netMode == NetmodeID.SinglePlayer) {
+
+        }
+        timer.SetTimer(nameof(CartographyTable), cd);
+
+        SoundEngine.PlaySound(SoundID.Item4, new Vector2(i, j).ToWorldCoordinates());
+        ModContent.GetInstance<ServerMapDownloadPacket>().SendReset(Main.myPlayer);
         return true;
     }
 }

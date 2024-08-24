@@ -8,7 +8,7 @@ public class FoolsGoldRingEffectPacket : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.FoolsGoldRingEffect;
 
     public void Send(NPC npc) {
-        var p = GetPacket();
+        var p = GetLegacyPacket();
         p.Write((int)npc.position.X);
         p.Write((int)npc.position.Y);
         p.Write(npc.width);

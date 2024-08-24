@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Magic.Nightfall {
         public override PacketType LegacyPacketType => PacketType.NightfallOnHit;
 
         public void Send(NPC npc) {
-            var p = GetPacket();
+            var p = GetLegacyPacket();
             p.Write((byte)npc.whoAmI);
             p.Send();
         }
@@ -69,7 +69,7 @@ namespace Aequus.Items.Weapons.Magic.Nightfall {
         public override PacketType LegacyPacketType => PacketType.NightfallPush;
 
         public void Send(int plr, Vector2 where, float size, int ignoreTarget = -1) {
-            var p = GetPacket();
+            var p = GetLegacyPacket();
             p.Write((byte)(ignoreTarget == -1 ? 255 : ignoreTarget));
             p.Write((byte)plr);
             p.Write(where.X);

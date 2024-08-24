@@ -14,8 +14,11 @@ public struct ServerMapTile {
 
     public readonly bool Write(BinaryWriter writer) {
         // We dont really care about tiles which have less than 4 light.
-        byte value = (byte)(Light << 2);
-        value |= (byte)(Type >> 6);
+        byte value = (byte)(Light >> 2);
+        value |= (byte)(Type << 6);
+        //if (value > 0) {
+        //    Main.NewText(value);
+        //}
         writer.Write(value);
         return true;
     }
@@ -24,9 +27,11 @@ public struct ServerMapTile {
         ServerMapTile next = new ServerMapTile();
 
         byte value = reader.ReadByte();
-        next.Light = (byte)(value >> 2);
-        next.Type = (byte)(value << 6);
-
+        next.Light = (byte)(value << 2);
+        next.Type = (byte)(value >> 6);
+        if (next.Light > 0) {
+            return next;
+        }
         return next;
     }
 
@@ -54,12 +59,12 @@ public struct ServerMapTile {
 
         bool usesUnknownTile = false;
         MapTile tile = Main.Map[x, y];
-        tile.Light = Math.Max(tile.Light, Light);
-        if (tile.Light <= 0) {
+        if (tile.Light <= 0 && Light > 0) {
             tile.Color = 0;
             tile.Type = MapTypeConvert.Instance.ToClientType(Type);
             usesUnknownTile = true;
         }
+        tile.Light = Math.Max(tile.Light, Light);
 
         Main.Map.SetTile(x, y, ref tile);
 

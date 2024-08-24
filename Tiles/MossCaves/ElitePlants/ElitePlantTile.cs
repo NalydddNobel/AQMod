@@ -258,7 +258,7 @@ public class EliteBuffPlantsHostile : ElitePlantTile {
         public override PacketType LegacyPacketType => PacketType.EliteBuffPlantsActivate;
 
         public void Send(NPC npc, int i, int j) {
-            var p = GetPacket();
+            var p = GetLegacyPacket();
             p.Write((byte)npc.whoAmI);
             p.Write((ushort)i);
             p.Write((ushort)j);

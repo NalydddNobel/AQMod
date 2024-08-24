@@ -7,7 +7,7 @@ public class SyncNecromancyOwnerPacket : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.SyncNecromancyOwnerPacket;
 
     public void Send(int npc, int player) {
-        ModPacket p = GetPacket();
+        ModPacket p = GetLegacyPacket();
         p.Write((byte)npc);
         p.Write((byte)player);
         p.Send();

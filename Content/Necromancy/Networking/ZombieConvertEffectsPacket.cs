@@ -12,7 +12,7 @@ public class ZombieConvertEffectsPacket : PacketHandler {
     }
 
     private void SendInner(Vector2 position, int width, int height, int zombieOwner, int renderLayer, int ignoreClient = -1) {
-        ModPacket p = GetPacket();
+        ModPacket p = GetLegacyPacket();
         p.Write(position.X);
         p.Write(position.Y);
         p.Write(width);

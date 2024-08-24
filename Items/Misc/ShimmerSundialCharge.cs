@@ -79,7 +79,7 @@ namespace Aequus.Items.Misc {
         public override PacketType LegacyPacketType => PacketType.UseSundialResetItem;
 
         public void Send(int i, int j, int plr) {
-            var p = GetPacket();
+            var p = GetLegacyPacket();
             p.Write((byte)plr);
             p.Write((ushort)i);
             p.Write((ushort)j);

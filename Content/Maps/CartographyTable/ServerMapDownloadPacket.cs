@@ -9,7 +9,7 @@ public class ServerMapDownloadPacket : PacketHandler {
     private readonly ushort[] _nextSection = new ushort[Main.maxPlayers];
 
     private int TrySendServerChunk(int player) {
-        ModPacket p = GetPacket();
+        BinaryWriter p = GetPacket();
         ushort chunk = _nextSection[player];
         p.Write(chunk);
 
@@ -33,16 +33,16 @@ public class ServerMapDownloadPacket : PacketHandler {
             return 0;
         }
 
-        p.Send(toClient: player);
+        SendPacket(p, toClient: player);
 
         return 1;
     }
 
     public void SendReset(int player) {
-        if (Main.netMode == NetmodeID.MultiplayerClient) {
-            ModPacket p = GetPacket();
+        if (Main.netMode != NetmodeID.Server) {
+            BinaryWriter p = GetPacket();
             p.Write((byte)1);
-            p.Send();
+            SendPacket(p);
 
             CartographyTableSystem.Instance.Map!.ResetNoUploadList();
         }
@@ -64,14 +64,14 @@ public class ServerMapDownloadPacket : PacketHandler {
             }
         }
         else {
-            ModPacket p = GetPacket();
+            BinaryWriter p = GetPacket();
             p.Write((byte)0);
-            p.Send();
+            SendPacket(p);
         }
     }
 
     public override void Receive(BinaryReader reader, int sender) {
-        if (Main.netMode == NetmodeID.MultiplayerClient) {
+        if (Main.netMode != NetmodeID.Server) {
             // Read the chunk Id.
             ushort chunk = reader.ReadUInt16();
 
@@ -91,8 +91,7 @@ public class ServerMapDownloadPacket : PacketHandler {
             // Set cartography table download progress bar.
             ServerMapDownloadUI.Instance.SetDownloadProgress(map.GetChunkProgress(chunk));
         }
-
-        if (Main.netMode == NetmodeID.Server) {
+        else {
             if (sender < 0 || sender >= Main.maxPlayers) {
                 return;
             }

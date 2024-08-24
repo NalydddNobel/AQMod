@@ -11,7 +11,7 @@ namespace Aequus.Common.Net {
 
         public void Send(Player player, int i, int j)
         {
-            var p = GetPacket();
+            var p = GetLegacyPacket();
             p.Write((byte)player.whoAmI);
             p.Write((ushort)i);
             p.Write((ushort)j);

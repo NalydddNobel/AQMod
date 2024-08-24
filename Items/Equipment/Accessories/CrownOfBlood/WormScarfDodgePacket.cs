@@ -9,7 +9,7 @@ public class WormScarfDodgePacket : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.WormScarfDodge;
 
     public void Send(Player player) {
-        var p = GetPacket();
+        var p = GetLegacyPacket();
         p.Write((byte)player.whoAmI);
         p.Send();
     }

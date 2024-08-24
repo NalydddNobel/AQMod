@@ -11,7 +11,7 @@ public class ServerMap {
     public const int ChunkHeight = 100;
 
     public int ChunkRows => Helper.DivCeiling(Width, ChunkWidth);
-    public int ChunkColumns => Helper.DivCeiling(Width, ChunkHeight);
+    public int ChunkColumns => Helper.DivCeiling(Height, ChunkHeight);
     public int MaxChunks => ChunkRows * ChunkColumns;
 
     public readonly int Width;

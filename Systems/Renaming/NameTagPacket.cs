@@ -7,7 +7,7 @@ public class NameTagPacket : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.NewNameTag;
 
     public void Send(int i, string nameTag) {
-        var p = GetPacket();
+        var p = GetLegacyPacket();
         p.Write(i);
         p.Write(nameTag);
         p.Send();

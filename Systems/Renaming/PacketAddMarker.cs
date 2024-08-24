@@ -7,7 +7,7 @@ public sealed class PacketAddMarker : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.AddNewNameTagMarker;
 
     public void Send(int markerId, RenamedNPCMarker marker) {
-        var packet = GetPacket();
+        var packet = GetLegacyPacket();
         packet.Write(markerId);
         marker.NetSend(packet);
         packet.Send();

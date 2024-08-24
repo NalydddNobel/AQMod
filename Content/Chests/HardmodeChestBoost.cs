@@ -477,7 +477,7 @@ public sealed class HardmodeChestBoost : ModSystem {
                 int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.UnderworldLayer - 50);
                 if (!Main.wallHouse[Main.tile[x, y].WallType] && !Main.tile[x, y].NoDungeonOrTempleWall() && Main.tile[x, y].WallType != WallID.HiveUnsafe) {
                     var r = new Rectangle(x - 5, y - 5, 10, 10);
-                    int style = -1;
+                    int style = 1;
                     int chestType = TileID.Containers;
                     if (TileHelper.ScanTiles(r, TileHelper.HasTileAction(TileID.MushroomGrass))) {
                         style = ChestType.Mushroom;
@@ -493,7 +493,7 @@ public sealed class HardmodeChestBoost : ModSystem {
                     }
 
                     int newChest = WorldGen.PlaceChest(x, y, notNearOtherChests: true, style: style);
-                    if (Main.chest.IndexInRange(newChest)) {
+                    if (!Main.chest.IndexInRange(newChest)) {
                         continue;
                     }
 

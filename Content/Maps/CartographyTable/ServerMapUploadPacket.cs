@@ -10,7 +10,7 @@ public class ServerMapUploadPacket : PacketHandler {
     private ushort _nextChunk;
 
     private int TrySendClientChunk(int player) {
-        ModPacket p = GetPacket();
+        BinaryWriter p = GetPacket();
         ushort chunk = _nextChunk;
         p.Write(chunk);
 
@@ -36,23 +36,23 @@ public class ServerMapUploadPacket : PacketHandler {
             return 0;
         }
 
-        p.Send();
+        SendPacket(p);
 
         return 1;
     }
 
     public void SendReset(int player) {
         if (Main.netMode == NetmodeID.Server) {
-            ModPacket p = GetPacket();
+            BinaryWriter p = GetPacket();
             p.Write((byte)1);
-            p.Send(toClient: player);
+            SendPacket(p, toClient: player);
 
-            ModContent.GetInstance<CartographyTableSystem>().Map.CreateDebugMap();
+            ModContent.GetInstance<CartographyTableSystem>().Map!.CreateDebugMap();
         }
     }
 
     public void Send(int player) {
-        if (Main.netMode == NetmodeID.MultiplayerClient) {
+        if (Main.netMode != NetmodeID.Server) {
             // Set download bar to max when sending
             if (_nextChunk == 0) {
                 ServerMapDownloadUI.Instance.SetDownloadProgress(1f);
@@ -75,9 +75,9 @@ public class ServerMapUploadPacket : PacketHandler {
             }
         }
         else {
-            ModPacket p = GetPacket();
+            BinaryWriter p = GetPacket();
             p.Write((byte)0);
-            p.Send(toClient: player);
+            SendPacket(p, toClient: player);
         }
     }
 

@@ -387,6 +387,10 @@ public partial class PacketSystem : ModSystem {
         }
     }
 
+    public static PacketHandler Get(byte type) {
+        return handlerByLegacyType[(PacketType)type];
+    }
+
     public static T Get<T>() where T : PacketHandler {
         return ModContent.GetInstance<T>();
     }

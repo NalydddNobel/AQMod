@@ -7,7 +7,7 @@ public sealed class PacketRemoveMarker : PacketHandler {
     public override PacketType LegacyPacketType => PacketType.RemoveNewNameTagMarker;
 
     public void Send(int markerId) {
-        var packet = GetPacket();
+        var packet = GetLegacyPacket();
         packet.Write(markerId);
         packet.Send();
     }

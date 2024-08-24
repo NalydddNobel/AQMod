@@ -10,7 +10,7 @@ namespace Aequus.Content.Net {
         public override PacketType LegacyPacketType => PacketType.LuckyDropSpawn;
 
         public void Send(Vector2 location, int width, int height, int amount, int ignore = -1) {
-            var p = GetPacket();
+            var p = GetLegacyPacket();
             p.Write(location.X);
             p.Write(location.Y);
             p.Write(AsClampedByte(width));

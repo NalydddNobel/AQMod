@@ -11,7 +11,7 @@ public class SyncNecromancyNPCPacket : PacketHandler {
             return;
         }
 
-        ModPacket p = GetPacket();
+        ModPacket p = GetLegacyPacket();
         p.Write((byte)npc.whoAmI);
         necromancyNPC.Send(p);
         p.Send();
