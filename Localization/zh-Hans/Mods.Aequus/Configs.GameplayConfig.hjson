@@ -79,8 +79,8 @@ Configs: {
 		}
 
 		ShowNPCSettleDownMessage: {
-			// Label: Show N P C Settle Down Message
-			// Tooltip: ""
+			Label: 显示Npc定居信息
+			Tooltip: ""
 		}
 	}
 }
