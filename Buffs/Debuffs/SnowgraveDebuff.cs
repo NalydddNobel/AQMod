@@ -20,7 +20,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool debuffSnowgrave;
 

@@ -4,10 +4,7 @@ using Aequus.Common.DataSets;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
 using Aequus.Particles;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
     public class BlueFire : ModBuff, BuffHooks.IOnAddBuff {
@@ -33,7 +30,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool debuffBlueFire;
 

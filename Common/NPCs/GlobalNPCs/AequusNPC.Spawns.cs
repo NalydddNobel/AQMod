@@ -16,7 +16,8 @@ using System;
 using System.Collections.Generic;
 using Terraria.ModLoader.Utilities;
 
-namespace Aequus.NPCs;
+namespace Aequus;
+
 public partial class AequusNPC {
     /// <summary>
     /// Parameters for whether or not certain locations are valid spots for regular entities to spawn.
@@ -126,9 +127,9 @@ public partial class AequusNPC {
     }
     private static void GaleStreamsEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
         AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
-        if (Aequus.MediumMode && !(IsClose<RedSprite.RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid.SpaceSquid>(spawnInfo.Player))) {
-            pool.Add(ModContent.NPCType<RedSprite.RedSprite>(), (!AequusWorld.downedRedSprite ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
-            pool.Add(ModContent.NPCType<SpaceSquid.SpaceSquid>(), (!AequusWorld.downedSpaceSquid ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
+        if (Aequus.MediumMode && !(IsClose<NPCs.RedSprite.RedSprite>(spawnInfo.Player) || IsClose<NPCs.SpaceSquid.SpaceSquid>(spawnInfo.Player))) {
+            pool.Add(ModContent.NPCType<NPCs.RedSprite.RedSprite>(), (!AequusWorld.downedRedSprite ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
+            pool.Add(ModContent.NPCType<NPCs.SpaceSquid.SpaceSquid>(), (!AequusWorld.downedSpaceSquid ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
         }
 
         if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>())) {

@@ -2,10 +2,6 @@
 using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
     public class BattleAxeBleeding : ModBuff {
@@ -54,7 +50,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     partial class AequusNPC {
         public bool debuffBattleAxe;
 

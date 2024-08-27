@@ -1,7 +1,6 @@
 ﻿using Aequus.Items.Equipment.Accessories.Money.FaultyCoin;
-using Terraria;
 
-namespace Aequus.NPCs;
+namespace Aequus;
 
 public partial class AequusNPC {
     public void ProcFaultyCoin(NPC npc, AequusNPC aequus, Player player, AequusPlayer aequusPlayer) {

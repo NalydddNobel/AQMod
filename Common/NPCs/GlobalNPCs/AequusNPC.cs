@@ -19,7 +19,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs;
+namespace Aequus;
 public partial class AequusNPC : GlobalNPC {
     public static float spawnNPCYOffset;
 
@@ -127,6 +127,7 @@ public partial class AequusNPC : GlobalNPC {
     }
 
     public override void OnSpawn(NPC npc, IEntitySource source) {
+        OnSpawnInner(npc, source);
         if (spawnNPCYOffset != 0f) {
             npc.position.Y += spawnNPCYOffset;
             var tileLocation = npc.Center.ToTileCoordinates();

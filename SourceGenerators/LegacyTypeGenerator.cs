@@ -7,7 +7,7 @@ using System.Linq;
 namespace SourceGenerators;
 
 [Generator]
-public class TypeGenerator : ISourceGenerator {
+public class LegacyTypeGenerator : ISourceGenerator {
     private readonly Dictionary<string, Action<TypeConstructor, QualifiedNameSyntax, AttributeSyntax>> _attributeActions = new() {
         ["Field"] = (type, name, attr) => type.AddField(attr.GetTextArgument(0), name.Right.GetGeneric(0)),
         ["ResetField"] = (type, name, attr) => {
@@ -76,6 +76,11 @@ public class TypeGenerator : ISourceGenerator {
 
     public void Execute(GeneratorExecutionContext context) {
         Dictionary<string, TypeConstructor> constructors = new() {
+            ["AequusNPC"] = new TypeConstructor("AequusNPC", "Aequus",
+             Usings: ["Terraria.ModLoader.IO", "Terraria.DataStructures", "Aequus.Common.Structures", "System.Collections.Generic"],
+             MethodInputConversions: new Dictionary<string, string>() {
+                 ["AequusNPC"] = "this",
+             }),
             ["AequusPlayer"] = new TypeConstructor("AequusPlayer", "Aequus",
              Usings: ["Terraria.ModLoader.IO", "Aequus.Common.Structures", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {

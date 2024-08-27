@@ -1,9 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
     public class MindfungusDebuff : ModBuff {
@@ -31,7 +28,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool debuffMindfungus;
         public byte mindfungusStacks;

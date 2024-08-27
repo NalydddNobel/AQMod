@@ -1,9 +1,6 @@
 ﻿using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.NPCs;
+namespace Aequus;
 
 public partial class AequusNPC {
     public void ProcFoolsGoldRing(NPC npc, AequusNPC aequus, Player player, AequusPlayer aequusPlayer) {

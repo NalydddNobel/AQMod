@@ -4,11 +4,7 @@ using Aequus.Common.DataSets;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
 using Aequus.Particles;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
     public class CorruptionHellfire : ModBuff, BuffHooks.IOnAddBuff {
@@ -49,7 +45,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool debuffCorruptionFire;
         public byte corruptionHellfireStacks;
@@ -62,10 +58,10 @@ namespace Aequus.NPCs {
             int amt = Math.Max((int)(npc.Size.Length() / 32f), 1);
             for (int i = 0; i < amt; i++) {
                 ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
-                    Main.rand.NextFromRect(npc.Hitbox), 
+                    Main.rand.NextFromRect(npc.Hitbox),
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)),
-                    CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.07f, 
-                    Main.rand.NextFloat(1.5f, 3f), 0.3f, 
+                    CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.07f,
+                    Main.rand.NextFloat(1.5f, 3f), 0.3f,
                     Main.rand.NextFloat(MathHelper.TwoPi)
                 );
             }

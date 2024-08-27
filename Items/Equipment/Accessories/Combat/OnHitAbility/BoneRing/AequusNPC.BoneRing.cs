@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-
-namespace Aequus.NPCs;
+﻿namespace Aequus;
 
 public partial class AequusNPC {
     public bool debuffBoneRing;

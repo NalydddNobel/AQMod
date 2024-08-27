@@ -1,4 +1,4 @@
-﻿namespace Aequus.NPCs;
+﻿namespace Aequus;
 public partial class AequusNPC {
     public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers) {
         if (projectile.IsMinionOrSentryRelated) {

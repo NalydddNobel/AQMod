@@ -9,14 +9,9 @@ using Aequus.Common.Rendering;
 using Aequus.Content;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Glimmer;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Renderers;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic.Gamestar {
     public class Gamestar : ModItem {
@@ -222,7 +217,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     partial class AequusNPC {
         public byte lagDebuff;
 

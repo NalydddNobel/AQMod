@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
-using Aequus.Common.Utilities.Extensions;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Sceptres.Evil;
 using Aequus.Particles;
@@ -286,7 +285,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool friendship;
 

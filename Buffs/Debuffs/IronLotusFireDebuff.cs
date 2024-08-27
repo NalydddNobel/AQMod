@@ -1,12 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Particles;
 using Aequus.Particles;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
     public class IronLotusFireDebuff : ModBuff {
@@ -26,7 +21,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool debuffIronLotus;
 
@@ -56,10 +51,10 @@ namespace Aequus.NPCs {
             int amt = (int)(npc.Size.Length() / 32f);
             for (int i = 0; i < amt; i++) {
                 ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
-                    Main.rand.NextFromRect(npc.Hitbox), 
+                    Main.rand.NextFromRect(npc.Hitbox),
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), -Main.rand.NextFloat(-2f, 2f)),
-                    new Color(180, 90, 40, 60) * 0.5f, new Color(6, 0, 3, 0), 
-                    Main.rand.NextFloat(2f, 3f), 0.3f, 
+                    new Color(180, 90, 40, 60) * 0.5f, new Color(6, 0, 3, 0),
+                    Main.rand.NextFloat(2f, 3f), 0.3f,
                     Main.rand.NextFloat(MathHelper.TwoPi)
                 );
             }

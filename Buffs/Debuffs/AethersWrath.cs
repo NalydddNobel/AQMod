@@ -3,10 +3,6 @@ using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Particles;
 using Aequus.Particles;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
     public class AethersWrath : ModBuff, IPostAddRecipes {
@@ -51,7 +47,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     partial class AequusNPC {
         public bool debuffAetherFire;
 
@@ -66,10 +62,10 @@ namespace Aequus.NPCs {
                 spawnLocation.Y -= 4f;
                 var color = Helper.LerpBetween(AethersWrath.ParticleColors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
                 ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
-                    spawnLocation, 
+                    spawnLocation,
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), -Main.rand.NextFloat(-2f, 2f)),
                     color, (color with { A = 0 }).HueAdd(Main.rand.NextFloat(0.02f)) * 0.01f,
-                    Main.rand.NextFloat(1.5f, 3f), 0.3f, 
+                    Main.rand.NextFloat(1.5f, 3f), 0.3f,
                     Main.rand.NextFloat(MathHelper.TwoPi)
                 );
                 if (i == 0 && Main.GameUpdateCount % 12 == 0) {

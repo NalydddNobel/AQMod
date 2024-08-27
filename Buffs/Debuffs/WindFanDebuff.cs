@@ -1,6 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
     public class WindFanDebuff : ModBuff {
@@ -19,7 +17,7 @@ namespace Aequus.Buffs.Debuffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     partial class AequusNPC {
         public bool debuffWindFan;
 

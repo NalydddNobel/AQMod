@@ -384,89 +384,83 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noHitEffect">
+        <member name="F:Aequus.AequusNPC.noHitEffect">
             <summary>
             Disables hit effects.
             <para>Used to make the Chomper minion look like it's swallowing the enemy it hit.</para>
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noContactDamage">
+        <member name="F:Aequus.AequusNPC.noContactDamage">
             <summary>
             Disables contact damage.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noOnKill">
+        <member name="F:Aequus.AequusNPC.noOnKill">
             <summary>
             Disables on-kill effects like loot and player accessory effects.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noAI">
+        <member name="F:Aequus.AequusNPC.noAI">
             <summary>
             Disables typical AI from running, only used for testing.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noVisible">
+        <member name="F:Aequus.AequusNPC.noVisible">
             <summary>
             Effectively the same as <see cref="F:Terraria.NPC.hide"/>, except refreshed to false in ResetEffects().
             <para>This is used on the slimes that are attached to <see cref="T:Aequus.NPCs.Monsters.GaleStreams.StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noTakingDamage">
+        <member name="F:Aequus.AequusNPC.noTakingDamage">
             <summary>
             Effectively the same as <see cref="F:Terraria.NPC.dontTakeDamage"/>, except it ticks down before allowing the target to take damage again.
             <para>This is used on the Healer Drone to make town NPCs immortal for a couple seconds</para>
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.isChildNPC">
+        <member name="F:Aequus.AequusNPC.isChildNPC">
             <summary>
             If the NPC came from a hereditary source, like being spawned from another NPC, or a projectile, or whatever else, this will be true.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.lastHit">
+        <member name="F:Aequus.AequusNPC.lastHit">
             <summary>
             How long since this NPC has been striked.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.debuffDamage">
+        <member name="F:Aequus.AequusNPC.debuffDamage">
             <summary>
             Flat life regen damage addition.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.statAttackDamage">
+        <member name="F:Aequus.AequusNPC.statAttackDamage">
             <summary>
             Can be used to increase/decrease an NPC's damage without directly touching <see cref="F:Terraria.NPC.damage"/>.
             </summary>
         </member>
-        <member name="T:Aequus.NPCs.AequusNPC.ValidSpawnParameters">
+        <member name="T:Aequus.AequusNPC.ValidSpawnParameters">
             <summary>
             Parameters for whether or not certain locations are valid spots for regular entities to spawn.
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.Pillars">
+        <member name="F:Aequus.AequusNPC.ValidSpawnParameters.Pillars">
             <summary>
             Set to true to allow spawning during the Pillar event. (<see cref="P:Terraria.Player.ZoneTowerSolar"/> / <see cref="P:Terraria.Player.ZoneTowerVortex"/> / <see cref="P:Terraria.Player.ZoneTowerNebula"/> / <see cref="P:Terraria.Player.ZoneTowerStardust"/>)
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.SunMoonEvents">
+        <member name="F:Aequus.AequusNPC.ValidSpawnParameters.SunMoonEvents">
             <summary>
             Set to true to allow spawning during the Eclipse, Pumpkin Moon, or Frost Moon (<see cref="F:Terraria.Main.eclipse"/> / <see cref="F:Terraria.Main.pumpkinMoon"/> / <see cref="F:Terraria.Main.snowMoon"/>)
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.Invasion">
+        <member name="F:Aequus.AequusNPC.ValidSpawnParameters.Invasion">
             <summary>
             Set to true to allow spawning during invasions (<see cref="F:Terraria.Main.invasionType"/> / <see cref="F:Terraria.ModLoader.NPCSpawnInfo.Invasion"/>)
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.DungeonTemple">
+        <member name="F:Aequus.AequusNPC.ValidSpawnParameters.DungeonTemple">
             <summary>
             Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
             </summary>
-        </member>
-        <member name="M:Aequus.NPCs.BossMonsters.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
         </member>
         <member name="F:Aequus.Common.Buffs.AequusBuff.preventRightClick">
             <summary>
@@ -488,6 +482,9 @@
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_ModifyTooltips">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_OnSpawn">
+            <summary>Adds a reference to the target method in <see cref="T:Aequus.AequusNPC"/> (<see cref="!:AequusNPC.OnSpawnInner(NPC, IEntitySource)"/>).</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusPlayer"/>.</summary>
@@ -2230,7 +2227,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1360)</summary>
+            <summary>(Total Textures: 1367)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3132,6 +3129,24 @@
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MeadowBreastplate">
+            <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowBreastplate_Body">
+            <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate_Body</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGreaves">
+            <summary>Full Path: Content/Items/Armor/Meadow/MeadowGreaves</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGreaves_Legs">
+            <summary>Full Path: Content/Items/Armor/Meadow/MeadowGreaves_Legs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowHelmet">
+            <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowHelmet_Head">
+            <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet_Head</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Meathook">
             <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
         </member>
@@ -3197,6 +3212,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbowChain">
             <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowSentryStaff">
+            <summary>Full Path: Content/Items/Weapons/Summon/MeadowSentry/MeadowSentryStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
@@ -6779,6 +6797,12 @@
             <param name="order">Sorting value for this album.</param>
             <param name="specialReward">Special reward for this album</param>
             <param name="values">Must have a length of 6.</param>
+        </member>
+        <member name="M:Aequus.NPCs.BossMonsters.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
         </member>
         <member name="F:Aequus.Particles.DashBlurParticle.ScaleX">
             <summary>

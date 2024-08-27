@@ -10,6 +10,11 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [Header("General")]
 
     [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool ShowNPCSettleDownMessage { get; set; }
+
+    [DefaultBackgroundColor]
     [DefaultValue(0.6f)]
     [Range(0.6f, 1f)]
     [Increment(0.05f)]

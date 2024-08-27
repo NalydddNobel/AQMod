@@ -16,7 +16,7 @@ using Aequus.Items.Weapons.Melee.Swords.IronLotus;
 using System;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.NPCs;
+namespace Aequus;
 public partial class AequusNPC {
     public static bool doLuckyDropsEffect;
 

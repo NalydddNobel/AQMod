@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1360)</summary>
+/// <summary>(Total Textures: 1367)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -607,6 +607,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
+    /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
+    public static readonly RequestCache<Texture2D> MeadowBreastplate = new("Content/Items/Armor/Meadow/MeadowBreastplate");
+    /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate_Body</summary>
+    public static readonly RequestCache<Texture2D> MeadowBreastplate_Body = new("Content/Items/Armor/Meadow/MeadowBreastplate_Body");
+    /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowGreaves</summary>
+    public static readonly RequestCache<Texture2D> MeadowGreaves = new("Content/Items/Armor/Meadow/MeadowGreaves");
+    /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowGreaves_Legs</summary>
+    public static readonly RequestCache<Texture2D> MeadowGreaves_Legs = new("Content/Items/Armor/Meadow/MeadowGreaves_Legs");
+    /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet</summary>
+    public static readonly RequestCache<Texture2D> MeadowHelmet = new("Content/Items/Armor/Meadow/MeadowHelmet");
+    /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet_Head</summary>
+    public static readonly RequestCache<Texture2D> MeadowHelmet_Head = new("Content/Items/Armor/Meadow/MeadowHelmet_Head");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
     public static readonly RequestCache<Texture2D> Meathook = new("Content/Items/GrapplingHooks/Meathook/Meathook");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj</summary>
@@ -651,6 +663,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
     public static readonly RequestCache<Texture2D> SkyHunterCrossbowChain = new("Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/MeadowSentry/MeadowSentryStaff</summary>
+    public static readonly RequestCache<Texture2D> MeadowSentryStaff = new("Content/Items/Weapons/Summon/MeadowSentry/MeadowSentryStaff");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>

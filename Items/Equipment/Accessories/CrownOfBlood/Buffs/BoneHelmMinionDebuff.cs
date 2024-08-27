@@ -21,7 +21,7 @@ namespace Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs {
     }
 }
 
-namespace Aequus.NPCs {
+namespace Aequus {
     public partial class AequusNPC {
         public bool debuffBoneHelmEmpowered;
 

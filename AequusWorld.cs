@@ -13,7 +13,6 @@ using Aequus.NPCs.Monsters.Glimmer.UltraStarite;
 using Aequus.NPCs.RedSprite;
 using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Town.CarpenterNPC;
-using Aequus.Systems;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc;
 using Aequus.Tiles.Misc.AshTombstones;
@@ -216,13 +215,7 @@ public partial class AequusWorld : ModSystem {
     private static void LoadHooks() {
         Terraria.On_Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
         Terraria.On_Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
-        Terraria.On_Main.UpdateTime_StartDay += On_Main_UpdateTime_StartDay;
         Terraria.On_SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
-    }
-
-    private static void On_Main_UpdateTime_StartDay(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents) {
-        orig(ref stopEvents);
-        NPCWantsToMoveIn.OnStartDay();
     }
 
     private static bool Main_ShouldNormalEventsBeAbleToStart(Terraria.On_Main.orig_ShouldNormalEventsBeAbleToStart orig) {

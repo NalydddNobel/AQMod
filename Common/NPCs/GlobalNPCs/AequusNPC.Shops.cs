@@ -8,7 +8,7 @@ using Aequus.Items.Tools.FishingPoles;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.NPCs;
+namespace Aequus;
 
 public partial class AequusNPC {
     public override void ModifyShop(NPCShop shop) {
