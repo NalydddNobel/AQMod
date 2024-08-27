@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Potions.NoonPotion {
     public class NoonBuff : ModBuff {
         public override void SetStaticDefaults() {
-            PotionColorsDatabase.BuffToColor.Add(Type, new Color(245, 171, 0));
+            LegacyPotionColorsDatabase.BuffToColor.Add(Type, new Color(245, 171, 0));
         }
 
         public override void Update(Player player, ref int buffIndex) {

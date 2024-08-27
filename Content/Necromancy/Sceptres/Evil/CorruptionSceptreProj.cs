@@ -15,7 +15,7 @@ public class CorruptionSceptreProj : ModProjectile {
     protected Vector2[][] _trail;
 
     public override void SetStaticDefaults() {
-        PushableEntities.ProjectileIDs.Add(Type);
+        LegacyPushableEntities.ProjectileIDs.Add(Type);
     }
 
     public override void SetDefaults() {

@@ -66,7 +66,7 @@ namespace Aequus.Projectiles.Misc {
 
             int progress = (Projectile.timeLeft - 4) / 4;
 
-            var color = PotionColorsDatabase.GetColorFromItemID(ItemType);
+            var color = LegacyPotionColorsDatabase.GetColorFromItemID(ItemType);
             int startX = (int)(Projectile.Center.X - AreaOfEffect) / 16;
             int startY = (int)(Projectile.Center.Y - AreaOfEffect) / 16;
             int endX = (int)(Projectile.Center.X + AreaOfEffect) / 16;
@@ -174,7 +174,7 @@ namespace Aequus.Projectiles.Misc {
             Projectile.rotation += Projectile.velocity.X * 0.02f;
             if (Main.GameUpdateCount % 7 == 0 || Main.rand.NextBool(12))
             {
-                var color = PotionColorsDatabase.GetColorFromItemID(ItemType);
+                var color = LegacyPotionColorsDatabase.GetColorFromItemID(ItemType);
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoSparkleDust>(), Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, newColor: color.UseA(0) * Main.rand.NextFloat(0.66f, 1f), Scale: Main.rand.NextFloat(0.8f, 1.5f));
                 d.velocity *= 0.1f;
                 d.velocity += Projectile.velocity * 0.1f;

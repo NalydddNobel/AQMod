@@ -1,5 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
 using Aequus.NPCs.BossMonsters.DustDevil;

@@ -25,7 +25,7 @@ namespace Aequus.Projectiles.Misc.SporeSac {
         public override string Texture => Aequus.ProjectileTexture(SporeProjectileID);
 
         public override void SetStaticDefaults() {
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

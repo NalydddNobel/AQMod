@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Magic {
     public class PentalScytheProj : ModProjectile {
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = 2;
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

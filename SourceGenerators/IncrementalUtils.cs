@@ -9,7 +9,11 @@ internal static class IncrementalUtils {
             string fullDisplayString = param.ToDisplayString();
             string name = param.Name;
             string type = param.Type.ToDisplayString();
-            yield return new ParameterInfo(fullDisplayString, name, type);
+            string defaultValue = "";
+            if (param.HasExplicitDefaultValue) {
+                defaultValue = param.ExplicitDefaultValue?.ToString() ?? "default";
+            }
+            yield return new ParameterInfo(fullDisplayString, name, type, defaultValue);
         }
     }
 }

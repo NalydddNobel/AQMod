@@ -9,7 +9,7 @@ namespace Aequus.Buffs {
     {
         public override void SetStaticDefaults()
         {
-            PotionColorsDatabase.BuffToColor.Add(Type, new Color(255, 61, 110));
+            LegacyPotionColorsDatabase.BuffToColor.Add(Type, new Color(255, 61, 110));
             AequusBuff.AddPotionConflict(Type, BuffID.Heartreach);
         }
     }

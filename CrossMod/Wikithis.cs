@@ -1,6 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-
-namespace Aequus.CrossMod;
+﻿namespace Aequus.CrossMod;
 internal class Wikithis : ModSupport<Wikithis> {
     public override void SafeLoad(Mod mod) {
         if (!Main.dedServ) {

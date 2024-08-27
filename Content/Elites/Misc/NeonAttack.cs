@@ -11,7 +11,7 @@ namespace Aequus.Content.Elites.Misc {
 
         public override void SetStaticDefaults() {
             this.SetTrail(35);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

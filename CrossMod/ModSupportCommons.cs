@@ -1,6 +1,4 @@
-﻿using Aequus.CrossMod;
-
-namespace Aequus.Common.CrossMod {
+﻿namespace Aequus.CrossMod {
     internal static class ModSupportCommons {
         public static bool DoExpertDropsInClassicMode() {
             return CalamityMod.Instance != null;

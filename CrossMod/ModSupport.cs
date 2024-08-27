@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Common.CrossMod;
+namespace Aequus.CrossMod;
 internal interface IModSupport<TMod> where TMod : ModSupport<TMod> {
     public static Mod? Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;

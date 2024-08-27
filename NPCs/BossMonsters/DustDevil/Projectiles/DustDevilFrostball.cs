@@ -13,7 +13,7 @@ namespace Aequus.NPCs.BossMonsters.DustDevil.Projectiles {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.RainbowCrystalExplosion;
 
         public override void SetStaticDefaults() {
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

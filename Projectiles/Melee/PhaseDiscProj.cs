@@ -14,7 +14,7 @@ public class PhaseDiscProj : ValariProj {
         Main.projFrames[Type] = 2;
         ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
     }
 
     public override void SetDefaults() {

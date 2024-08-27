@@ -1,5 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Content.DamageClasses;
+﻿using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria.ModLoader;

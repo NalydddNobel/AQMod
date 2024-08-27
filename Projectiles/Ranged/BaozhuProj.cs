@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Ranged {
         {
             ProjectileID.Sets.TrailingMode[Type] = 2;
             ProjectileID.Sets.TrailCacheLength[Type] = 7;
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

@@ -9,7 +9,7 @@ namespace Aequus.Buffs {
     {
         public override void SetStaticDefaults()
         {
-            PotionColorsDatabase.BuffToColor.Add(Type, new Color(110, 61, 255));
+            LegacyPotionColorsDatabase.BuffToColor.Add(Type, new Color(110, 61, 255));
             AequusBuff.AddPotionConflict(Type, BuffID.ManaRegeneration);
             AequusBuff.AddPotionConflict(Type, ModContent.BuffType<BloodthirstBuff>());
         }

@@ -6,7 +6,7 @@ public class LocustSmall : ModProjectile {
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 2;
         ProjectileID.Sets.MinionShot[Type] = true;
-        PushableEntities.ProjectileIDs.Add(Type);
+        LegacyPushableEntities.ProjectileIDs.Add(Type);
     }
 
     public override void SetDefaults() {

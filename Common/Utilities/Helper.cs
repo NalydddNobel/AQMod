@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Common;
-using Aequus.Common.CrossMod;
 using Aequus.Common.DataSets;
 using Aequus.Common.EntitySources;
 using Aequus.Common.IO;
@@ -11,6 +10,7 @@ using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
+using Aequus.CrossMod;
 using Aequus.Projectiles;
 using log4net;
 using ReLogic.Content;

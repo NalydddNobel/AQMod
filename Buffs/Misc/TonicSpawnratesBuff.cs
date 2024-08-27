@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Buffs.Misc {
     public class TonicSpawnratesBuff : ModBuff {
         public override void SetStaticDefaults() {
-            PotionColorsDatabase.BuffToColor.Add(Type, Color.Green);
+            LegacyPotionColorsDatabase.BuffToColor.Add(Type, Color.Green);
             BuffSets.PotionPrefixBlacklist.Add(Type);
         }
 
@@ -26,7 +26,7 @@ namespace Aequus.Buffs.Misc {
 
     public class TonicSpawnratesDebuff : ModBuff {
         public override void SetStaticDefaults() {
-            PotionColorsDatabase.BuffToColor.Add(Type, Color.Green);
+            LegacyPotionColorsDatabase.BuffToColor.Add(Type, Color.Green);
             Main.debuff[Type] = true;
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
         }

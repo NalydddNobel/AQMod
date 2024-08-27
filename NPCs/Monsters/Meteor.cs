@@ -166,7 +166,7 @@ public class Meteor : ModNPC {
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 5;
-        PushableEntities.NPCIDs.Add(Type);
+        LegacyPushableEntities.NPCIDs.Add(Type);
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
             Position = new Vector2(0f, 8f),
         });

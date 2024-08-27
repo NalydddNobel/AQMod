@@ -9,7 +9,7 @@ public class InsurgentBolt : InsurgencyProj {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 20;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        PushableEntities.ProjectileIDs.Add(Type);
+        LegacyPushableEntities.ProjectileIDs.Add(Type);
     }
 
     public override void SetDefaults() {

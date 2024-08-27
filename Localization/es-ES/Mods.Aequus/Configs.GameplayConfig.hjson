@@ -77,5 +77,10 @@ Configs: {
 			// Label: "[i:GoldDust] Early Hardmode Shops"
 			// Tooltip: Whether villager shops should also get their hardmode exclusive items after Omega Starite has been defeated.
 		}
+
+		ShowNPCSettleDownMessage: {
+			// Label: Show N P C Settle Down Message
+			// Tooltip: ""
+		}
 	}
 }

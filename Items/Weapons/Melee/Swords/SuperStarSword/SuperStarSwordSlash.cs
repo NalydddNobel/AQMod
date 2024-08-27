@@ -20,7 +20,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.SuperStarSword {
 
         public override void SetStaticDefaults() {
             this.SetTrail(18);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

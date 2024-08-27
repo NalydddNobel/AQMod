@@ -20,7 +20,7 @@ namespace Aequus.Projectiles.Ranged {
 
             this.SetTrail(12);
 
-            PushableEntities.ProjectileIDs.Add(Type);
+            LegacyPushableEntities.ProjectileIDs.Add(Type);
         }
 
         public override void SetDefaults()

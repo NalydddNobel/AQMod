@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Magic.Gamestar {
 
         public override void SetStaticDefaults() {
             this.SetTrail(10);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

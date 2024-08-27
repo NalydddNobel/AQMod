@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.Demon.Cauterizer {
 
         public override void SetStaticDefaults() {
             this.SetTrail(15);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

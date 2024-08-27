@@ -25,7 +25,7 @@ namespace Aequus.Projectiles.Ranged {
         {
             Main.projFrames[Type] = 2;
             this.SetTrail(10);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

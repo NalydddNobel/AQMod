@@ -290,7 +290,7 @@
             Used by the <see cref="T:Aequus.NPCs.Town.CarpenterNPC.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
             </summary>
         </member>
-        <member name="F:Aequus.AequusWorld.usedWhiteFlag">
+        <member name="P:Aequus.AequusWorld.usedWhiteFlag">
             <summary>
             Whether or not the <see cref="T:Aequus.Items.Tools.WhiteFlag"/> item was used.
             </summary>
@@ -644,11 +644,6 @@
         </member>
         <member name="T:Aequus.Common.ContentTemplates.UnifiedMount">
             <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
-        </member>
-        <member name="T:Aequus.Common.CrossMod.ModCalls.ModCallManager">
-            <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
         </member>
         <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>

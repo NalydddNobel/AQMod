@@ -12,7 +12,7 @@ public class CrabsonBubble : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
     }
 
     public override void SetDefaults() {

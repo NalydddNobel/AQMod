@@ -1,9 +1,9 @@
 ﻿using Aequus;
-using Aequus.Common.CrossMod;
 using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Projectiles;
 using Aequus.Content;
+using Aequus.CrossMod;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -232,7 +232,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak {
                 var proj = Main.projectile[i];
                 if (!proj.active || !proj.IsHostile(player)
                     || proj.Aequus().sourceItemUsed == stormcloakItemID
-                    || !PushableEntities.ProjectileIDs.Contains(Main.projectile[i].type)
+                    || !LegacyPushableEntities.ProjectileIDs.Contains(Main.projectile[i].type)
                     || !proj.Colliding(proj.getRect(), rect)) {
                     continue;
                 }

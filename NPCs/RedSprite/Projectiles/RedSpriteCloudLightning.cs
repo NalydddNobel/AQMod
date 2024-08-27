@@ -11,7 +11,7 @@ namespace Aequus.NPCs.RedSprite.Projectiles {
     public class RedSpriteCloudLightning : ModProjectile {
         public override void SetStaticDefaults() {
             ProjectileSets.DealsHeatDamage.Add(Type);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

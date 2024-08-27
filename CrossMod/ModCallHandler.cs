@@ -14,10 +14,14 @@ public partial class ModCallHandler : LoadedType {
         Dictionary<string, MethodInfo> dict = [];
 
         foreach (MethodInfo m in typeof(ModCallHandler).GetMethods(BindingFlags.Static | BindingFlags.NonPublic)) {
-            dict[m.Name] = m;
+            dict[m.Name.ToLower()] = m;
         }
 
         return dict;
+    }
+
+    private static void LogError(string message) {
+        Instance.Mod!.Logger.Error(message);
     }
 
     public object? Call(object[] arguments) {
@@ -26,10 +30,10 @@ public partial class ModCallHandler : LoadedType {
         }
 
         try {
-            return _calls[name].Invoke(null, arguments);
+            return _calls[name.ToLower()].Invoke(null, arguments);
         }
         catch (System.Exception ex) {
-            Mod!.Logger.Error(ex);
+            LogError(ex.ToString());
             return Failure;
         }
     }

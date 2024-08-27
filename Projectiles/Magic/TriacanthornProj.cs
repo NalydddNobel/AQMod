@@ -137,7 +137,7 @@ namespace Aequus.Projectiles.Magic {
     public class TriacanthornBolt : ModProjectile {
         public override void SetStaticDefaults() {
             this.SetTrail(15);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

@@ -14,7 +14,7 @@ namespace Aequus.NPCs.BossMonsters.DustDevil.Projectiles {
 
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

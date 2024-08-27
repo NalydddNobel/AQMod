@@ -11,7 +11,7 @@ namespace Aequus.Projectiles.Monster {
     {
         public override void SetStaticDefaults()
         {
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

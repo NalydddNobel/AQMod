@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Buffs;
-using Aequus.Common.CrossMod;
 using Aequus.Common.DataSets;
 using Terraria.ID;
 using Terraria.ModLoader;

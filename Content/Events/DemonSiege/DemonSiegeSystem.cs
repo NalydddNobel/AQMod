@@ -1,10 +1,10 @@
-﻿using Aequus.Common.CrossMod.ModCalls;
-using Aequus.Common.Net;
+﻿using Aequus.Common.Net;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.Oblivion.Tiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Events.DemonSiege;
@@ -212,23 +212,29 @@ public class DemonSiegeSystem : ModSystem {
         return Point.Zero;
     }
 
-    public static object CallAddDemonSiegeData(Mod callingMod, object[] args) {
-        if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem) && Helper.UnboxInt.TryUnbox(args[3], out int newItem) && Helper.UnboxInt.TryUnbox(args[4], out int progression)) {
-            var s = new SacrificeData(baseItem, newItem, (EventTier)(byte)progression);
+    #region Mod Calls
+    // I think these broke too like the Pylon Color one.
+    // So these are partially rewritten.
+    [ModCall("DemonSiegeSacrifice")]
+    public static bool CallAddDemonSiegeData(int fromItem, int itemTo = 0, int progression = 0) {
+        if (itemTo > 0) {
+            var s = new SacrificeData(fromItem, itemTo, (EventTier)(byte)progression);
             RegisterSacrifice(s);
-            return ModCallManager.Success;
         }
-        return ModCallManager.Failure;
+
+        return RegisteredSacrifices.ContainsKey(fromItem);
     }
-    public static object CallHideDemonSiegeData(Mod callingMod, object[] args) {
-        if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem)) {
-            if (RegisteredSacrifices.ContainsKey(baseItem)) {
-                var val = RegisteredSacrifices[baseItem];
-                val.Hide = Helper.UnboxBoolean.Unbox(args[3]);
-                RegisteredSacrifices[baseItem] = val;
-                return ModCallManager.Success;
-            }
+
+    [ModCall("DemonSiegeSacrificeHide")]
+    public static bool CallHideDemonSiegeData(int fromItem, bool hide) {
+        if (RegisteredSacrifices.ContainsKey(fromItem)) {
+            ref SacrificeData s = ref CollectionsMarshal.GetValueRefOrAddDefault(RegisteredSacrifices, fromItem, out _);
+            s.Hide = true;
+            return s.Hide;
         }
-        return ModCallManager.Failure;
+
+        // It doesnt exist... so it's hidden!!!
+        return true;
     }
+    #endregion
 }

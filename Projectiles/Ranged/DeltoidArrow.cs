@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Ranged {
 
         public override void SetStaticDefaults() {
             this.SetTrail(10);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

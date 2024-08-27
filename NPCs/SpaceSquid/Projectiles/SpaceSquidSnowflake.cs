@@ -10,7 +10,7 @@ namespace Aequus.NPCs.SpaceSquid.Projectiles {
     public class SpaceSquidSnowflake : ModProjectile {
         public override void SetStaticDefaults() {
             Main.projFrames[Projectile.type] = 2;
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

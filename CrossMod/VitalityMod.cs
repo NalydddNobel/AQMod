@@ -1,5 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Content.CursorDyes.Items;
+﻿using Aequus.Content.CursorDyes.Items;
 using Terraria.ModLoader;
 
 namespace Aequus.CrossMod {

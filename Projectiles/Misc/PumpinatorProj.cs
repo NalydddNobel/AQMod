@@ -103,7 +103,7 @@ namespace Aequus.Projectiles.Misc {
                 var npc = Main.npc[i];
                 if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
                     Projectile.Colliding(myRect, npc.getRect()) &&
-                    PushableEntities.NPCIDs.Contains(Main.npc[i].type)) {
+                    LegacyPushableEntities.NPCIDs.Contains(Main.npc[i].type)) {
                     if (npc.friendly || npc.townNPC || npc.isLikeATownNPC || npc.IsProbablyACritter()) {
                         npc.ClearBuffs(BuffSets.ProbablyFireDebuff);
                     }
@@ -123,7 +123,7 @@ namespace Aequus.Projectiles.Misc {
                     }
                     if (!canPush && OnlyPushHostileProjectiles && !proj.hostile)
                         continue;
-                    if (!PushableEntities.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect()))
+                    if (!LegacyPushableEntities.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect()))
                         continue;
                     proj.velocity = updatePush(proj.Center, proj.velocity, 1f);
                     proj.netUpdate = true;

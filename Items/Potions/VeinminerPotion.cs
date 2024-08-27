@@ -53,7 +53,7 @@ namespace Aequus.Items.Potions {
 namespace Aequus.Buffs {
     public class VeinminerBuff : ModBuff {
         public override void SetStaticDefaults() {
-            PotionColorsDatabase.BuffToColor.Add(Type, new Color(85, 195, 160));
+            LegacyPotionColorsDatabase.BuffToColor.Add(Type, new Color(85, 195, 160));
             AequusBuff.AddPotionConflict(Type, BuffID.Mining);
         }
 

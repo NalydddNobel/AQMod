@@ -77,5 +77,10 @@ Configs: {
 			Label: "[i:GoldDust] 早期困难模式商店"
 			Tooltip: 决定镇民商店中的困难模式独有物品在终末之星被击败后能否在困难模式前售卖.
 		}
+
+		ShowNPCSettleDownMessage: {
+			// Label: Show N P C Settle Down Message
+			// Tooltip: ""
+		}
 	}
 }

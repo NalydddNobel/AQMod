@@ -1,8 +1,8 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Common.Items.SentryChip;
 using Aequus.Common.Utilities;
 using Aequus.Content.Items.SentryChip;
+using Aequus.CrossMod;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;

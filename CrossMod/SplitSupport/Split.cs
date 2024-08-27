@@ -1,4 +1,4 @@
-﻿using Aequus.Common.CrossMod;
+﻿using Aequus.CrossMod;
 
 namespace Aequus.Content.CrossMod.SplitSupport;
 internal partial class Split : ModSupport<Split> {

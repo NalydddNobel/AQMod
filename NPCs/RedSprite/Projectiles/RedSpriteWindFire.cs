@@ -12,7 +12,7 @@ namespace Aequus.NPCs.RedSprite.Projectiles {
     public class RedSpriteWindFire : ModProjectile {
         public override void SetStaticDefaults() {
             this.SetTrail(12);
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
             ProjectileSets.DealsHeatDamage.Add(Type);
         }
 

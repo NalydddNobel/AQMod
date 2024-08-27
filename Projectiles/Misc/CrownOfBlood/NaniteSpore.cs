@@ -17,7 +17,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
         public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailCacheLength[Type] = 50;
             ProjectileID.Sets.TrailingMode[Type] = 0;
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

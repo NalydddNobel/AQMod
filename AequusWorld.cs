@@ -47,7 +47,8 @@ public partial class AequusWorld : ModSystem {
     [SaveData("WhiteFlag")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
-    public static bool usedWhiteFlag;
+    [ModCall]
+    public static bool usedWhiteFlag { get; set; }
 
     /// <summary>
     /// Whether or not the Glimmer event was completed.
@@ -55,6 +56,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("Glimmer")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedEventCosmic;
     /// <summary>
     /// Whether or not the Demon Siege event was completed.
@@ -62,6 +64,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("DemonSiege")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedEventDemon;
     /// <summary>
     /// Whether or not the Gale Streams event was completed.
@@ -69,6 +72,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("GaleStreams")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedEventAtmosphere;
 
     /// <summary>
@@ -77,6 +81,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("SpaceSquid")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedSpaceSquid;
     /// <summary>
     /// Whether or not the <see cref="RedSprite"/> miniboss was defeated.
@@ -84,6 +89,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("RedSprite")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedRedSprite;
 
     /// <summary>
@@ -92,6 +98,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("Crabson")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedCrabson;
 
     /// <summary>
@@ -100,6 +107,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("Upriser")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedUpriser;
 
     /// <summary>
@@ -108,6 +116,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("YinYang")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedYinYang;
 
     /// <summary>
@@ -116,6 +125,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("HyperStarite")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedHyperStarite;
     /// <summary>
     /// Whether or not the <see cref="UltraStarite"/> enemy was defeated.
@@ -123,6 +133,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("UltraStarite")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedUltraStarite;
     /// <summary>
     /// Whether or not the <see cref="OmegaStarite"/> boss was defeated.
@@ -130,6 +141,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("OmegaStarite")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedOmegaStarite;
 
     /// <summary>
@@ -138,6 +150,7 @@ public partial class AequusWorld : ModSystem {
     [SaveData("DustDevil")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool downedDustDevil;
 
     /// <summary>
@@ -148,37 +161,45 @@ public partial class AequusWorld : ModSystem {
 
     [SaveData("UsedTinkererBook")]
     [NetBool]
+    [ModCall]
     public static bool UsedTinkererBook;
 
     [SaveData("XmasWorld")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool xmasWorld;
 
     [SaveData("XmasHats")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool xmasHats;
 
     [SaveData("ChestCobalt")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool chestCobaltTier;
     [SaveData("ChestMythril")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool chestMythrilTier;
     [SaveData("ChestAdamantite")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool chestAdamantiteTier;
     [SaveData("HardmodeChests")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool hardmodeChests;
     [SaveData("EoCOres")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
+    [ModCall]
     public static bool eyeOfCthulhuOres;
 
     [SaveData("AloeFrenzy")]

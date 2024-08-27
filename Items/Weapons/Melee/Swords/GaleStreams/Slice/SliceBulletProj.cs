@@ -14,7 +14,7 @@ public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailingMode[Type] = 2;
         ProjectileID.Sets.TrailCacheLength[Type] = 6;
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
     }
 
     public override void SetDefaults() {

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Common.Items.DropRules;
+﻿using Aequus.Common.Items.DropRules;
 using Aequus.CrossMod;
 using Aequus.Items.Misc.GrabBags.TreasureBags;
 using System;
@@ -9,7 +8,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities; 
+namespace Aequus.Common.Utilities;
 
 public static class LootBuilder {
     internal static readonly Dictionary<int, List<IItemDropRule>> registerToItem = new();

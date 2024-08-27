@@ -18,7 +18,7 @@ namespace Aequus.Projectiles.Monster {
             ProjectileID.Sets.TrailCacheLength[Type] = 20;
             ProjectileID.Sets.TrailingMode[Type] = 2;
             Main.projFrames[Type] = 2;
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

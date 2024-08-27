@@ -7,7 +7,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood;
 public class WormScarfLaser : ModProjectile {
     public override void SetStaticDefaults() {
         this.SetTrail(10);
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
     }
 
     public override void SetDefaults() {

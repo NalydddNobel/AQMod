@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content {
-    public class PotionColorsDatabase : ILoadable, IPostSetupContent, IAddRecipes
+    public class LegacyPotionColorsDatabase : ILoadable, IPostSetupContent, IAddRecipes
     {
         internal static List<Color> ItemColorForBuffsBlacklist;
         public static Dictionary<int, Color> ItemToBuffColor { get; private set; }

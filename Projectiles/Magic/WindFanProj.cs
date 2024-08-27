@@ -74,7 +74,7 @@ public class WindFanProj : ModProjectile
             {
                 hitCooldown[i]--;
             }
-            if (PushableEntities.NPCIDs.Contains(npc.type) && npc.CanBeChasedBy(Projectile) && npc.Distance(Projectile.Center) < 200 && (npc.noTileCollide || Collision.CanHit(Projectile.position, 1, 1, npc.position, 1, 1)))
+            if (LegacyPushableEntities.NPCIDs.Contains(npc.type) && npc.CanBeChasedBy(Projectile) && npc.Distance(Projectile.Center) < 200 && (npc.noTileCollide || Collision.CanHit(Projectile.position, 1, 1, npc.position, 1, 1)))
             {
                 if (targetCount < 3)
                 {
@@ -171,7 +171,7 @@ public class WindFanProj : ModProjectile
         {
             if (p == Projectile.whoAmI)
                 continue;
-            if (Main.projectile[p].IsHostile(Main.player[Projectile.owner]) && PushableEntities.ProjectileIDs.Contains(Projectile.type) && Projectile.Distance(Main.projectile[p].Center) < Projectile.width / 2f && (!Main.projectile[p].tileCollide || Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, Main.projectile[p].position, Main.projectile[p].width, Main.projectile[p].height)))
+            if (Main.projectile[p].IsHostile(Main.player[Projectile.owner]) && LegacyPushableEntities.ProjectileIDs.Contains(Projectile.type) && Projectile.Distance(Main.projectile[p].Center) < Projectile.width / 2f && (!Main.projectile[p].tileCollide || Collision.CanHit(Projectile.position, Projectile.width, Projectile.height, Main.projectile[p].position, Main.projectile[p].width, Main.projectile[p].height)))
             {
                 var direction = (Projectile.Center - Main.projectile[p].Center).RotatedBy(-MathHelper.PiOver4 * 0.8f);
                 direction.Normalize();

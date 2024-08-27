@@ -10,7 +10,7 @@ public class SavingGraceProj : ModProjectile {
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 1;
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
         ProjectileSets.DealsHeatDamage.Add(Type);
     }
 

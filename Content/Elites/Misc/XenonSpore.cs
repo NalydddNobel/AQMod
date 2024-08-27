@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Elites.Misc {
     public class XenonSpore : ModProjectile {
         public override void SetStaticDefaults() {
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {

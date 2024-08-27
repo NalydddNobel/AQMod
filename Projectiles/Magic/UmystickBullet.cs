@@ -16,7 +16,7 @@ public class UmystickBullet : ModProjectile {
         Main.projFrames[Projectile.type] = 3;
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
         ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
     }
 
     public override void SetDefaults() {

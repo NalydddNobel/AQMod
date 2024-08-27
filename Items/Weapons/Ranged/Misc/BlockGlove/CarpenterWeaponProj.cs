@@ -13,7 +13,7 @@ public class CarpenterWeaponProj : ModProjectile {
     public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.DirtBall;
 
     public override void SetStaticDefaults() {
-        PushableEntities.AddProj(Type);
+        LegacyPushableEntities.AddProj(Type);
     }
 
     public override void SetDefaults() {

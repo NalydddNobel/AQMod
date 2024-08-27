@@ -1,5 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Common.DataSets;
+﻿using Aequus.Common.DataSets;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;

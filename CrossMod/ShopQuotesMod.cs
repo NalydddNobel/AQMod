@@ -1,5 +1,4 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Content.CursorDyes.Items;
+﻿using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Villagers.SkyMerchant;
 using Aequus.Items.Equipment.Accessories.Sentry.SentryChip;
 using Aequus.Items.Equipment.PetsVanity.Familiar;

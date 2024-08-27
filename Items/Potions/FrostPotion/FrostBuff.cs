@@ -9,7 +9,7 @@ namespace Aequus.Items.Potions.FrostPotion;
 
 public class FrostBuff : ModBuff {
     public override void SetStaticDefaults() {
-        PotionColorsDatabase.BuffToColor.Add(Type, new Color(61, 194, 255));
+        LegacyPotionColorsDatabase.BuffToColor.Add(Type, new Color(61, 194, 255));
         AequusBuff.AddPotionConflict(Type, BuffID.Warmth);
     }
 

@@ -1,4 +1,3 @@
-using Aequus.Common.CrossMod.ModCalls;
 using Aequus.Common.Net;
 using Aequus.Common.Preferences;
 using Aequus.Content.DamageClasses;
@@ -117,7 +116,7 @@ public class Aequus : Mod {
     }
 
     public override object Call(params object[] args) {
-        return ModCallManager.HandleModCall(args);
+        return ModCallHandler.Instance.Call(args)!; // Lying to the compiler.
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI) {

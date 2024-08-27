@@ -262,7 +262,7 @@ namespace Aequus.Items.Weapons.Magic.Nightfall {
 namespace Aequus.Projectiles.Magic {
     public class NightfallProj : ModProjectile {
         public override void SetStaticDefaults() {
-            PushableEntities.AddProj(Type);
+            LegacyPushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {
