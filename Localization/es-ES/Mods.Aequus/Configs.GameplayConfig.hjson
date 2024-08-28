@@ -79,8 +79,8 @@ Configs: {
 		}
 
 		ShowNPCSettleDownMessage: {
-			// Label: Show N P C Settle Down Message
-			// Tooltip: ""
+			// Label: "[i:WoodenTable] Villager Settle Down Message"
+			// Tooltip: Ocassionally in the morning a message will appear exclaiming that a villager which has not moved in yet would like to settle down.
 		}
 	}
 }

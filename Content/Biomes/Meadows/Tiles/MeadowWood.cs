@@ -4,6 +4,7 @@ namespace Aequus.Content.Biomes.Meadows.Tiles;
 
 internal class MeadowWood : ModTile, IAddRecipeGroups {
     public readonly ModItem Item;
+
     public MeadowWood() {
         Item = new InstancedTileItem(this);
     }

@@ -522,11 +522,14 @@
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_PostUpdateEquips">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.PostUpdateEquips"/>-<see cref="M:Aequus.AequusPlayer.PostUpdateEquipsInner"/>.</summary>
         </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_ModifyHitNPCWithProj">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.ModifyHitNPCWithProj(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitModifiers@)"/>-<see cref="M:Aequus.AequusPlayer.ModifyHitNPCInner(Terraria.NPC,Terraria.NPC.HitModifiers@)"/>.</summary>
+        </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_ModifyHitNPC">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.ModifyHitNPC(Terraria.NPC,Terraria.NPC.HitModifiers@)"/>-<see cref="M:Aequus.AequusPlayer.ModifyHitNPCInner(Terraria.NPC,Terraria.NPC.HitModifiers@)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_OnHitNPC">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.OnHitNPC(Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/>-<see cref="M:Aequus.AequusPlayer.OnHitNPCInner(Terraria.NPC)"/>.</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.OnHitNPC(Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/>-<see cref="M:Aequus.AequusPlayer.OnHitNPCInner(Terraria.NPC,Terraria.NPC.HitInfo)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
@@ -3175,6 +3178,9 @@
         <member name="F:Aequus.AequusTextures.SentryPotionBuff">
             <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OmniPaint">
+            <summary>Full Path: Content/Items/Tools/Consumable/OmniPaint/OmniPaint</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ScarabDynamite">
             <summary>Full Path: Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite</summary>
         </member>
@@ -4521,9 +4527,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.AdvancedRuler">
             <summary>Full Path: Items/Tools/Building/AdvancedRuler</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniPaint">
-            <summary>Full Path: Items/Tools/Building/OmniPaint/OmniPaint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shutterstocker">
             <summary>Full Path: Items/Tools/Cameras/CarpenterCamera/Shutterstocker</summary>

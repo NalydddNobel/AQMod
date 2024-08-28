@@ -77,10 +77,14 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    [Conditional("DEBUG")]
+    public static void Register(this LocalizedText text) {
+        Language.GetOrRegister(text.Key);
+    }
+
     public static void DrawAlign(this SpriteBatch sb, Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, float scale, SpriteEffects effects, Alignment? alignment = null, float layerDepth = 0f) {
         Vector2 origin = (sourceRectangle ?? texture.Bounds).Size() * (alignment ?? Alignment.Center).OffsetMultiplier;
         sb.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
-
     }
 
     public static void CloneResearchUnlockCount(this Item item, int TypeToClone) {

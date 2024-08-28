@@ -36,6 +36,10 @@ public partial class AequusPlayer {
     public bool showHorseshoeAnvilRope;
     [CompilerGenerated]
     public int cHorseshoeAnvil;
+    [CompilerGenerated]
+    public bool setMeadow;
+    [CompilerGenerated]
+    public bool setMeadowMagicTag;
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
@@ -49,6 +53,8 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref accWeightedHorseshoe);
         SourceGeneratorTools.ResetObj(ref showHorseshoeAnvilRope);
         SourceGeneratorTools.ResetObj(ref cHorseshoeAnvil);
+        SourceGeneratorTools.ResetObj(ref setMeadow);
+        SourceGeneratorTools.ResetObj(ref setMeadowMagicTag);
     }
     
     [CompilerGenerated]
@@ -74,12 +80,18 @@ public partial class AequusPlayer {
     }
     
     [CompilerGenerated]
-    private void ModifyHitNPCInner(NPC target, ref NPC.HitModifiers modifiers) {
-        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookDamage(target, ref modifiers);
+    private void ModifyHitNPCWithProjInner(Projectile proj, NPC target, ref NPC.HitModifiers modifiers) {
+        Content.Items.Armor.Meadow.MeadowArmor.ModifyHitNPCWithProj(Player, this, proj, target, ref modifiers);
     }
     
     [CompilerGenerated]
-    private void OnHitNPCInner(NPC target) {
-        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(target);
+    private void OnHitNPCInner(NPC target, NPC.HitInfo hit) {
+        Content.Items.Armor.Meadow.MeadowArmor.OnHitNPC(Player, this, target, hit);
+        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(Player, this, target, hit);
+    }
+    
+    [CompilerGenerated]
+    private void ModifyHitNPCInner(NPC target, ref NPC.HitModifiers modifiers) {
+        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookDamage(target, ref modifiers);
     }
 }

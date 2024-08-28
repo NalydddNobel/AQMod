@@ -45,7 +45,7 @@ public class Meathook : ModItem {
     }
 
     [Gen.AequusPlayer_OnHitNPC]
-    public static void CheckMeathookSound(NPC target) {
+    public static void CheckMeathookSound(Player player, AequusPlayer aequus, NPC target, NPC.HitInfo hit) {
         if (target.HasBuff<MeathookDebuff>()) {
             SoundEngine.PlaySound(AequusSounds.MeathookDamageBonusProc, target.Center);
         }

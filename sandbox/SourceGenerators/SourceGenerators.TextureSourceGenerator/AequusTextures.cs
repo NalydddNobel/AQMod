@@ -641,6 +641,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SentryPotion = new("Content/Items/Potions/Buff/Sentry/SentryPotion");
     /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
     public static readonly RequestCache<Texture2D> SentryPotionBuff = new("Content/Items/Potions/Buff/Sentry/SentryPotionBuff");
+    /// <summary>Full Path: Content/Items/Tools/Consumable/OmniPaint/OmniPaint</summary>
+    public static readonly RequestCache<Texture2D> OmniPaint = new("Content/Items/Tools/Consumable/OmniPaint/OmniPaint");
     /// <summary>Full Path: Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite</summary>
     public static readonly RequestCache<Texture2D> ScarabDynamite = new("Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
@@ -1539,8 +1541,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Bellows = new("Items/Tools/Bellows");
     /// <summary>Full Path: Items/Tools/Building/AdvancedRuler</summary>
     public static readonly RequestCache<Texture2D> AdvancedRuler = new("Items/Tools/Building/AdvancedRuler");
-    /// <summary>Full Path: Items/Tools/Building/OmniPaint/OmniPaint</summary>
-    public static readonly RequestCache<Texture2D> OmniPaint = new("Items/Tools/Building/OmniPaint/OmniPaint");
     /// <summary>Full Path: Items/Tools/Cameras/CarpenterCamera/Shutterstocker</summary>
     public static readonly RequestCache<Texture2D> Shutterstocker = new("Items/Tools/Cameras/CarpenterCamera/Shutterstocker");
     /// <summary>Full Path: Items/Tools/Cameras/CarpenterCamera/ShutterstockerCameraProj</summary>

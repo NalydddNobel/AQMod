@@ -34,7 +34,6 @@ using Aequus.Items.Potions.DeathsEmbrace;
 using Aequus.Items.Potions.FrostPotion;
 using Aequus.Items.Potions.NoonPotion;
 using Aequus.Items.Tools;
-using Aequus.NPCs;
 using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.NPCs.Town.ExporterNPC;
 using Aequus.Particles;
@@ -1195,6 +1194,10 @@ public partial class AequusPlayer : ModPlayer {
         }
     }
 
+    public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers) {
+        ModifyHitNPCWithProjInner(proj, target, ref modifiers);
+    }
+
     public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
         ModifyHitNPCInner(target, ref modifiers);
         modifiers.CritDamage += highSteaksDamage;
@@ -1249,7 +1252,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-        OnHitNPCInner(target);
+        OnHitNPCInner(target, hit);
         LegacyHitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
         OnHit_SoulDamage(target, hit, damageDone);
         OnHit_BoneRing(target);
