@@ -778,6 +778,12 @@
         <member name="F:Aequus.Common.Entities.DashPlayer.DashHaltSpeedMultiplier">
             <summary>Multiplier used to reduce velocity when above the dash's halting speed.</summary>
         </member>
+        <member name="F:Aequus.Common.Entities.Players.SprintPlayer.SprintSpeed">
+            <summary>Effects the player's sprint speed from boot accessories.</summary>
+        </member>
+        <member name="F:Aequus.Common.Entities.Players.SprintPlayer.GroundedSprintSpeed">
+            <summary>Effects the player's sprint speed from boot accessories. Only if they are on the ground, however.</summary>
+        </member>
         <member name="M:Aequus.Common.GUI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
             <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
         </member>
@@ -2225,7 +2231,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1367)</summary>
+            <summary>(Total Textures: 1368)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3192,6 +3198,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.MagicEightBall_Held">
             <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeteorFist">
+            <summary>Full Path: Content/Items/Weapons/Classless/MeteorFist/MeteorFist</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ContentTemplates;
 using Aequus.Common.ContentTemplates.Armor;
+using Aequus.Common.Entities.Players;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.Meadows.Tiles;
 using Aequus.Projectiles;
@@ -68,6 +69,7 @@ public class MeadowArmor : UnifiedArmorSet, IAddRecipes, ISetbonusProvider {
 
     void UpdateGreaves(Item Item, Player Player) {
         Player.moveSpeed += GreavesMovementSpeedIncrease;
+        Player.GetModPlayer<SprintPlayer>().GroundedSprintSpeed += GreavesMovementSpeedIncrease;
         Player.statManaMax2 += BreastplateMaxMana;
     }
 

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1367)</summary>
+/// <summary>(Total Textures: 1368)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -651,6 +651,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MagicEightBall = new("Content/Items/Vanity/MagicEightBall/MagicEightBall");
     /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
     public static readonly RequestCache<Texture2D> MagicEightBall_Held = new("Content/Items/Vanity/MagicEightBall/MagicEightBall_Held");
+    /// <summary>Full Path: Content/Items/Weapons/Classless/MeteorFist/MeteorFist</summary>
+    public static readonly RequestCache<Texture2D> MeteorFist = new("Content/Items/Weapons/Classless/MeteorFist/MeteorFist");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
     public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>

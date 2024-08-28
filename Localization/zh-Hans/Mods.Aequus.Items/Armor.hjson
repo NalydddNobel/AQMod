@@ -76,7 +76,7 @@ Armor: {
 		/* Setbonus:
 			'''
 			{$CommonItemTooltip.IncreasesMaxMinionsBy}
-			Your summons will focus struck enemies when hit by any magic attack
+			Your summons will focus enemies struck by any magic attack
 			''' */
 	}
 }
