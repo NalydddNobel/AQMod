@@ -77,6 +77,12 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static void DrawAlign(this SpriteBatch sb, Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, float scale, SpriteEffects effects, Alignment? alignment = null, float layerDepth = 0f) {
+        Vector2 origin = (sourceRectangle ?? texture.Bounds).Size() * (alignment ?? Alignment.Center).OffsetMultiplier;
+        sb.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
+
+    }
+
     public static void CloneResearchUnlockCount(this Item item, int TypeToClone) {
         item.ResearchUnlockCount = CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[TypeToClone];
     }
@@ -591,6 +597,10 @@ public static partial class Helper {
             }
         }
         return false;
+    }
+
+    public static bool IsValid(this LocalizedText text) {
+        return !string.IsNullOrEmpty(text.Value) && text.Value != text.Key;
     }
 
     public static void AddLine(this LocalizedText text, string value) {

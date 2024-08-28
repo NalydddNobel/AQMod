@@ -110,3 +110,5 @@ Misc: {
 	BagWarningAmmo: 背包不支持弹药!
 	TimeLeft: 剩余时间: {0}
 }
+
+// UnlockCondition: Unlock requirement: '{0}'

@@ -110,3 +110,5 @@ Misc: {
 	BagWarningAmmo: ¡La mochila no soporta Munición    !
 	TimeLeft: Time Restante: {0}
 }
+
+// UnlockCondition: Unlock requirement: '{0}'

@@ -110,3 +110,5 @@ Misc: {
 	BagWarningAmmo: The backpack does not support Ammo!
 	TimeLeft: Time left: {0}
 }
+
+UnlockCondition: Unlock requirement: '{0}'
