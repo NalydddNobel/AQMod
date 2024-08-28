@@ -79,8 +79,8 @@ Configs: {
 		}
 
 		ShowNPCSettleDownMessage: {
-			Label: 显示Npc定居信息
-			Tooltip: ""
+			Label: "[i:WoodenTable] 镇民定居信息"
+			Tooltip: 在一天开始时, 可能会出现一条信息, 说一个未搬进来的镇民想要定居于此.
 		}
 	}
 }

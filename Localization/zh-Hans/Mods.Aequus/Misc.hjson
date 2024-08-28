@@ -111,4 +111,4 @@ Misc: {
 	TimeLeft: 剩余时间: {0}
 }
 
-// UnlockCondition: Unlock requirement: '{0}'
+UnlockCondition: 解锁要求: '{0}'
