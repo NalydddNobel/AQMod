@@ -130,22 +130,6 @@ BlackJellyfishJar: {
 	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
 }
 
-Tombstones: {
-	MapEntry: {
-		0: Underworld Tombstone
-		1: Underworld Grave Marker
-		2: Underworld Resting Fern
-		3: Underworld Resting Shrub
-		4: Underworld Resting Hedge
-		5: Underworld Obelisk
-		6: Reaper Sepulcher
-		7: Grim Sepulcher
-		8: Imp Sepulcher
-		9: Fire Quartz Sepulcher
-		10: Duke Sepulcher
-	}
-}
-
 RainTotem: {
 	MapEntry: Rain Totem
 	ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"

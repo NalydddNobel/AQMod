@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1368)</summary>
+/// <summary>(Total Textures: 1372)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -867,6 +867,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> YinYangXmasPainting = new("Content/Tiles/Paintings/YinYang/YinYangXmasPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
     public static readonly RequestCache<Texture2D> YinYangXmasPaintingItem = new("Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Tombstones/HellTombstones</summary>
+    public static readonly RequestCache<Texture2D> HellTombstones = new("Content/Tiles/Tombstones/HellTombstones");
+    /// <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Glow</summary>
+    public static readonly RequestCache<Texture2D> HellTombstones_Glow = new("Content/Tiles/Tombstones/HellTombstones_Glow");
+    /// <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Highlight</summary>
+    public static readonly RequestCache<Texture2D> HellTombstones_Highlight = new("Content/Tiles/Tombstones/HellTombstones_Highlight");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
+    public static readonly RequestCache<Texture2D> Tombstones = new("Content/Tiles/Tombstones/Tombstones");
     /// <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
     public static readonly RequestCache<Texture2D> BountySelection = new("Content/UI/BountyBoard/BountySelection");
     /// <summary>Full Path: Content/UI/BountyBoard/BountyUIArrow</summary>

@@ -20,6 +20,7 @@ using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
 using Aequus.Content.Events.DemonSiege;
+using Aequus.Content.Tiles.Tombstones;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BlackPhial;
 using Aequus.Items.Equipment.Accessories.Combat.Ranged;
 using Aequus.Items.Equipment.Accessories.Misc;
@@ -41,7 +42,6 @@ using Aequus.Projectiles;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles.Blocks;
-using Aequus.Tiles.Misc.AshTombstones;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -1743,27 +1743,40 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     private static void Player_DropTombstone(On_Player.orig_DropTombstone orig, Player player, long coinsOwned, NetworkText deathText, int hitDirection) {
+        // TODO -- Update ghost tombstone logic to completely prevent this method from running in the first place
+        // It will also let this method be split into a gravestone drop mod player.
         if (player.Aequus().ghostTombstones) {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 NPC.NewNPCDirect(player.GetSource_Death("Ghostly Grave"), player.Center, NPCID.Ghost);
             }
             return;
         }
-        if (player.position.Y > Main.UnderworldLayer * 16f) {
-            if (Main.myPlayer == player.whoAmI) {
-                int projType = Main.rand.NextFromList(
-                    ModContent.ProjectileType<AshTombstoneProj>(),
-                    ModContent.ProjectileType<AshGraveMarkerProj>(),
-                    ModContent.ProjectileType<AshCrossGraveMarkerProj>(),
-                    ModContent.ProjectileType<AshHeadstoneProj>(),
-                    ModContent.ProjectileType<AshGravestoneProj>(),
-                    ModContent.ProjectileType<AshObeliskProj>()
-                );
-                Projectile.NewProjectile(player.GetSource_Death(), player.Center,
-                    new(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-12f, -4f)),
-                    projType, 40, 12f, player.whoAmI);
+
+        bool goldTombstoneWanted = coinsOwned >= Item.gold * 10;
+        foreach (UnifiedTombstones t in Aequus.Instance.GetContent<UnifiedTombstones>()) {
+            TombstoneOverride? tombOverride = t.OverrideTombstoneDrop(goldTombstoneWanted, coinsOwned);
+            if (tombOverride == null) {
+                continue;
             }
-            return;
+
+            TombstoneOverride tomb = tombOverride.Value;
+
+            int p = Projectile.NewProjectile(player.GetSource_Death(), player.Center,
+                new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-12f, -4f)),
+                tomb.ProjType, 40, 12f, player.whoAmI);
+
+            DateTime now = DateTime.Now;
+            string date = now.ToString("D");
+            if (GameCulture.FromCultureName(GameCulture.CultureName.English).IsActive) {
+                date = now.ToString("MMMM d, yyy");
+            }
+
+            if (tomb.TombstoneText != null) {
+                Main.projectile[p].miscText = string.Format(tomb.TombstoneText, deathText.ToString(), date);
+            }
+            else {
+                Main.projectile[p].miscText = deathText.ToString() + "\n" + date;
+            }
         }
 
         orig(player, coinsOwned, deathText, hitDirection);

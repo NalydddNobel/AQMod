@@ -2231,7 +2231,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1368)</summary>
+            <summary>(Total Textures: 1372)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3522,6 +3522,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.YinYangXmasPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HellTombstones">
+            <summary>Full Path: Content/Tiles/Tombstones/HellTombstones</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HellTombstones_Glow">
+            <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HellTombstones_Highlight">
+            <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Tombstones">
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountySelection">
             <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>

@@ -49,3 +49,19 @@ CartographyTable: {
 	DownloadingMap: 正在下载地图...
 	UploadingMap: 正在上传地图...
 }
+
+HellTombstones: {
+	MapEntry: {
+		0: 地狱墓石
+		1: 地狱墓标
+		2: 眠狱蕨
+		3: 眠狱灌木
+		4: 眠狱树篱
+		5: 地狱尖碑
+		6: 收割者坟墓
+		7: 阴寒坟墓
+		8: 看守者坟墓
+		9: 火石英坟墓
+		10: 公爵坟墓
+	}
+}
