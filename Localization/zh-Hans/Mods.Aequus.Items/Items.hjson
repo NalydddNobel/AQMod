@@ -322,7 +322,7 @@ PhasePhones: {
 
 	PhasePhone: {
 		DisplayName: 相位手机
-		// Tooltip: ""
+		Tooltip: ""
 	}
 
 	PhasePhoneHome: {
