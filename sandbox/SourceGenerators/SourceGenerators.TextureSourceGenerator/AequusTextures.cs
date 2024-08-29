@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1372)</summary>
+/// <summary>(Total Textures: 1364)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -2629,22 +2629,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PlanterBoxes = new("Tiles/Herbs/PlanterBoxes");
     /// <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>
     public static readonly RequestCache<Texture2D> AloeVeraTile = new("Tiles/Misc/AloeVeraTile");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshCrossGraveMarker</summary>
-    public static readonly RequestCache<Texture2D> AshCrossGraveMarker = new("Tiles/Misc/AshTombstones/AshCrossGraveMarker");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshGraveMarker</summary>
-    public static readonly RequestCache<Texture2D> AshGraveMarker = new("Tiles/Misc/AshTombstones/AshGraveMarker");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshGravestone</summary>
-    public static readonly RequestCache<Texture2D> AshGravestone = new("Tiles/Misc/AshTombstones/AshGravestone");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshHeadstone</summary>
-    public static readonly RequestCache<Texture2D> AshHeadstone = new("Tiles/Misc/AshTombstones/AshHeadstone");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshObelisk</summary>
-    public static readonly RequestCache<Texture2D> AshObelisk = new("Tiles/Misc/AshTombstones/AshObelisk");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshTombstone</summary>
-    public static readonly RequestCache<Texture2D> AshTombstone = new("Tiles/Misc/AshTombstones/AshTombstone");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshTombstonesTile</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesTile = new("Tiles/Misc/AshTombstones/AshTombstonesTile");
-    /// <summary>Full Path: Tiles/Misc/AshTombstones/AshTombstonesTile_Glow</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesTile_Glow = new("Tiles/Misc/AshTombstones/AshTombstonesTile_Glow");
     /// <summary>Full Path: Tiles/Misc/BigGems/BigGemsTile</summary>
     public static readonly RequestCache<Texture2D> BigGemsTile = new("Tiles/Misc/BigGems/BigGemsTile");
     /// <summary>Full Path: Tiles/Misc/BigGems/Items/AmethystDeposit</summary>

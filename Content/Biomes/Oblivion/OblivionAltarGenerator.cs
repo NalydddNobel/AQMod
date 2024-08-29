@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Biomes.Oblivion.Tiles;
+using Aequus.Content.Tiles.Tombstones;
 using Aequus.Tiles.Furniture.Oblivion;
 using Aequus.Tiles.Misc;
-using Aequus.Tiles.Misc.AshTombstones;
 using System.Collections.Generic;
 using Terraria.WorldBuilding;
 
@@ -235,7 +235,7 @@ public class OblivionAltarGenerator {
         for (int i = 0; i < 1250; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
-                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<AshTombstonesTile>(), style: WorldGen.genRand.Next(6));
+                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<HellTombstones>(), style: WorldGen.genRand.Next(HellTombstones.Gold_Yin, HellTombstones.Gold_Fist + 1));
                 if (Main.tile[v.X, v.Y].HasTile) {
                     int sign = Sign.ReadSign(v.X, v.Y);
                     if (sign >= 0) {

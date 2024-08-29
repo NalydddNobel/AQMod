@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
@@ -58,9 +57,6 @@ public partial class AequusNPC {
             return;
         }
         var aequus = player.Aequus();
-        if (player.InModBiome<FakeUnderworldBiome>()) {
-            spawnRate /= 6;
-        }
         spawnRate = (int)(spawnRate * aequus.spawnrateMultiplier);
         maxSpawns = (int)(maxSpawns / aequus.maxSpawnsDivider);
         if (player.ZoneSkyHeight) {

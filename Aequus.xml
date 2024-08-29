@@ -2231,7 +2231,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1372)</summary>
+            <summary>(Total Textures: 1364)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -6165,30 +6165,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.AloeVeraTile">
             <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshCrossGraveMarker">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshCrossGraveMarker</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshGraveMarker">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshGraveMarker</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshGravestone">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshGravestone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshHeadstone">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshHeadstone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshObelisk">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshObelisk</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstone">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshTombstone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesTile">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshTombstonesTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesTile_Glow">
-            <summary>Full Path: Tiles/Misc/AshTombstones/AshTombstonesTile_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BigGemsTile">
             <summary>Full Path: Tiles/Misc/BigGems/BigGemsTile</summary>

@@ -18,7 +18,6 @@ using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Tiles;
 using Aequus.Common.UI;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Tiles.Tombstones;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BlackPhial;
@@ -1502,13 +1501,6 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public bool PreCreatureSpawns() {
-        if (Player.InModBiome<FakeUnderworldBiome>()) {
-            float y = Player.position.Y;
-            Player.position.Y = Math.Max(Player.position.Y, (Main.UnderworldLayer + 80) * 16);
-            Player.ZoneUnderworldHeight = true;
-            AequusNPC.spawnNPCYOffset = y - Player.position.Y;
-            return true;
-        }
         return false;
     }
 
@@ -1754,7 +1746,7 @@ public partial class AequusPlayer : ModPlayer {
 
         bool goldTombstoneWanted = coinsOwned >= Item.gold * 10;
         foreach (UnifiedTombstones t in Aequus.Instance.GetContent<UnifiedTombstones>()) {
-            TombstoneOverride? tombOverride = t.OverrideTombstoneDrop(goldTombstoneWanted, coinsOwned);
+            TombstoneOverride? tombOverride = t.OverrideTombstoneDrop(player, goldTombstoneWanted, coinsOwned);
             if (tombOverride == null) {
                 continue;
             }
@@ -1772,11 +1764,22 @@ public partial class AequusPlayer : ModPlayer {
             }
 
             if (tomb.TombstoneText != null) {
-                Main.projectile[p].miscText = string.Format(tomb.TombstoneText, deathText.ToString(), date);
+                // {0} is the original death message.
+                // {1} is the date.
+                // Inbetween is the custom text.
+                string format = $$"""
+                {0}
+                {{tomb.TombstoneText}}
+                {1}
+                """;
+
+                Main.projectile[p].miscText = string.Format(format, deathText.ToString(), date);
             }
             else {
                 Main.projectile[p].miscText = deathText.ToString() + "\n" + date;
             }
+
+            return;
         }
 
         orig(player, coinsOwned, deathText, hitDirection);
