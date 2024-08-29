@@ -47,36 +47,36 @@ Armor: {
 
 	MeadowArmor: {
 		MeadowArmorHelmet: {
-			// DisplayName: Wyvernwood Helmet
-			/* Tooltip:
+			DisplayName: 飞龙木头盔
+			Tooltip:
 				'''
 				{$CommonItemTooltip.PercentReducedManaCost}
 				{$CommonItemTooltip.IncreasesMaxManaBy@1}
-				''' */
+				'''
 		}
 
 		MeadowArmorBreastplate: {
-			// DisplayName: Wyvernwood Breastplate
-			/* Tooltip:
+			DisplayName: 飞龙木胸甲
+			Tooltip:
 				'''
-				Increases magic and summon damage by {0}
+				增加{0}魔法和召唤伤害
 				{$CommonItemTooltip.IncreasesMaxManaBy@1}
-				''' */
+				'''
 		}
 
 		MeadowArmorGreaves: {
-			// DisplayName: Wyvernwood Greaves
-			/* Tooltip:
+			DisplayName: 飞龙木护胫
+			Tooltip:
 				'''
 				{$CommonItemTooltip.PercentIncreasedMovementSpeed}
 				{$CommonItemTooltip.IncreasesMaxManaBy@1}
-				''' */
+				'''
 		}
 
-		/* Setbonus:
+		Setbonus:
 			'''
 			{$CommonItemTooltip.IncreasesMaxMinionsBy}
-			Your summons will focus enemies struck by any magic attack
-			''' */
+			你的召唤物会优先攻击受到魔法攻击的敌人
+			'''
 	}
 }
