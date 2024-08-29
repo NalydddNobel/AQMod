@@ -40,6 +40,8 @@ public partial class AequusPlayer {
     public bool setMeadow;
     [CompilerGenerated]
     public bool setMeadowMagicTag;
+    [CompilerGenerated]
+    public bool infiniteWormhole;
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
@@ -55,6 +57,7 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref cHorseshoeAnvil);
         SourceGeneratorTools.ResetObj(ref setMeadow);
         SourceGeneratorTools.ResetObj(ref setMeadowMagicTag);
+        SourceGeneratorTools.ResetObj(ref infiniteWormhole);
     }
     
     [CompilerGenerated]

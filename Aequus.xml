@@ -3193,6 +3193,24 @@
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PhasePhone">
+            <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
+            <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneHome</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
+            <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneOcean</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
+            <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneSpawn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
+            <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneUnderworld</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhaseMirror">
+            <summary>Full Path: Content/Items/Tools/PocketWormhole/PhaseMirror</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MagicEightBall">
             <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall</summary>
         </member>
@@ -4599,24 +4617,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.GhostlyGrave">
             <summary>Full Path: Items/Tools/GhostlyGrave</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhaseMirror">
-            <summary>Full Path: Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhone">
-            <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
-            <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
-            <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
-            <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
-            <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsGun">
             <summary>Full Path: Items/Tools/PhysicsGun</summary>
@@ -6557,6 +6557,9 @@
             <summary>
             Determines whether or not the mouse has an item
             </summary>
+        </member>
+        <member name="M:Aequus.Helper.GetAllOverridesOfItemId(System.Int32)">
+            <returns>All 'Overrides' of a specified item. (<see cref="F:Terraria.ID.ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</returns>
         </member>
         <member name="M:Aequus.Helper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
             <summary>

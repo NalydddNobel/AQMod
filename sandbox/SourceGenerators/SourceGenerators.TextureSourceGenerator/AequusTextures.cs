@@ -647,6 +647,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScarabDynamite = new("Content/Items/Tools/Consumable/ScarabDynamite/ScarabDynamite");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
+    /// <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhone</summary>
+    public static readonly RequestCache<Texture2D> PhasePhone = new("Content/Items/Tools/PhasePhone/PhasePhone");
+    /// <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneHome</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneHome = new("Content/Items/Tools/PhasePhone/PhasePhoneHome");
+    /// <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneOcean</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneOcean = new("Content/Items/Tools/PhasePhone/PhasePhoneOcean");
+    /// <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneSpawn</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneSpawn = new("Content/Items/Tools/PhasePhone/PhasePhoneSpawn");
+    /// <summary>Full Path: Content/Items/Tools/PhasePhone/PhasePhoneUnderworld</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Content/Items/Tools/PhasePhone/PhasePhoneUnderworld");
+    /// <summary>Full Path: Content/Items/Tools/PocketWormhole/PhaseMirror</summary>
+    public static readonly RequestCache<Texture2D> PhaseMirror = new("Content/Items/Tools/PocketWormhole/PhaseMirror");
     /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall</summary>
     public static readonly RequestCache<Texture2D> MagicEightBall = new("Content/Items/Vanity/MagicEightBall/MagicEightBall");
     /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
@@ -1585,18 +1597,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Items/Tools/FishingPoles/SteampunkerFishingPole");
     /// <summary>Full Path: Items/Tools/GhostlyGrave</summary>
     public static readonly RequestCache<Texture2D> GhostlyGrave = new("Items/Tools/GhostlyGrave");
-    /// <summary>Full Path: Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-    public static readonly RequestCache<Texture2D> PhaseMirror = new("Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
-    /// <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-    public static readonly RequestCache<Texture2D> PhasePhone = new("Items/Tools/MagicMirrors/PhasePhone/PhasePhone");
-    /// <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneHome = new("Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome");
-    /// <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneOcean = new("Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean");
-    /// <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneSpawn = new("Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn");
-    /// <summary>Full Path: Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
     /// <summary>Full Path: Items/Tools/PhysicsGun</summary>
     public static readonly RequestCache<Texture2D> PhysicsGun = new("Items/Tools/PhysicsGun");
     /// <summary>Full Path: Items/Tools/PhysicsGun_Glow</summary>

@@ -77,6 +77,23 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    /// <returns>All 'Overrides' of a specified item. (<see cref="ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</returns>
+    public static IEnumerable<int> GetAllOverridesOfItemId(int itemId) {
+        yield return itemId;
+
+        foreach (var i in ContentSamples.CreativeResearchItemPersistentIdOverride) {
+            if (i.Value == itemId) {
+                yield return i.Key;
+            }
+        }
+
+        if (ContentSamples.CreativeResearchItemPersistentIdOverride.TryGetValue(itemId, out int myAlt) && itemId != myAlt) {
+            foreach (var i in GetAllOverridesOfItemId(myAlt)) {
+                yield return i;
+            }
+        }
+    }
+
     [Conditional("DEBUG")]
     public static void Register(this LocalizedText text) {
         Language.GetOrRegister(text.Key);
@@ -949,9 +966,13 @@ public static partial class Helper {
     public static void Transform(this Item item, int newType) {
         int prefix = item.prefix;
         int stack = item.stack;
+        bool favorited = item.favorited;
+
         item.SetDefaults(newType);
+
         item.Prefix(prefix);
         item.stack = stack;
+        item.favorited = favorited;
     }
 
     public static void Transform<T>(this Item item) where T : ModItem {

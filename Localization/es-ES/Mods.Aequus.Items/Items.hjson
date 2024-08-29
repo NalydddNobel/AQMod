@@ -311,8 +311,7 @@ PhaseMirror: {
 		'''
 }
 
-PhasePhone: {
-	DisplayName: Móvil de Fase
+PhasePhones: {
 	Tooltip:
 		'''
 		Lo muestra todo
@@ -321,22 +320,27 @@ PhasePhone: {
 		<right> para cambiar el destino
 		'''
 
-	Home: {
+	PhasePhone: {
+		DisplayName: Móvil de Fase
+		// Tooltip: ""
+	}
+
+	PhasePhoneHome: {
 		DisplayName: Móvil de Fase (Hogar)
 		Tooltip: Te permite regresar a tu hogar
 	}
 
-	Spawn: {
+	PhasePhoneSpawn: {
 		DisplayName: Móvil de Fase (Punto de Resurrección)
 		Tooltip: Te permite regresar a tu punto de resurrección
 	}
 
-	Ocean: {
+	PhasePhoneOcean: {
 		DisplayName: Móvil de Fase (Oceano)
 		Tooltip: Te permite viajar al Oceano
 	}
 
-	Underworld: {
+	PhasePhoneUnderworld: {
 		DisplayName: Móvil de Fase (Inframundo)
 		Tooltip: Te permite viajar al inframundo
 	}

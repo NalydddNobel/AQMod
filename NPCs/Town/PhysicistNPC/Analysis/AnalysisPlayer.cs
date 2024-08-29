@@ -2,7 +2,6 @@
 using Aequus.Content.Items.Accessories.Informational.HoloLens;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Drone;
-using Aequus.Items.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Tiles.Furniture.Gravity;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Aequus.Content.Items.Tools.PocketWormhole;
 
 namespace Aequus.NPCs.Town.PhysicistNPC.Analysis {
     public class AnalysisPlayer : ModPlayer {

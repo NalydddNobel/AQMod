@@ -486,52 +486,52 @@ PhaseMirror: {
 }
 
 PhasePhone: {
-	TooltipTop: 显示一切
-	TooltipBottom:
+	// TooltipTop: Displays everything
+	/* TooltipBottom:
 		'''
-		通过在大地图上点击队友的头像来传送至对方位置
-		右键切换目标位置
-		'''
+		Teleport to party members by clicking their head on the fullscreen map
+		<right> to toggle destination
+		''' */
 }
 
 PhasePhoneHome: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (家)"
-	Tooltip:
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Home)"
+	/* Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		允许你随意回家
+		Allows you to return home at will
 		{$Items.PhasePhone.TooltipBottom}
-		'''
+		''' */
 }
 
 PhasePhoneOcean: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (海洋)"
-	Tooltip:
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Ocean)"
+	/* Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		允许你随意前往海洋
+		Allows you to travel to the ocean at will
 		{$Items.PhasePhone.TooltipBottom}
-		'''
+		''' */
 }
 
 PhasePhoneSpawn: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (出生点)"
-	Tooltip:
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Spawn)"
+	/* Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		允许你随意返回出生点
+		Allows you to return to spawn at will
 		{$Items.PhasePhone.TooltipBottom}
-		'''
+		''' */
 }
 
 PhasePhoneUnderworld: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (地狱)"
-	Tooltip:
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Underworld)"
+	/* Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		允许你随意前往地狱
+		Allows you to travel to the underworld at will
 		{$Items.PhasePhone.TooltipBottom}
-		'''
+		''' */
 }
 
 // Vanity

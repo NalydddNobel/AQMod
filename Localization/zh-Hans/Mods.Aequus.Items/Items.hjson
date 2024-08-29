@@ -311,31 +311,36 @@ PhaseMirror: {
 		'''
 }
 
-PhasePhone: {
-	DisplayName: 相位手机
+PhasePhones: {
 	Tooltip:
 		'''
 		显示一切
+		{0}
 		通过在大地图上点击队友的头像来传送至对方位置
 		右键切换目的地
 		'''
 
-	Home: {
+	PhasePhone: {
+		DisplayName: 相位手机
+		// Tooltip: ""
+	}
+
+	PhasePhoneHome: {
 		DisplayName: 相位手机 (家)
 		Tooltip: 允许你随意回家
 	}
 
-	Spawn: {
+	PhasePhoneSpawn: {
 		DisplayName: 相位手机 (出生点)
 		Tooltip: 允许你随意回到出生点
 	}
 
-	Ocean: {
+	PhasePhoneOcean: {
 		DisplayName: 相位手机 (海洋)
 		Tooltip: 允许你随意前往海洋
 	}
 
-	Underworld: {
+	PhasePhoneUnderworld: {
 		DisplayName: 相位手机 (地狱)
 		Tooltip: 允许你随意前往地狱
 	}

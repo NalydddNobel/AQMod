@@ -311,31 +311,36 @@ PhaseMirror: {
 		'''
 }
 
-PhasePhone: {
-	DisplayName: Phase Phone
+PhasePhones: {
 	Tooltip:
 		'''
 		Displays everything
+		{0}
 		Teleport to party members by clicking their head on the fullscreen map
 		<right> to toggle destination
 		'''
 
-	Home: {
+	PhasePhone: {
+		DisplayName: Phase Phone
+		Tooltip: ""
+	}
+
+	PhasePhoneHome: {
 		DisplayName: Phase Phone (Home)
 		Tooltip: Allows you to return home at will
 	}
 
-	Spawn: {
+	PhasePhoneSpawn: {
 		DisplayName: Phase Phone (Spawn)
 		Tooltip: Allows you to return to spawn at will
 	}
 
-	Ocean: {
+	PhasePhoneOcean: {
 		DisplayName: Phase Phone (Ocean)
 		Tooltip: Allows you to travel to the ocean at will
 	}
 
-	Underworld: {
+	PhasePhoneUnderworld: {
 		DisplayName: Phase Phone (Underworld)
 		Tooltip: Allows you to travel to the underworld at will
 	}

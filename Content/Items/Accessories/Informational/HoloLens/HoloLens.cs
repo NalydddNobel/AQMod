@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Recipes;
-using Aequus.Items.Tools.MagicMirrors.PhaseMirror;
+using Aequus.Content.Items.Tools.PocketWormhole;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 
 namespace Aequus.Content.Items.Accessories.Informational.HoloLens;
