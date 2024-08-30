@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Structures.Conditions;
 using Aequus.Common.Structures.Conversion;
-using Aequus.Common.Utilities.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.ItemDropRules;
@@ -19,7 +18,7 @@ public record class IndexedChestRule(int ChanceDemoninator, int ChanceNumerator,
     public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
 
     public ChestLootResult AddItem(in ChestLootInfo info) {
-        if (info.RNG.Next(ChanceDemoninator) < 1) {
+        if (info.RNG.Next(ChanceDemoninator) != 0) {
             return ChestLootResult.FailedRandomRoll;
         }
 

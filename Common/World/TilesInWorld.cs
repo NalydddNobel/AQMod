@@ -52,7 +52,7 @@ public class TilesInWorld : ModSystem {
 
 class TilesInWorldGlobalTile : GlobalTile {
     public override void RandomUpdate(int i, int j, int type) {
-        NotifyFound(type);
+        //NotifyFound(type);
         ModContent.GetInstance<TilesInWorld>().Found[type] = true;
     }
 

@@ -77,6 +77,12 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static bool InWatcherView(Vector2 watcher, Vector2 effectPos) {
+        Vector2 difference = watcher - effectPos;
+
+        return Math.Abs(difference.X) < 2200f && Math.Abs(difference.Y) < 1400f;
+    }
+
     /// <returns>All 'Overrides' of a specified item. (<see cref="ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</returns>
     public static IEnumerable<int> GetAllOverridesOfItemId(int itemId) {
         yield return itemId;
@@ -1287,9 +1293,15 @@ public static partial class Helper {
     }
 
     public static Item FindEmptySlot(this Chest chest) {
+        if (chest == null) {
+            return null;
+        }
+
         for (int i = 0; i < Chest.maxItems; i++) {
-            if (chest.item[i].IsAir)
-                return chest.item[i];
+            Item item = (chest.item[i] ??= new());
+            if (item.IsAir) {
+                return item;
+            }
         }
         return null;
     }
@@ -1924,15 +1936,15 @@ public static partial class Helper {
         return misc;
     }
 
-    public static IEnumerable<(T attr, MemberInfo info)> GetFieldsPropertiesOfAttribute<T>(Type t) where T : Attribute {
+    public static IEnumerable<(T attr, MemberInfo info)> GetFieldsPropertiesOfAttribute<T>(Type t, BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static) where T : Attribute {
         var l = new List<(T, MemberInfo)>();
-        foreach (var f in t.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {
+        foreach (var f in t.GetFields(flags)) {
             var attr = f.GetCustomAttribute<T>();
             if (attr != null) {
                 l.Add((attr, f));
             }
         }
-        foreach (var p in t.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {
+        foreach (var p in t.GetProperties(flags)) {
             var attr = p.GetCustomAttribute<T>();
             if (attr != null) {
                 l.Add((attr, p));
@@ -2350,8 +2362,8 @@ public static partial class Helper {
         ProjectileID.Sets.TrailingMode[modProjectile.Type] = 2;
     }
 
-    public static bool NoDungeonOrTempleWall(this Tile tile) {
-        return Main.wallDungeon[tile.WallType] && tile.WallType != WallID.LihzahrdBrickUnsafe;
+    public static bool IsDungeonOrTempleWall(this Tile tile) {
+        return Main.wallDungeon[tile.WallType] || tile.WallType == WallID.LihzahrdBrickUnsafe;
     }
     public static bool IsConvertibleProbably(this Tile tile) {
         return TileID.Sets.Conversion.Grass[tile.TileType]

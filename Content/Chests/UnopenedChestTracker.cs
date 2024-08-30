@@ -1,7 +1,7 @@
 ﻿namespace Aequus.Content.Chests;
 
 /// <summary>Item used to determine if a chest has been opened or not.</summary>
-public class UnopenedChestItem : ModItem {
+public class UnopenedChestTracker : ModItem {
     public override string Texture => AequusTextures.None.FullPath;
 
     public override void Load() {
@@ -25,15 +25,37 @@ public class UnopenedChestItem : ModItem {
         return false;
     }
 
+    public static bool IsUnopened(int chestId) {
+        if (!Main.chest.IndexInRange(chestId)) {
+            return false;
+        }
+        return IsUnopened(Main.chest[chestId]);
+    }
+
+    public static bool IsUnopened(Chest chest) {
+        int unopenedChestItemId = ModContent.ItemType<UnopenedChestTracker>();
+
+        for (int i = chest.item.Length - 1; i > 0; i--) {
+            Item item = chest.item[i];
+            if (item != null && item.type == unopenedChestItemId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static void Remove(int chestId) {
-        if (Main.chest.IndexInRange(chestId)) {
-            int unopenedChestItemId = ModContent.ItemType<UnopenedChestItem>();
-            Chest chest = Main.chest[chestId];
-            for (int i = 0; i < chest.item.Length; i++) {
-                Item item = chest.item[i];
-                if (item != null && item.type == unopenedChestItemId) {
-                    item.TurnToAir();
-                }
+        if (!Main.chest.IndexInRange(chestId) || Main.chest[chestId] == null) {
+            return;
+        }
+        int unopenedChestItemId = ModContent.ItemType<UnopenedChestTracker>();
+        Chest chest = Main.chest[chestId];
+
+        for (int i = chest.item.Length - 1; i > 0; i--) {
+            Item item = chest.item[i];
+            if (item != null && item.type == unopenedChestItemId) {
+                item.TurnToAir();
             }
         }
     }
@@ -45,7 +67,7 @@ public class UnopenedChestItem : ModItem {
             Item item = items[k];
             if (item == null || item.IsAir) {
                 // Fill the last empty slot with the unopened chest item.
-                (items[k] ??= new()).SetDefaults(ModContent.ItemType<UnopenedChestItem>());
+                (items[k] ??= new()).SetDefaults(ModContent.ItemType<UnopenedChestTracker>());
                 break;
             }
         }
@@ -55,7 +77,7 @@ public class UnopenedChestItem : ModItem {
 public class UnopenedChestItemPlayer : ModPlayer {
     public override void PostUpdate() {
         if (Player.chest >= 0) {
-            UnopenedChestItem.Remove(Player.chest);
+            UnopenedChestTracker.Remove(Player.chest);
         }
     }
 }

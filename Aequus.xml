@@ -1761,7 +1761,7 @@
             <returns>Whether the chest contains any items within the <see cref="!:ItemDataSet.ImportantItem"/> set.</returns>
         </member>
         <member name="M:Aequus.Common.Utilities.Extensions.ChestExtensions.IsUnopened(Terraria.Chest)">
-            <returns>Whether the chest contains <see cref="T:Aequus.Content.Chests.UnopenedChestItem"/>.</returns>
+            <returns>Whether the chest contains <see cref="T:Aequus.Content.Chests.UnopenedChestTracker"/>.</returns>
         </member>
         <member name="M:Aequus.Common.Utilities.Extensions.EnumerableExtensions.AllocLookup``1(``0[],System.Boolean)">
             <summary>Allocates a lookup table for values->index for the <paramref name="array"/>. This is useful for creating reverse lookups for datasets.</summary>
@@ -6758,7 +6758,13 @@
             <param name="location"></param>
             <param name="genLocation"></param>
         </member>
-        <member name="T:Aequus.Content.Chests.UnopenedChestItem">
+        <member name="F:Aequus.Content.Chests.ChestID.Frozen">
+            <summary>Chest type which appears in the Snow Biome.</summary>
+        </member>
+        <member name="F:Aequus.Content.Chests.ChestID.Ice">
+            <summary>Spawns in the Dungeon, and the unlocked variant of the <see cref="F:Aequus.Content.Chests.ChestID.LockedIce"/> chest. Contains the Staff of the Frost Hydra.</summary>
+        </member>
+        <member name="T:Aequus.Content.Chests.UnopenedChestTracker">
             <summary>Item used to determine if a chest has been opened or not.</summary>
         </member>
         <member name="T:Aequus.Content.DamageClasses.NecromancyMagicClass">

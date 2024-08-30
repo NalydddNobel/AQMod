@@ -19,9 +19,9 @@ public static class ChestExtensions {
         return false;
     }
 
-    /// <returns>Whether the chest contains <see cref="UnopenedChestItem"/>.</returns>
+    /// <returns>Whether the chest contains <see cref="UnopenedChestTracker"/>.</returns>
     public static bool IsUnopened(this Chest chest) {
-        int unopenedChestItemId = ModContent.ItemType<UnopenedChestItem>();
+        int unopenedChestItemId = ModContent.ItemType<UnopenedChestTracker>();
         for (int i = 0; i < chest.item.Length; i++) {
             Item item = chest.item[i];
             if (item != null && !item.IsAir && item.type == unopenedChestItemId) {

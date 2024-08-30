@@ -1,12 +1,6 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.World;
-using Aequus.Tiles.Furniture;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Furniture.HardmodeChests; 
+namespace Aequus.Tiles.Furniture.HardmodeChests;
 public class HardFrozenChest : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
@@ -31,7 +25,6 @@ public class HardFrozenChestTile : BaseChest<HardFrozenChest> {
     public override Color MapColor => new(105, 115, 255);
 
     public override void SetStaticDefaults() {
-        HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Frozen);
         ChestType.IsGenericUndergroundChest.Add(new(Type));
         base.SetStaticDefaults();
         DustType = DustID.t_Frozen;

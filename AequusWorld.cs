@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Common.World;
 using Aequus.Content.Biomes;
+using Aequus.Content.Chests;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI;
 using Aequus.Items.Tools;
@@ -175,26 +176,9 @@ public partial class AequusWorld : ModSystem {
     [ModCall]
     public static bool xmasHats;
 
-    [SaveData("ChestCobalt")]
-    [SaveDataAttribute.IsListedBoolean]
-    [NetBool]
-    [ModCall]
-    public static bool chestCobaltTier;
-    [SaveData("ChestMythril")]
-    [SaveDataAttribute.IsListedBoolean]
-    [NetBool]
-    [ModCall]
-    public static bool chestMythrilTier;
-    [SaveData("ChestAdamantite")]
-    [SaveDataAttribute.IsListedBoolean]
-    [NetBool]
-    [ModCall]
-    public static bool chestAdamantiteTier;
     [SaveData("HardmodeChests")]
     [SaveDataAttribute.IsListedBoolean]
-    [NetBool]
-    [ModCall]
-    public static bool hardmodeChests;
+    private static bool _hardmodeChestsForLegacy { get => ChestUpgradeSystem.Instance.HardmodeUpgradeMessage; set => ChestUpgradeSystem.Instance.HardmodeUpgradeMessage = value; }
     [SaveData("EoCOres")]
     [SaveDataAttribute.IsListedBoolean]
     [NetBool]
@@ -279,10 +263,6 @@ public partial class AequusWorld : ModSystem {
         eyeOfCthulhuOres = false;
         downedHyperStarite = false;
         downedUltraStarite = false;
-        hardmodeChests = false;
-        chestCobaltTier = false;
-        chestMythrilTier = false;
-        chestAdamantiteTier = false;
         xmasWorld = false;
         xmasHats = false;
         usedWhiteFlag = false;
@@ -323,6 +303,7 @@ public partial class AequusWorld : ModSystem {
     public override void SaveWorldData(TagCompound tag) {
         SaveDataAttribute.SaveData(tag, this);
         Structures.Save(tag);
+
     }
 
     public override void LoadWorldData(TagCompound tag) {

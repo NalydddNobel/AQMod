@@ -1,13 +1,6 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.World;
-using Aequus.Tiles.Furniture;
-using Aequus.Tiles.Furniture.HardmodeChests;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Furniture.HardmodeChests; 
+namespace Aequus.Tiles.Furniture.HardmodeChests;
 public class HardMarbleChest : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
@@ -32,7 +25,6 @@ public class HardMarbleChestTile : BaseChest<HardMarbleChest> {
     public override Color MapColor => new(200, 185, 100);
 
     public override void SetStaticDefaults() {
-        HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Gold);
         ChestType.IsGenericUndergroundChest.Add(new(Type));
         base.SetStaticDefaults();
         DustType = DustID.Marble;

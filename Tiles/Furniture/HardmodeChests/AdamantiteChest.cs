@@ -1,10 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Tiles;
-using Aequus.Content.World;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Tiles.Furniture.HardmodeChests;
 public class AdamantiteChest : ModItem {
@@ -35,7 +30,6 @@ public class AdamantiteChestTile : BaseChest<AdamantiteChest> {
     public override Color MapColor => new(160, 25, 50);
 
     public override void SetStaticDefaults() {
-        HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Gold);
         ChestType.IsGenericUndergroundChest.Add(new(Type));
         base.SetStaticDefaults();
         DustType = DustID.Adamantite;

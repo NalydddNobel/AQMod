@@ -1,13 +1,6 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.World;
-using Aequus.Tiles.Furniture;
-using Aequus.Tiles.Furniture.HardmodeChests;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Furniture.HardmodeChests; 
+namespace Aequus.Tiles.Furniture.HardmodeChests;
 public class HardJungleChest : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
@@ -31,7 +24,6 @@ public class HardJungleChest : ModItem {
 public class HardJungleChestTile : BaseChest<HardJungleChest> {
     public override Color MapColor => new(170, 105, 70);
     public override void SetStaticDefaults() {
-        HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Ivy);
         ChestType.IsGenericUndergroundChest.Add(new(Type));
         base.SetStaticDefaults();
         DustType = DustID.WoodFurniture;

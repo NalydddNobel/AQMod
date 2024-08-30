@@ -35,7 +35,7 @@ public sealed class ChestLootSystem : ModSystem {
 
             AddLoot(i);
 
-            UnopenedChestItem.Place(chest);
+            UnopenedChestTracker.Place(chest);
         }
     }
 
