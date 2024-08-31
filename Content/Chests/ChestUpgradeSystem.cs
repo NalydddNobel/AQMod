@@ -16,6 +16,9 @@ public sealed class ChestUpgradeSystem : ModSystem {
     public const string Tag_Message = "Message";
     public const string Tag_New_Chests_Count = "Generate";
 
+    public static readonly int NewChestsAreaDenominator = 32000;
+    public static readonly int AlreadyInHardmodeNewChestsAreaDenominator = 240000;
+
     public bool HardmodeUpgradeMessage { get; set; }
 
     const int NewChestsSearchPerTickIterationCap = 100;
@@ -47,10 +50,10 @@ public sealed class ChestUpgradeSystem : ModSystem {
     internal void OnHardmodeBossDefeat() {
         _nextUpgrade = 0;
         if (!Main.hardMode) {
-            _newChestsWanted = Math.Max(Main.maxTilesX * Main.maxTilesY / 32000, 30);
+            _newChestsWanted = Math.Max(Main.maxTilesX * Main.maxTilesY / NewChestsAreaDenominator, 30);
         }
         else {
-            _newChestsWanted = Math.Max(Main.maxTilesX * Main.maxTilesY / 240000, 5);
+            _newChestsWanted = Math.Max(Main.maxTilesX * Main.maxTilesY / AlreadyInHardmodeNewChestsAreaDenominator, 5);
         }
     }
 
@@ -141,9 +144,9 @@ public sealed class ChestUpgradeSystem : ModSystem {
             return;
         }
 
-        for (int k = 0; k < chest.item.Length; k++) {
-            (chest.item[k] ??= new()).TurnToAir();
-        }
+        // Clear chest of vanilla and Aequus items.
+        // Other modded items are not deleted.
+        ClearChest(chest);
 
         ChestLootDatabase.Instance.SolveRules(info.Loot, new ChestLootInfo(i, WorldGen.genRand));
 
@@ -161,6 +164,15 @@ public sealed class ChestUpgradeSystem : ModSystem {
         }
 
         Instance<MagicChestPlacementEffect>().NewEffect(chest.x, chest.y);
+    }
+
+    void ClearChest(Chest chest) {
+        for (int k = 0; k < chest.item.Length; k++) {
+            Item item = (chest.item[k] ??= new());
+            if (item.ModItem == null || item.ModItem.Mod is Aequus) {
+                item.TurnToAir();
+            }
+        }
     }
 
     public sealed override void SetupContent() {
