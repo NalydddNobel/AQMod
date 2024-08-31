@@ -144,16 +144,16 @@ SteampunkerFishingPole: {
 }
 
 UnopenedChestTracker: {
-	// DisplayName: Unopened Chest Tracker
-	// Tooltip: ""
+	DisplayName: 未打开宝箱追踪器
+	Tooltip: ""
 }
 
 DamageOnKillClaw: {
-	// DisplayName: The Upper Hand
-	/* Tooltip:
+	DisplayName: 优势之手
+	Tooltip:
 		'''
-		Grant a buff which increases damage by {0}% for each enemy slain
-		Attacking enemies refreshes buff duration
-		''' */
-	// BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
+		使用后获得增益, 每击杀一名敌人, 便会增加{0}%伤害
+		攻击敌人会刷新增益持续时间
+		'''
+	BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
 }
