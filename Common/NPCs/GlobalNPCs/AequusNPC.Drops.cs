@@ -51,6 +51,7 @@ public partial class AequusNPC {
     }
 
     public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
+        ModifyNPCLootInner(npc, npcLoot);
         switch (npc.type) {
             case NPCID.UndeadViking:
             case NPCID.ArmoredViking: {

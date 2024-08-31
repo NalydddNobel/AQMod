@@ -3,6 +3,7 @@ using Aequus.Common.Utilities;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 using Terraria.UI.Chat;
 
@@ -79,6 +80,13 @@ public sealed class DamageOnKillClaw : ModItem {
 
         // Add buff.
         player.AddBuff(ModContent.BuffType<DamageOnKillBuff>(), BuffDuration, quiet: false);
+    }
+
+    [Gen.AequusNPC_ModifyNPCLoot]
+    public static void AddNPCLoot(NPC npc, AequusNPC aequus, NPCLoot loot) {
+        if (npc.type == NPCID.GiantFlyingFox) {
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<DamageOnKillClaw>(), 60));
+        }
     }
 }
 

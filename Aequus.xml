@@ -484,7 +484,10 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_OnSpawn">
-            <summary>Adds a reference to the target method in <see cref="T:Aequus.AequusNPC"/> (<see cref="!:AequusNPC.OnSpawnInner(NPC, IEntitySource)"/>).</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.OnSpawn(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/> (<see cref="M:Aequus.AequusNPC.OnSpawnInner(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/>).</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_ModifyNPCLoot">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.ModifyNPCLoot(Terraria.NPC,Terraria.ModLoader.NPCLoot)"/> (<see cref="M:Aequus.AequusNPC.ModifyNPCLootInner(Terraria.NPC,Terraria.ModLoader.NPCLoot)"/>).</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusPlayer"/>.</summary>
