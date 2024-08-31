@@ -34,6 +34,7 @@ using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Items;
 using Terraria.GameContent.UI.Elements;
+using Terraria.Graphics.Capture;
 using Terraria.Graphics.Shaders;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -76,6 +77,10 @@ public static partial class Helper {
     private const char FULL_NAME_SEPERATOR = '/';
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
+    public static bool CanUseRightClickFeatures(this Player player) {
+        return player.selectedItem != 58 && player.controlUseTile && Main.myPlayer == player.whoAmI && !player.tileInteractionHappened && player.releaseUseItem && !player.controlUseItem && !player.mouseInterface && !CaptureManager.Instance.Active && !Main.HoveringOverAnNPC && !Main.SmartInteractShowingGenuine;
+    }
 
     public static bool InWatcherView(Vector2 watcher, Vector2 effectPos) {
         Vector2 difference = watcher - effectPos;
