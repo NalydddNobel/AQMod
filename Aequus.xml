@@ -2237,7 +2237,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1366)</summary>
+            <summary>(Total Textures: 1368)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3243,6 +3243,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowStaff">
             <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowStaffLaser">
+            <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffLaser</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowStaffProj">
+            <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowBow">
             <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>

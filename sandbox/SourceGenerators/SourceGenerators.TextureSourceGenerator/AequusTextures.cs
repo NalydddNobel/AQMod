@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1366)</summary>
+/// <summary>(Total Textures: 1368)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -677,6 +677,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Furystar = new("Content/Items/Weapons/Magic/Furystar/Furystar");
     /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
     public static readonly RequestCache<Texture2D> MeadowStaff = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffLaser</summary>
+    public static readonly RequestCache<Texture2D> MeadowStaffLaser = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffLaser");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffProj</summary>
+    public static readonly RequestCache<Texture2D> MeadowStaffProj = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffProj");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
     public static readonly RequestCache<Texture2D> MeadowBow = new("Content/Items/Weapons/Ranged/MeadowBow/MeadowBow");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>

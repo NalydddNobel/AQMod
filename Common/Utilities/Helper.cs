@@ -34,6 +34,7 @@ using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Items;
 using Terraria.GameContent.UI.Elements;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.Graphics.Capture;
 using Terraria.Graphics.Shaders;
 using Terraria.Localization;
@@ -58,6 +59,11 @@ public static partial class Helper {
     public static Vector2 ScaledMouseworld => ScaledMouseScreen + Main.screenPosition;
     public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
+    public static Vector2 ScreenCenter {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        get => Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+    }
+
     public static Point MouseTile => Main.MouseWorld.ToTileCoordinates();
     public static int MouseTileX => (int)Main.MouseWorld.X / 16;
     public static int MouseTileY => (int)Main.MouseWorld.Y / 16;
@@ -77,6 +83,36 @@ public static partial class Helper {
     private const char FULL_NAME_SEPERATOR = '/';
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
+    public static void PunchFrom(Vector2 direction, Vector2 position, float strength = 2f, float vibrationsPerSecond = 4f, int frames = 10) {
+        if (Main.netMode == NetmodeID.Server) {
+            return;
+        }
+
+        Vector2 difference = ScreenCenter - position;
+        float distance = difference.Length();
+        float intensity = 1f - distance / 150f / strength;
+        Punch(direction, strength * intensity, vibrationsPerSecond, frames);
+    }
+
+    public static void PunchTowards(Vector2 position, float strength = 2f, float vibrationsPerSecond = 4f, int frames = 10) {
+        if (Main.netMode == NetmodeID.Server) {
+            return;
+        }
+
+        Vector2 difference = ScreenCenter - position;
+        float distance = difference.Length();
+        float intensity = 1f - distance / 150f / strength;
+        if (intensity > 0f) {
+            Punch(Vector2.Normalize(difference), strength * intensity, vibrationsPerSecond, frames);
+        }
+    }
+
+    public static void Punch(Vector2 direction, float strength = 2f, float vibrationsPerSecond = 4f, int frames = 10) {
+        if (Main.netMode != NetmodeID.Server) {
+            Main.instance.CameraModifiers.Add(new PunchCameraModifier(Vector2.Zero, direction, strength, vibrationsPerSecond, frames));
+        }
+    }
 
     public static bool CanUseRightClickFeatures(this Player player) {
         return player.selectedItem != 58 && player.controlUseTile && Main.myPlayer == player.whoAmI && !player.tileInteractionHappened && player.releaseUseItem && !player.controlUseItem && !player.mouseInterface && !CaptureManager.Instance.Active && !Main.HoveringOverAnNPC && !Main.SmartInteractShowingGenuine;
