@@ -7,6 +7,7 @@ using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs.Global;
 using Aequus.Common.Particles;
 using Aequus.Common.Preferences;
+using Aequus.Common.Structures;
 using Aequus.Content.Vampirism.Buffs;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.NPCs.Monsters.GaleStreams;

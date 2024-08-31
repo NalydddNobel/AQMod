@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Common.Structures;
 using Aequus.Items.Materials.Energies;
 using System;
 using System.Collections.Generic;

@@ -111,4 +111,6 @@ Misc: {
 	TimeLeft: Time left: {0}
 }
 
+// Used as shorthand under buffs to represent how many stacks they have.
+BuffStack: x{0}
 UnlockCondition: Unlock requirement: '{0}'

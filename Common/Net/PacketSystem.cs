@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Net.Sounds;
+using Aequus.Common.Structures;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;

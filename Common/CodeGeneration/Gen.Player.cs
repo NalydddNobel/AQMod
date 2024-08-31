@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Common.Structures;
+using System;
 
 namespace Aequus.Common.CodeGeneration;
 
@@ -27,7 +28,7 @@ internal partial class Gen {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_SetControls : Attribute { }
 
-    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.ResetEffects"/>.</summary>
+    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.ResetEffects"/>-<see cref="AequusPlayer.ResetEffectsInner"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_ResetEffects : Attribute { }
 
@@ -46,4 +47,8 @@ internal partial class Gen {
     /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.OnHitNPC(NPC, NPC.HitInfo, int)"/>-<see cref="AequusPlayer.OnHitNPCInner(NPC, NPC.HitInfo)"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_OnHitNPC : Attribute { }
+
+    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.OnKillEffect(EnemyKillInfo)"/>-<see cref="AequusPlayer.OnKillNPCInner(EnemyKillInfo)"/>.</summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    internal class AequusPlayer_OnKillNPC : Attribute { }
 }

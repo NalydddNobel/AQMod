@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Structures;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

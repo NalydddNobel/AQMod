@@ -15,6 +15,7 @@ using Aequus.Common.PlayerLayers;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.Preferences;
 using Aequus.Common.Projectiles.SentryChip;
+using Aequus.Common.Structures;
 using Aequus.Common.Tiles;
 using Aequus.Common.UI;
 using Aequus.Common.Utilities;
@@ -1251,14 +1252,15 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+        if (target.immortal || target.SpawnedFromStatue || target.friendly || target.lifeMax < 5) {
+            return;
+        }
+
         OnHitNPCInner(target, hit);
         LegacyHitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
         OnHit_SoulDamage(target, hit, damageDone);
         OnHit_BoneRing(target);
         OnHit_Anchor(target, hit);
-        if (target.life <= 0) {
-            return;
-        }
     }
 
     public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone) {
@@ -1498,6 +1500,7 @@ public partial class AequusPlayer : ModPlayer {
     public void OnKillEffect(EnemyKillInfo npc) {
         SoulGem.TryFillSoulGems(Player, this, npc);
         AmmoBackpack.Proc(Player, this, npc);
+        OnKillNPCInner(npc);
     }
 
     public bool PreCreatureSpawns() {

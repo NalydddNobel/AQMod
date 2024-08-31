@@ -517,7 +517,7 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.SetControls"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_ResetEffects">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.ResetEffects"/>.</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.ResetEffects"/>-<see cref="M:Aequus.AequusPlayer.ResetEffectsInner"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_PostUpdateEquips">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.PostUpdateEquips"/>-<see cref="M:Aequus.AequusPlayer.PostUpdateEquipsInner"/>.</summary>
@@ -530,6 +530,9 @@
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_OnHitNPC">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.OnHitNPC(Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/>-<see cref="M:Aequus.AequusPlayer.OnHitNPCInner(Terraria.NPC,Terraria.NPC.HitInfo)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_OnKillNPC">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.OnKillEffect(Aequus.Common.Structures.EnemyKillInfo)"/>-<see cref="M:Aequus.AequusPlayer.OnKillNPCInner(Aequus.Common.Structures.EnemyKillInfo)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
@@ -774,6 +777,26 @@
             <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="T:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2">
+            <summary>
+            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
+            Call <see cref="M:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Structures.ImplicitLazy`1">
+            <summary><see cref="T:System.Lazy`1"/> but with an implicit operator to transform into a value.</summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Aequus.Common.Structures.PhysicsBehaviors.VICollisonNode">
+            <summary>A Verlet Integrated node with Tile Collision.</summary>
+        </member>
+        <member name="M:Aequus.Common.Structures.RefCache`1.OverrideWith(`0)">
+            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aequus.Common.Structures.RefCache`1.RestoreOriginalValue">
+            <summary>Restores overriden values back to their original value.</summary>
         </member>
         <member name="F:Aequus.Common.Entities.DashPlayer.DashHaltSpeedMultiplier">
             <summary>Multiplier used to reduce velocity when above the dash's halting speed.</summary>
@@ -1618,26 +1641,6 @@
             Ran on world Load/Unload
             </summary>
         </member>
-        <member name="T:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2">
-            <summary>
-            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
-            Call <see cref="M:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Structures.ImplicitLazy`1">
-            <summary><see cref="T:System.Lazy`1"/> but with an implicit operator to transform into a value.</summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="T:Aequus.Common.Structures.PhysicsBehaviors.VICollisonNode">
-            <summary>A Verlet Integrated node with Tile Collision.</summary>
-        </member>
-        <member name="M:Aequus.Common.Structures.RefCache`1.OverrideWith(`0)">
-            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:Aequus.Common.Structures.RefCache`1.RestoreOriginalValue">
-            <summary>Restores overriden values back to their original value.</summary>
-        </member>
         <member name="T:Aequus.Common.Tiles.TileHooks.IUniqueTileInteractions">
             <summary>
             Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
@@ -2231,7 +2234,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1364)</summary>
+            <summary>(Total Textures: 1366)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3066,6 +3069,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorusProj">
             <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorusProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DamageOnKillBuff">
+            <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DamageOnKillClaw">
+            <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>

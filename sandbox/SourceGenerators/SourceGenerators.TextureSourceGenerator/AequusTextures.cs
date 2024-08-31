@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1364)</summary>
+/// <summary>(Total Textures: 1366)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -563,6 +563,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CelesteTorus = new("Content/Items/Accessories/CelesteTorus/CelesteTorus");
     /// <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorusProj</summary>
     public static readonly RequestCache<Texture2D> CelesteTorusProj = new("Content/Items/Accessories/CelesteTorus/CelesteTorusProj");
+    /// <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillBuff</summary>
+    public static readonly RequestCache<Texture2D> DamageOnKillBuff = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillBuff");
+    /// <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
+    public static readonly RequestCache<Texture2D> DamageOnKillClaw = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>

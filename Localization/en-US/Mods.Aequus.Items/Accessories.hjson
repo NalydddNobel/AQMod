@@ -142,3 +142,18 @@ SteampunkerFishingPole: {
 	DisplayName: Steampunker Fishing Pole
 	Tooltip: ""
 }
+
+UnopenedChestTracker: {
+	DisplayName: Unopened Chest Tracker
+	Tooltip: ""
+}
+
+DamageOnKillClaw: {
+	DisplayName: The Upper Hand
+	Tooltip:
+		'''
+		Grant a buff which increases damage by {0}% for each enemy slain
+		Attacking enemies refreshes buff duration
+		'''
+	BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
+}

@@ -142,3 +142,18 @@ SteampunkerFishingPole: {
 	DisplayName: 蒸汽朋克人之杖
 	Tooltip: 能够自动收杆并重新投出钓鱼浮标
 }
+
+UnopenedChestTracker: {
+	// DisplayName: Unopened Chest Tracker
+	// Tooltip: ""
+}
+
+DamageOnKillClaw: {
+	// DisplayName: The Upper Hand
+	/* Tooltip:
+		'''
+		Grant a buff which increases damage by {0}% for each enemy slain
+		Attacking enemies refreshes buff duration
+		''' */
+	// BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
+}

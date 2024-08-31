@@ -17,6 +17,10 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public int stariteExpertDye;
     [CompilerGenerated]
+    public int accDamageOnKill;
+    [CompilerGenerated]
+    public int buffDamageOnKill;
+    [CompilerGenerated]
     public Item accGoldenFeather;
     [CompilerGenerated]
     public int accGoldenFeatherRespawnTimeModifier;
@@ -49,6 +53,8 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref stariteExpertDrawData);
         SourceGeneratorTools.ResetObj(ref stariteExpertStacks);
         SourceGeneratorTools.ResetObj(ref stariteExpertDye);
+        SourceGeneratorTools.ResetObj(ref accDamageOnKill);
+        Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.CheckBuffStacks(Player, this);
         SourceGeneratorTools.ResetObj(ref accGoldenFeather);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
@@ -58,6 +64,18 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref setMeadow);
         SourceGeneratorTools.ResetObj(ref setMeadowMagicTag);
         SourceGeneratorTools.ResetObj(ref infiniteWormhole);
+    }
+    
+    [CompilerGenerated]
+    private void OnHitNPCInner(NPC target, NPC.HitInfo hit) {
+        Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.OnHitNPC(Player, this, target, hit);
+        Content.Items.Armor.Meadow.MeadowArmor.OnHitNPC(Player, this, target, hit);
+        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(Player, this, target, hit);
+    }
+    
+    [CompilerGenerated]
+    private void OnKillNPCInner(EnemyKillInfo info) {
+        Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.OnKillNPC(Player, this, info);
     }
     
     [CompilerGenerated]
@@ -85,12 +103,6 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     private void ModifyHitNPCWithProjInner(Projectile proj, NPC target, ref NPC.HitModifiers modifiers) {
         Content.Items.Armor.Meadow.MeadowArmor.ModifyHitNPCWithProj(Player, this, proj, target, ref modifiers);
-    }
-    
-    [CompilerGenerated]
-    private void OnHitNPCInner(NPC target, NPC.HitInfo hit) {
-        Content.Items.Armor.Meadow.MeadowArmor.OnHitNPC(Player, this, target, hit);
-        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(Player, this, target, hit);
     }
     
     [CompilerGenerated]
