@@ -112,5 +112,5 @@ Misc: {
 }
 
 // Used as shorthand under buffs to represent how many stacks they have.
-// BuffStack: x{0}
+BuffStack: x{0}
 UnlockCondition: 解锁要求: '{0}'
