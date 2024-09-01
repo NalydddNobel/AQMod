@@ -1,7 +1,9 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Entities.Items;
+using Aequus.Particles.Dusts;
 using System;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Weapons.Magic.MeadowStaff;
@@ -74,12 +76,71 @@ public class MeadowStaffProj : ModProjectile {
         Projectile.height = 10;
         Projectile.friendly = true;
         Projectile.DamageType = DamageClass.Magic;
+        Projectile.extraUpdates = 1;
+        Projectile.alpha = 255;
+        ProjectileID.Sets.TrailCacheLength[Type] = 35;
+        ProjectileID.Sets.TrailingMode[Type] = 2;
     }
+
     public override void AI() {
+        Player player = Main.player[Projectile.owner];
+        player.manaRegen = 0;
+        player.manaRegenCount = 0;
+        player.manaRegenDelay = player.maxRegenDelay;
+
+        Projectile.velocity *= 0.985f;
+
+        if (Projectile.velocity != Vector2.Zero) {
+            Projectile.rotation = (Projectile.position - Projectile.oldPos[1]).ToRotation();
+        }
+
+        if (Projectile.ai[0] == 0f) {
+            Projectile.ai[0] = Main.rand.NextFloat(0.2f, 0.4f);
+        }
+        else {
+            float magnitude = 5f * Projectile.Opacity;
+            Vector2 lastOffset = Projectile.oldVelocity.RotatedBy(MathHelper.PiOver2) * MathF.Sin((Projectile.localAI[0] - 1) * Projectile.ai[0]);
+            Vector2 offset = Projectile.velocity.RotatedBy(MathHelper.PiOver2) * MathF.Sin(Projectile.localAI[0] * Projectile.ai[0]);
+            Projectile.Center += (offset - lastOffset) * magnitude;
+        }
+        Projectile.localAI[0]++;
+
+        float speed = Projectile.velocity.Length();
+        if (speed < 2f) {
+            Projectile.alpha += 5;
+            if (Projectile.alpha > 255) {
+                Projectile.Kill();
+            }
+        }
+        else if (Projectile.alpha > 0) {
+            Projectile.alpha -= 4;
+            if (Projectile.alpha <= 0) {
+                Projectile.alpha = 0;
+            }
+        }
+
+        if (speed > 1.6f && Projectile.alpha < 240 && (Projectile.numUpdates == -1 || Main.rand.NextBool(10))) {
+            Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), SpeedX: Projectile.velocity.X, SpeedY: Projectile.velocity.Y, newColor: Color.SkyBlue with { A = 100 });
+            //d.velocity *= 0.5f;
+        }
+
         base.AI();
     }
     public override bool PreDraw(ref Color lightColor) {
-        return base.PreDraw(ref lightColor);
+        Texture2D texture = TextureAssets.Projectile[Type].Value;
+        Rectangle frame = texture.Bounds;
+        Vector2 origin = new Vector2(frame.Width - 4, frame.Height / 2f);
+        Vector2 drawOffset = Projectile.Size / 2f - Main.screenPosition;
+        Vector2 scale = new Vector2(Math.Max(Projectile.velocity.Length() * 0.5f, 1f), 1f) * Projectile.scale;
+        Color color = Color.White with { A = 128 } * Projectile.Opacity * 0.5f;
+        float trailLength = ProjectileID.Sets.TrailCacheLength[Type];
+        for (int i = 0; i < trailLength; i++) {
+            float t = 1f - i / trailLength;
+            Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + drawOffset, frame, color * t, Projectile.oldRot[i], origin, scale, SpriteEffects.None);
+        }
+
+        Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, color, Projectile.rotation, origin, scale, SpriteEffects.None);
+        return false;
     }
 }
 
