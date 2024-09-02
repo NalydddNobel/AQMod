@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Entities.Items;
+﻿using Aequus.Common.Entities.Items;
 using Aequus.Particles.Dusts;
 using System;
 using Terraria.DataStructures;
@@ -8,7 +7,6 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Items.Weapons.Magic.MeadowStaff;
 
-[WorkInProgress]
 public class MeadowStaff : ModItem, IHaveCrossedOutIndicator {
     public override void SetStaticDefaults() {
         Item.staff[Type] = true;
