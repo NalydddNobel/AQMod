@@ -51,7 +51,10 @@ public abstract class UnifiedTombstones : ModTile {
         TileObjectData.addTile(Type);
         AdjTiles = [TileID.Tombstones];
         DustType = DustID.Ash;
-        Main.QueueMainThreadAction(SetTextures);
+
+        if (!Main.dedServ) {
+            Main.QueueMainThreadAction(SetTextures);
+        }
     }
 
     void SetTextures() {
