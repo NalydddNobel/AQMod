@@ -1,0 +1,89 @@
+FrozenTechnology: {
+	DisplayName: Frozen Technology
+	Tooltip: Used to craft informational gadgets
+}
+
+GlowLichen: {
+	DisplayName: Glisten
+	Tooltip: Harvested from moss enriched enemies
+}
+
+PossessedShard: {
+	DisplayName: Possessed Shard
+	Tooltip: A haunted component of possessed armors and tools
+}
+
+AquaticEnergy: {
+	DisplayName: Aquatic Energy
+	Tooltip: ""
+}
+
+AtmosphericEnergy: {
+	DisplayName: Atmospheric Energy
+	Tooltip: ""
+}
+
+CosmicEnergy: {
+	DisplayName: Cosmic Energy
+	Tooltip: ""
+}
+
+DemonicEnergy: {
+	DisplayName: Eidolic Energy
+	Tooltip: ""
+}
+
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
+OrganicEnergy: {
+	DisplayName: Hearthic Energy
+	Tooltip: ""
+}
+
+UltimateEnergy: {
+	DisplayName: Ultimate Energy
+	Tooltip: ""
+}
+
+CompressedTrash: {
+	DisplayName: Compressed Trash
+	Tooltip: ""
+}
+
+BloodyTearstone: {
+	DisplayName: Bloody Tearstone
+	Tooltip: ""
+}
+
+SoulGem: {
+	DisplayName: Empty Soul Gem
+	Tooltip: Unusable until it captures the soul of an enemy
+}
+
+SoulGemFilled: {
+	DisplayName: Soul Gem
+	Tooltip:
+		'''
+		Used to craft necromantic equipment
+		Dropped by the darkest of demons...
+		'''
+}
+
+MonoGem: {
+	DisplayName: Mono Gem
+	Tooltip: "'Cursed with the essence of obscurity'"
+}
+
+OmniGem: {
+	DisplayName: Omni Gem
+	Tooltip: "'Enchanted with the presence of the Aether'"
+}
+
+ArtFragment: {
+	DisplayName: Accretion Fragment
+	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+}
+
+NecroFragment: {
+	DisplayName: Plerion Fragment
+	Tooltip: "'Deathly particles are released from this fragment'"
+}
