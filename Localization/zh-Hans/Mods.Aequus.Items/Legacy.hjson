@@ -365,7 +365,7 @@ CrimsonSceptre: {
 }
 
 CorruptionSceptre: {
-	DisplayName: Zombie Sceptre
+	DisplayName: 僵尸权杖
 	Tooltip:
 		'''
 		消耗敌人的灵魂
@@ -486,52 +486,52 @@ PhaseMirror: {
 }
 
 PhasePhone: {
-	// TooltipTop: Displays everything
-	/* TooltipBottom:
+	TooltipTop: 显示一切
+	TooltipBottom:
 		'''
-		Teleport to party members by clicking their head on the fullscreen map
-		<right> to toggle destination
-		''' */
+		通过在大地图上点击队友的头像来传送至对方位置
+		右键切换目的地
+		'''
 }
 
 PhasePhoneHome: {
-	// DisplayName: "{$Items.PhasePhone.DisplayName} (Home)"
-	/* Tooltip:
+	DisplayName: "{$Items.PhasePhone.DisplayName} (家)"
+	Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		Allows you to return home at will
+		允许你随意回家
 		{$Items.PhasePhone.TooltipBottom}
-		''' */
+		'''
 }
 
 PhasePhoneOcean: {
-	// DisplayName: "{$Items.PhasePhone.DisplayName} (Ocean)"
-	/* Tooltip:
+	DisplayName: "{$Items.PhasePhone.DisplayName} (海洋)"
+	Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		Allows you to travel to the ocean at will
+		允许你随意前往海洋
 		{$Items.PhasePhone.TooltipBottom}
-		''' */
+		'''
 }
 
 PhasePhoneSpawn: {
-	// DisplayName: "{$Items.PhasePhone.DisplayName} (Spawn)"
-	/* Tooltip:
+	DisplayName: "{$Items.PhasePhone.DisplayName} (出生点)"
+	Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		Allows you to return to spawn at will
+		允许你随意回到出生点
 		{$Items.PhasePhone.TooltipBottom}
-		''' */
+		'''
 }
 
 PhasePhoneUnderworld: {
-	// DisplayName: "{$Items.PhasePhone.DisplayName} (Underworld)"
-	/* Tooltip:
+	DisplayName: "{$Items.PhasePhone.DisplayName} (地狱)"
+	Tooltip:
 		'''
 		{$Items.PhasePhone.TooltipTop}
-		Allows you to travel to the underworld at will
+		允许你随意前往地狱
 		{$Items.PhasePhone.TooltipBottom}
-		''' */
+		'''
 }
 
 // Vanity
@@ -622,9 +622,6 @@ CrateBait: {
 }
 
 // Misc
-GlowLichen: {
-}
-
 VictorsReward: {
 	DisplayName: 胜者的奖励
 	Tooltip:
@@ -632,9 +629,6 @@ VictorsReward: {
 		永久性使你在重生时以满血复活
 		'给那些加倍努力的人!'
 		'''
-}
-
-CosmicChest: {
 }
 
 MoneyTrashcan: {
@@ -667,18 +661,9 @@ HeatFish: {
 	Tooltip: "'它干燥的鳞片放大了热强度'"
 }
 
-FrozenTechnology: {
-}
-
 BalloonKit: {
 	DisplayName: Zilla的气球装备
 	Tooltip: 允许你骑乘一颗热气球
-}
-
-ArtFragment: {
-}
-
-NecroFragment: {
 }
 
 ArgonArmorPolish: {

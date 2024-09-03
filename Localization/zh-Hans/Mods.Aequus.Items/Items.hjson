@@ -135,72 +135,6 @@ MagicKeychain: {
 		'''
 }
 
-FrozenTechnology: {
-	DisplayName: 霜冻科技
-	Tooltip: 用于制作信息小装置
-}
-
-GlowLichen: {
-	DisplayName: 发光苔藓
-	Tooltip: 掉落自长满苔藓的敌人
-}
-
-ArtFragment: {
-	DisplayName: 吸积碎片
-	Tooltip: "'燃烧的宇宙的热烈从此碎片内散发出来'"
-}
-
-NecroFragment: {
-	DisplayName: 脉冲风星云碎片
-	Tooltip: "'死亡粒子从此碎片内释放而出'"
-}
-
-PossessedShard: {
-	DisplayName: 附魔碎块
-	Tooltip: 掉落自附魔的盔甲和工具
-}
-
-AquaticEnergy: {
-	DisplayName: 海蓝能量
-	Tooltip: 巨蟹蛤所吸收, 曾居住于垃圾中的甲壳纲动物, 后臣服于一个强大的力量
-}
-
-AtmosphericEnergy: {
-	DisplayName: 天权能量
-	Tooltip: 沙尘恶魔所汲取, 疯狂的元素生物, 妄图拥有君临一切元素之上的力量
-}
-
-CosmicEnergy: {
-	DisplayName: 星宇能量
-	Tooltip: 终末之星所磨炼, 拥有生命的太阳系, 追求的乃是永恒的存续
-}
-
-DemonicEnergy: {
-	DisplayName: 恶魔能量
-	Tooltip: 暴乱者所操弄, 权倾一方的死灵法师, 向大地上的每一个角落散播生命的诅咒
-}
-
-// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
-OrganicEnergy: {
-	DisplayName: 自然能量
-	Tooltip: 世纪之花所孕育, 沉睡的守护者, 与被释放而出的力量之魂、视域之魂和恐惧之魂紧密相连
-}
-
-UltimateEnergy: {
-	DisplayName: 终极能量
-	Tooltip: 寰宇能量的和谐, 带来以太的力量!
-}
-
-MonoGem: {
-	DisplayName: 单项宝石
-	Tooltip: 具有超然属性
-}
-
-OmniGem: {
-	DisplayName: 全能宝石
-	Tooltip: 具有附魔属性
-}
-
 NoHitReward: {
 	DisplayName: 胜者的奖励
 	Tooltip:
@@ -234,30 +168,6 @@ BeyondManaCrystal: {
 NetherStar: {
 	DisplayName: 聚敛之心
 	Tooltip: "{$ItemTooltip.DemonHeart}"
-}
-
-CompressedTrash: {
-	DisplayName: 压缩垃圾
-	Tooltip: ""
-}
-
-BloodyTearstone: {
-	DisplayName: 血泪石
-	Tooltip: 源自流动的猩红之海
-}
-
-SoulGem: {
-	DisplayName: 空灵魂宝石
-	Tooltip: 无法使用, 直到其捕获敌人的灵魂
-}
-
-SoulGemFilled: {
-	DisplayName: 灵魂宝石
-	Tooltip:
-		'''
-		用于制造死灵装备
-		由一位黑暗艺术大师出售
-		'''
 }
 
 GalacticStarfruit: {
