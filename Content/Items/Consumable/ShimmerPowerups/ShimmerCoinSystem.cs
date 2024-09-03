@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Aequus.Content.Items.Consumable.ShimmerPowerups;
+using System.IO;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Items.Misc.PermanentUpgrades;

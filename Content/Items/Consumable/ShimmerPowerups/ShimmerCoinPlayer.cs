@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Content.Items.Consumable.ShimmerPowerups;
+using System;
 
 namespace Aequus.Items.Misc.PermanentUpgrades;
 

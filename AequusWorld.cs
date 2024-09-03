@@ -201,7 +201,7 @@ public partial class AequusWorld : ModSystem {
     public static int GetTinkererRerollCount() {
         int amount = 0;
         if (UsedTinkererBook) {
-            amount = Items.Misc.PermanentUpgrades.TinkerersGuidebook.RerollCount;
+            amount = global::Aequus.Content.Items.Consumable.ShimmerPowerups.TinkerersGuidebook.RerollCount;
         }
         Items.Misc.PermanentUpgrades.ShimmerCoinPlayer.TinkererRerolls(ref amount);
         return amount;

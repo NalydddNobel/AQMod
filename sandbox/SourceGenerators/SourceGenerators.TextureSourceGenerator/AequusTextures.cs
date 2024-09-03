@@ -623,12 +623,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowHelmet = new("Content/Items/Armor/Meadow/MeadowHelmet");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet_Head</summary>
     public static readonly RequestCache<Texture2D> MeadowHelmet_Head = new("Content/Items/Armor/Meadow/MeadowHelmet_Head");
+    /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
+    public static readonly RequestCache<Texture2D> CosmicChest = new("Content/Items/Consumable/ShimmerPowerups/CosmicChest");
+    /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/ShimmerCoin</summary>
+    public static readonly RequestCache<Texture2D> ShimmerCoin = new("Content/Items/Consumable/ShimmerPowerups/ShimmerCoin");
+    /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/TinkerersGuidebook</summary>
+    public static readonly RequestCache<Texture2D> TinkerersGuidebook = new("Content/Items/Consumable/ShimmerPowerups/TinkerersGuidebook");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
     public static readonly RequestCache<Texture2D> Meathook = new("Content/Items/GrapplingHooks/Meathook/Meathook");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj</summary>
     public static readonly RequestCache<Texture2D> MeathookProj = new("Content/Items/GrapplingHooks/Meathook/MeathookProj");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj_Chain</summary>
     public static readonly RequestCache<Texture2D> MeathookProj_Chain = new("Content/Items/GrapplingHooks/Meathook/MeathookProj_Chain");
+    /// <summary>Full Path: Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin</summary>
+    public static readonly RequestCache<Texture2D> BeyondPlatinumCoin = new("Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin");
+    /// <summary>Full Path: Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin_World</summary>
+    public static readonly RequestCache<Texture2D> BeyondPlatinumCoin_World = new("Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin_World");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
     public static readonly RequestCache<Texture2D> MonoGem = new("Content/Items/Materials/MonoGem/MonoGem");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
@@ -1379,10 +1389,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SoulGem = new("Items/Materials/SoulGem/SoulGem");
     /// <summary>Full Path: Items/Materials/SoulGem/SoulGemTile</summary>
     public static readonly RequestCache<Texture2D> SoulGemTile = new("Items/Materials/SoulGem/SoulGemTile");
-    /// <summary>Full Path: Items/Misc/BeyondCoin/BeyondPlatinumCoin</summary>
-    public static readonly RequestCache<Texture2D> BeyondPlatinumCoin = new("Items/Misc/BeyondCoin/BeyondPlatinumCoin");
-    /// <summary>Full Path: Items/Misc/BeyondCoin/BeyondPlatinumCoin_World</summary>
-    public static readonly RequestCache<Texture2D> BeyondPlatinumCoin_World = new("Items/Misc/BeyondCoin/BeyondPlatinumCoin_World");
     /// <summary>Full Path: Items/Misc/CarpenterResetSheet</summary>
     public static readonly RequestCache<Texture2D> CarpenterResetSheet = new("Items/Misc/CarpenterResetSheet");
     /// <summary>Full Path: Items/Misc/Dyes/AncientHellBeamDye</summary>
@@ -1493,16 +1499,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Items/Misc/GrabBags/TreasureBags/OmegaStariteBag");
     /// <summary>Full Path: Items/Misc/PalePufferfish</summary>
     public static readonly RequestCache<Texture2D> PalePufferfish = new("Items/Misc/PalePufferfish");
-    /// <summary>Full Path: Items/Misc/PermanentUpgrades/CosmicChest</summary>
-    public static readonly RequestCache<Texture2D> CosmicChest = new("Items/Misc/PermanentUpgrades/CosmicChest");
     /// <summary>Full Path: Items/Misc/PermanentUpgrades/MoneyTrashcan</summary>
     public static readonly RequestCache<Texture2D> MoneyTrashcan = new("Items/Misc/PermanentUpgrades/MoneyTrashcan");
     /// <summary>Full Path: Items/Misc/PermanentUpgrades/MoneyTrashcan_UI</summary>
     public static readonly RequestCache<Texture2D> MoneyTrashcan_UI = new("Items/Misc/PermanentUpgrades/MoneyTrashcan_UI");
-    /// <summary>Full Path: Items/Misc/PermanentUpgrades/ShimmerCoin</summary>
-    public static readonly RequestCache<Texture2D> ShimmerCoin = new("Items/Misc/PermanentUpgrades/ShimmerCoin");
-    /// <summary>Full Path: Items/Misc/PermanentUpgrades/TinkerersGuidebook</summary>
-    public static readonly RequestCache<Texture2D> TinkerersGuidebook = new("Items/Misc/PermanentUpgrades/TinkerersGuidebook");
     /// <summary>Full Path: Items/Misc/PermanentUpgrades/VictorsReward</summary>
     public static readonly RequestCache<Texture2D> VictorsReward = new("Items/Misc/PermanentUpgrades/VictorsReward");
     /// <summary>Full Path: Items/Misc/Powders/ChlorophytePowder</summary>

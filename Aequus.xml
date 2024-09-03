@@ -3163,6 +3163,15 @@
         <member name="F:Aequus.AequusTextures.MeadowHelmet_Head">
             <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet_Head</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CosmicChest">
+            <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerCoin">
+            <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/ShimmerCoin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
+            <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/TinkerersGuidebook</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Meathook">
             <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
         </member>
@@ -3171,6 +3180,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeathookProj_Chain">
             <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj_Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondPlatinumCoin">
+            <summary>Full Path: Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondPlatinumCoin_World">
+            <summary>Full Path: Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin_World</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonoGem">
             <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
@@ -4297,12 +4312,6 @@
         <member name="F:Aequus.AequusTextures.SoulGemTile">
             <summary>Full Path: Items/Materials/SoulGem/SoulGemTile</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BeyondPlatinumCoin">
-            <summary>Full Path: Items/Misc/BeyondCoin/BeyondPlatinumCoin</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BeyondPlatinumCoin_World">
-            <summary>Full Path: Items/Misc/BeyondCoin/BeyondPlatinumCoin_World</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CarpenterResetSheet">
             <summary>Full Path: Items/Misc/CarpenterResetSheet</summary>
         </member>
@@ -4468,20 +4477,11 @@
         <member name="F:Aequus.AequusTextures.PalePufferfish">
             <summary>Full Path: Items/Misc/PalePufferfish</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CosmicChest">
-            <summary>Full Path: Items/Misc/PermanentUpgrades/CosmicChest</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.MoneyTrashcan">
             <summary>Full Path: Items/Misc/PermanentUpgrades/MoneyTrashcan</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoneyTrashcan_UI">
             <summary>Full Path: Items/Misc/PermanentUpgrades/MoneyTrashcan_UI</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerCoin">
-            <summary>Full Path: Items/Misc/PermanentUpgrades/ShimmerCoin</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
-            <summary>Full Path: Items/Misc/PermanentUpgrades/TinkerersGuidebook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VictorsReward">
             <summary>Full Path: Items/Misc/PermanentUpgrades/VictorsReward</summary>
@@ -6358,6 +6358,32 @@
             Used for darken-ing the sky for flashy visual effects
             </summary>
         </member>
+        <member name="M:Aequus.Items.Misc.FishingBait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
+            <summary>
+            
+            </summary>
+            <param name="attempt"></param>
+            <param name="itemDrop"></param>
+            <param name="npcSpawn"></param>
+            <param name="sonar"></param>
+            <param name="sonarPosition"></param>
+            <returns>Return false to prevent Aequus from running fish checks.</returns>
+        </member>
+        <member name="M:Aequus.Items.Misc.FishingBait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="player"></param>
+            <param name="fish"></param>
+        </member>
+        <member name="M:Aequus.Items.Misc.FishingBait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <summary>
+            
+            </summary>
+            <param name="bobber"></param>
+            <param name="fisher"></param>
+            <returns>Return false to prevent vanilla rolling fish</returns>
+        </member>
         <member name="F:Aequus.Items.Equipment.Accessories.Combat.CriticalStrike.HighSteaks.NotStackableCritDamage">
             <summary>
             Default Value: 0.15
@@ -6482,32 +6508,6 @@
             <summary>
             Applied by <see cref="T:Aequus.Items.Equipment.PetsVanity.SwagEye.SwagLookingEye"/>
             </summary>
-        </member>
-        <member name="M:Aequus.Items.Misc.FishingBait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
-            <summary>
-            
-            </summary>
-            <param name="attempt"></param>
-            <param name="itemDrop"></param>
-            <param name="npcSpawn"></param>
-            <param name="sonar"></param>
-            <param name="sonarPosition"></param>
-            <returns>Return false to prevent Aequus from running fish checks.</returns>
-        </member>
-        <member name="M:Aequus.Items.Misc.FishingBait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="player"></param>
-            <param name="fish"></param>
-        </member>
-        <member name="M:Aequus.Items.Misc.FishingBait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
-            <summary>
-            
-            </summary>
-            <param name="bobber"></param>
-            <param name="fisher"></param>
-            <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
         <member name="P:Aequus.Items.Tools.Cameras.MapCamera.PixelCameraProj.PhotoState">
             <summary>

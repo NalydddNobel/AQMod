@@ -1,4 +1,6 @@
-﻿namespace Aequus.Items.Misc.PermanentUpgrades;
+﻿using Aequus.Content.Items.Consumable.ShimmerPowerups;
+
+namespace Aequus.Items.Misc.PermanentUpgrades;
 
 public class ShimmerCoinNPC : GlobalNPC {
     // Combat Techniques Volume Two

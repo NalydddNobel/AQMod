@@ -1,10 +1,10 @@
 ﻿using Aequus;
 using Aequus.Common.Items.Dedications;
-using Aequus.Items.Misc.PermanentUpgrades;
+using Aequus.Content.Items.Consumable.ShimmerPowerups;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Items.Misc.BeyondCoin;
+namespace Aequus.Content.Items.Materials.BeyondCoin;
 
 public class BeyondPlatinumCoin : ModItem {
     public override void SetDefaults() {

@@ -3,7 +3,7 @@ using Aequus.Common.Items;
 using Aequus.Common.Recipes;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 
-namespace Aequus.Items.Misc.PermanentUpgrades;
+namespace Aequus.Content.Items.Consumable.ShimmerPowerups;
 
 public class CosmicChest : ModItem {
     public static readonly float DropRerolls = 0.05f;

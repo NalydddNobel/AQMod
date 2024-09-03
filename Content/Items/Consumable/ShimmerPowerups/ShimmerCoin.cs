@@ -1,11 +1,11 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Dedications;
 using Aequus.Common.Recipes;
-using Aequus.Items.Misc.BeyondCoin;
+using Aequus.Content.Items.Materials.BeyondCoin;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Items.Misc.PermanentUpgrades;
+namespace Aequus.Content.Items.Consumable.ShimmerPowerups;
 
 public class ShimmerCoin : ModItem {
     public static int TimesUsed { get; set; }

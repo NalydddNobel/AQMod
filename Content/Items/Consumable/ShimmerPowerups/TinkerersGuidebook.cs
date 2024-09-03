@@ -2,7 +2,8 @@
 using Aequus.Common.Items;
 using Aequus.Common.Recipes;
 
-namespace Aequus.Items.Misc.PermanentUpgrades;
+namespace Aequus.Content.Items.Consumable.ShimmerPowerups;
+
 public class TinkerersGuidebook : ModItem {
     public static readonly int RerollCount = 3;
 
