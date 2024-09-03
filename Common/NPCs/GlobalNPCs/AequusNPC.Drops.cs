@@ -7,7 +7,6 @@ using Aequus.Items.Equipment.Accessories.Combat;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Materials.PossessedShard;
 using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;
 using Aequus.Items.Weapons.Melee.Misc.SickBeat;
@@ -68,15 +67,6 @@ public partial class AequusNPC {
             case NPCID.DarkCaster: {
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BoneRing>(), 15));
                 }
-                break;
-
-            case NPCID.CursedHammer:
-            case NPCID.CrimsonAxe:
-                npcLoot.Add(new PossessedShardDropRule(1, min: 2, max: 3));
-                break;
-
-            case NPCID.PossessedArmor:
-                npcLoot.Add(new PossessedShardDropRule(2));
                 break;
 
             case NPCID.EyeofCthulhu: {

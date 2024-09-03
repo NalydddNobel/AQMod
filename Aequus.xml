@@ -3205,6 +3205,9 @@
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PossessedShard">
+            <summary>Full Path: Content/Items/Materials/PossessedShard/PossessedShard</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SentryPotion">
             <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotion</summary>
         </member>
@@ -4302,9 +4305,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.NecroFragment">
             <summary>Full Path: Items/Materials/PillarFragments/NecroFragment</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PossessedShard">
-            <summary>Full Path: Items/Materials/PossessedShard/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>Full Path: Items/Materials/SoulGem/SoulGem</summary>

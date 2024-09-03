@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.PossessedShard;
+namespace Aequus.Content.Items.Materials.PossessedShard;
 
 public class PossessedShardDropRule : IItemDropRule {
     public int chanceDenominator;
@@ -38,9 +36,9 @@ public class PossessedShardDropRule : IItemDropRule {
             var hitbox = info.npc != null ? info.npc.Hitbox : info.player.Hitbox;
             var source = info.npc != null ? info.npc.GetSource_Loot() : info.player.GetSource_OpenItem(info.item);
             int amount = info.rng.Next(amountDroppedMinimum, amountDroppedMaximum + 1);
-            for (int i = 0; i < amount; i++) {
-                NPC.NewNPC(source, hitbox.X + Main.rand.Next(hitbox.Width), hitbox.Y + Main.rand.Next(hitbox.Height), ModContent.NPCType<PossessedShardNPC>());
-            }
+
+            CommonCode.DropItem(info, ModContent.ItemType<PossessedShard>(), amount);
+
             result = default(ItemDropAttemptResult);
             result.State = ItemDropAttemptResultState.Success;
             return result;

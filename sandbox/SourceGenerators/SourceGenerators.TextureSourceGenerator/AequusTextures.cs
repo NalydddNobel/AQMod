@@ -651,6 +651,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Content/Items/Materials/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Content/Items/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Content/Items/Materials/PossessedShard/PossessedShard</summary>
+    public static readonly RequestCache<Texture2D> PossessedShard = new("Content/Items/Materials/PossessedShard/PossessedShard");
     /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotion</summary>
     public static readonly RequestCache<Texture2D> SentryPotion = new("Content/Items/Potions/Buff/Sentry/SentryPotion");
     /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
@@ -1383,8 +1385,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ArtFragment = new("Items/Materials/PillarFragments/ArtFragment");
     /// <summary>Full Path: Items/Materials/PillarFragments/NecroFragment</summary>
     public static readonly RequestCache<Texture2D> NecroFragment = new("Items/Materials/PillarFragments/NecroFragment");
-    /// <summary>Full Path: Items/Materials/PossessedShard/PossessedShard</summary>
-    public static readonly RequestCache<Texture2D> PossessedShard = new("Items/Materials/PossessedShard/PossessedShard");
     /// <summary>Full Path: Items/Materials/SoulGem/SoulGem</summary>
     public static readonly RequestCache<Texture2D> SoulGem = new("Items/Materials/SoulGem/SoulGem");
     /// <summary>Full Path: Items/Materials/SoulGem/SoulGemTile</summary>

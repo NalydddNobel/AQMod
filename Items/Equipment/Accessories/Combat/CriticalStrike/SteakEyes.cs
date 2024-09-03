@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Recipes;
-using Aequus.Items.Materials.PossessedShard;
+using Aequus.Content.Items.Materials.PossessedShard;
 using System;
 using Terraria;
 using Terraria.ID;

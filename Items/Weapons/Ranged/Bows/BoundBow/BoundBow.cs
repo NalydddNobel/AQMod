@@ -3,7 +3,7 @@ using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Items;
 using Aequus.Common.Particles;
 using Aequus.Common.UI;
-using Aequus.Items.Materials.PossessedShard;
+using Aequus.Content.Items.Materials.PossessedShard;
 using Aequus.Items.Weapons.Ranged.Bows.BoundBow;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

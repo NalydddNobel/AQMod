@@ -1,10 +1,12 @@
-﻿using Aequus.Common.Graphics.Primitives;
+﻿using Aequus;
+using Aequus.Common.Graphics.Primitives;
 using Aequus.Systems.Renaming;
 using System;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Items.Materials.PossessedShard;
+namespace Aequus.Content.Items.Materials.PossessedShard;
 
 public class PossessedShardNPC : ModNPC {
     public TrailRenderer trail;
@@ -19,6 +21,9 @@ public class PossessedShardNPC : ModNPC {
             Hide = true,
         };
         NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
+        NPCID.Sets.RespawnEnemyID[Type] = 0;
+        NPCID.Sets.CantTakeLunchMoney[Type] = true;
+        NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[Type] = true;
     }
 
     public override void SetDefaults() {
@@ -207,32 +212,8 @@ public class PossessedShardNPC : ModNPC {
                 break;
         }
 
-        float grabRange = Player.defaultItemGrabRange * (NPC.ai[0] == 1 ? 3f : 1f);
-        Item giveItem = new Item(ModContent.ItemType<PossessedShard>());
-        if (giveItem.TryGetGlobalItem(out RenameItem renameItem) && NPC.TryGetGlobalNPC(out RenameNPC nameTagNPC)) {
-            renameItem.CustomName = nameTagNPC.CustomName;
-        }
-        for (int i = 0; i < Main.maxPlayers; i++) {
-            if (!Main.player[i].active || Main.player[i].dead || !Main.player[i].ItemSpace(giveItem).CanTakeItem) {
-                continue;
-            }
-
-            float distance = NPC.Distance(Main.player[i].Center);
-            if (distance < 32f) {
-                if (Main.netMode != NetmodeID.MultiplayerClient) {
-                    NPC.active = false;
-                    Item.NewItem(NPC.GetSource_FromThis(), Main.player[i].Center, giveItem);
-                }
-                return;
-            }
-            if (distance > grabRange) {
-                continue;
-            }
-
-            NPC.noGravity = true;
-            NPC.netUpdate = true;
-            NPC.velocity += NPC.DirectionTo(Main.player[i]) * 2f;
-            break;
+        if (!NPC.SpawnedFromStatue && TryGrabbing()) {
+            return;
         }
 
         if (NPC.ai[2] > 0f) {
@@ -255,10 +236,45 @@ public class PossessedShardNPC : ModNPC {
         }
     }
 
+    bool TryGrabbing() {
+        float grabRange = Player.defaultItemGrabRange * (NPC.ai[0] == 1 ? 3f : 1f);
+        Item giveItem = new Item(ModContent.ItemType<PossessedShard>());
+        if (giveItem.TryGetGlobalItem(out RenameItem renameItem) && NPC.TryGetGlobalNPC(out RenameNPC nameTagNPC)) {
+            renameItem.CustomName = nameTagNPC.CustomName;
+        }
+        foreach (Player target in Main.ActivePlayers) {
+            if (target.DeadOrGhost || !target.ItemSpace(giveItem).CanTakeItem) {
+                continue;
+            }
+
+            float distance = NPC.Distance(target.Center);
+            if (distance < 32f) {
+                if (Main.netMode != NetmodeID.MultiplayerClient) {
+                    NPC.active = false;
+
+                    IEntitySource source = NPC.GetSource_FromThis();
+                    Item.NewItem(source, target.Center, giveItem);
+                }
+                return true;
+            }
+            if (distance > grabRange) {
+                continue;
+            }
+
+            NPC.noGravity = true;
+            NPC.netUpdate = true;
+            NPC.velocity += NPC.DirectionTo(target) * 2f;
+            break;
+        }
+
+        return false;
+    }
+
     public override bool CheckDead() {
-        if (NPC.ai[0] == 1) {
+        if (NPC.ai[0] == 1 || NPC.SpawnedFromStatue) {
             return true;
         }
+
         NPC.ai[0] = 1f;
         NPC.dontTakeDamage = true;
         NPC.life = NPC.lifeMax / 2;

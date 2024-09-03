@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Recipes;
-using Aequus.Items.Materials.PossessedShard;
+using Aequus.Content.Items.Materials.PossessedShard;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
