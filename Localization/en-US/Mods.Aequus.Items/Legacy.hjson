@@ -967,15 +967,6 @@ Sentry6502: {
 		'''
 }
 
-BloodiedBucket: {
-	DisplayName: Bloodied Bucket
-	Tooltip:
-		'''
-		Increases the duration of your ghost minions by 1 minute
-		'I know your type: tall, dark, and dead'
-		'''
-}
-
 RitualisticSkull: {
 	DisplayName: Ritualistic Skull
 	Tooltip: Converts all but one of your minion slots into ghost slots
