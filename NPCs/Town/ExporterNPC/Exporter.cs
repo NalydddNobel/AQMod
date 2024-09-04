@@ -302,7 +302,6 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
     public override void DrawTownAttackSwing(ref Texture2D item, ref Rectangle itemFrame, ref int itemSize, ref float scale, ref Vector2 offset) {
         item = TextureAssets.Item[ModContent.ItemType<AncientCutlass>()].Value;
         itemSize = 40;
-        scale = 0.5f;
         offset = new Vector2(0f, 0f);
     }
 
