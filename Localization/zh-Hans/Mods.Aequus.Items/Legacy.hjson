@@ -622,9 +622,6 @@ CrateBait: {
 }
 
 // Misc
-GlowLichen: {
-}
-
 VictorsReward: {
 	DisplayName: 胜者的奖励
 	Tooltip:
@@ -632,9 +629,6 @@ VictorsReward: {
 		永久性使你在重生时以满血复活
 		'给那些加倍努力的人!'
 		'''
-}
-
-CosmicChest: {
 }
 
 MoneyTrashcan: {
@@ -667,18 +661,9 @@ HeatFish: {
 	Tooltip: "'它干燥的鳞片放大了热强度'"
 }
 
-FrozenTechnology: {
-}
-
 BalloonKit: {
 	DisplayName: Zilla的气球装备
 	Tooltip: 允许你骑乘一颗热气球
-}
-
-ArtFragment: {
-}
-
-NecroFragment: {
 }
 
 ArgonArmorPolish: {
@@ -979,15 +964,6 @@ Sentry6502: {
 		'''
 		哨兵会装备你的饰品
 		可用的饰品栏位会有一个特殊的图案
-		'''
-}
-
-BloodiedBucket: {
-	DisplayName: 血污桶
-	Tooltip:
-		'''
-		延长1分钟幽魂仆从的存在时间
-		'我知道你的成分: 高大、暗黑以及是死的'
 		'''
 }
 

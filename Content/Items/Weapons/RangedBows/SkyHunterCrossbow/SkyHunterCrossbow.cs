@@ -7,7 +7,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+namespace Aequus.Content.Items.Weapons.RangedBows.SkyHunterCrossbow;
 
 public class SkyHunterCrossbow : ModItem, IManageProjectile {
     public static int ItemPickupHitSquareSize { get; set; } = 64;

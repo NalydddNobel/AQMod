@@ -44,8 +44,4 @@
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 			
-  <ItemGroup>
-    <None Remove="Localization\en-US\Mods.Aequus.Items\Materials.hjson" />
-  </ItemGroup>
-			
 </Project>

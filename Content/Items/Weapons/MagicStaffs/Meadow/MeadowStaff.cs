@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Weapons.Magic.MeadowStaff;
+namespace Aequus.Content.Items.Weapons.MagicStaffs.Meadow;
 
 public class MeadowStaff : ModItem, IHaveCrossedOutIndicator {
     public override void SetStaticDefaults() {
@@ -32,24 +32,9 @@ public class MeadowStaff : ModItem, IHaveCrossedOutIndicator {
 
     public override bool CanUseItem(Player player) {
         return true;
-        return !player.manaSick;
     }
 
-    //public override bool AltFunctionUse(Player player) {
-    //    return player.statMana > 1;
-    //}
-
-    //public override bool? UseItem(Player player) {
-
-    //    return base.UseItem(player);
-    //}
-
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-        //int mana = player.statMana;
-        //if (player.altFunctionUse == 2 && player.CheckMana(mana, pay: true)) {
-        //    Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<MeadowStaffLaser>(), damage, knockback, player.whoAmI, ai0: mana);
-        //    return false;
-        //}
         return true;
     }
 

@@ -2,7 +2,7 @@
 using System;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Items.Weapons.Magic.Furystar;
+namespace Aequus.Content.Items.Weapons.MagicStaffs.Furystar;
 
 public class FurystarProj : HeldProjBase {
     public override string Texture => ModContent.GetInstance<Furystar>().Texture;

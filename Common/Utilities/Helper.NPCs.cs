@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Buffs;
-using Aequus.NPCs;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;

@@ -2,7 +2,7 @@
 using Aequus.Common.NPCs;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
-using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using Aequus.Content.Items.Weapons.RangedBows.SkyHunterCrossbow;
 using Aequus.Content.Villagers.SkyMerchant.UI;
 using Aequus.NPCs;
 using Aequus.NPCs.Town;

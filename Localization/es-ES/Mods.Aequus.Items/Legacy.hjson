@@ -626,9 +626,6 @@ CrateBait: {
 }
 
 // Misc
-GlowLichen: {
-}
-
 VictorsReward: {
 	// DisplayName: Victor's Reward
 	/* Tooltip:
@@ -636,9 +633,6 @@ VictorsReward: {
 		Permanently allows you to respawn at maximum life
 		'Granted to the ones who go the extra mile!'
 		''' */
-}
-
-CosmicChest: {
 }
 
 MoneyTrashcan: {
@@ -671,18 +665,9 @@ HeatFish: {
 	// Tooltip: "'Its dried scales magnify the intensity of heat'"
 }
 
-FrozenTechnology: {
-}
-
 BalloonKit: {
 	// DisplayName: Zilla's Balloon Kit
 	// Tooltip: Allows you to ride a hot air balloon
-}
-
-ArtFragment: {
-}
-
-NecroFragment: {
 }
 
 ArgonArmorPolish: {
@@ -983,15 +968,6 @@ Sentry6502: {
 		'''
 		Sentries equip your accessories
 		Usable accessory slots are marked with a special decal
-		''' */
-}
-
-BloodiedBucket: {
-	// DisplayName: Bloodied Bucket
-	/* Tooltip:
-		'''
-		Increases the duration of your ghost minions by 1 minute
-		'I know your type: tall, dark, and dead'
 		''' */
 }
 

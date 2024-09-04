@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1368)</summary>
+/// <summary>(Total Textures: 1376)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -685,22 +685,44 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
     public static readonly RequestCache<Texture2D> StunGun = new("Content/Items/Weapons/Classless/StunGun/StunGun");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
-    public static readonly RequestCache<Texture2D> Furystar = new("Content/Items/Weapons/Magic/Furystar/Furystar");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
-    public static readonly RequestCache<Texture2D> MeadowStaff = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffLaser</summary>
-    public static readonly RequestCache<Texture2D> MeadowStaffLaser = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffLaser");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffProj</summary>
-    public static readonly RequestCache<Texture2D> MeadowStaffProj = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffProj");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
-    public static readonly RequestCache<Texture2D> MeadowBow = new("Content/Items/Weapons/Ranged/MeadowBow/MeadowBow");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
-    public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
-    public static readonly RequestCache<Texture2D> SkyHunterCrossbowChain = new("Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain");
-    /// <summary>Full Path: Content/Items/Weapons/Summon/MeadowSentry/MeadowSentryStaff</summary>
-    public static readonly RequestCache<Texture2D> MeadowSentryStaff = new("Content/Items/Weapons/Summon/MeadowSentry/MeadowSentryStaff");
+    /// <summary>Full Path: Content/Items/Weapons/MagicStaffs/Furystar/Furystar</summary>
+    public static readonly RequestCache<Texture2D> Furystar = new("Content/Items/Weapons/MagicStaffs/Furystar/Furystar");
+    /// <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaff</summary>
+    public static readonly RequestCache<Texture2D> MeadowStaff = new("Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaff");
+    /// <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffLaser</summary>
+    public static readonly RequestCache<Texture2D> MeadowStaffLaser = new("Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffLaser");
+    /// <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffProj</summary>
+    public static readonly RequestCache<Texture2D> MeadowStaffProj = new("Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffProj");
+    /// <summary>Full Path: Content/Items/Weapons/MeleeSwords/AncientCutlass/AncientCutlass</summary>
+    public static readonly RequestCache<Texture2D> AncientCutlass = new("Content/Items/Weapons/MeleeSwords/AncientCutlass/AncientCutlass");
+    /// <summary>Full Path: Content/Items/Weapons/RangedAmmo/PlasticDart</summary>
+    public static readonly RequestCache<Texture2D> PlasticDart = new("Content/Items/Weapons/RangedAmmo/PlasticDart");
+    /// <summary>Full Path: Content/Items/Weapons/RangedAmmo/PlasticDart_Outline</summary>
+    public static readonly RequestCache<Texture2D> PlasticDart_Outline = new("Content/Items/Weapons/RangedAmmo/PlasticDart_Outline");
+    /// <summary>Full Path: Content/Items/Weapons/RangedBows/Meadow/MeadowBow</summary>
+    public static readonly RequestCache<Texture2D> MeadowBow = new("Content/Items/Weapons/RangedBows/Meadow/MeadowBow");
+    /// <summary>Full Path: Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+    public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbow");
+    /// <summary>Full Path: Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
+    public static readonly RequestCache<Texture2D> SkyHunterCrossbowChain = new("Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbowChain");
+    /// <summary>Full Path: Content/Items/Weapons/RangedMisc/GasCan</summary>
+    public static readonly RequestCache<Texture2D> GasCan = new("Content/Items/Weapons/RangedMisc/GasCan");
+    /// <summary>Full Path: Content/Items/Weapons/SummonSentries/Meadow/MeadowSentryStaff</summary>
+    public static readonly RequestCache<Texture2D> MeadowSentryStaff = new("Content/Items/Weapons/SummonSentries/Meadow/MeadowSentryStaff");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourge</summary>
+    public static readonly RequestCache<Texture2D> DemonSoulscourge = new("Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourge");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourgeProj</summary>
+    public static readonly RequestCache<Texture2D> DemonSoulscourgeProj = new("Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourgeProj");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/DemonVasculash</summary>
+    public static readonly RequestCache<Texture2D> DemonVasculash = new("Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/DemonVasculash");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/DemonVasculashProj</summary>
+    public static readonly RequestCache<Texture2D> DemonVasculashProj = new("Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/DemonVasculashProj");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/VasculashTagProj</summary>
+    public static readonly RequestCache<Texture2D> VasculashTagProj = new("Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/VasculashTagProj");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/EekWhip/ElectricEelWhip</summary>
+    public static readonly RequestCache<Texture2D> ElectricEelWhip = new("Content/Items/Weapons/SummonWhips/EekWhip/ElectricEelWhip");
+    /// <summary>Full Path: Content/Items/Weapons/SummonWhips/EekWhip/ElectricEelWhipProj</summary>
+    public static readonly RequestCache<Texture2D> ElectricEelWhipProj = new("Content/Items/Weapons/SummonWhips/EekWhip/ElectricEelWhipProj");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
@@ -1867,12 +1889,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StariteStaff = new("Items/Weapons/Summon/StariteMinion/StariteStaff");
     /// <summary>Full Path: Items/Weapons/Summon/StariteMinion/StariteStaff_Glow</summary>
     public static readonly RequestCache<Texture2D> StariteStaff_Glow = new("Items/Weapons/Summon/StariteMinion/StariteStaff_Glow");
-    /// <summary>Full Path: Items/Weapons/Whips/CorruptionDemonWhip</summary>
-    public static readonly RequestCache<Texture2D> CorruptionDemonWhip = new("Items/Weapons/Whips/CorruptionDemonWhip");
-    /// <summary>Full Path: Items/Weapons/Whips/CrimsonDemonWhip</summary>
-    public static readonly RequestCache<Texture2D> CrimsonDemonWhip = new("Items/Weapons/Whips/CrimsonDemonWhip");
-    /// <summary>Full Path: Items/Weapons/Whips/DemonWhip</summary>
-    public static readonly RequestCache<Texture2D> DemonWhip = new("Items/Weapons/Whips/DemonWhip");
     /// <summary>Full Path: Items/Weapons/YharexScythe</summary>
     public static readonly RequestCache<Texture2D> YharexScythe = new("Items/Weapons/YharexScythe");
     /// <summary>Full Path: NPCs/BossMonsters/Crabson/Crabson</summary>

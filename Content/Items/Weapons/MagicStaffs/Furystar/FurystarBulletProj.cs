@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Items.Weapons.Magic.Furystar;
+namespace Aequus.Content.Items.Weapons.MagicStaffs.Furystar;
 
 public class FurystarBulletProj : ModProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.Starfury);

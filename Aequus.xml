@@ -1824,6 +1824,28 @@
         <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.Get(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
             <returns>The Light Color at a specified world coordinate.</returns>
         </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LootUtils.GetDropAttemptInfo(Terraria.NPC,Terraria.Player,Terraria.Utilities.UnifiedRandom)">
+            <param name="npc"></param>
+            <param name="player"></param>
+            <param name="rng">RNG Override. Defaults to <see cref="P:Terraria.Main.rand"/> when null.</param>
+            <returns>A <see cref="T:Terraria.GameContent.ItemDropRules.DropAttemptInfo"/> value for the current NPC.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LootUtils.InheritDropRules(System.Int32,System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+            <summary>Inherits all of the Drop Rules from a specified NPC Id. (<paramref name="parentNPCId"/>)</summary>
+            <param name="parentNPCId">The NPC Id to take the Drop Rules from.</param>
+            <param name="childNPCId">The NPC Id to give the Drop Rules to.</param>
+            <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LootUtils.GetNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+            <summary>Gets an <see cref="T:Terraria.ModLoader.NPCLoot"/> from an NPC Id.</summary>
+            <param name="npcId">The NPC Id.</param>
+            <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LootUtils.GetDropRules(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+            <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
+            <param name="npcId">The NPC Id.</param>
+            <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
@@ -2237,7 +2259,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1368)</summary>
+            <summary>(Total Textures: 1376)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3257,28 +3279,61 @@
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Furystar">
-            <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+            <summary>Full Path: Content/Items/Weapons/MagicStaffs/Furystar/Furystar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowStaff">
-            <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
+            <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowStaffLaser">
-            <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffLaser</summary>
+            <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffLaser</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowStaffProj">
-            <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaffProj</summary>
+            <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientCutlass">
+            <summary>Full Path: Content/Items/Weapons/MeleeSwords/AncientCutlass/AncientCutlass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlasticDart">
+            <summary>Full Path: Content/Items/Weapons/RangedAmmo/PlasticDart</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlasticDart_Outline">
+            <summary>Full Path: Content/Items/Weapons/RangedAmmo/PlasticDart_Outline</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowBow">
-            <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
+            <summary>Full Path: Content/Items/Weapons/RangedBows/Meadow/MeadowBow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
-            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+            <summary>Full Path: Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbowChain">
-            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
+            <summary>Full Path: Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GasCan">
+            <summary>Full Path: Content/Items/Weapons/RangedMisc/GasCan</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowSentryStaff">
-            <summary>Full Path: Content/Items/Weapons/Summon/MeadowSentry/MeadowSentryStaff</summary>
+            <summary>Full Path: Content/Items/Weapons/SummonSentries/Meadow/MeadowSentryStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSoulscourge">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourge</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSoulscourgeProj">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourgeProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonVasculash">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/DemonVasculash</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonVasculashProj">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/DemonVasculashProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VasculashTagProj">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCrimsonWhip/VasculashTagProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElectricEelWhip">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/EekWhip/ElectricEelWhip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElectricEelWhipProj">
+            <summary>Full Path: Content/Items/Weapons/SummonWhips/EekWhip/ElectricEelWhipProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
@@ -5028,15 +5083,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.StariteStaff_Glow">
             <summary>Full Path: Items/Weapons/Summon/StariteMinion/StariteStaff_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CorruptionDemonWhip">
-            <summary>Full Path: Items/Weapons/Whips/CorruptionDemonWhip</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonDemonWhip">
-            <summary>Full Path: Items/Weapons/Whips/CrimsonDemonWhip</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonWhip">
-            <summary>Full Path: Items/Weapons/Whips/DemonWhip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YharexScythe">
             <summary>Full Path: Items/Weapons/YharexScythe</summary>

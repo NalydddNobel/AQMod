@@ -1,0 +1,89 @@
+FrozenTechnology: {
+	DisplayName: Tecnología Congelada
+	Tooltip: Usado para crear aparatos informacionales
+}
+
+GlowLichen: {
+	DisplayName: Liquen Brillante
+	Tooltip: Dejado caer por enemigos musgosos
+}
+
+PossessedShard: {
+	DisplayName: Fragmento Poseído
+	Tooltip: Dejado caer por Armaduras y Herramientas poseídas
+}
+
+AquaticEnergy: {
+	DisplayName: Energía Acuática
+	Tooltip: ""
+}
+
+AtmosphericEnergy: {
+	DisplayName: Energía Atmosférica
+	Tooltip: ""
+}
+
+CosmicEnergy: {
+	DisplayName: Energía Cósmica
+	Tooltip: ""
+}
+
+DemonicEnergy: {
+	DisplayName: Energía Eidolica
+	Tooltip: ""
+}
+
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
+OrganicEnergy: {
+	DisplayName: Energía Terrica
+	Tooltip: ""
+}
+
+UltimateEnergy: {
+	DisplayName: Energía Suprema
+	Tooltip: ""
+}
+
+CompressedTrash: {
+	DisplayName: Basura Comprimida
+	Tooltip: ""
+}
+
+BloodyTearstone: {
+	DisplayName: Piedra Lacrimógena Sangrienta
+	// Tooltip: ""
+}
+
+SoulGem: {
+	DisplayName: Gema de Almas Vacia
+	Tooltip: Inutil hasta capturar el alma de un enemigo
+}
+
+SoulGemFilled: {
+	DisplayName: Gema de Almas
+	Tooltip:
+		'''
+		Usado para fabricar equipamiento necromantico
+		Dejado caer por los demonios mas oscuros...
+		'''
+}
+
+MonoGem: {
+	DisplayName: Mono Gema
+	Tooltip: "'Maldita con la esencia de la oscuridad'"
+}
+
+OmniGem: {
+	DisplayName: Omni Gema
+	Tooltip: "'Encantada con la presencia del Éter'"
+}
+
+ArtFragment: {
+	DisplayName: Fragmento de Acreción
+	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+}
+
+NecroFragment: {
+	DisplayName: Plerión Fragment
+	Tooltip: "'Deathly particles are released from this fragment'"
+}

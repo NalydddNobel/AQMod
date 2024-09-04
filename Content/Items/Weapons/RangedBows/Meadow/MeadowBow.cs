@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 
-namespace Aequus.Content.Items.Weapons.Ranged.MeadowBow;
+namespace Aequus.Content.Items.Weapons.RangedBows.Meadow;
 
 [WorkInProgress]
 public class MeadowBow : ModItem {

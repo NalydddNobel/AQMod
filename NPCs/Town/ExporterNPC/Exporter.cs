@@ -4,9 +4,10 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Items.Accessories.Informational.Monocle;
+using Aequus.Content.Items.Weapons.MeleeSwords.AncientCutlass;
 using Aequus.Content.UI.GrabBagReroll;
 using Aequus.CrossMod;
-using Aequus.Content.Items.Accessories.Informational.Monocle;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.Anchor;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
@@ -27,6 +28,7 @@ using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Personalities;
 using Terraria.Localization;
 
@@ -298,9 +300,7 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
     }
 
     public override void DrawTownAttackSwing(ref Texture2D item, ref Rectangle itemFrame, ref int itemSize, ref float scale, ref Vector2 offset) {
-        int itemType = ItemID.DyeTradersScimitar;
-        Main.instance.LoadItem(itemType);
-        item = TextureAssets.Item[itemType].Value;
+        item = TextureAssets.Item[ModContent.ItemType<AncientCutlass>()].Value;
         itemSize = 40;
         scale = 0.5f;
         offset = new Vector2(0f, 0f);
@@ -309,6 +309,10 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
     public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight) {
         itemWidth = 30;
         itemHeight = 30;
+    }
+
+    public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientCutlass>(), chanceDenominator: 8));
     }
 
     public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
