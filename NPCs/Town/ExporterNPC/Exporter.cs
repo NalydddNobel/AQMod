@@ -5,7 +5,6 @@ using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Items.Accessories.Informational.Monocle;
-using Aequus.Content.Items.Weapons.MeleeSwords.AncientCutlass;
 using Aequus.Content.UI.GrabBagReroll;
 using Aequus.CrossMod;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.Anchor;
@@ -72,7 +71,7 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
         NPCID.Sets.AttackTime[NPC.type] = 10;
         NPCID.Sets.AttackAverageChance[NPC.type] = 10;
         NPCID.Sets.HatOffsetY[NPC.type] = 4;
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new(0) {
+        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
             Velocity = 1f,
             Direction = -1,
         });
@@ -300,7 +299,8 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
     }
 
     public override void DrawTownAttackSwing(ref Texture2D item, ref Rectangle itemFrame, ref int itemSize, ref float scale, ref Vector2 offset) {
-        item = TextureAssets.Item[ModContent.ItemType<AncientCutlass>()].Value;
+        item = AequusTextures.AncientCutlass.Value;
+        itemFrame = AequusTextures.AncientCutlass.Bounds();
         itemSize = 40;
         offset = new Vector2(0f, 0f);
     }
@@ -311,7 +311,9 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AncientCutlass>(), chanceDenominator: 8));
+#if DEBUG
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.MeleeSwords.AncientCutlass.AncientCutlass>(), chanceDenominator: 8));
+#endif
     }
 
     public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {

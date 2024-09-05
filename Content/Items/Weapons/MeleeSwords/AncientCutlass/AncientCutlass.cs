@@ -1,4 +1,5 @@
-﻿using Aequus.Common.DataSets;
+﻿#if DEBUG
+using Aequus.Common.DataSets;
 using Aequus.Common.Utilities.Helpers;
 using Aequus.Common.Utilities.Sampling;
 using System;
@@ -82,3 +83,4 @@ public class AncientCutlass : ModItem {
         }
     }
 }
+#endif
