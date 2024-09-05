@@ -30,7 +30,9 @@ public partial class ModCallHandler : LoadedType {
         }
 
         try {
-            return _calls[name.ToLower()].Invoke(null, arguments);
+            MethodInfo method = _calls[name.ToLower()];
+            object? value = method.Invoke(null, [arguments]);
+            return value;
         }
         catch (System.Exception ex) {
             LogError(ex.ToString());
