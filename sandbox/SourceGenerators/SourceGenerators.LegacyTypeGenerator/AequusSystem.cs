@@ -9,4 +9,9 @@ using System.Collections.Generic;
 namespace Aequus;
 
 public partial class AequusSystem {
+    
+    [CompilerGenerated]
+    private void PostUpdateWorldInner() {
+        Content.World.Generation.EOCOresGenerator.CheckEoCOres();
+    }
 }
