@@ -3,7 +3,6 @@ using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.Items.Accessories.Informational.HoloLens;
 using Aequus.Content.UI;
-using Aequus.NPCs;
 using Aequus.Projectiles;
 using Aequus.Tiles.Blocks;
 using System.Reflection;

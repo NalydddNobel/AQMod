@@ -1,7 +1,7 @@
 ﻿namespace Aequus;
 
-// Test change
 public partial class ModCallHandler {
+    [System.Runtime.CompilerServices.CompilerGenerated]
     static bool usedWhiteFlag(object[] args) {
         if (args.Length > 1) {
             if (args[1] is not bool value) {

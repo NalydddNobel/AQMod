@@ -1,6 +1,7 @@
 ﻿namespace Aequus;
 
 public partial class ModCallHandler {
+    [System.Runtime.CompilerServices.CompilerGenerated]
     static bool downedRedSprite(object[] args) {
         if (args.Length > 1) {
             if (args[1] is not bool value) {

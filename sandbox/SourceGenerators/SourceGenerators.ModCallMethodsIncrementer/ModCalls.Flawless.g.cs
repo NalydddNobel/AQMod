@@ -1,6 +1,7 @@
 ﻿namespace Aequus;
 
 public partial class ModCallHandler {
+    [System.Runtime.CompilerServices.CompilerGenerated]
     static bool Flawless(object[] args) {
         if (args[1] is not Terraria.NPC npc) {
             throw new System.Exception($"Mod Call Parameter index 1 (\"npc\") did not match Type \"Terraria.NPC\".");

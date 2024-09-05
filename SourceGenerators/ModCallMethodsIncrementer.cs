@@ -1,7 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,10 +36,6 @@ internal class ModCallMethodsIncrementer : IIncrementalGenerator {
         if (context.SemanticModel.GetDeclaredSymbol(method) is not IMethodSymbol methodSymbol) {
             return null;
         }
-
-#if DEBUG
-        Console.WriteLine($"Checking method global::{methodSymbol.ContainingType}.{methodSymbol.Name}");
-#endif
 
         foreach (AttributeData attr in methodSymbol.GetAttributes()) {
             string fullName = attr.AttributeClass.ToString();
@@ -121,6 +116,7 @@ internal class ModCallMethodsIncrementer : IIncrementalGenerator {
             namespace {{Namespace}};
 
             public partial class ModCallHandler {
+                [System.Runtime.CompilerServices.CompilerGenerated]
                 static {{value.FullyQualifiedReturnType}} {{value.Name}}(object[] args) {
             {{code}}
                 }

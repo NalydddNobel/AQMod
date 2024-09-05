@@ -1,6 +1,7 @@
 ﻿namespace Aequus;
 
 public partial class ModCallHandler {
+    [System.Runtime.CompilerServices.CompilerGenerated]
     static bool BlacklistSettleDownMsg(object[] args) {
         if (args[1] is not int npcId) {
             throw new System.Exception($"Mod Call Parameter index 1 (\"npcId\") did not match Type \"int\".");

@@ -71,8 +71,8 @@ internal class ModCallPropertiesIncrementer : IIncrementalGenerator {
         $$"""
             namespace {{Namespace}};
 
-            // Test change
             public partial class ModCallHandler {
+                [System.Runtime.CompilerServices.CompilerGenerated]
                 static {{value.FullyQualifiedPropType}} {{value.Name}}(object[] args) {
                     if (args.Length > 1) {
                         if (args[1] is not {{value.FullyQualifiedPropType}} value) {

@@ -13,6 +13,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Biomes.Oblivion.Tiles;
 
+[LegacyName("GoreNestTile", "GoreNest")]
 public class OblivionAltar : ModTile, ITileDrawSystem {
     public static int BiomeCount => OblivionAltarCount.TileCount;
     public static MiscShaderWrap<OblivionAltarShaderData> GoreNestPortal { get; private set; }
@@ -28,7 +29,9 @@ public class OblivionAltar : ModTile, ITileDrawSystem {
         if (!Main.dedServ) {
             GoreNestPortal = new("Aequus/Assets/Effects/GoreNestPortal", "GoreNestPortal", "DemonicPortalPass", (effect, pass) => new OblivionAltarShaderData(effect, pass));
         }
+
         Mod.AddContent(Item);
+        ModTypeLookup<ModItem>.RegisterLegacyNames(Item, "GoreNest", "GoreNestItem");
     }
 
     public override void SetStaticDefaults() {

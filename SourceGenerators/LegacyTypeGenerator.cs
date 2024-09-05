@@ -46,6 +46,7 @@ public class LegacyTypeGenerator : ISourceGenerator {
             type.AddMethod("LoadInner(TagCompound tag)", $"SourceGeneratorTools.LoadObj(tag, \"{fieldName}\", ref {fieldName});");
             type.AddMethod("SendDataInner(BinaryWriter writer)", $"SourceGeneratorTools.SendObj(writer, {fieldName});");
             type.AddMethod("ReceiveDataInner(BinaryReader reader)", $"SourceGeneratorTools.ReceiveObj(reader, ref {fieldName});");
+            type.AddMethod("ClearWorldInner()", $"SourceGeneratorTools.ResetObj(ref {fieldName});");
         },
     };
 

@@ -72,6 +72,7 @@ internal class ModCallFieldsIncrementer : IIncrementalGenerator {
             namespace {{Namespace}};
 
             public partial class ModCallHandler {
+                [System.Runtime.CompilerServices.CompilerGenerated]
                 static {{value.FullyQualifiedType}} {{value.Name}}(object[] args) {
                     if (args.Length > 1) {
                         if (args[1] is not {{value.FullyQualifiedType}} value) {
