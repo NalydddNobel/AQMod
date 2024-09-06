@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedYinYang;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedYinYangGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedYinYang;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedYinYangSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedYinYang = value;
+    }
 }

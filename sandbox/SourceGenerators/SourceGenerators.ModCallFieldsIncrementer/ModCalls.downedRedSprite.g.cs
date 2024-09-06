@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedRedSprite;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedRedSpriteGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedRedSprite;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedRedSpriteSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedRedSprite = value;
+    }
 }

@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedEventDemon;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedEventDemonGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedEventDemon;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedEventDemonSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedEventDemon = value;
+    }
 }

@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedUpriser;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedUpriserGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedUpriser;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedUpriserSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedUpriser = value;
+    }
 }

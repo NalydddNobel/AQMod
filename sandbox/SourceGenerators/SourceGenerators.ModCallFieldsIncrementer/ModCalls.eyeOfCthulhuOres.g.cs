@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.eyeOfCthulhuOres;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> eyeOfCthulhuOresGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.eyeOfCthulhuOres;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> eyeOfCthulhuOresSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.eyeOfCthulhuOres = value;
+    }
 }

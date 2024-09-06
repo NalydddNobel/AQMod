@@ -89,6 +89,16 @@ internal class ModCallFieldsIncrementer : IIncrementalGenerator {
             
                     return {{value.FieldAccess}};
                 }
+
+                [System.Runtime.CompilerServices.CompilerGenerated]
+                static System.Func<{{value.FullyQualifiedType}}> {{value.Name}}Getter(object[] args) {            
+                    return () => {{value.FieldAccess}};
+                }
+
+                [System.Runtime.CompilerServices.CompilerGenerated]
+                static System.Action<{{value.FullyQualifiedType}}> {{value.Name}}Setter(object[] args) {            
+                    return value => {{value.FieldAccess}} = value;
+                }
             }
             """;
 

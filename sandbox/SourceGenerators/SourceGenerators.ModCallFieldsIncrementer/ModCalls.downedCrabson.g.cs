@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedCrabson;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedCrabsonGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedCrabson;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedCrabsonSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedCrabson = value;
+    }
 }

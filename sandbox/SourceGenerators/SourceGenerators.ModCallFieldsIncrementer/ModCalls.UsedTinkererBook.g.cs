@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.UsedTinkererBook;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> UsedTinkererBookGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.UsedTinkererBook;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> UsedTinkererBookSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.UsedTinkererBook = value;
+    }
 }

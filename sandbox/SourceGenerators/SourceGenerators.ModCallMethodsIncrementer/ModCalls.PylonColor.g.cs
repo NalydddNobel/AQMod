@@ -4,7 +4,8 @@ public partial class ModCallHandler {
     [System.Runtime.CompilerServices.CompilerGenerated]
     static System.Func<Microsoft.Xna.Framework.Color> PylonColor(object[] args) {
         if (args[1] is not int tileType) {
-            throw new System.Exception($"Mod Call Parameter index 1 (\"tileType\") did not match Type \"int\".");
+            LogError($"Mod Call Parameter index 1 (\"tileType\") did not match Type \"int\".");
+            return default;
         }
 
         int tileStyle = default;

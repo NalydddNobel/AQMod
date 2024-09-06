@@ -75,14 +75,29 @@ internal class ModCallPropertiesIncrementer : IIncrementalGenerator {
                 [System.Runtime.CompilerServices.CompilerGenerated]
                 static {{value.FullyQualifiedPropType}} {{value.Name}}(object[] args) {
                     if (args.Length > 1) {
-                        if (args[1] is not {{value.FullyQualifiedPropType}} value) {
-                            throw new System.Exception($"Mod Call Parameter index 1 (\"value\") did not match Type \"{{value.FullyQualifiedPropType}}\".");
+                        if (args[1] is Mod mod) {
+                            LogInfo($"Mod ({mod.Name}) can remove the legacy Mod parameter. As it is no longer needed.");
                         }
             
-                        {{value.PropertyAccess}} = value;
+                        if (args[^1] is {{value.FullyQualifiedPropType}} value) {
+                            {{value.PropertyAccess}} = value;
+                        }
+                        else {
+                            LogError($"Mod Call Parameter index ^1 (\"value\") did not match Type \"{{value.FullyQualifiedPropType}}\".");
+                        }
                     }
             
                     return {{value.PropertyAccess}};
+                }
+            
+                [System.Runtime.CompilerServices.CompilerGenerated]
+                static System.Func<{{value.FullyQualifiedPropType}}> {{value.Name}}Getter(object[] args) {            
+                    return () => {{value.PropertyAccess}};
+                }
+            
+                [System.Runtime.CompilerServices.CompilerGenerated]
+                static System.Action<{{value.FullyQualifiedPropType}}> {{value.Name}}Setter(object[] args) {            
+                    return value => {{value.PropertyAccess}} = value;
                 }
             }
             """;

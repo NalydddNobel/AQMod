@@ -4,7 +4,8 @@ public partial class ModCallHandler {
     [System.Runtime.CompilerServices.CompilerGenerated]
     static bool DemonSiegeSacrifice(object[] args) {
         if (args[1] is not int fromItem) {
-            throw new System.Exception($"Mod Call Parameter index 1 (\"fromItem\") did not match Type \"int\".");
+            LogError($"Mod Call Parameter index 1 (\"fromItem\") did not match Type \"int\".");
+            return default;
         }
 
         int itemTo = default;

@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedOmegaStarite;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedOmegaStariteGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedOmegaStarite;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedOmegaStariteSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedOmegaStarite = value;
+    }
 }

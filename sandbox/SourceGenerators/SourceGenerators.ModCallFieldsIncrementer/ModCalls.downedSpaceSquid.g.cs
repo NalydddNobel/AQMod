@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedSpaceSquid;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedSpaceSquidGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedSpaceSquid;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedSpaceSquidSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedSpaceSquid = value;
+    }
 }

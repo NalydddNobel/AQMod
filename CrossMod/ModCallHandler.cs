@@ -5,7 +5,6 @@ using System.Reflection;
 namespace Aequus;
 
 public partial class ModCallHandler : LoadedType {
-    private const string Failure = "Failure";
     private readonly Dictionary<string, MethodInfo> _calls = CollectCalls();
 
     public static ModCallHandler Instance => ModContent.GetInstance<ModCallHandler>();
@@ -30,7 +29,7 @@ public partial class ModCallHandler : LoadedType {
 
     public object? Call(object[] arguments) {
         if (arguments[0] is not string name) {
-            return Failure;
+            return null;
         }
 
         try {
@@ -40,7 +39,7 @@ public partial class ModCallHandler : LoadedType {
         }
         catch (System.Exception ex) {
             LogError(ex.ToString());
-            return Failure;
+            return null;
         }
     }
 }

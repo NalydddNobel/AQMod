@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.xmasHats;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> xmasHatsGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.xmasHats;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> xmasHatsSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.xmasHats = value;
+    }
 }

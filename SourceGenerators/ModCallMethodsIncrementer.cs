@@ -75,6 +75,11 @@ internal class ModCallMethodsIncrementer : IIncrementalGenerator {
         */
 
         string code = string.Empty;
+        string returnDefault = "return";
+
+        if (value.FullyQualifiedReturnType != "void") {
+            returnDefault += $" default";
+        }
 
         int index = 1;
         foreach (ParameterInfo param in value.Parameters) {
@@ -99,7 +104,8 @@ internal class ModCallMethodsIncrementer : IIncrementalGenerator {
                 code +=
                 $$"""
                         if (args[{{index}}] is not {{param.FullDisplay}}) {
-                            throw new System.Exception($"Mod Call Parameter index {{index}} (\"{{param.Name}}\") did not match Type \"{{param.FullyQualifiedType}}\".");
+                            LogError($"Mod Call Parameter index {{index}} (\"{{param.Name}}\") did not match Type \"{{param.FullyQualifiedType}}\".");
+                            {{returnDefault}};
                         }
 
 

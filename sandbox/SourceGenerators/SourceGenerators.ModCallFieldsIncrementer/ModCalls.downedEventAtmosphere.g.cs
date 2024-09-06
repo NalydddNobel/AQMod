@@ -18,4 +18,14 @@ public partial class ModCallHandler {
 
         return global::Aequus.AequusWorld.downedEventAtmosphere;
     }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Func<bool> downedEventAtmosphereGetter(object[] args) {            
+        return () => global::Aequus.AequusWorld.downedEventAtmosphere;
+    }
+
+    [System.Runtime.CompilerServices.CompilerGenerated]
+    static System.Action<bool> downedEventAtmosphereSetter(object[] args) {            
+        return value => global::Aequus.AequusWorld.downedEventAtmosphere = value;
+    }
 }
