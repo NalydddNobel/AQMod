@@ -75,11 +75,16 @@ internal class ModCallFieldsIncrementer : IIncrementalGenerator {
                 [System.Runtime.CompilerServices.CompilerGenerated]
                 static {{value.FullyQualifiedType}} {{value.Name}}(object[] args) {
                     if (args.Length > 1) {
-                        if (args[1] is not {{value.FullyQualifiedType}} value) {
-                            throw new System.Exception($"Mod Call Parameter index 1 (\"value\") did not match Type \"{{value.FullyQualifiedType}}\".");
+                        if (args[1] is Mod mod) {
+                            LogInfo($"Mod ({mod.Name}) can remove the legacy Mod parameter. As it is no longer needed.");
                         }
-            
-                        {{value.FieldAccess}} = value;
+
+                        if (args[^1] is {{value.FullyQualifiedType}} value) {
+                            {{value.FieldAccess}} = value;
+                        }
+                        else {
+                            LogError($"Mod Call Parameter index ^1 (\"value\") did not match Type \"{{value.FullyQualifiedType}}\".");
+                        }
                     }
             
                     return {{value.FieldAccess}};

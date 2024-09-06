@@ -24,6 +24,10 @@ public partial class ModCallHandler : LoadedType {
         Instance.Mod!.Logger.Error(message);
     }
 
+    private static void LogInfo(string message) {
+        Instance.Mod!.Logger.Info(message);
+    }
+
     public object? Call(object[] arguments) {
         if (arguments[0] is not string name) {
             return Failure;
