@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1376)</summary>
+/// <summary>(Total Textures: 1375)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -915,8 +915,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HellTombstones_Glow = new("Content/Tiles/Tombstones/HellTombstones_Glow");
     /// <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Highlight</summary>
     public static readonly RequestCache<Texture2D> HellTombstones_Highlight = new("Content/Tiles/Tombstones/HellTombstones_Highlight");
-    /// <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
-    public static readonly RequestCache<Texture2D> Tombstones = new("Content/Tiles/Tombstones/Tombstones");
     /// <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
     public static readonly RequestCache<Texture2D> BountySelection = new("Content/UI/BountyBoard/BountySelection");
     /// <summary>Full Path: Content/UI/BountyBoard/BountyUIArrow</summary>

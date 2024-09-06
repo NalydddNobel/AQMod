@@ -81,7 +81,7 @@ public class NPCSettleDownMessage : ModSystem {
     }
 
     [ModCall(Name: "NPCSettleDownMsgContains")]
-    public static bool InBlacklist(int npcId, bool value) {
+    public static bool InBlacklist(int npcId) {
         return Instance.Blacklist.Contains(npcId);
     }
     #endregion

@@ -8,11 +8,6 @@ public partial class ModCallHandler {
             return default;
         }
 
-        if (args[2] is not bool value) {
-            LogError($"Mod Call Parameter index 2 (\"value\") did not match Type \"bool\".");
-            return default;
-        }
-
-        return global::Aequus.Content.Villagers.NPCSettleDownMessage.InBlacklist(npcId, value);
+        return global::Aequus.Content.Villagers.NPCSettleDownMessage.InBlacklist(npcId);
     }
 }

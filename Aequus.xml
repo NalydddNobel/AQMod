@@ -2259,7 +2259,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1376)</summary>
+            <summary>(Total Textures: 1375)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3622,9 +3622,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.HellTombstones_Highlight">
             <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Tombstones">
-            <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountySelection">
             <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
