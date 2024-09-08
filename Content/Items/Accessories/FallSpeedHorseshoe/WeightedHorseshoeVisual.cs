@@ -5,7 +5,7 @@ using Aequus.Common.Utilities.Helpers;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Items.Accessories.WeightedHorseshoe;
+namespace Aequus.Content.Items.Accessories.FallSpeedHorseshoe;
 
 public class WeightedHorseshoeVisual : ModProjectile {
     public VIStringTwoPoint<VINode> horseshoeAnvilRope;

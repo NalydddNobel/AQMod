@@ -4,7 +4,7 @@ using Aequus.Common.Items;
 using System;
 using static Aequus.Common.Items.ItemHooks;
 
-namespace Aequus.Content.Items.Accessories.WeightedHorseshoe;
+namespace Aequus.Content.Items.Accessories.FallSpeedHorseshoe;
 
 [Gen.AequusPlayer_ResetField<Item>("accWeightedHorseshoe")]
 [Gen.AequusPlayer_ResetField<bool>("showHorseshoeAnvilRope")]

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Accessories.GoldenFeather;
+﻿namespace Aequus.Content.Items.Accessories.RespawnFeather;
 
 /*
 public class GoldenFeatherDrop {

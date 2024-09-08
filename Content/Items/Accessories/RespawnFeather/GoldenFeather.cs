@@ -3,7 +3,7 @@ using Aequus.Common.Utilities;
 using System;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Accessories.GoldenFeather;
+namespace Aequus.Content.Items.Accessories.RespawnFeather;
 
 [Gen.AequusPlayer_ResetField<Item>("accGoldenFeather")]
 [Gen.AequusPlayer_ResetField<int>("accGoldenFeatherRespawnTimeModifier")]

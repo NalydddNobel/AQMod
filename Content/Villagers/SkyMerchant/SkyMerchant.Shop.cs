@@ -11,10 +11,10 @@ public partial class SkyMerchant {
 
         new NPCShop(Type, "Shop")
             .AddWithCustomValue<Items.Accessories.Balloons.SlimyBlueBalloon>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Sunday, DayOfWeek.Monday))
-            .AddWithCustomValue<Items.Accessories.GoldenFeather.GoldenFeather>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Monday, DayOfWeek.Tuesday))
+            .AddWithCustomValue<Items.Accessories.RespawnFeather.GoldenFeather>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Monday, DayOfWeek.Tuesday))
             .AddWithCustomValue(celestialMagnetAltId, ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
             .AddWithCustomValue<Items.Weapons.Classless.StunGun.StunGun>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Wednesday, DayOfWeek.Thursday))
-            .AddWithCustomValue<Items.Accessories.WeightedHorseshoe.WeightedHorseshoe>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Thursday, DayOfWeek.Friday))
+            .AddWithCustomValue<Items.Accessories.FallSpeedHorseshoe.WeightedHorseshoe>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Thursday, DayOfWeek.Friday))
             .AddWithCustomValue<Items.Weapons.MagicStaffs.Furystar.Furystar>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Friday, DayOfWeek.Saturday))
             .AddWithCustomValue<Items.Accessories.FlashwayShield.FlashwayShield>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionByDayOfWeek(DayOfWeek.Saturday))
             .AddWithCustomValue(ModContent.GetInstance<Mounts.HotAirBalloon.HotAirBalloonMount>().MountItem.Type, ItemDefaults.NPCSkyMerchantCustomPrice * 7)

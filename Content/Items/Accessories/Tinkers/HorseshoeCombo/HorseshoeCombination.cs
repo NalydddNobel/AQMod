@@ -1,4 +1,6 @@
-﻿namespace Aequus.Content.Items.Accessories.WeightedHorseshoe;
+﻿using Aequus.Content.Items.Accessories.FallSpeedHorseshoe;
+
+namespace Aequus.Content.Items.Accessories.Tinkers.HorseshoeCombo;
 
 public class HorseshoeCombination : WeightedHorseshoe {
     public override void SetDefaults() {
