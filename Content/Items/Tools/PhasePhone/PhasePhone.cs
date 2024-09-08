@@ -99,7 +99,6 @@ internal class InstancedPhasePhone(PhasePhones Parent, string Suffix, PhasePhone
     }
 
     void IPhaseMirror.Teleport(Player player) {
-        Main.NewText(DisplayName.Key);
         Info.TeleportAction(player);
     }
 
