@@ -148,49 +148,13 @@ BigGem: {
 }
 
 AncientAngelStatue.ItemDisplayName: 远古天使雕像
-
-AdamantiteChest: {
-	MapEntry: 精金宝箱
-	ItemDisplayName: "{$AdamantiteChest.MapEntry}"
-}
-
-HardGraniteChest: {
-	MapEntry: 活花岗岩宝箱
-	ItemDisplayName: "{$HardGraniteChest.MapEntry}"
-}
-
-HardMarbleChest: {
-	MapEntry: 大理石宝藏
-	ItemDisplayName: "{$HardMarbleChest.MapEntry}"
-}
-
-HardMushroomChest: {
-	MapEntry: 蘑菇矿宝箱
-	ItemDisplayName: "{$HardMushroomChest.MapEntry}"
-}
-
-HardFrozenChest: {
-	MapEntry: 寒霜宝箱
-	ItemDisplayName: "{$HardFrozenChest.MapEntry}"
-}
-
-HardSandstoneChest: {
-	MapEntry: 禁戒宝箱
-	ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
-}
-
-HardJungleChest: {
-	MapEntry: 陆龟保险箱
-	ItemDisplayName: "{$HardJungleChest.MapEntry}"
-}
-
-AdamantiteChestTrapped.ItemDisplayName: 机关精金宝箱
-HardGraniteChestTrapped.ItemDisplayName: 机关活花岗岩宝箱
-HardMarbleChestTrapped.ItemDisplayName: 机关大理石宝藏
-HardMushroomChestTrapped.ItemDisplayName: 机关蘑菇矿宝箱
-HardFrozenChestTrapped.ItemDisplayName: 机关寒霜宝箱
-HardSandstoneChestTrapped.ItemDisplayName: 机关禁戒宝箱
-HardJungleChestTrapped.ItemDisplayName: 机关陆龟保险箱
+// AdamantiteChestTrapped.ItemDisplayName: Trapped Adamantite Chest
+// HardGraniteChestTrapped.ItemDisplayName: Trapped Living Granite Chest
+// HardMarbleChestTrapped.ItemDisplayName: Trapped Marble Trove
+// HardMushroomChestTrapped.ItemDisplayName: Trapped Shroomite Chest
+// HardFrozenChestTrapped.ItemDisplayName: Trapped Frost Chest
+// HardSandstoneChestTrapped.ItemDisplayName: Trapped Forbidden Chest
+// HardJungleChestTrapped.ItemDisplayName: Trapped Tortoise Case
 
 CopperChest: {
 	MapEntry: 铜宝箱

@@ -1,0 +1,36 @@
+Chests: {
+	AdamantiteChest: {
+		DisplayName: 精金箱
+		DisplayName_Trapped: 机关精金宝箱
+	}
+
+	FrostChest: {
+		DisplayName: 冰霜箱
+		DisplayName_Trapped: 机关寒霜宝箱
+	}
+
+	TortoiseChest: {
+		DisplayName: 乌龟保险箱
+		DisplayName_Trapped: 机关陆龟保险箱
+	}
+
+	GraniteChest: {
+		DisplayName: 活体花岗岩箱
+		DisplayName_Trapped: 机关活花岗岩宝箱
+	}
+
+	MarbleChest: {
+		DisplayName: 大理石宝藏
+		DisplayName_Trapped: 机关大理石宝藏
+	}
+
+	ShroomiteChest: {
+		DisplayName: 蘑菇箱
+		DisplayName_Trapped: 机关蘑菇矿宝箱
+	}
+
+	ForbiddenChest: {
+		DisplayName: 禁戒箱
+		DisplayName_Trapped: 机关禁戒宝箱
+	}
+}

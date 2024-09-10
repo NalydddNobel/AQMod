@@ -617,26 +617,6 @@
             <param name="texture"></param>
             <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
         </member>
-        <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedTileItem">
-            <param name="modTile"></param>
-            <param name="style"></param>
-            <param name="nameSuffix">Extra text added to the end of the name.</param>
-            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-            <param name="rarity">Item rarity.</param>
-            <param name="value">Item value.</param>
-            <param name="researchSacrificeCount">Research count override.</param>
-            <param name="TileIdOverride">Overrides the place tile id.</param>
-        </member>
-        <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
-            <param name="modTile"></param>
-            <param name="style"></param>
-            <param name="nameSuffix">Extra text added to the end of the name.</param>
-            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-            <param name="rarity">Item rarity.</param>
-            <param name="value">Item value.</param>
-            <param name="researchSacrificeCount">Research count override.</param>
-            <param name="TileIdOverride">Overrides the place tile id.</param>
-        </member>
         <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedWallItem">
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
@@ -644,6 +624,18 @@
         <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedTileItem">
+            <param name="modTile"></param>
+            <param name="style"></param>
+            <param name="nameSuffix">Extra text added to the end of the name.</param>
+            <param name="Settings">Various settings which changes the resulting tile item.</param>
+        </member>
+        <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,Aequus.Common.ContentTemplates.Generic.TileItemSettings)">
+            <param name="modTile"></param>
+            <param name="style"></param>
+            <param name="nameSuffix">Extra text added to the end of the name.</param>
+            <param name="Settings">Various settings which changes the resulting tile item.</param>
         </member>
         <member name="P:Aequus.Common.ContentTemplates.UnifiedBuffPotion.DrinkColors">
             <summary>Shorthand for <see cref="F:Terraria.ID.ItemID.Sets.DrinkParticleColors"/>[Type].</summary>
@@ -2259,7 +2251,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1375)</summary>
+            <summary>(Total Textures: 1368)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2858,6 +2850,54 @@
         <member name="F:Aequus.AequusTextures.SecretEntranceBuff">
             <summary>Full Path: Content/Carpentry/Bonuses/SecretEntranceBuff</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/AdamantiteChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/AdamantiteChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ForbiddenChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/ForbiddenChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ForbiddenChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/ForbiddenChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/FrostChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/FrostChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GraniteChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/GraniteChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GraniteChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/GraniteChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Granite_Glow">
+            <summary>Full Path: Content/Chests/HardmodeChests/Granite_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MarbleChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/MarbleChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MarbleChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/MarbleChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShroomiteChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/ShroomiteChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShroomiteChest_Glow">
+            <summary>Full Path: Content/Chests/HardmodeChests/ShroomiteChest_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShroomiteChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/ShroomiteChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TortoiseChest">
+            <summary>Full Path: Content/Chests/HardmodeChests/TortoiseChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TortoiseChest_Highlight">
+            <summary>Full Path: Content/Chests/HardmodeChests/TortoiseChest_Highlight</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Content_CursorDyes_Items_DemonCursor">
             <summary>Full Path: Content/CursorDyes/Items/DemonCursor</summary>
         </member>
@@ -3077,12 +3117,6 @@
         <member name="F:Aequus.AequusTextures.StuffedGlint">
             <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PurpleBalloon">
-            <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PurpleBalloon_Balloon">
-            <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
             <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
         </member>
@@ -3101,23 +3135,17 @@
         <member name="F:Aequus.AequusTextures.DamageOnKillClaw">
             <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
+            <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoe</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
+            <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoeVisual</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
             <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenFeather">
-            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeather</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
-            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenWind">
-            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWind</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
-            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
             <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
@@ -3158,14 +3186,26 @@
         <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
             <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeather">
+            <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeather</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
+            <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeatherBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWind">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/GoldenWind/GoldenWind</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/GoldenWind/GoldenWindBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HorseshoeCombination">
-            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/HorseshoeCombination</summary>
+            <summary>Full Path: Content/Items/Accessories/Tinkers/HorseshoeCombo/HorseshoeCombination</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
-            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
+        <member name="F:Aequus.AequusTextures.PurpleBalloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
-            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+        <member name="F:Aequus.AequusTextures.PurpleBalloon_Balloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon_Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowBreastplate">
             <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
@@ -6016,75 +6056,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.GravityTable">
             <summary>Full Path: Tiles/Furniture/Gravity/GravityTable</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AdamantiteChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/AdamantiteChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AdamantiteChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/AdamantiteChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AdamantiteChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardFrozenChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardFrozenChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardFrozenChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardFrozenChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardFrozenChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardFrozenChestTile_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardGraniteChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardGraniteChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardGraniteChestTile_Glow">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardGraniteChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardJungleChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardJungleChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardJungleChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardJungleChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardJungleChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardJungleChestTile_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMarbleChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMarbleChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMarbleChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMarbleChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMarbleChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMarbleChestTile_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMushroomChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMushroomChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMushroomChestTile_Glow">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardMushroomChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardSandstoneChest">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardSandstoneChest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardSandstoneChestTile">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardSandstoneChestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HardSandstoneChestTile_Highlight">
-            <summary>Full Path: Tiles/Furniture/HardmodeChests/HardSandstoneChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JeweledCandelabra">
             <summary>Full Path: Tiles/Furniture/Jeweled/JeweledCandelabra</summary>

@@ -1,15 +1,8 @@
-﻿using Aequus.Items;
-using Aequus.Particles.Dusts;
-using Aequus.Tiles.Furniture.HardmodeChests;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Particles.Dusts;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Furniture.Gravity; 
+namespace Aequus.Tiles.Furniture.Gravity;
 public class GravityChest : ModItem {
     public override void SetDefaults() {
         Item.DefaultToPlaceableTile(ModContent.TileType<GravityChestTile>());

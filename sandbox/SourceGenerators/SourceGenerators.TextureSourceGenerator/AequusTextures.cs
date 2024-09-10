@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1375)</summary>
+/// <summary>(Total Textures: 1368)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -405,6 +405,38 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PirateBountyBuff = new("Content/Carpentry/Bonuses/PirateBountyBuff");
     /// <summary>Full Path: Content/Carpentry/Bonuses/SecretEntranceBuff</summary>
     public static readonly RequestCache<Texture2D> SecretEntranceBuff = new("Content/Carpentry/Bonuses/SecretEntranceBuff");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/AdamantiteChest</summary>
+    public static readonly RequestCache<Texture2D> AdamantiteChest = new("Content/Chests/HardmodeChests/AdamantiteChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/AdamantiteChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> AdamantiteChest_Highlight = new("Content/Chests/HardmodeChests/AdamantiteChest_Highlight");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/ForbiddenChest</summary>
+    public static readonly RequestCache<Texture2D> ForbiddenChest = new("Content/Chests/HardmodeChests/ForbiddenChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/ForbiddenChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ForbiddenChest_Highlight = new("Content/Chests/HardmodeChests/ForbiddenChest_Highlight");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/FrostChest</summary>
+    public static readonly RequestCache<Texture2D> FrostChest = new("Content/Chests/HardmodeChests/FrostChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/FrostChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> FrostChest_Highlight = new("Content/Chests/HardmodeChests/FrostChest_Highlight");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/GraniteChest</summary>
+    public static readonly RequestCache<Texture2D> GraniteChest = new("Content/Chests/HardmodeChests/GraniteChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/GraniteChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> GraniteChest_Highlight = new("Content/Chests/HardmodeChests/GraniteChest_Highlight");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/Granite_Glow</summary>
+    public static readonly RequestCache<Texture2D> Granite_Glow = new("Content/Chests/HardmodeChests/Granite_Glow");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/MarbleChest</summary>
+    public static readonly RequestCache<Texture2D> MarbleChest = new("Content/Chests/HardmodeChests/MarbleChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/MarbleChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> MarbleChest_Highlight = new("Content/Chests/HardmodeChests/MarbleChest_Highlight");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/ShroomiteChest</summary>
+    public static readonly RequestCache<Texture2D> ShroomiteChest = new("Content/Chests/HardmodeChests/ShroomiteChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/ShroomiteChest_Glow</summary>
+    public static readonly RequestCache<Texture2D> ShroomiteChest_Glow = new("Content/Chests/HardmodeChests/ShroomiteChest_Glow");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/ShroomiteChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ShroomiteChest_Highlight = new("Content/Chests/HardmodeChests/ShroomiteChest_Highlight");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/TortoiseChest</summary>
+    public static readonly RequestCache<Texture2D> TortoiseChest = new("Content/Chests/HardmodeChests/TortoiseChest");
+    /// <summary>Full Path: Content/Chests/HardmodeChests/TortoiseChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TortoiseChest_Highlight = new("Content/Chests/HardmodeChests/TortoiseChest_Highlight");
     /// <summary>Full Path: Content/CursorDyes/Items/DemonCursor</summary>
     public static readonly RequestCache<Texture2D> Content_CursorDyes_Items_DemonCursor = new("Content/CursorDyes/Items/DemonCursor");
     /// <summary>Full Path: Content/CursorDyes/Items/DemonCursor/DemonCursor</summary>
@@ -551,10 +583,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SplashGlint = new("Content/ItemPrefixes/Potions/SplashGlint");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
     public static readonly RequestCache<Texture2D> StuffedGlint = new("Content/ItemPrefixes/Potions/StuffedGlint");
-    /// <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
-    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Content/Items/Accessories/Balloons/PurpleBalloon");
-    /// <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
-    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Content/Items/Accessories/Balloons/PurpleBalloon_Balloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
@@ -567,18 +595,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DamageOnKillBuff = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillBuff");
     /// <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
     public static readonly RequestCache<Texture2D> DamageOnKillClaw = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw");
+    /// <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoe</summary>
+    public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoe");
+    /// <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoeVisual</summary>
+    public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoeVisual");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield_Shield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield");
-    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeather</summary>
-    public static readonly RequestCache<Texture2D> GoldenFeather = new("Content/Items/Accessories/GoldenFeather/GoldenFeather");
-    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
-    public static readonly RequestCache<Texture2D> GoldenFeatherBuff = new("Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff");
-    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWind</summary>
-    public static readonly RequestCache<Texture2D> GoldenWind = new("Content/Items/Accessories/GoldenFeather/GoldenWind");
-    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
-    public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Content/Items/Accessories/GoldenFeather/GoldenWindBuff");
     /// <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
     public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster");
     /// <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>
@@ -605,12 +629,20 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
-    /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/HorseshoeCombination</summary>
-    public static readonly RequestCache<Texture2D> HorseshoeCombination = new("Content/Items/Accessories/WeightedHorseshoe/HorseshoeCombination");
-    /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
-    public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe");
-    /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
-    public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
+    /// <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeather</summary>
+    public static readonly RequestCache<Texture2D> GoldenFeather = new("Content/Items/Accessories/RespawnFeather/GoldenFeather");
+    /// <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeatherBuff</summary>
+    public static readonly RequestCache<Texture2D> GoldenFeatherBuff = new("Content/Items/Accessories/RespawnFeather/GoldenFeatherBuff");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/GoldenWind/GoldenWind</summary>
+    public static readonly RequestCache<Texture2D> GoldenWind = new("Content/Items/Accessories/Tinkers/GoldenWind/GoldenWind");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/GoldenWind/GoldenWindBuff</summary>
+    public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Content/Items/Accessories/Tinkers/GoldenWind/GoldenWindBuff");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/HorseshoeCombo/HorseshoeCombination</summary>
+    public static readonly RequestCache<Texture2D> HorseshoeCombination = new("Content/Items/Accessories/Tinkers/HorseshoeCombo/HorseshoeCombination");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon_Balloon");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
     public static readonly RequestCache<Texture2D> MeadowBreastplate = new("Content/Items/Armor/Meadow/MeadowBreastplate");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate_Body</summary>
@@ -2511,52 +2543,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GravitySofa = new("Tiles/Furniture/Gravity/GravitySofa");
     /// <summary>Full Path: Tiles/Furniture/Gravity/GravityTable</summary>
     public static readonly RequestCache<Texture2D> GravityTable = new("Tiles/Furniture/Gravity/GravityTable");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/AdamantiteChest</summary>
-    public static readonly RequestCache<Texture2D> AdamantiteChest = new("Tiles/Furniture/HardmodeChests/AdamantiteChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/AdamantiteChestTile</summary>
-    public static readonly RequestCache<Texture2D> AdamantiteChestTile = new("Tiles/Furniture/HardmodeChests/AdamantiteChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> AdamantiteChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardFrozenChest</summary>
-    public static readonly RequestCache<Texture2D> HardFrozenChest = new("Tiles/Furniture/HardmodeChests/HardFrozenChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardFrozenChestTile</summary>
-    public static readonly RequestCache<Texture2D> HardFrozenChestTile = new("Tiles/Furniture/HardmodeChests/HardFrozenChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardFrozenChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> HardFrozenChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/HardFrozenChestTile_Highlight");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChest</summary>
-    public static readonly RequestCache<Texture2D> HardGraniteChest = new("Tiles/Furniture/HardmodeChests/HardGraniteChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChestTile</summary>
-    public static readonly RequestCache<Texture2D> HardGraniteChestTile = new("Tiles/Furniture/HardmodeChests/HardGraniteChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Glow</summary>
-    public static readonly RequestCache<Texture2D> HardGraniteChestTile_Glow = new("Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Glow");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> HardGraniteChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Highlight");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardJungleChest</summary>
-    public static readonly RequestCache<Texture2D> HardJungleChest = new("Tiles/Furniture/HardmodeChests/HardJungleChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardJungleChestTile</summary>
-    public static readonly RequestCache<Texture2D> HardJungleChestTile = new("Tiles/Furniture/HardmodeChests/HardJungleChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardJungleChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> HardJungleChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/HardJungleChestTile_Highlight");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMarbleChest</summary>
-    public static readonly RequestCache<Texture2D> HardMarbleChest = new("Tiles/Furniture/HardmodeChests/HardMarbleChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMarbleChestTile</summary>
-    public static readonly RequestCache<Texture2D> HardMarbleChestTile = new("Tiles/Furniture/HardmodeChests/HardMarbleChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMarbleChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> HardMarbleChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/HardMarbleChestTile_Highlight");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChest</summary>
-    public static readonly RequestCache<Texture2D> HardMushroomChest = new("Tiles/Furniture/HardmodeChests/HardMushroomChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChestTile</summary>
-    public static readonly RequestCache<Texture2D> HardMushroomChestTile = new("Tiles/Furniture/HardmodeChests/HardMushroomChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Glow</summary>
-    public static readonly RequestCache<Texture2D> HardMushroomChestTile_Glow = new("Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Glow");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> HardMushroomChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Highlight");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardSandstoneChest</summary>
-    public static readonly RequestCache<Texture2D> HardSandstoneChest = new("Tiles/Furniture/HardmodeChests/HardSandstoneChest");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardSandstoneChestTile</summary>
-    public static readonly RequestCache<Texture2D> HardSandstoneChestTile = new("Tiles/Furniture/HardmodeChests/HardSandstoneChestTile");
-    /// <summary>Full Path: Tiles/Furniture/HardmodeChests/HardSandstoneChestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> HardSandstoneChestTile_Highlight = new("Tiles/Furniture/HardmodeChests/HardSandstoneChestTile_Highlight");
     /// <summary>Full Path: Tiles/Furniture/Jeweled/JeweledCandelabra</summary>
     public static readonly RequestCache<Texture2D> JeweledCandelabra = new("Tiles/Furniture/Jeweled/JeweledCandelabra");
     /// <summary>Full Path: Tiles/Furniture/Jeweled/JeweledCandelabraTile</summary>

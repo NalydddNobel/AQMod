@@ -21,11 +21,11 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public int buffDamageOnKill;
     [CompilerGenerated]
-    public Item accGoldenFeather;
+    public Item accWeightedHorseshoe;
     [CompilerGenerated]
-    public int accGoldenFeatherRespawnTimeModifier;
+    public bool showHorseshoeAnvilRope;
     [CompilerGenerated]
-    public byte accGoldenFeatherTeammate;
+    public int cHorseshoeAnvil;
     [CompilerGenerated]
     public bool accInfoDayCalendar;
     [CompilerGenerated]
@@ -35,11 +35,11 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public bool accInfoShimmerMonocle;
     [CompilerGenerated]
-    public Item accWeightedHorseshoe;
+    public Item accGoldenFeather;
     [CompilerGenerated]
-    public bool showHorseshoeAnvilRope;
+    public int accGoldenFeatherRespawnTimeModifier;
     [CompilerGenerated]
-    public int cHorseshoeAnvil;
+    public byte accGoldenFeatherTeammate;
     [CompilerGenerated]
     public bool setMeadow;
     [CompilerGenerated]
@@ -55,12 +55,12 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref stariteExpertDye);
         SourceGeneratorTools.ResetObj(ref accDamageOnKill);
         Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.CheckBuffStacks(Player, this);
-        SourceGeneratorTools.ResetObj(ref accGoldenFeather);
-        SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
-        SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
         SourceGeneratorTools.ResetObj(ref accWeightedHorseshoe);
         SourceGeneratorTools.ResetObj(ref showHorseshoeAnvilRope);
         SourceGeneratorTools.ResetObj(ref cHorseshoeAnvil);
+        SourceGeneratorTools.ResetObj(ref accGoldenFeather);
+        SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
+        SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
         SourceGeneratorTools.ResetObj(ref setMeadow);
         SourceGeneratorTools.ResetObj(ref setMeadowMagicTag);
         SourceGeneratorTools.ResetObj(ref infiniteWormhole);
@@ -80,8 +80,8 @@ public partial class AequusPlayer {
     
     [CompilerGenerated]
     private void PostUpdateEquipsInner() {
-        Content.Items.Accessories.GoldenFeather.GoldenFeather.UpdateGoldenFeather(Player, this);
-        Content.Items.Accessories.WeightedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
+        Content.Items.Accessories.FallSpeedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
+        Content.Items.Accessories.RespawnFeather.GoldenFeather.UpdateGoldenFeather(Player, this);
     }
     
     [CompilerGenerated]

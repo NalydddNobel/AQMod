@@ -252,7 +252,11 @@ internal class InstancedTrophyTile(ModNPC modNPC, string texturePath) : Instance
     }
 }
 
-internal class InstancedTrophyItem(ModNPC modNPC, ModTile modTile) : InstancedTileItem(modTile, value: Item.sellPrice(gold: 1), rarity: ItemRarityID.Blue/*, journeyOverride: new JourneySortByTileId(TileID.Painting3X3)*/) {
+internal class InstancedTrophyItem(ModNPC modNPC, ModTile modTile) : InstancedTileItem(modTile, Settings: new TileItemSettings() {
+    Value = Item.sellPrice(gold: 1),
+    Rare = ItemRarityID.Blue
+    /*, journeyOverride: new JourneySortByTileId(TileID.Painting3X3)*/
+}) {
     private readonly ModNPC _parentNPC = modNPC;
 
     public override LocalizedText DisplayName => _parentNPC.GetLocalization("TrophyDisplayName", () => $"{_parentNPC.Name} Trophy");
@@ -338,7 +342,11 @@ internal class InstancedRelicTile(ModNPC modNPC, RelicRenderer renderer) : Insta
     }
 }
 
-internal class InstancedRelicItem(ModNPC modNPC, ModTile modTile, RelicRenderer renderer) : InstancedTileItem(modTile, value: Item.sellPrice(gold: 1), rarity: ItemRarityID.Master/*, journeyOverride: new JourneySortByTileId(TileID.MasterTrophyBase)*/) {
+internal class InstancedRelicItem(ModNPC modNPC, ModTile modTile, RelicRenderer renderer) : InstancedTileItem(modTile, Settings: new TileItemSettings() {
+    Value = Item.sellPrice(gold: 1),
+    Rare = ItemRarityID.Master
+    /*, journeyOverride: new JourneySortByTileId(TileID.MasterTrophyBase)*/
+}) {
     private readonly ModNPC _parentNPC = modNPC;
     private readonly RelicRenderer _renderer = renderer;
 

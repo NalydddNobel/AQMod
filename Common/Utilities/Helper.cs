@@ -84,6 +84,24 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static IEnumerable<T> GetVariableMembersOfType<T>(this object obj, BindingFlags bindingAttr = BindingFlags.Public | BindingFlags.Instance) {
+        return GetVariableMembersOfType<T>(obj.GetType(), obj);
+    }
+
+    public static IEnumerable<T> GetVariableMembersOfType<T>(this Type type, object? obj, BindingFlags bindingAttr = BindingFlags.Public | BindingFlags.Instance) {
+        foreach (FieldInfo f in type.GetFields(bindingAttr)) {
+            if (f.GetValue(obj) is T val) {
+                yield return val;
+            }
+        }
+
+        foreach (PropertyInfo f in type.GetProperties(bindingAttr)) {
+            if (f.GetValue(obj) is T val) {
+                yield return val;
+            }
+        }
+    }
+
     public static void PunchFrom(Vector2 direction, Vector2 position, float strength = 2f, float vibrationsPerSecond = 4f, int frames = 10) {
         if (Main.netMode == NetmodeID.Server) {
             return;

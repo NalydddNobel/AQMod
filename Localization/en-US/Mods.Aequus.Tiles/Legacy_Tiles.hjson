@@ -1,38 +1,3 @@
-HardSandstoneChestTile: {
-	ContainerName: Forbidden Chest
-	MapEntry: Forbidden Chest
-}
-
-HardMushroomChestTile: {
-	ContainerName: Shroomite Chest
-	MapEntry: Shroomite Chest
-}
-
-HardMarbleChestTile: {
-	ContainerName: Marble Trove
-	MapEntry: Marble Trove
-}
-
-HardJungleChestTile: {
-	ContainerName: Tortoise Case
-	MapEntry: Tortoise Case
-}
-
-HardGraniteChestTile: {
-	ContainerName: Living Granite Chest
-	MapEntry: Living Granite Chest
-}
-
-HardFrozenChestTile: {
-	ContainerName: Frost Chest
-	MapEntry: Frost Chest
-}
-
-AdamantiteChestTile: {
-	ContainerName: Adamantite Chest
-	MapEntry: Adamantite Chest
-}
-
 GravityChestTile: {
 	ContainerName: Gravity Chest
 	MapEntry: Gravity Chest

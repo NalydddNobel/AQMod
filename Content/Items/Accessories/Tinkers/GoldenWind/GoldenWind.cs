@@ -3,7 +3,7 @@ using Aequus.Content.Items.Accessories.RespawnFeather;
 using System;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Accessories.Combinations.GoldenWind;
+namespace Aequus.Content.Items.Accessories.Tinkers.GoldenWind;
 
 public class GoldenWind : RespawnFeather.GoldenFeather {
     public static int LifeRegenerationAmount { get; set; } = 2;

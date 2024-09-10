@@ -148,42 +148,6 @@ BigGem: {
 }
 
 AncientAngelStatue.ItemDisplayName: Ancient Angel Statue
-
-AdamantiteChest: {
-	MapEntry: Adamantite Chest
-	ItemDisplayName: "{$AdamantiteChest.MapEntry}"
-}
-
-HardGraniteChest: {
-	MapEntry: Living Granite Chest
-	ItemDisplayName: "{$HardGraniteChest.MapEntry}"
-}
-
-HardMarbleChest: {
-	MapEntry: Marble Trove
-	ItemDisplayName: "{$HardMarbleChest.MapEntry}"
-}
-
-HardMushroomChest: {
-	MapEntry: Shroomite Chest
-	ItemDisplayName: "{$HardMushroomChest.MapEntry}"
-}
-
-HardFrozenChest: {
-	MapEntry: Frost Chest
-	ItemDisplayName: "{$HardFrozenChest.MapEntry}"
-}
-
-HardSandstoneChest: {
-	MapEntry: Forbidden Chest
-	ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
-}
-
-HardJungleChest: {
-	MapEntry: Tortoise Case
-	ItemDisplayName: "{$HardJungleChest.MapEntry}"
-}
-
 AdamantiteChestTrapped.ItemDisplayName: Trapped Adamantite Chest
 HardGraniteChestTrapped.ItemDisplayName: Trapped Living Granite Chest
 HardMarbleChestTrapped.ItemDisplayName: Trapped Marble Trove

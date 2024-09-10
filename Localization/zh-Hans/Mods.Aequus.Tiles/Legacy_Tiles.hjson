@@ -1,38 +1,3 @@
-HardSandstoneChestTile: {
-	ContainerName: 禁戒箱
-	MapEntry: 禁戒箱
-}
-
-HardMushroomChestTile: {
-	ContainerName: 蘑菇箱
-	MapEntry: 蘑菇箱
-}
-
-HardMarbleChestTile: {
-	ContainerName: 大理石宝藏
-	MapEntry: 大理石宝藏
-}
-
-HardJungleChestTile: {
-	ContainerName: 乌龟保险箱
-	MapEntry: 乌龟保险箱
-}
-
-HardGraniteChestTile: {
-	ContainerName: 活体花岗岩箱
-	MapEntry: 活体花岗岩箱
-}
-
-HardFrozenChestTile: {
-	ContainerName: 冰霜箱
-	MapEntry: 冰霜箱
-}
-
-AdamantiteChestTile: {
-	ContainerName: 精金箱
-	MapEntry: 精金箱
-}
-
 GravityChestTile: {
 	ContainerName: 重力箱
 	MapEntry: 重力箱

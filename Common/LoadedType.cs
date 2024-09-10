@@ -1,10 +1,11 @@
 ﻿namespace Aequus.Common;
 
-public class LoadedType : ILoadable, IPostSetupContent {
+public class LoadedType : ILoadable, IPostSetupContent, IAddRecipes {
     protected Mod? Mod { get; private set; }
 
     protected virtual void Load() { }
     protected virtual void PostSetupContent() { }
+    protected virtual void AddRecipes() { }
     protected virtual void Unload() { }
     protected virtual bool IsLoadingEnabled(Mod mod) {
         return true;
@@ -23,8 +24,18 @@ public class LoadedType : ILoadable, IPostSetupContent {
         PostSetupContent();
     }
 
+    void IAddRecipes.AddRecipes(Aequus aequus) {
+        AddRecipes();
+    }
+
     void ILoadable.Unload() {
         Unload();
         Mod = null;
+    }
+
+    protected void RegisterMembers() {
+        foreach (ModType type in this.GetVariableMembersOfType<ModType>()) {
+            Mod!.AddContent(type);
+        }
     }
 }

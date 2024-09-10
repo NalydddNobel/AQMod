@@ -8,7 +8,11 @@ namespace Aequus.Content.Biomes.Meadows.Tiles;
 public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
     public readonly ModItem MeadowGrassSeeds;
     public MeadowGrass() {
-        MeadowGrassSeeds = new InstancedTileItem(this, value: Item.buyPrice(copper: 20), researchSacrificeCount: 25, TileIdOverride: TileID.Grass);
+        MeadowGrassSeeds = new InstancedTileItem(this, Settings: new TileItemSettings() {
+            Value = Item.buyPrice(copper: 20),
+            Research = 25,
+            TileID = TileID.Grass,
+        });
     }
 
     public override void Load() {

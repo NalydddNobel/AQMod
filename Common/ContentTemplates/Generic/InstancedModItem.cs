@@ -1,6 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using System.Collections.Generic;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
 namespace Aequus.Common.ContentTemplates.Generic;
 
@@ -44,63 +42,6 @@ internal abstract class InstancedModItem : ModItem {
         if (!Main.dedServ) {
             TryAlternativeTexturePaths(ref _texture);
         }
-    }
-}
-
-/// <param name="modTile"></param>
-/// <param name="style"></param>
-/// <param name="nameSuffix">Extra text added to the end of the name.</param>
-/// <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-/// <param name="rarity">Item rarity.</param>
-/// <param name="value">Item value.</param>
-/// <param name="researchSacrificeCount">Research count override.</param>
-/// <param name="TileIdOverride">Overrides the place tile id.</param>
-internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null, int? TileIdOverride = null) : InstancedModItem(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item"), IPostSetupContent {
-    [CloneByReference]
-    internal readonly ModTile _modTile = modTile;
-
-    public override string LocalizationCategory => "Tiles";
-
-    private string KeyPrefix => Name != _modTile.Name ? $"{Name.Replace(_modTile.Name, "")}." : "";
-    public override LocalizedText DisplayName => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
-    public override LocalizedText Tooltip => ALanguage.GetOrEmpty(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"));
-
-    public override void SetStaticDefaults() {
-        ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !dropItem;
-    }
-
-    public void PostSetupContent(Aequus aequus) {
-        Item.ResearchUnlockCount = researchSacrificeCount ?? (Main.tileFrameImportant[_modTile.Type] ? 1 : 100);
-    }
-
-    public override void SetDefaults() {
-        Item.DefaultToPlaceableTile(TileIdOverride ?? _modTile.Type, style);
-        Item.rare = rarity;
-        Item.value = value;
-    }
-
-    public override void AddRecipes() {
-        if (Mod.TryFind<ModItem>(_modTile.Name + "Wall", out var wallItem)) {
-            CreateRecipe()
-                .AddIngredient(wallItem, 4)
-                .AddTile(TileID.WorkBenches)
-                .Register()
-                .DisableDecraft();
-        }
-    }
-
-    public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup) {
-        //var groupOverride = journeyOverride?.ProvideItemGroup();
-        //if (groupOverride != null) {
-        //    itemGroup = groupOverride.Value;
-        //}
-    }
-
-    public void ModifyItemGroup(ref ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup myGroup, Dictionary<int, ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup> groupDictionary) {
-        //int? sortingOverride = journeyOverride?.ProvideItemGroupOrdering(myGroup, groupDictionary);
-        //if (sortingOverride != null) {
-        //    myGroup.OrderInGroup = sortingOverride.Value;
-        //}
     }
 }
 
