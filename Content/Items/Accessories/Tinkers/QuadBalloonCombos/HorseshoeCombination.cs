@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.Items.Accessories.FallSpeedHorseshoe;
 
-namespace Aequus.Content.Items.Accessories.Tinkers.HorseshoeCombo;
+namespace Aequus.Content.Items.Accessories.Tinkers.QuadBalloonCombos;
 
-public class HorseshoeCombination : WeightedHorseshoe {
+public class HorseshoeCombination : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemRarityID.Orange;
@@ -12,7 +12,7 @@ public class HorseshoeCombination : WeightedHorseshoe {
     public override void UpdateAccessory(Player player, bool hideVisual) {
         player.noFallDmg = true;
         player.fireWalk = true;
-        base.UpdateAccessory(player, hideVisual);
+        WeightedHorseshoe.ApplyEffects(Item, player, WeightedHorseshoe.MaxFallSpeedMultiplier, WeightedHorseshoe.DamagingFallSpeedThreshold);
     }
 
     public override void AddRecipes() {

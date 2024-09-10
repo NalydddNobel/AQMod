@@ -2251,7 +2251,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1368)</summary>
+            <summary>(Total Textures: 1374)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3199,13 +3199,31 @@
             <summary>Full Path: Content/Items/Accessories/Tinkers/GoldenWind/GoldenWindBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HorseshoeCombination">
-            <summary>Full Path: Content/Items/Accessories/Tinkers/HorseshoeCombo/HorseshoeCombination</summary>
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/HorseshoeCombination</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PurpleBalloon">
-            <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon</summary>
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/PurpleBalloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PurpleBalloon_Balloon">
-            <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon_Balloon</summary>
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/PurpleBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.QuadBalloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.QuadBalloon_Balloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.QuadHorseshoeBalloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadHorseshoeBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.QuadHorseshoeBalloon_Balloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadHorseshoeBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TerraBalloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TerraBalloon_Balloon">
+            <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon_Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowBreastplate">
             <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>

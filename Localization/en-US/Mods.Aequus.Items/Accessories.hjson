@@ -1,6 +1,35 @@
 // Equipment: Accessories
+TerraBalloon: {
+	DisplayName: Coalescence of Equestrador Balloons
+	Tooltip:
+		'''
+		{$ItemTooltip.HorseshoeBundle}
+		{$ItemTooltip.ObsidianSkull}
+		Hold Up to reduce fall speed
+		Hold Down to increase fall speed
+		'''
+}
+
+QuadHorseshoeBalloon: {
+	DisplayName: Coalescence of Horseshoe Balloons
+	Tooltip:
+		'''
+		{$ItemTooltip.HorseshoeBundle}
+		{$SlimyBlueBalloon.Tooltip}
+		'''
+}
+
+QuadBalloon: {
+	DisplayName: Coalescence of Balloons
+	Tooltip:
+		'''
+		{$ItemTooltip.BundleofBalloons}
+		{$SlimyBlueBalloon.Tooltip}
+		'''
+}
+
 HorseshoeCombination: {
-	DisplayName: Braced Hoof
+	DisplayName: Equestradors
 	Tooltip:
 		'''
 		{$ItemTooltip.ObsidianHorseshoe}

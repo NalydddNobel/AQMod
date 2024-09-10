@@ -23,13 +23,17 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
+        ApplyEffects(Item, player, MaxFallSpeedMultiplier, DamagingFallSpeedThreshold);
+    }
+
+    public static void ApplyEffects(Item item, Player player, float maxFallSpeedMultiplier, float damagingFallSpeedThreshold) {
         if (player.grappling[0] != -1) {
             return;
         }
 
         var aequus = player.GetModPlayer<AequusPlayer>();
-        player.maxFallSpeed *= MaxFallSpeedMultiplier;
-        aequus.accWeightedHorseshoe = Item;
+        player.maxFallSpeed *= maxFallSpeedMultiplier;
+        aequus.accWeightedHorseshoe = item;
 
         int gravityDirection = Math.Sign(player.gravDir);
         if (Math.Sign(player.velocity.Y) != gravityDirection) {
@@ -37,7 +41,7 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         }
 
         float fallSpeed = Math.Abs(player.velocity.Y);
-        if (fallSpeed > DamagingFallSpeedThreshold) {
+        if (fallSpeed > damagingFallSpeedThreshold) {
             player.GetModPlayer<VisualFlags>().drawShadow = true;
         }
     }

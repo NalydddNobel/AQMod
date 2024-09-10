@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Items.Accessories.Balloons;
 
-namespace Aequus.Content.Items.Accessories.Tinkers.PurpleBalloon;
+namespace Aequus.Content.Items.Accessories.Tinkers.QuadBalloonCombos;
 
 [AutoloadEquip(EquipType.Balloon)]
 public class PurpleBalloon : ModItem {
@@ -8,7 +8,7 @@ public class PurpleBalloon : ModItem {
         int balloonSlot = Item.balloonSlot;
         Item.CloneDefaults(ItemID.ShinyRedBalloon);
         Item.balloonSlot = balloonSlot;
-        Item.rare++;
+        Item.rare = ItemRarityID.Orange;
         Item.value = (int)(Item.value * 1.25f);
     }
 

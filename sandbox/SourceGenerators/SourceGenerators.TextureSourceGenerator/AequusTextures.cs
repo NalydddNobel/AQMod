@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1368)</summary>
+/// <summary>(Total Textures: 1374)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -637,12 +637,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GoldenWind = new("Content/Items/Accessories/Tinkers/GoldenWind/GoldenWind");
     /// <summary>Full Path: Content/Items/Accessories/Tinkers/GoldenWind/GoldenWindBuff</summary>
     public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Content/Items/Accessories/Tinkers/GoldenWind/GoldenWindBuff");
-    /// <summary>Full Path: Content/Items/Accessories/Tinkers/HorseshoeCombo/HorseshoeCombination</summary>
-    public static readonly RequestCache<Texture2D> HorseshoeCombination = new("Content/Items/Accessories/Tinkers/HorseshoeCombo/HorseshoeCombination");
-    /// <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon</summary>
-    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon");
-    /// <summary>Full Path: Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon_Balloon</summary>
-    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Content/Items/Accessories/Tinkers/PurpleBalloon/PurpleBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/HorseshoeCombination</summary>
+    public static readonly RequestCache<Texture2D> HorseshoeCombination = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/HorseshoeCombination");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/PurpleBalloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/PurpleBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/PurpleBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/PurpleBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadBalloon</summary>
+    public static readonly RequestCache<Texture2D> QuadBalloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> QuadBalloon_Balloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadHorseshoeBalloon</summary>
+    public static readonly RequestCache<Texture2D> QuadHorseshoeBalloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadHorseshoeBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadHorseshoeBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> QuadHorseshoeBalloon_Balloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/QuadHorseshoeBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon</summary>
+    public static readonly RequestCache<Texture2D> TerraBalloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> TerraBalloon_Balloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon_Balloon");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
     public static readonly RequestCache<Texture2D> MeadowBreastplate = new("Content/Items/Armor/Meadow/MeadowBreastplate");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate_Body</summary>

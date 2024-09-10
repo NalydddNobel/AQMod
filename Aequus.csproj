@@ -44,4 +44,13 @@
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 			
+  <ItemGroup>
+    <None Remove="Content\Items\Accessories\Tinkers\QuadBalloonCombos\QuadBalloon.png" />
+    <None Remove="Content\Items\Accessories\Tinkers\QuadBalloonCombos\QuadBalloon_Balloon.png" />
+    <None Remove="Content\Items\Accessories\Tinkers\QuadBalloonCombos\QuadHorseshoeBalloon.png" />
+    <None Remove="Content\Items\Accessories\Tinkers\QuadBalloonCombos\QuadHorseshoeBalloon_Balloon.png" />
+    <None Remove="Content\Items\Accessories\Tinkers\QuadBalloonCombos\TerraBalloon.png" />
+    <None Remove="Content\Items\Accessories\Tinkers\QuadBalloonCombos\TerraBalloon_Balloon.png" />
+  </ItemGroup>
+			
 </Project>
