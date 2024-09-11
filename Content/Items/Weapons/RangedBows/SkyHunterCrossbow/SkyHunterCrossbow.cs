@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Entities.Players;
 using Aequus.Common.Items;
 using Aequus.Common.Projectiles;
 using Aequus.Projectiles;
@@ -9,7 +10,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Items.Weapons.RangedBows.SkyHunterCrossbow;
 
-public class SkyHunterCrossbow : ModItem, IManageProjectile {
+public class SkyHunterCrossbow : ModItem, IManageProjectile, IScopeWhileHeld {
     public static int ItemPickupHitSquareSize { get; set; } = 64;
     public static int MaximumDistance { get; set; } = 600;
 
@@ -242,4 +243,8 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         BreakRopeParticles(projectile, 14f, 3f);
     }
     #endregion
+
+    float IScopeWhileHeld.GetZoomFactor(Player player) {
+        return Main.mouseRight ? 0.5f : -1f;
+    }
 }
