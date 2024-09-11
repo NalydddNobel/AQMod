@@ -148,13 +148,13 @@ BigGem: {
 }
 
 AncientAngelStatue.ItemDisplayName: 远古天使雕像
-// AdamantiteChestTrapped.ItemDisplayName: Trapped Adamantite Chest
-// HardGraniteChestTrapped.ItemDisplayName: Trapped Living Granite Chest
-// HardMarbleChestTrapped.ItemDisplayName: Trapped Marble Trove
-// HardMushroomChestTrapped.ItemDisplayName: Trapped Shroomite Chest
-// HardFrozenChestTrapped.ItemDisplayName: Trapped Frost Chest
-// HardSandstoneChestTrapped.ItemDisplayName: Trapped Forbidden Chest
-// HardJungleChestTrapped.ItemDisplayName: Trapped Tortoise Case
+AdamantiteChestTrapped.ItemDisplayName: 机关精金宝箱
+HardGraniteChestTrapped.ItemDisplayName: 机关活花岗岩宝箱
+HardMarbleChestTrapped.ItemDisplayName: 机关大理石宝藏
+HardMushroomChestTrapped.ItemDisplayName: 机关蘑菇矿宝箱
+HardFrozenChestTrapped.ItemDisplayName: 机关寒霜宝箱
+HardSandstoneChestTrapped.ItemDisplayName: 机关禁戒宝箱
+HardJungleChestTrapped.ItemDisplayName: 机关陆龟保险箱
 
 CopperChest: {
 	MapEntry: 铜宝箱

@@ -21,7 +21,7 @@ CrossMod: {
 			IsNotContagion: Contagion世界之外掉落
 		}
 
-		// Announcement.EoCBaccilite: Mods.Aequus.CrossMod.Avalon.Announcement.EoCBaccilite
+		Announcement.EoCBaccilite: Mods.Aequus.CrossMod.Avalon.Announcement.EoCBaccilite
 	}
 
 	Fargowiltas: {

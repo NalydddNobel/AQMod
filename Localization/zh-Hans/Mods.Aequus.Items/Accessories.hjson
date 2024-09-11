@@ -1,35 +1,35 @@
 // Equipment: Accessories
 TerraBalloon: {
-	// DisplayName: Coalescence of Equestrador Balloons
-	/* Tooltip:
+	DisplayName: 骑者蹄铁气球聚结
+	Tooltip:
 		'''
 		{$ItemTooltip.HorseshoeBundle}
 		{$ItemTooltip.ObsidianSkull}
-		Hold Up to increase fall speed
-		Hold Down to reduce fall speed
-		''' */
+		长按上键减缓下落速度
+		长按下键加快下落速度
+		'''
 }
 
 QuadHorseshoeBalloon: {
-	// DisplayName: Coalescence of Horseshoe Balloons
-	/* Tooltip:
+	DisplayName: 马掌气球聚结
+	Tooltip:
 		'''
 		{$ItemTooltip.HorseshoeBundle}
 		{$SlimyBlueBalloon.Tooltip}
-		''' */
+		'''
 }
 
 QuadBalloon: {
-	// DisplayName: Coalescence of Balloons
-	/* Tooltip:
+	DisplayName: 气球聚结
+	Tooltip:
 		'''
 		{$ItemTooltip.BundleofBalloons}
 		{$SlimyBlueBalloon.Tooltip}
-		''' */
+		'''
 }
 
 HorseshoeCombination: {
-	DisplayName: 加固蹄
+	DisplayName: 骑者蹄铁
 	Tooltip:
 		'''
 		{$ItemTooltip.ObsidianHorseshoe}
@@ -103,7 +103,7 @@ SlimyBlueBalloon: {
 }
 
 WeightedHorseshoe: {
-	DisplayName: 重力马蹄铁
+	DisplayName: 重力马掌
 	Tooltip:
 		'''
 		{$WeightedHorseshoe.Function}
