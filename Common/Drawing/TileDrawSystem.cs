@@ -17,13 +17,14 @@ public class TileDrawSystem : ModSystem {
         Rectangle bounds = new Rectangle((int)(Main.screenPosition.X / 16 - offScreenRange), (int)(Main.screenPosition.Y / 16 - offScreenRange), Main.screenWidth / 16 + offScreenRange * 2, Main.screenHeight / 16 + offScreenRange * 2);
 
         if (!_bounds.Equals(bounds)) {
+            ClearCaches(bounds);
             UpdateTileCaches(bounds);
         }
 
         _bounds = bounds;
     }
 
-    static void UpdateTileCaches(Rectangle bounds) {
+    static void ClearCaches(Rectangle bounds) {
         foreach (var pairs in _systems.Where(p => p.Value.Count > 0)) {
             pairs.Value.RemoveAll((p) => !Main.tile[p].HasTile || Main.tile[p].TileType != pairs.Key.Type || !pairs.Key.InBounds(p, bounds));
 
@@ -31,7 +32,9 @@ public class TileDrawSystem : ModSystem {
                 pairs.Key.Deactivate();
             }
         }
+    }
 
+    static void UpdateTileCaches(Rectangle bounds) {
         int right = bounds.X + bounds.Width;
         int bottom = bounds.Y + bounds.Height;
         for (int i = bounds.X; i < right; i++) {
@@ -77,6 +80,7 @@ public class TileDrawSystem : ModSystem {
     }
 }
 
+[Autoload(Side = ModSide.Client)]
 public class TileDrawSystemGlobalTile : GlobalTile {
     public override bool TileFrame(int i, int j, int type, ref bool resetFrame, ref bool noBreak) {
         if (Main.netMode != NetmodeID.Server && TileLoader.GetTile(type) is ITileDrawSystem system) {
@@ -86,6 +90,18 @@ public class TileDrawSystemGlobalTile : GlobalTile {
             }
         }
         return true;
+    }
+
+    public override void PlaceInWorld(int i, int j, int type, Item item) {
+        if (Main.netMode != NetmodeID.Server && TileLoader.GetTile(type) is ITileDrawSystem system) {
+            Tile tile = Main.tile[i, j];
+            TileHelper.GetTileCorner(i, j, out int left, out int top);
+
+            Point nextPoint = new Point(left, top);
+            if (system.Accept(nextPoint)) {
+                TileDrawSystem.Add(system, nextPoint);
+            }
+        }
     }
 
     public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem) {

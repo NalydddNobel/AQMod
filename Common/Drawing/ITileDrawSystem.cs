@@ -1,4 +1,5 @@
 ﻿namespace Aequus.Common.Drawing;
+
 public interface ITileDrawSystem : IDrawSystem {
     int Type { get; }
 

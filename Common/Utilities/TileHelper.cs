@@ -73,6 +73,26 @@ public static class TileHelper {
         }
     }
 
+    public static void GetTileCorner(int i, int j, out int left, out int top) {
+        Tile tile = Main.tile[i, j];
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        if (data == null) {
+            left = i;
+            top = j;
+            return;
+        }
+        left = i - (tile.TileFrameX % data.CoordinateFullWidth) / (data.CoordinateWidth + data.CoordinatePadding);
+        top = j;
+        int frame = tile.TileFrameY % data.CoordinateFullHeight;
+        int index = 0;
+        do {
+            frame -= data.CoordinateHeights[index];
+            index++;
+        }
+        while (frame > 0);
+        top -= index - 1;
+    }
+
     public static int GetStyle(int i, int j, int coordinateFullWidthBackup = 18) {
         var tile = Main.tile[i, j];
         return GetStyle(tile, TileObjectData.GetTileData(tile), coordinateFullWidthBackup);
