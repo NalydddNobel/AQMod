@@ -79,7 +79,7 @@ public class AncientCutlass : ModItem {
                 continue;
             }
 
-            Item.NewItem(target.GetSource_Loot("AequusRemake: Steal"), hitbox, item);
+            Item.NewItem(target.GetSource_Loot("Aequus: Steal"), hitbox, item);
         }
     }
 }

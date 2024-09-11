@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1375)</summary>
+/// <summary>(Total Textures: 1435)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -230,7 +230,7 @@ public partial class AequusTextures {
     /// <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
     public static readonly RequestCache<Texture2D> HardenedSand = new("Assets/Textures/TileMerges/HardenedSand");
     /// <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
-    public static readonly RequestCache<Texture2D> PolymerSandstone = new("Assets/Textures/TileMerges/PolymerSandstone");
+    public static readonly RequestCache<Texture2D> Assets_Textures_TileMerges_PolymerSandstone = new("Assets/Textures/TileMerges/PolymerSandstone");
     /// <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
     public static readonly RequestCache<Texture2D> Sand = new("Assets/Textures/TileMerges/Sand");
     /// <summary>Full Path: Assets/Textures/UI/Durability</summary>
@@ -393,6 +393,38 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionAltarItem = new("Content/Biomes/Oblivion/Tiles/OblivionAltarItem");
     /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight</summary>
     public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_0 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_1 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_2 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_3 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceRain</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceRain = new("Content/Biomes/PollutedOcean/Background/OceanCreviceRain");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/PollutedOceanSurfaceBG</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanSurfaceBG = new("Content/Biomes/PollutedOcean/Background/PollutedOceanSurfaceBG");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanBiomeSurface_Background = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanBiomeSurface_Icon = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanBiomeUnderground_Background = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanBiomeUnderground_Icon = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater = new("Content/Biomes/PollutedOcean/Water/PollutedWater");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Block</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Block = new("Content/Biomes/PollutedOcean/Water/PollutedWater_Block");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Droplet = new("Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Dust</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Dust = new("Content/Biomes/PollutedOcean/Water/PollutedWater_Dust");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Slope</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Slope = new("Content/Biomes/PollutedOcean/Water/PollutedWater_Slope");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Waterfall = new("Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall");
     /// <summary>Full Path: Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
     public static readonly RequestCache<Texture2D> BridgeBountyBuff = new("Content/Carpentry/Bonuses/BridgeBountyBuff");
     /// <summary>Full Path: Content/Carpentry/Bonuses/Buff</summary>
@@ -569,6 +601,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerEventIcon = new("Content/Events/GlimmerEvent/Textures/GlimmerEventIcon");
     /// <summary>Full Path: Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
     public static readonly RequestCache<Texture2D> GlimmerMapBackground = new("Content/Events/GlimmerEvent/Textures/GlimmerMapBackground");
+    /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
+    public static readonly RequestCache<Texture2D> Killifish = new("Content/Fishing/Fish/Killifish");
+    /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
+    public static readonly RequestCache<Texture2D> Piraiba = new("Content/Fishing/Fish/Piraiba");
     /// <summary>Full Path: Content/Fishing/Junk/Driftwood</summary>
     public static readonly RequestCache<Texture2D> Driftwood = new("Content/Fishing/Junk/Driftwood");
     /// <summary>Full Path: Content/Fishing/Junk/PlasticBottle</summary>
@@ -683,6 +719,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BeyondPlatinumCoin = new("Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin");
     /// <summary>Full Path: Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin_World</summary>
     public static readonly RequestCache<Texture2D> BeyondPlatinumCoin_World = new("Content/Items/Materials/BeyondCoin/BeyondPlatinumCoin_World");
+    /// <summary>Full Path: Content/Items/Materials/CompressedTrash/CompressedTrash</summary>
+    public static readonly RequestCache<Texture2D> CompressedTrash = new("Content/Items/Materials/CompressedTrash/CompressedTrash");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
     public static readonly RequestCache<Texture2D> MonoGem = new("Content/Items/Materials/MonoGem/MonoGem");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
@@ -955,6 +993,88 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> YinYangXmasPainting = new("Content/Tiles/Paintings/YinYang/YinYangXmasPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
     public static readonly RequestCache<Texture2D> YinYangXmasPaintingItem = new("Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalactite1x2 = new("Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x1</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalagmite1x1 = new("Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x2</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalagmite1x2 = new("Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient1x1</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanAmbient1x1 = new("Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient1x1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient2x2</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanAmbient2x2 = new("Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient2x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_0</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1_0 = new("Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_0");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_1</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1_1 = new("Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_2</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1_2 = new("Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_0</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2_0 = new("Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_0");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_1</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2_1 = new("Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_2</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2_2 = new("Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots1x1</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1 = new("Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots1x1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots2x2</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2 = new("Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots2x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x1</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles1x1 = new("Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x1");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x2</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles1x2 = new("Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles2x2 = new("Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPicklesParticle</summary>
+    public static readonly RequestCache<Texture2D> SeaPicklesParticle = new("Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPicklesParticle");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision</summary>
+    public static readonly RequestCache<Texture2D> BrokenTelevision = new("Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/Television</summary>
+    public static readonly RequestCache<Texture2D> Television = new("Content/Tiles/PollutedOcean/Ambient/Television/Television");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem</summary>
+    public static readonly RequestCache<Texture2D> TelevisionItem = new("Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSand</summary>
+    public static readonly RequestCache<Texture2D> PolymerSand = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSand");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandFalling</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandFalling = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSandFalling");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandItem = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSandItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstone</summary>
+    public static readonly RequestCache<Texture2D> Content_Tiles_PollutedOcean_PolymerSands_PolymerSandstone = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstone");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneItem = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWall</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneWall = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWall");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWallItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneWallItem = new("Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWallItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBlock</summary>
+    public static readonly RequestCache<Texture2D> ScrapBlock = new("Content/Tiles/PollutedOcean/Scrap/ScrapBlock");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBlockFalling</summary>
+    public static readonly RequestCache<Texture2D> ScrapBlockFalling = new("Content/Tiles/PollutedOcean/Scrap/ScrapBlockFalling");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBlockItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapBlockItem = new("Content/Tiles/PollutedOcean/Scrap/ScrapBlockItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBrick</summary>
+    public static readonly RequestCache<Texture2D> ScrapBrick = new("Content/Tiles/PollutedOcean/Scrap/ScrapBrick");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapBrickItem = new("Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTree</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTree = new("Content/Tiles/PollutedOcean/Trees/ScrapPalmTree");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTreeItem = new("Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTreeTop = new("Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTreeTopItem = new("Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTree</summary>
+    public static readonly RequestCache<Texture2D> ScrapTree = new("Content/Tiles/PollutedOcean/Trees/ScrapTree");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapTreeItem = new("Content/Tiles/PollutedOcean/Trees/ScrapTreeItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTop</summary>
+    public static readonly RequestCache<Texture2D> ScrapTreeTop = new("Content/Tiles/PollutedOcean/Trees/ScrapTreeTop");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapTreeTopItem = new("Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem");
     /// <summary>Full Path: Content/Tiles/Tombstones/HellTombstones</summary>
     public static readonly RequestCache<Texture2D> HellTombstones = new("Content/Tiles/Tombstones/HellTombstones");
     /// <summary>Full Path: Content/Tiles/Tombstones/HellTombstones_Glow</summary>

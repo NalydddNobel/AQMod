@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 119)</summary>
+/// <summary>(Total Sounds: 132)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -236,6 +236,32 @@ public partial class AequusSounds {
     public static readonly SoundStyle spaceGun = new("Aequus/Assets/Sounds/SpaceSquid/spaceGun");
     /// <summary>Full Path: Assets/Sounds/squeak</summary>
     public static readonly SoundStyle squeak = new("Aequus/Assets/Sounds/squeak");
+    /// <summary>Full Path: Assets/Sounds/Tile/BuriedChestReveal</summary>
+    public static readonly SoundStyle BuriedChestReveal = new("Aequus/Assets/Sounds/Tile/BuriedChestReveal");
+    /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock0</summary>
+    public static readonly SoundStyle ConductiveBlock0 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock0");
+    /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock1</summary>
+    public static readonly SoundStyle ConductiveBlock1 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock1");
+    /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock2</summary>
+    public static readonly SoundStyle ConductiveBlock2 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock2");
+    /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
+    public static readonly SoundStyle ConductiveBlock3 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock3");
+    /// <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
+    public static readonly SoundStyle MoonflowerBreak = new("Aequus/Assets/Sounds/Tile/MoonflowerBreak");
+    /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
+    public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
+    /// <summary>Full Path: Assets/Sounds/Tile/RadioAmbient</summary>
+    public static readonly SoundStyle RadioAmbient = new("Aequus/Assets/Sounds/Tile/RadioAmbient");
+    /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
+    public static readonly SoundStyle ScrapBlock0 = new("Aequus/Assets/Sounds/Tile/ScrapBlock0");
+    /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock1</summary>
+    public static readonly SoundStyle ScrapBlock1 = new("Aequus/Assets/Sounds/Tile/ScrapBlock1");
+    /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock2</summary>
+    public static readonly SoundStyle ScrapBlock2 = new("Aequus/Assets/Sounds/Tile/ScrapBlock2");
+    /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
+    public static readonly SoundStyle ScrapBlock3 = new("Aequus/Assets/Sounds/Tile/ScrapBlock3");
+    /// <summary>Full Path: Assets/Sounds/Tile/TileBreak_TrashBag</summary>
+    public static readonly SoundStyle TileBreak_TrashBag = new("Aequus/Assets/Sounds/Tile/TileBreak_TrashBag");
     /// <summary>Full Path: Assets/Sounds/touhouShoot</summary>
     public static readonly SoundStyle touhouShoot = new("Aequus/Assets/Sounds/touhouShoot");
     /// <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/Attack_DeathRay</summary>

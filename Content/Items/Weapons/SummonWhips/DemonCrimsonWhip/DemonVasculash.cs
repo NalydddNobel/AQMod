@@ -1,13 +1,13 @@
 ﻿/*
-using AequusRemake.Core;
-using AequusRemake.Systems.Elements;
-using AequusRemake.Core.ContentGeneration;
-using AequusRemake.Core.Entities.Projectiles;
+using Aequus.Core;
+using Aequus.Systems.Elements;
+using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Projectiles;
 using System.Collections.Generic;
 using Terraria.DataStructures;
-using AequusRemake.Core.Util.Helpers;
+using Aequus.Core.Util.Helpers;
 
-namespace AequusRemake.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
+namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
 
 public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
     public static readonly int DefensePerPet = 2;

@@ -28,6 +28,13 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
 
     [Header("World")]
 
+#if POLLUTED_OCEAN
+    [DefaultBackgroundColor]
+    [DefaultValue(1f)]
+    [Range(0f, 1f)]
+    public Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerationSideConfig PollutedOceanSide { get; set; }
+#endif
+
     [DefaultBackgroundColor]
     [DefaultValue(1f)]
     [Range(0f, 1f)]

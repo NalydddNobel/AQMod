@@ -1,9 +1,12 @@
-﻿using Terraria.GameContent.Bestiary;
+﻿using System;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus;
 
-internal class AutoloadSystem : ModSystem {
+internal class LoadingSystem : ModSystem {
+    public event Action? OnPostSetupContent;
+
     public override void Load() {
         On_ItemDropDatabase.Populate += On_ItemDropDatabase_Populate;
         On_BestiaryDatabase.Merge += On_BestiaryDatabase_Merge;
@@ -26,6 +29,7 @@ internal class AutoloadSystem : ModSystem {
     }
 
     public override void PostSetupContent() {
+        OnPostSetupContent?.Invoke();
         foreach (var t in Mod.GetContent<IPostSetupContent>()) {
             t.PostSetupContent(Aequus.Instance);
         }

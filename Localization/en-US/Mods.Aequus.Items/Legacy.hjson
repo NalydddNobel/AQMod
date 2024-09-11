@@ -2678,11 +2678,6 @@ FrozenTear: {
 	Tooltip: A crystal fabled to be the frozen tears of a squid
 }
 
-ItemScrap: {
-	DisplayName: Scrap
-	Tooltip: May be used instead of other {ItemRarity} rarity items while crafting
-}
-
 Leecheel: {
 	DisplayName: Leecheel
 	Tooltip: Adapted to the harsh waters of the Crimson

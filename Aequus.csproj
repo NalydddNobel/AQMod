@@ -18,6 +18,7 @@
 	<!-- Emit compiler generated files so they can be used in-game for building. -->
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 	<CompilerGeneratedFilesOutputPath>sandbox</CompilerGeneratedFilesOutputPath>
+
   </PropertyGroup>
 			
   <ItemGroup>
@@ -44,4 +45,8 @@
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 			
+  <!-- Custom compiler flags for loading unfinished content. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+	<DefineConstants>POLLUTED_OCEAN</DefineConstants>
+  </PropertyGroup>
 </Project>

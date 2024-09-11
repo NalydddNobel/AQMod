@@ -1,12 +1,12 @@
 ﻿/*
-using AequusRemake.Core;
-using AequusRemake.Systems.Elements;
-using AequusRemake.Core.ContentGeneration;
+using Aequus.Core;
+using Aequus.Systems.Elements;
+using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.DataStructures;
-using AequusRemake.Core.Util.Helpers;
+using Aequus.Core.Util.Helpers;
 
-namespace AequusRemake.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
+namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
 
 [WorkInProgress]
 public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {

@@ -7,7 +7,6 @@ namespace Aequus.Content;
 [LegacyName("HalloweenEnergy")]
 [LegacyName("Heliosis")]
 [LegacyName("ImpenetrableCoating")]
-[LegacyName("ItemScrap")]
 [LegacyName("LiquidGun")]
 [LegacyName("LittleInferno")]
 [LegacyName("Mendshroom")]
