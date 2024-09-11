@@ -1,6 +1,6 @@
 PaperMaterial: {
-	// DisplayName: Veneer Sheet
-	// Tooltip: Useful stationery for crafting map related objects
+	DisplayName: 木皮
+	Tooltip: 制作地图相关物品时有用的纸质品
 }
 
 FrozenTechnology: {
