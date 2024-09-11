@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Dedications;
 using Aequus.Common.Recipes;
+using Aequus.Common.Utilities.Helpers;
 using Aequus.Content.Items.Materials.BeyondCoin;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -8,8 +9,11 @@ using Terraria.Localization;
 namespace Aequus.Content.Items.Consumable.ShimmerPowerups;
 
 public class ShimmerCoin : ModItem {
+    //public static readonly int MaxTimesUsed = 5;
     public static int TimesUsed { get; set; }
+
     public static int MaxTimesUsed { get; set; } = 5;
+
     public static float Effectiveness => TimesUsed / (float)MaxTimesUsed;
 
     public override void SetDefaults() {
@@ -37,6 +41,13 @@ public class ShimmerCoin : ModItem {
         }
 
         TimesUsed++;
+
+        if (Main.netMode != NetmodeID.MultiplayerClient) {
+            NetworkText text = this.GetLocalization("Announcement")
+                .ToNetworkText(player.name, TimesUsed, MaxTimesUsed);
+
+            WorldGen.BroadcastText(text, CommonColor.TextEvent);
+        }
         return true;
     }
 

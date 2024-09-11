@@ -105,6 +105,7 @@ ShimmerCoin: {
 		物品掉率、重铸时出现正面前缀的几率、
 		镇民的防御力和力量和旅行商人的物品数量
 		'''
+	// Announcement: "{0} uses a shimmer coin! ({1}/{2})"
 }
 
 TinKey: {

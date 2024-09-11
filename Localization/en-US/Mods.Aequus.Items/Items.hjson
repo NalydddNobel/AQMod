@@ -105,6 +105,7 @@ ShimmerCoin: {
 		droprates, rolling positive prefixes from reforging,
 		defense & strength of villagers, and Traveling Merchant items
 		'''
+	Announcement: "{0} uses a shimmer coin! ({1}/{2})"
 }
 
 TinKey: {
