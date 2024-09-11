@@ -2251,7 +2251,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1374)</summary>
+            <summary>(Total Textures: 1375)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3284,6 +3284,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PaperMaterial">
+            <summary>Full Path: Content/Items/Materials/Paper/PaperMaterial</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PossessedShard">
             <summary>Full Path: Content/Items/Materials/PossessedShard/PossessedShard</summary>

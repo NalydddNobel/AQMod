@@ -5,8 +5,8 @@ TerraBalloon: {
 		'''
 		{$ItemTooltip.HorseshoeBundle}
 		{$ItemTooltip.ObsidianSkull}
-		Hold Up to increase fall speed
-		Hold Down to reduce fall speed
+		Hold Up to reduce fall speed
+		Hold Down to increase fall speed
 		''' */
 }
 

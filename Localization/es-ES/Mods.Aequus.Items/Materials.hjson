@@ -1,3 +1,8 @@
+PaperMaterial: {
+	// DisplayName: Veneer Sheet
+	// Tooltip: Useful stationery for crafting map related objects
+}
+
 FrozenTechnology: {
 	DisplayName: Tecnología Congelada
 	Tooltip: Usado para crear aparatos informacionales

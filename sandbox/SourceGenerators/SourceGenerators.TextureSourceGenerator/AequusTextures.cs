@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1374)</summary>
+/// <summary>(Total Textures: 1375)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -695,6 +695,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Content/Items/Materials/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Content/Items/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Content/Items/Materials/Paper/PaperMaterial</summary>
+    public static readonly RequestCache<Texture2D> PaperMaterial = new("Content/Items/Materials/Paper/PaperMaterial");
     /// <summary>Full Path: Content/Items/Materials/PossessedShard/PossessedShard</summary>
     public static readonly RequestCache<Texture2D> PossessedShard = new("Content/Items/Materials/PossessedShard/PossessedShard");
     /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotion</summary>

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
-using Aequus.Content.Biomes.Meadows.Tiles;
+using Aequus.Content.Items.Materials.Paper;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.ObjectInteractions;
@@ -39,16 +39,17 @@ public class CartographyTable : ModTile, IAddRecipes {
         DustType = DustID.WoodFurniture;
     }
 
-    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
-        return true;
-    }
-
     void IAddRecipes.AddRecipes(Aequus aequus) {
         Item.CreateRecipe()
-            .AddIngredient(ModContent.GetInstance<MeadowWood>().Item, 25)
+            .AddRecipeGroup(RecipeGroupID.Wood, 50)
+            .AddIngredient<PaperMaterial>(10)
             .AddTile(TileID.Sawmill)
             .Register()
             .SortBeforeFirstRecipesOf(ItemID.GlassKiln);
+    }
+
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        return true;
     }
 
     public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
