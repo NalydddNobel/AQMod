@@ -28,6 +28,10 @@ public abstract class Generator : ModType, ILocalizedModType {
     }
 
     public void GenerateOnThread(GenerationProgress progress = null, GameConfiguration config = null) {
+        if (generating) {
+            return;
+        }
+
         if (WorldGen.gen) {
             Generate(progress, config);
             return;
