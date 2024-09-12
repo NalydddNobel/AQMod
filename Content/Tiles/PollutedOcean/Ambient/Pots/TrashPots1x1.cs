@@ -19,12 +19,16 @@ public class TrashPots1x1 : UnifiedBreakablePot {
     }
 
     protected override bool DoSpecialBiomeTorch(ref int itemID) {
-        //itemID = ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
+#if POLLUTED_OCEAN_TODO
+        itemID = ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
+#endif
         return true;
     }
 
     protected override int ChooseGlowstick(int i, int j) {
+#if POLLUTED_OCEAN_TODO
+        return ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
+#endif
         return ItemID.Glowstick;
-        //return ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
     }
 }

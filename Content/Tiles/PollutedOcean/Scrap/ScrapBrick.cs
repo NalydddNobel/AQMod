@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates.Generic;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Scrap;
 
@@ -36,3 +37,4 @@ public class ScrapBrick : ModTile, IAddRecipes {
         num = fail ? 1 : 3;
     }
 }
+#endif

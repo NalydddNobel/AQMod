@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Entities.Tiles;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;
@@ -38,3 +39,4 @@ public class PolymerSandstoneWallHostile : PolymerSandstoneWall {
         Main.wallHouse[Type] = false;
     }
 }
+#endif

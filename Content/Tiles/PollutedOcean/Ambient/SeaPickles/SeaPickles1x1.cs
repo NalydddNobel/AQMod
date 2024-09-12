@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Tiles.Rubblemaker;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates.Tiles.Rubblemaker;
 using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 using Terraria.GameContent;
 using Terraria.ObjectData;
@@ -29,3 +30,4 @@ internal class SeaPickles1x1 : SeaPicklesTileBase {
         LightMagnitudeMultiplier = 0.5f;
     }
 }
+#endif

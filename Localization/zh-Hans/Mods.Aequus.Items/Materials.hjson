@@ -95,10 +95,10 @@ NecroFragment: {
 
 Materials: {
 	Aluminum: {
-		// CanMineHint: Mods.Aequus.Items.Materials.Aluminum.CanMineHint
-		// BarDisplayName: System.Func`1[System.String] Bar
+		// CanMineHint: Can mine Aluminum
+		// BarDisplayName: Aluminum Bar
 		// BarTooltip: ""
-		// OreDisplayName: System.Func`1[System.String] Ore
+		// OreDisplayName: Aluminum Ore
 		// OreTooltip: ""
 	}
 }

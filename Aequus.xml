@@ -481,7 +481,7 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_ModifyTooltips">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="M:Aequus.AequusItem.ModifyTooltipsInner(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>).</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="!:AequusItem.ModifyTooltipsInner(Item, System.Collections.Generic.List&lt;TooltipLine&gt;)"/>).</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_OnSpawn">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.OnSpawn(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/> (<see cref="M:Aequus.AequusNPC.OnSpawnInner(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/>).</summary>
@@ -7075,16 +7075,6 @@
             <param name="y"></param>
             <param name="location"></param>
             <param name="genLocation"></param>
-        </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
-            <summary>
-            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
-            <summary>
-            Lookup for tile Ids which are safe to generate over.
-            </summary>
         </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>

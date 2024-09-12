@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
+﻿#if POLLUTED_OCEAN
+using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
@@ -20,3 +21,4 @@ internal class SeaPickles2x2 : SeaPicklesTileBase {
         TileObjectData.addTile(Type);
     }
 }
+#endif

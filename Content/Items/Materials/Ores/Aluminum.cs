@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates;
 using Aequus.Common.Items;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -36,10 +37,9 @@ public class Aluminum : UnifiedOre {
 
     [Gen.AequusItem_ModifyTooltips]
     internal static void AddAluminumMiningTip(Item item, List<TooltipLine> tooltips) {
-#if POLLUTED_OCEAN
         if (item.pick >= 45 && item.pick < 55) {
             tooltips.AddTooltip(new TooltipLine(Aequus.Instance, "AluminumHint", Instance<Aluminum>().CanMineAluminumTootipHint!.Value));
         }
-#endif
     }
 }
+#endif

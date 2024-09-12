@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Tiles;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates.Tiles;
 using Aequus.Common.ContentTemplates.Tiles.Sand;
 using Aequus.Content.Biomes.PollutedOcean;
 
@@ -95,3 +96,4 @@ public class PolymerSand : MultiMergeTile, IAddRecipes {
         return true;
     }
 }
+#endif

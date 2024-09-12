@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.ContentTemplates.Tiles;
 using Aequus.Content.Biomes.PollutedOcean;
 
@@ -44,3 +45,4 @@ public class PolymerSandstone : MultiMergeTile, IAddRecipes {
         num = fail ? 1 : 3;
     }
 }
+#endif

@@ -109,7 +109,9 @@ public partial class AequusItem {
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
         try {
+#if POLLUTED_OCEAN
             ModifyTooltipsInner(item, tooltips);
+#endif
             var player = Main.LocalPlayer;
             var aequus = player.Aequus();
 
