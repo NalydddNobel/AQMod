@@ -8,8 +8,8 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Common.World;
 public abstract class Generator : ModType, ILocalizedModType {
-    private GenerationProgress progress;
-    private GameConfiguration config;
+    private GenerationProgress? progress;
+    private GameConfiguration? config;
     internal bool generating;
 
     public bool Generating => generating;
@@ -28,6 +28,10 @@ public abstract class Generator : ModType, ILocalizedModType {
     }
 
     public void GenerateOnThread(GenerationProgress progress = null, GameConfiguration config = null) {
+        if (generating) {
+            return;
+        }
+
         if (WorldGen.gen) {
             Generate(progress, config);
             return;
