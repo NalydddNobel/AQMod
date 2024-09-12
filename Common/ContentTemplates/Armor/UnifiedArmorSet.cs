@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.ContentTemplates.Armor;
 
-public abstract class UnifiedArmorSet : ModTexturedType, IUnifiedTemplate, ILocalizedModType {
+public abstract class UnifiedArmorSet : ModTexturedType, IAddRecipes, IUnifiedTemplate, ILocalizedModType {
     public string LocalizationCategory => "Items.Armor";
 
     List<ModType> IUnifiedTemplate.ToLoad { get; init; } = [];
@@ -15,5 +15,10 @@ public abstract class UnifiedArmorSet : ModTexturedType, IUnifiedTemplate, ILoca
 
     public sealed override void SetupContent() {
         SetStaticDefaults();
+    }
+
+    public virtual void AddRecipes() { }
+    void IAddRecipes.AddRecipes(Aequus aequus) {
+        AddRecipes();
     }
 }

@@ -45,6 +45,8 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public bool setMeadowMagicTag;
     [CompilerGenerated]
+    public Item equipDartTrapHat;
+    [CompilerGenerated]
     public bool infiniteWormhole;
     
     [CompilerGenerated]
@@ -63,6 +65,7 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
         SourceGeneratorTools.ResetObj(ref setMeadow);
         SourceGeneratorTools.ResetObj(ref setMeadowMagicTag);
+        SourceGeneratorTools.ResetObj(ref equipDartTrapHat);
         SourceGeneratorTools.ResetObj(ref infiniteWormhole);
     }
     

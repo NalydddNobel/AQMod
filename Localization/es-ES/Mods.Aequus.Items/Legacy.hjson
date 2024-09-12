@@ -1426,35 +1426,6 @@ MoonlunaHat: {
 		''' */
 }
 
-VenomDartTrapHat: {
-	// DisplayName: Venom Dart Trap Hat
-	/* Tooltip:
-		'''
-		10% increased summon damage
-		Increases your max number of minions by 1
-		Ignores 15 points of enemy Defense
-		''' */
-}
-
-DartTrapHat: {
-	// DisplayName: Dart Trap Hat
-	/* Tooltip:
-		'''
-		Ignores 10 points of enemy Defense
-		Dropped from an immoral skeleton who loves repairing traps
-		''' */
-}
-
-SuperDartTrapHat: {
-	// DisplayName: Super Dart Trap Hat
-	/* Tooltip:
-		'''
-		40% increased summon damage
-		Increases your max number of minions by 1
-		Ignores 15 points of enemy Defense
-		''' */
-}
-
 BattleAxe: {
 	# Tools
 	// DisplayName: Battle Axe

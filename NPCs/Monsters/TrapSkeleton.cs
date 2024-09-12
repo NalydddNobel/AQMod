@@ -2,7 +2,7 @@
 using Aequus.Common.NPCs.Base;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
-using Aequus.Items.Equipment.Armor.SetTrap;
+using Aequus.Content.Items.Armor.TrapArtist;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -239,11 +239,11 @@ namespace Aequus.NPCs.Monsters {
             var loot = this.CreateLoot(npcLoot);
             if (GameplayConfig.Instance.EarlyWiring) {
                 loot
-                    .AddOptions(chance: 1, ModContent.ItemType<DartTrapHat>(), ItemID.Wrench)
+                    .AddOptions(chance: 1, ModContent.ItemType<InstancedDartTrapHat>(), ItemID.Wrench)
                     .Add(ItemID.Wire, chance: 1, stack: (30, 80));
             }
             else {
-                loot.Add<DartTrapHat>(chance: 2, stack: 1);
+                loot.Add<InstancedDartTrapHat>(chance: 2, stack: 1);
             }
         }
 

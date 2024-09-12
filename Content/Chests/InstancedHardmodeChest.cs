@@ -8,22 +8,28 @@ namespace Aequus.Content.Chests;
 [Autoload(false)]
 public class InstancedHardmodeChest : UnifiedModChest {
     private readonly string _name;
+    private readonly string _texture;
 
     public override string Name => _name;
 
-    public override string Texture => $"Aequus/Content/Chests/HardmodeChests/{Name}";
+    public override string Texture => _texture;
 
     public override string LocalizationCategory => "Tiles.Chests";
 
-    public InstancedHardmodeChest(string Name, Color MapColor, int DustType) {
+    public InstancedHardmodeChest() { }
+
+    public InstancedHardmodeChest(string Name, string Texture, Color MapColor, int DustType) : this() {
         _name = $"{Name}Chest";
-        // Create display name reference.
+        _texture = $"{Texture}Chest";
         Settings.MapColor = MapColor;
+        // Create display name reference.
         Settings.DisplayName = ItemSettings.DisplayName = new();
-        ItemSettings.Texture = Texture;
+        ItemSettings.Texture = _texture;
         this.DustType = DustType;
         Item = new InstancedTileItem(this, Settings: ItemSettings);
     }
+
+    internal InstancedHardmodeChest(string Name, Color MapColor, int DustType) : this(Name, $"Aequus/Content/Chests/HardmodeChests/{Name}", MapColor, DustType) { }
 
     public override void Load() {
         Settings.DisplayName!.Value = this.GetLocalization("DisplayName", PrettyPrintName);

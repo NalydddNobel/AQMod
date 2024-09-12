@@ -79,4 +79,35 @@ Armor: {
 			Your summons will focus enemies struck by any magic attack
 			''' */
 	}
+
+	TrapArtistArmor: {
+		DartTrapHat: {
+			// DisplayName: Dart Trap Hat
+			/* Tooltip:
+				'''
+				Ignores {0} points of enemy Defense
+				Dropped from an immoral skeleton who loves repairing traps
+				''' */
+		}
+
+		VenomDartTrapHat: {
+			// DisplayName: Venom Dart Trap Hat
+			/* Tooltip:
+				'''
+				{1}% increased summon damage
+				Increases your max number of minions by {2}
+				Ignores {0} points of enemy Defense
+				''' */
+		}
+
+		SuperDartTrapHat: {
+			// DisplayName: Super Dart Trap Hat
+			/* Tooltip:
+				'''
+				{1}% increased summon damage
+				Increases your max number of minions by {2}
+				Ignores {0} points of enemy Defense
+				''' */
+		}
+	}
 }

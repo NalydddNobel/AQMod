@@ -19,6 +19,10 @@ internal abstract class InstancedModItem : ModItem {
         }
 
         int i = texture.LastIndexOf('/');
+        if (i == -1) {
+            return;
+        }
+
         string name = texture[(i + 1)..];
         string path = texture[..i];
 

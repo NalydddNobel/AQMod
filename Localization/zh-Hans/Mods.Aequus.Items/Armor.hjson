@@ -79,4 +79,35 @@ Armor: {
 			你的召唤物会优先攻击受到魔法攻击的敌人
 			'''
 	}
+
+	TrapArtistArmor: {
+		DartTrapHat: {
+			DisplayName: 飞镖帽
+			Tooltip:
+				'''
+				无视敌人{0}点的防御力
+				掉落自喜欢修缮陷阱的缺德骷髅
+				'''
+		}
+
+		VenomDartTrapHat: {
+			DisplayName: 毒液飞镖帽
+			Tooltip:
+				'''
+				增加{1}%召唤伤害
+				增加{2}格最大召唤栏位
+				无视敌人{0}点的防御力
+				'''
+		}
+
+		SuperDartTrapHat: {
+			DisplayName: 超级飞镖帽
+			Tooltip:
+				'''
+				增加{1}%召唤伤害
+				增加{2}格最大召唤栏位
+				无视敌人{0}点的防御力
+				'''
+		}
+	}
 }

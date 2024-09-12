@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1438)</summary>
+/// <summary>(Total Textures: 1440)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -675,6 +675,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowHelmet = new("Content/Items/Armor/Meadow/MeadowHelmet");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet_Head</summary>
     public static readonly RequestCache<Texture2D> MeadowHelmet_Head = new("Content/Items/Armor/Meadow/MeadowHelmet_Head");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/DartTrapHat</summary>
+    public static readonly RequestCache<Texture2D> DartTrapHat = new("Content/Items/Armor/TrapArtist/DartTrapHat");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/DartTrapHatProj</summary>
+    public static readonly RequestCache<Texture2D> DartTrapHatProj = new("Content/Items/Armor/TrapArtist/DartTrapHatProj");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/DartTrapHat_Head</summary>
+    public static readonly RequestCache<Texture2D> DartTrapHat_Head = new("Content/Items/Armor/TrapArtist/DartTrapHat_Head");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/SuperDartTrapHat</summary>
+    public static readonly RequestCache<Texture2D> SuperDartTrapHat = new("Content/Items/Armor/TrapArtist/SuperDartTrapHat");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/SuperDartTrapHatProj</summary>
+    public static readonly RequestCache<Texture2D> SuperDartTrapHatProj = new("Content/Items/Armor/TrapArtist/SuperDartTrapHatProj");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/SuperDartTrapHat_Head</summary>
+    public static readonly RequestCache<Texture2D> SuperDartTrapHat_Head = new("Content/Items/Armor/TrapArtist/SuperDartTrapHat_Head");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHat</summary>
+    public static readonly RequestCache<Texture2D> VenomDartTrapHat = new("Content/Items/Armor/TrapArtist/VenomDartTrapHat");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHatProj</summary>
+    public static readonly RequestCache<Texture2D> VenomDartTrapHatProj = new("Content/Items/Armor/TrapArtist/VenomDartTrapHatProj");
+    /// <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHat_Head</summary>
+    public static readonly RequestCache<Texture2D> VenomDartTrapHat_Head = new("Content/Items/Armor/TrapArtist/VenomDartTrapHat_Head");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
     public static readonly RequestCache<Texture2D> CosmicChest = new("Content/Items/Consumable/ShimmerPowerups/CosmicChest");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/ShimmerCoin</summary>
@@ -1379,18 +1397,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FlowerCrown_Head = new("Items/Equipment/Armor/SetFlowerCrown/FlowerCrown_Head");
     /// <summary>Full Path: Items/Equipment/Armor/SetIridium/IridiumArmor</summary>
     public static readonly RequestCache<Texture2D> IridiumArmor = new("Items/Equipment/Armor/SetIridium/IridiumArmor");
-    /// <summary>Full Path: Items/Equipment/Armor/SetTrap/DartTrapHat</summary>
-    public static readonly RequestCache<Texture2D> DartTrapHat = new("Items/Equipment/Armor/SetTrap/DartTrapHat");
-    /// <summary>Full Path: Items/Equipment/Armor/SetTrap/DartTrapHat_Head</summary>
-    public static readonly RequestCache<Texture2D> DartTrapHat_Head = new("Items/Equipment/Armor/SetTrap/DartTrapHat_Head");
-    /// <summary>Full Path: Items/Equipment/Armor/SetTrap/SuperDartTrapHat</summary>
-    public static readonly RequestCache<Texture2D> SuperDartTrapHat = new("Items/Equipment/Armor/SetTrap/SuperDartTrapHat");
-    /// <summary>Full Path: Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head</summary>
-    public static readonly RequestCache<Texture2D> SuperDartTrapHat_Head = new("Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head");
-    /// <summary>Full Path: Items/Equipment/Armor/SetTrap/VenomDartTrapHat</summary>
-    public static readonly RequestCache<Texture2D> VenomDartTrapHat = new("Items/Equipment/Armor/SetTrap/VenomDartTrapHat");
-    /// <summary>Full Path: Items/Equipment/Armor/SetTrap/VenomDartTrapHat_Head</summary>
-    public static readonly RequestCache<Texture2D> VenomDartTrapHat_Head = new("Items/Equipment/Armor/SetTrap/VenomDartTrapHat_Head");
     /// <summary>Full Path: Items/Equipment/Armor/SetWizard/MoonlunaHat</summary>
     public static readonly RequestCache<Texture2D> MoonlunaHat = new("Items/Equipment/Armor/SetWizard/MoonlunaHat");
     /// <summary>Full Path: Items/Equipment/Armor/SetWizard/MoonlunaHat_Glow</summary>
@@ -2487,8 +2493,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CorruptPlantMinion_Med = new("Projectiles/Summon/CorruptPlantMinion_Med");
     /// <summary>Full Path: Projectiles/Summon/Misc/MoonlunaHatProj</summary>
     public static readonly RequestCache<Texture2D> MoonlunaHatProj = new("Projectiles/Summon/Misc/MoonlunaHatProj");
-    /// <summary>Full Path: Projectiles/Summon/Misc/VenomDartTrapHatProj</summary>
-    public static readonly RequestCache<Texture2D> VenomDartTrapHatProj = new("Projectiles/Summon/Misc/VenomDartTrapHatProj");
     /// <summary>Full Path: Projectiles/Summon/PiranhaPlantFireball</summary>
     public static readonly RequestCache<Texture2D> PiranhaPlantFireball = new("Projectiles/Summon/PiranhaPlantFireball");
     /// <summary>Full Path: Projectiles/Summon/PiranhaPlantMinion</summary>

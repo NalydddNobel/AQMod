@@ -32,10 +32,4 @@ public class LoadedType : ILoadable, IPostSetupContent, IAddRecipes {
         Unload();
         Mod = null;
     }
-
-    protected void RegisterMembers() {
-        foreach (ModType type in this.GetVariableMembersOfType<ModType>()) {
-            Mod!.AddContent(type);
-        }
-    }
 }

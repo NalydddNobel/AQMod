@@ -481,7 +481,7 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_ModifyTooltips">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="!:AequusItem.ModifyTooltipsInner(Item, System.Collections.Generic.List&lt;TooltipLine&gt;)"/>).</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="M:Aequus.AequusItem.ModifyTooltipsInner(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>).</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_OnSpawn">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.OnSpawn(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/> (<see cref="M:Aequus.AequusNPC.OnSpawnInner(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/>).</summary>
@@ -2327,7 +2327,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1438)</summary>
+            <summary>(Total Textures: 1440)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3330,6 +3330,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowHelmet_Head">
             <summary>Full Path: Content/Items/Armor/Meadow/MeadowHelmet_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DartTrapHat">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/DartTrapHat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DartTrapHatProj">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/DartTrapHatProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DartTrapHat_Head">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/DartTrapHat_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperDartTrapHat">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/SuperDartTrapHat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperDartTrapHatProj">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/SuperDartTrapHatProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperDartTrapHat_Head">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/SuperDartTrapHat_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VenomDartTrapHat">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VenomDartTrapHatProj">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHatProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VenomDartTrapHat_Head">
+            <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHat_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
@@ -4386,24 +4413,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.IridiumArmor">
             <summary>Full Path: Items/Equipment/Armor/SetIridium/IridiumArmor</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DartTrapHat">
-            <summary>Full Path: Items/Equipment/Armor/SetTrap/DartTrapHat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DartTrapHat_Head">
-            <summary>Full Path: Items/Equipment/Armor/SetTrap/DartTrapHat_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SuperDartTrapHat">
-            <summary>Full Path: Items/Equipment/Armor/SetTrap/SuperDartTrapHat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SuperDartTrapHat_Head">
-            <summary>Full Path: Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.VenomDartTrapHat">
-            <summary>Full Path: Items/Equipment/Armor/SetTrap/VenomDartTrapHat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.VenomDartTrapHat_Head">
-            <summary>Full Path: Items/Equipment/Armor/SetTrap/VenomDartTrapHat_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonlunaHat">
             <summary>Full Path: Items/Equipment/Armor/SetWizard/MoonlunaHat</summary>
@@ -6049,9 +6058,6 @@
         <member name="F:Aequus.AequusTextures.MoonlunaHatProj">
             <summary>Full Path: Projectiles/Summon/Misc/MoonlunaHatProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.VenomDartTrapHatProj">
-            <summary>Full Path: Projectiles/Summon/Misc/VenomDartTrapHatProj</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PiranhaPlantFireball">
             <summary>Full Path: Projectiles/Summon/PiranhaPlantFireball</summary>
         </member>
@@ -7075,6 +7081,16 @@
             <param name="y"></param>
             <param name="location"></param>
             <param name="genLocation"></param>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
+            <summary>
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
+            <summary>
+            Lookup for tile Ids which are safe to generate over.
+            </summary>
         </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>

@@ -1422,35 +1422,6 @@ MoonlunaHat: {
 		'''
 }
 
-VenomDartTrapHat: {
-	DisplayName: 毒液飞镖帽
-	Tooltip:
-		'''
-		增加10%召唤伤害
-		增加1格最大召唤栏位
-		无视敌人15点的防御力
-		'''
-}
-
-DartTrapHat: {
-	DisplayName: 飞镖帽
-	Tooltip:
-		'''
-		无视敌人10点的防御力
-		掉落自喜欢修缮陷阱的缺德骷髅
-		'''
-}
-
-SuperDartTrapHat: {
-	DisplayName: 超级飞镖帽
-	Tooltip:
-		'''
-		增加40%召唤伤害
-		增加1格最大召唤栏位
-		无视敌人15点的防御力
-		'''
-}
-
 BattleAxe: {
 	# Tools
 	DisplayName: 战斧

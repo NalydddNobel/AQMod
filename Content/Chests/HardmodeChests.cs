@@ -24,7 +24,7 @@ public class HardmodeChests : LoadedType {
     }
 
     protected override void Load() {
-        RegisterMembers();
+        this.RegisterMembers();
 
         // Legacy names for loading, honestly who cares about the trapped chests though.
         ModTypeLookup<ModItem>.RegisterLegacyNames(Frost.Item, "HardFrozenChest");
