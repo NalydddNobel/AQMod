@@ -95,10 +95,10 @@ NecroFragment: {
 
 Materials: {
 	Aluminum: {
-		// CanMineHint: Can mine Aluminum
-		// BarDisplayName: Aluminum Bar
-		// BarTooltip: ""
-		// OreDisplayName: Aluminum Ore
-		// OreTooltip: ""
+		CanMineHint: 可开采铝
+		BarDisplayName: 铝锭
+		BarTooltip: ""
+		OreDisplayName: 铝矿
+		OreTooltip: ""
 	}
 }
