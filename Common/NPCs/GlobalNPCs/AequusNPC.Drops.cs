@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes.Oblivion.Tiles;
 using Aequus.Content.Elites;
+using Aequus.Content.Tiles.Oblivion;
 using Aequus.Items.Equipment.Accessories.Combat;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Materials;

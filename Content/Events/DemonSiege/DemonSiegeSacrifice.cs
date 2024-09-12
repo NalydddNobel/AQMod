@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Net;
-using Aequus.Content.Biomes.Oblivion.Tiles;
+using Aequus.Content.Tiles.Oblivion;
 using Aequus.Items;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Particles.Dusts;

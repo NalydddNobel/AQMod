@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Entities.Items;
+using Aequus.Content.Tiles.Meadows;
 using Aequus.Particles.Dusts;
 using System;
 using Terraria.DataStructures;
@@ -40,7 +41,7 @@ public class MeadowStaff : ModItem, IHaveCrossedOutIndicator {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient(Instance<Biomes.Meadows.Tiles.MeadowWood>().Item.Type, 14)
+            .AddIngredient(Instance<MeadowWood>().Item.Type, 14)
             .AddTile(TileID.WorkBenches)
             .Register();
     }

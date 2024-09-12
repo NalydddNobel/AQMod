@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.Meadows.Tiles;
+﻿using Aequus.Content.Tiles.Meadows;
 using System;
 
 namespace Aequus.Content.Biomes.Meadows;

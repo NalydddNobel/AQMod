@@ -3,7 +3,7 @@ using Aequus.Common.Tiles;
 using Terraria.Audio;
 using Terraria.GameContent.Metadata;
 
-namespace Aequus.Content.Biomes.Meadows.Tiles;
+namespace Aequus.Content.Tiles.Meadows;
 
 public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
     public readonly ModItem MeadowGrassSeeds;

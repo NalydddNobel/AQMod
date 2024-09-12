@@ -2,7 +2,7 @@
 using Aequus.Common.ContentTemplates.Armor;
 using Aequus.Common.Entities.Players;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes.Meadows.Tiles;
+using Aequus.Content.Tiles.Meadows;
 using Aequus.Projectiles;
 using Terraria.Localization;
 

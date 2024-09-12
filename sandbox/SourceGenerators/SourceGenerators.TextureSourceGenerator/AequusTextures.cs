@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1435)</summary>
+/// <summary>(Total Textures: 1438)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -365,34 +365,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabCreviceWater_Block = new("Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Block");
     /// <summary>Full Path: Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope</summary>
     public static readonly RequestCache<Texture2D> CrabCreviceWater_Slope = new("Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrass</summary>
-    public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Biomes/Meadows/Tiles/MeadowGrass");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrassItem</summary>
-    public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Content/Biomes/Meadows/Tiles/MeadowGrassItem");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowPlants</summary>
-    public static readonly RequestCache<Texture2D> MeadowPlants = new("Content/Biomes/Meadows/Tiles/MeadowPlants");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree</summary>
-    public static readonly RequestCache<Texture2D> MeadowTree = new("Content/Biomes/Meadows/Tiles/MeadowTree");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeDust</summary>
-    public static readonly RequestCache<Texture2D> MeadowTreeDust = new("Content/Biomes/Meadows/Tiles/MeadowTreeDust");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeLeaves</summary>
-    public static readonly RequestCache<Texture2D> MeadowTreeLeaves = new("Content/Biomes/Meadows/Tiles/MeadowTreeLeaves");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeSapling</summary>
-    public static readonly RequestCache<Texture2D> MeadowTreeSapling = new("Content/Biomes/Meadows/Tiles/MeadowTreeSapling");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Branches</summary>
-    public static readonly RequestCache<Texture2D> MeadowTree_Branches = new("Content/Biomes/Meadows/Tiles/MeadowTree_Branches");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Tops</summary>
-    public static readonly RequestCache<Texture2D> MeadowTree_Tops = new("Content/Biomes/Meadows/Tiles/MeadowTree_Tops");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWood</summary>
-    public static readonly RequestCache<Texture2D> MeadowWood = new("Content/Biomes/Meadows/Tiles/MeadowWood");
-    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWoodItem</summary>
-    public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Content/Biomes/Meadows/Tiles/MeadowWoodItem");
-    /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar</summary>
-    public static readonly RequestCache<Texture2D> OblivionAltar = new("Content/Biomes/Oblivion/Tiles/OblivionAltar");
-    /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltarItem</summary>
-    public static readonly RequestCache<Texture2D> OblivionAltarItem = new("Content/Biomes/Oblivion/Tiles/OblivionAltarItem");
-    /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight</summary>
-    public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
     public static readonly RequestCache<Texture2D> OceanCreviceBG_0 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1</summary>
@@ -733,6 +705,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Content/Items/Materials/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Content/Items/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Content/Items/Materials/Ores/AluminumBar</summary>
+    public static readonly RequestCache<Texture2D> AluminumBar = new("Content/Items/Materials/Ores/AluminumBar");
+    /// <summary>Full Path: Content/Items/Materials/Ores/AluminumBarTile</summary>
+    public static readonly RequestCache<Texture2D> AluminumBarTile = new("Content/Items/Materials/Ores/AluminumBarTile");
+    /// <summary>Full Path: Content/Items/Materials/Ores/AluminumOre</summary>
+    public static readonly RequestCache<Texture2D> AluminumOre = new("Content/Items/Materials/Ores/AluminumOre");
     /// <summary>Full Path: Content/Items/Materials/Paper/PaperMaterial</summary>
     public static readonly RequestCache<Texture2D> PaperMaterial = new("Content/Items/Materials/Paper/PaperMaterial");
     /// <summary>Full Path: Content/Items/Materials/PossessedShard/PossessedShard</summary>
@@ -893,6 +871,34 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Osiris = new("Content/Necromancy/Sceptres/Forbidden/Osiris");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
     public static readonly RequestCache<Texture2D> Osiris_Glow = new("Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
+    public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Tiles/Meadows/MeadowGrass");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
+    public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Content/Tiles/Meadows/MeadowGrassItem");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowPlants</summary>
+    public static readonly RequestCache<Texture2D> MeadowPlants = new("Content/Tiles/Meadows/MeadowPlants");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowTree</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree = new("Content/Tiles/Meadows/MeadowTree");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowTreeDust</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeDust = new("Content/Tiles/Meadows/MeadowTreeDust");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowTreeLeaves</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeLeaves = new("Content/Tiles/Meadows/MeadowTreeLeaves");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowTreeSapling</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeSapling = new("Content/Tiles/Meadows/MeadowTreeSapling");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowTree_Branches</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree_Branches = new("Content/Tiles/Meadows/MeadowTree_Branches");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowTree_Tops</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree_Tops = new("Content/Tiles/Meadows/MeadowTree_Tops");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowWood</summary>
+    public static readonly RequestCache<Texture2D> MeadowWood = new("Content/Tiles/Meadows/MeadowWood");
+    /// <summary>Full Path: Content/Tiles/Meadows/MeadowWoodItem</summary>
+    public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Content/Tiles/Meadows/MeadowWoodItem");
+    /// <summary>Full Path: Content/Tiles/Oblivion/OblivionAltar</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltar = new("Content/Tiles/Oblivion/OblivionAltar");
+    /// <summary>Full Path: Content/Tiles/Oblivion/OblivionAltarItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltarItem = new("Content/Tiles/Oblivion/OblivionAltarItem");
+    /// <summary>Full Path: Content/Tiles/Oblivion/OblivionAltar_Highlight</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Content/Tiles/Oblivion/OblivionAltar_Highlight");
     /// <summary>Full Path: Content/Tiles/Paintings/BongBongPainting</summary>
     public static readonly RequestCache<Texture2D> BongBongPainting = new("Content/Tiles/Paintings/BongBongPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/BongBongPaintingItem</summary>

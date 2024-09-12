@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
 
-namespace Aequus.Content.Biomes.Meadows.Tiles;
+namespace Aequus.Content.Tiles.Meadows;
 
 internal class MeadowWood : ModTile, IAddRecipeGroups {
     public readonly ModItem Item;

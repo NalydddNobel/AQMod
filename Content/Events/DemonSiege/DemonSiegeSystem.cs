@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Net;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes.Oblivion.Tiles;
+using Aequus.Content.Tiles.Oblivion;
 using System;
 using System.Collections.Generic;
 using System.IO;

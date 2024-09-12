@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 
-namespace Aequus.Content.Biomes.Meadows.Tiles;
+namespace Aequus.Content.Tiles.Meadows;
 
 public class MeadowPlants : ModTile {
     public override void SetStaticDefaults() {

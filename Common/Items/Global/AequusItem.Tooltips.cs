@@ -109,6 +109,7 @@ public partial class AequusItem {
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
         try {
+            ModifyTooltipsInner(item, tooltips);
             var player = Main.LocalPlayer;
             var aequus = player.Aequus();
 

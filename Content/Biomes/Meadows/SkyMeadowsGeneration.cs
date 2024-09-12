@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.Meadows.Tiles;
+﻿using Aequus.Content.Tiles.Meadows;
 using Aequus.Systems.WorldGeneration;
 using System;
 using Terraria.IO;

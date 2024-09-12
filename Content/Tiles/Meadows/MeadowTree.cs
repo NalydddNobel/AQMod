@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.Enums;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Biomes.Meadows.Tiles;
+namespace Aequus.Content.Tiles.Meadows;
 
 public class MeadowTree : UnifiedModTree {
     public override IEnumerable<int> ValidTiles {

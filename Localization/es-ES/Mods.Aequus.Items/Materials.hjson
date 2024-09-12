@@ -92,3 +92,13 @@ NecroFragment: {
 	DisplayName: Plerión Fragment
 	Tooltip: "'Deathly particles are released from this fragment'"
 }
+
+Materials: {
+	Aluminum: {
+		// CanMineHint: Mods.Aequus.Items.Materials.Aluminum.CanMineHint
+		// BarDisplayName: System.Func`1[System.String] Bar
+		// BarTooltip: ""
+		// OreDisplayName: System.Func`1[System.String] Ore
+		// OreTooltip: ""
+	}
+}

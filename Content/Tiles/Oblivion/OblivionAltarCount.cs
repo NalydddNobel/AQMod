@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Content.Biomes.Oblivion.Tiles;
+namespace Aequus.Content.Tiles.Oblivion;
 
 public class OblivionAltarCount : ModSystem {
     public static int TileCount { get; private set; }

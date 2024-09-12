@@ -481,7 +481,7 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_ModifyTooltips">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>.</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="M:Aequus.AequusItem.ModifyTooltipsInner(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>).</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_OnSpawn">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.OnSpawn(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/> (<see cref="M:Aequus.AequusNPC.OnSpawnInner(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/>).</summary>
@@ -2327,7 +2327,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1435)</summary>
+            <summary>(Total Textures: 1438)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2866,48 +2866,6 @@
         <member name="F:Aequus.AequusTextures.CrabCreviceWater_Slope">
             <summary>Full Path: Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MeadowGrass">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrass</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowGrassItem">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrassItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowPlants">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowPlants</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTree">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTreeDust">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeDust</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTreeLeaves">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeLeaves</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTreeSapling">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeSapling</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTree_Branches">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Branches</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTree_Tops">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Tops</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowWood">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWood</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowWoodItem">
-            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWoodItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OblivionAltar">
-            <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OblivionAltarItem">
-            <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltarItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
-            <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OceanCreviceBG_0">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
         </member>
@@ -3418,6 +3376,15 @@
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AluminumBar">
+            <summary>Full Path: Content/Items/Materials/Ores/AluminumBar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AluminumBarTile">
+            <summary>Full Path: Content/Items/Materials/Ores/AluminumBarTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AluminumOre">
+            <summary>Full Path: Content/Items/Materials/Ores/AluminumOre</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.PaperMaterial">
             <summary>Full Path: Content/Items/Materials/Paper/PaperMaterial</summary>
         </member>
@@ -3657,6 +3624,48 @@
         </member>
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGrass">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGrassItem">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowPlants">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowPlants</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowTree</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeDust">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowTreeDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeLeaves">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowTreeLeaves</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeSapling">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowTreeSapling</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree_Branches">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowTree_Branches</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree_Tops">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowTree_Tops</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowWood">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowWood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowWoodItem">
+            <summary>Full Path: Content/Tiles/Meadows/MeadowWoodItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionAltar">
+            <summary>Full Path: Content/Tiles/Oblivion/OblivionAltar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionAltarItem">
+            <summary>Full Path: Content/Tiles/Oblivion/OblivionAltarItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
+            <summary>Full Path: Content/Tiles/Oblivion/OblivionAltar_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BongBongPainting">
             <summary>Full Path: Content/Tiles/Paintings/BongBongPainting</summary>

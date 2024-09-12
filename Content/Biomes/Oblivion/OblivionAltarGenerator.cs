@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.Oblivion.Tiles;
+﻿using Aequus.Content.Tiles.Oblivion;
 using Aequus.Content.Tiles.Tombstones;
 using Aequus.Tiles.Furniture.Oblivion;
 using Aequus.Tiles.Misc;
@@ -125,7 +125,7 @@ public class OblivionAltarGenerator {
         HillSpawnAsh(x, y);
         int k = 0;
         int maxY = y + 40;
-        while (y < maxY) {
+        while (y < maxY && k < 45 && (k < 20 || WorldGen.genRand.NextBool(15))) {
             if (WorldGen.genRand.NextBool(3)) {
                 y++;
             }
@@ -133,9 +133,6 @@ public class OblivionAltarGenerator {
             HillSpawnAsh(x + k + 1, y);
             HillSpawnAsh(x - k - 1, y);
             k++;
-            if (k > 45 || k > 20 && WorldGen.genRand.NextBool(15)) {
-                break;
-            }
         }
 
         HillTryToSmoothyGoIntoRegularGeneration(x, y, k, 1);
@@ -184,23 +181,24 @@ public class OblivionAltarGenerator {
                 break;
             }
 
-            var tile = Main.tile[x, y + l];
-            if (kill && !AvoidTiles.Contains(Main.tile[x, y - l].TileType) && !AvoidWalls.Contains(Main.tile[x, y - l].WallType)
-                && Main.tile[x, y - l].TileType != ModContent.TileType<OblivionAltar>())
+            Tile topTile = Main.tile[x, y - l];
+            Tile bottomTile = Main.tile[x, y + l];
+            if (kill && !TileID.Sets.IsAContainer[topTile.TileType] && !AvoidTiles.Contains(topTile.TileType) && !AvoidWalls.Contains(topTile.WallType)
+                && topTile.TileType != ModContent.TileType<OblivionAltar>())
                 WorldGen.KillTile(x, y - l, noItem: true);
 
-            tile.LiquidAmount = 0;
+            bottomTile.LiquidAmount = 0;
 
-            if (AvoidTiles.Contains(Main.tile[x, y + l].TileType) || AvoidWalls.Contains(Main.tile[x, y + l].WallType))
+            if (!TileID.Sets.IsAContainer[bottomTile.TileType] || AvoidTiles.Contains(bottomTile.TileType) || AvoidWalls.Contains(bottomTile.WallType))
                 continue;
 
-            if (tile.HasTile && Main.tileFrameImportant[tile.TileType]) {
+            if (bottomTile.HasTile && Main.tileFrameImportant[bottomTile.TileType]) {
                 WorldGen.KillTile(x, y + l);
             }
-            tile.HasTile = true;
-            tile.TileType = tileId;
-            tile.Slope(value: 0);
-            tile.HalfBrick(value: false);
+            bottomTile.HasTile = true;
+            bottomTile.TileType = tileId;
+            bottomTile.Slope(value: 0);
+            bottomTile.HalfBrick(value: false);
         }
     }
 

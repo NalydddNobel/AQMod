@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿using Aequus;
+using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.DataSets;
 using Aequus.Common.Drawing;
 using Aequus.Common.Effects;
@@ -11,7 +12,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.Oblivion.Tiles;
+namespace Aequus.Content.Tiles.Oblivion;
 
 [LegacyName("GoreNestTile", "GoreNest")]
 public class OblivionAltar : ModTile, ITileDrawSystem {

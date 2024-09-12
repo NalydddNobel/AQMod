@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.Oblivion.Tiles;
+﻿using Aequus.Content.Tiles.Oblivion;
 
 namespace Aequus.Content.Biomes.Oblivion;
 

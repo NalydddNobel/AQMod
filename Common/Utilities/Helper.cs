@@ -17,6 +17,7 @@ using ReLogic.Content;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -83,6 +84,13 @@ public static partial class Helper {
     private const char FULL_NAME_SEPERATOR = '/';
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
+    internal static void RegisterMembers(this ILoadable loadable) {
+        foreach (ModType type in loadable.GetVariableMembersOfType<ModType>()
+            .ToImmutableArray().Sort((c1, c2) => c1.Name.CompareTo(c2.Name))) {
+            Mod!.AddContent(type);
+        }
+    }
 
     public static IEnumerable<T> GetVariableMembersOfType<T>(this object obj, BindingFlags bindingAttr = BindingFlags.Public | BindingFlags.Instance) {
         return GetVariableMembersOfType<T>(obj.GetType(), obj);

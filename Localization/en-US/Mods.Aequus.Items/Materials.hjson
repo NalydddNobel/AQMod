@@ -92,3 +92,13 @@ NecroFragment: {
 	DisplayName: Plerion Fragment
 	Tooltip: "'Deathly particles are released from this fragment'"
 }
+
+Materials: {
+	Aluminum: {
+		CanMineHint: Can mine Aluminum
+		BarDisplayName: Aluminum Bar
+		BarTooltip: ""
+		OreDisplayName: Aluminum Ore
+		OreTooltip: ""
+	}
+}

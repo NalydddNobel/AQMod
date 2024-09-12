@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Content.Biomes.Oblivion.Tiles;
+namespace Aequus.Content.Tiles.Oblivion;
 
 public class OblivionAltarShaderData : MiscShaderData {
     public OblivionAltarShaderData(Ref<Effect> shader, string passName) : base(shader, passName) {
