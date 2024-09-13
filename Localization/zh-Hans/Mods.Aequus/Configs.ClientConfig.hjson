@@ -15,5 +15,10 @@ Configs: {
 			Label: "[i:Insurgency] 显示死灵轮廓"
 			Tooltip: "[c/ffffbb:幽魂仆从]将会有令其显眼的轮廓."
 		}
+
+		CustomResourceBars: {
+			// Label: Custom Resource Bars
+			// Tooltip: ""
+		}
 	}
 }

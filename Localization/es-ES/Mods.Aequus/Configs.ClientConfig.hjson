@@ -15,5 +15,10 @@ Configs: {
 			Label: "[i:Insurgency] Mostrar bordes de necromancia"
 			Tooltip: Los [c/ffffbb:súbditos fantasma] tendran bordes para sobresalir.
 		}
+
+		CustomResourceBars: {
+			// Label: Custom Resource Bars
+			// Tooltip: ""
+		}
 	}
 }

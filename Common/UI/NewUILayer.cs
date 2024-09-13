@@ -22,6 +22,9 @@ public abstract class NewUILayer : GameInterfaceLayer, ILoadable, IPostSetupCont
         this.InsertOffset = InsertOffset;
     }
 
+    public virtual bool IsLoadingEnabled(Mod mod) {
+        return true;
+    }
     public virtual void OnLoad() { }
     public virtual void PostSetupContent() { }
     public virtual void OnUnload() { }

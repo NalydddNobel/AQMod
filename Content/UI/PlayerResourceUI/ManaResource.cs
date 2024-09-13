@@ -3,8 +3,9 @@ namespace Aequus.Content.UI.PlayerResourceUI;
 
 public class ManaResource : PlayerResource {
     // Do nothing for drawing, vanilla draws this bar.
-    public override void DrawFancy(SpriteBatch sb, ResourceDrawInfo drawInfo) {
-    }
+    public override void DrawFancy(SpriteBatch sb, ResourceDrawInfo drawInfo) { }
+    public override void DrawBar(SpriteBatch sb, ResourceDrawInfo drawInfo) { }
+    public override void DrawClassic(SpriteBatch sb, ResourceDrawInfo drawInfo) { }
 
     public override void Load() {
         Instance<CustomResourceUI>().Mana = this;

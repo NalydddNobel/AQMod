@@ -1063,6 +1063,13 @@ Mods: {
 
 		Emotes.SkyMerchant.Command: skymerchant
 		ItemDropCondition.BlockExists: 如果世界中存在'{0}'.
+
+		UI: {
+			ResourceBars: {
+				// MinionSlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.MinionSlotResource.DisplayName
+				// SentrySlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.SentrySlotResource.DisplayName
+			}
+		}
 	}
 }
 

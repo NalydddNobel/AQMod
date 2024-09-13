@@ -1063,6 +1063,13 @@ Mods: {
 
 		Emotes.SkyMerchant.Command: skymerchant
 		ItemDropCondition.BlockExists: If '{0}' exists in the world.
+
+		UI: {
+			ResourceBars: {
+				MinionSlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.MinionSlotResource.DisplayName
+				SentrySlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.SentrySlotResource.DisplayName
+			}
+		}
 	}
 }
 
