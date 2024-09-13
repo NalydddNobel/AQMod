@@ -1066,8 +1066,8 @@ Mods: {
 
 		UI: {
 			ResourceBars: {
-				// MinionSlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.MinionSlotResource.DisplayName
-				// SentrySlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.SentrySlotResource.DisplayName
+				MinionSlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.MinionSlotResource.DisplayName
+				SentrySlotResource.DisplayName: Mods.Aequus.UI.ResourceBars.SentrySlotResource.DisplayName
 			}
 		}
 	}
