@@ -54,5 +54,6 @@
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
 	<DefineConstants>POLLUTED_OCEAN</DefineConstants>
+	<DefineConstants>CUSTOM_RESOURCE_UI</DefineConstants>
   </PropertyGroup>
 </Project>

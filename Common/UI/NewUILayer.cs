@@ -9,7 +9,7 @@ namespace Aequus.Common.UI;
 /// Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
 /// </summary>
 [Autoload(Side = ModSide.Client)]
-public abstract class NewUILayer : GameInterfaceLayer, ILoadable {
+public abstract class NewUILayer : GameInterfaceLayer, ILoadable, IPostSetupContent {
     public readonly string InsertLayer;
     public readonly int InsertOffset;
 
@@ -23,6 +23,7 @@ public abstract class NewUILayer : GameInterfaceLayer, ILoadable {
     }
 
     public virtual void OnLoad() { }
+    public virtual void PostSetupContent() { }
     public virtual void OnUnload() { }
 
     public virtual void OnClearWorld() { }
@@ -63,6 +64,10 @@ public abstract class NewUILayer : GameInterfaceLayer, ILoadable {
         OnLoad();
         Active = false;
         NewUILayersSystem.Register(this);
+    }
+
+    void IPostSetupContent.PostSetupContent(Aequus aequus) {
+        PostSetupContent();
     }
 
     public void Unload() {
