@@ -258,7 +258,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
         SetStaticDefaults();
     }
 
-    private PaintingEntry On_WorldGen_RandHellPicture(On_WorldGen.orig_RandHellPicture orig) {
+    private static PaintingEntry On_WorldGen_RandHellPicture(On_WorldGen.orig_RandHellPicture orig) {
         if (WorldGen.genRand.NextBool(HellPictureChance)) {
             return WorldGen.genRand.Next(Instance.Sets.HellPictures).ToEntry();
         }

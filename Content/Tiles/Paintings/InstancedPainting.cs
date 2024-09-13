@@ -47,6 +47,9 @@ internal class InstancedPainting : InstancedModTile, IPainting {
         DustType = DustID.WoodFurniture;
         Paintings p = ModContent.GetInstance<Paintings>();
         AddMapEntry(MapColor ?? p.DefaultPaintingColor, TileName?.Value ?? p.DefaultPaintingName);
-
     }
+
+    //public override IEnumerable<Item> GetItemDrops(int i, int j) {
+    //    yield return new Item(Item.Type);
+    //}
 }
