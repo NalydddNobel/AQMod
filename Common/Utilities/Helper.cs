@@ -85,6 +85,22 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    /// <summary>Clones the Rarity and Value of an item.</summary>
+    public static void CloneShopValues(this Item item, int type) {
+        item.rare = ItemRarityByType(type);
+        item.value = ItemValueByType(type, stack: 1);
+    }
+
+    /// <summary>Get an Item's value by Type.</summary>
+    public static int ItemRarityByType(int type) {
+        return ContentSamples.ItemsByType[type].rare;
+    }
+
+    /// <summary>Get an Item's value by Type.</summary>
+    public static int ItemValueByType(int type, int stack = 1) {
+        return ContentSamples.ItemsByType[type].value * stack;
+    }
+
     public static Chest? GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
         if (player.chest > -1) {
             return Main.chest[player.chest];

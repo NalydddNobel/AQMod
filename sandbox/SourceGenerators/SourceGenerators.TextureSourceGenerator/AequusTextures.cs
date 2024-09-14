@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1445)</summary>
+/// <summary>(Total Textures: 1449)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -593,6 +593,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SplashGlint = new("Content/ItemPrefixes/Potions/SplashGlint");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
     public static readonly RequestCache<Texture2D> StuffedGlint = new("Content/ItemPrefixes/Potions/StuffedGlint");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>
+    public static readonly RequestCache<Texture2D> PlanteraBackpack = new("Content/Items/Accessories/Backpacks/PlanteraBackpack");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpackBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> PlanteraBackpackBuilderToggle = new("Content/Items/Accessories/Backpacks/PlanteraBackpackBuilderToggle");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack_Back</summary>
+    public static readonly RequestCache<Texture2D> PlanteraBackpack_Back = new("Content/Items/Accessories/Backpacks/PlanteraBackpack_Back");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack_Front</summary>
+    public static readonly RequestCache<Texture2D> PlanteraBackpack_Front = new("Content/Items/Accessories/Backpacks/PlanteraBackpack_Front");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag = new("Content/Items/Accessories/Backpacks/ScavengerBag");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBagBuilderToggle</summary>

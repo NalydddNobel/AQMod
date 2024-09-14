@@ -2327,7 +2327,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1445)</summary>
+            <summary>(Total Textures: 1449)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3207,6 +3207,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.StuffedGlint">
             <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanteraBackpack">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanteraBackpackBuilderToggle">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpackBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanteraBackpack_Back">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanteraBackpack_Front">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack_Front</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag">
             <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag</summary>
@@ -6884,6 +6896,15 @@
             <summary>
             Determines whether or not the mouse has an item
             </summary>
+        </member>
+        <member name="M:Aequus.Helper.CloneShopValues(Terraria.Item,System.Int32)">
+            <summary>Clones the Rarity and Value of an item.</summary>
+        </member>
+        <member name="M:Aequus.Helper.ItemRarityByType(System.Int32)">
+            <summary>Get an Item's value by Type.</summary>
+        </member>
+        <member name="M:Aequus.Helper.ItemValueByType(System.Int32,System.Int32)">
+            <summary>Get an Item's value by Type.</summary>
         </member>
         <member name="M:Aequus.Helper.GetAllOverridesOfItemId(System.Int32)">
             <returns>All 'Overrides' of a specified item. (<see cref="F:Terraria.ID.ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</returns>

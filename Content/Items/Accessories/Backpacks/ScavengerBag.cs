@@ -15,7 +15,6 @@ public class ScavengerBag : BackpackModItem {
 
     public override void SetDefaults() {
         base.SetDefaults();
-        Item.rare = ItemRarityID.Blue;
-        Item.value = Item.sellPrice(gold: 1);
+        Item.CloneShopValues(ItemID.Flipper);
     }
 }

@@ -44,17 +44,7 @@
 	<Compile Remove="SourceGenerators\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
-			
-  <ItemGroup>
-    <None Remove="Content\Items\Accessories\Backpacks\ScavengerBag.png" />
-    <None Remove="Content\Items\Accessories\Backpacks\ScavengerBagBuilderToggle.png" />
-    <None Remove="Content\Items\Accessories\Backpacks\ScavengerBag_Back.png" />
-    <None Remove="Content\Items\Accessories\Backpacks\ScavengerBag_Strap.png" />
-    <None Remove="Content\Items\Armor\TrapArtist\DartTrapHatProj.png" />
-    <None Remove="Content\Items\Armor\TrapArtist\SuperDartTrapHatProj.png" />
-    <None Remove="Content\Items\Armor\TrapArtist\VenomDartTrapHatProj.png" />
-  </ItemGroup>
-			
+						
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
 	<DefineConstants>POLLUTED_OCEAN;CUSTOM_RESOURCE_UI</DefineConstants>
