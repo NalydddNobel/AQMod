@@ -1,17 +1,17 @@
 // Equipment: Accessories
 TerraBalloon: {
-	// DisplayName: Coalescence of Equestrador Balloons
-	/* Tooltip:
+	DisplayName: Coalescencia de globos ecuestres
+	Tooltip:
 		'''
 		{$ItemTooltip.HorseshoeBundle}
 		{$ItemTooltip.ObsidianSkull}
-		Hold Up to reduce fall speed
-		Hold Down to increase fall speed
-		''' */
+		Mantén pulsado ARRIBA para reducir la velocidad de caída
+		Mantén pulsado ABAJO para aumentar la velocidad de caída
+		'''
 }
 
 QuadHorseshoeBalloon: {
-	// DisplayName: Coalescence of Horseshoe Balloons
+	DisplayName: Coalescencia de globos de herradura
 	/* Tooltip:
 		'''
 		{$ItemTooltip.HorseshoeBundle}
@@ -20,7 +20,7 @@ QuadHorseshoeBalloon: {
 }
 
 QuadBalloon: {
-	// DisplayName: Coalescence of Balloons
+	DisplayName: Coalescencia de globos
 	/* Tooltip:
 		'''
 		{$ItemTooltip.BundleofBalloons}
@@ -29,7 +29,7 @@ QuadBalloon: {
 }
 
 HorseshoeCombination: {
-	// DisplayName: Equestradors
+	DisplayName: Ecuestre
 	/* Tooltip:
 		'''
 		{$ItemTooltip.ObsidianHorseshoe}
@@ -53,17 +53,17 @@ ValentineRing: {
 GoldenWind: {
 	DisplayName: Viento Aureo
 	Tooltip: "{$Items.GoldenFeather.Tooltip}"
-	/* BuffDescription:
+	BuffDescription:
 		'''
-		Regenerate {0} health per second
+		Regenera {0} de vida por segundo
 		{$GoldenFeather.BuffDescription@1}
-		''' */
+		'''
 }
 
 GoldenFeather: {
 	DisplayName: Pluma Milagrosa
 	Tooltip: El tiempo de reaparición para ti y tu equipo es reducido por {0} segundos
-	// BuffDescription: You respawn {0} seconds faster
+	BuffDescription: Reapareces {0} segundos más rápido
 }
 
 FlashwayShield: {
@@ -125,13 +125,13 @@ EclipseGlasses: {
 
 //# Equipment: Informational
 HoloLens: {
-	// DisplayName: Holo Lens
-	// Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+	DisplayName: Holo Lente
+	Tooltip: Permite ver el contenido de los cofres cerrados y abiertos sin abrirlos
 }
 
 AnglerBroadcaster: {
-	// DisplayName: Seaside Broadcaster
-	// Tooltip: Shows you the current quest fish
+	DisplayName: Emisora Costera
+	Tooltip: Muestra la misión de pesca actual
 }
 
 RichMansMonocle: {
@@ -140,8 +140,8 @@ RichMansMonocle: {
 }
 
 GeigerCounter: {
-	// DisplayName: Geiger Counter
-	// Tooltip: Displays the damage per second from debuffs
+	DisplayName: Contador Geiger
+	Tooltip: Muestra el daño por segundo de estados alterados
 }
 
 // --localization note-- this may be a pun? (shimmer + monocle)
@@ -171,11 +171,11 @@ UnopenedChestTracker: {
 }
 
 DamageOnKillClaw: {
-	// DisplayName: The Upper Hand
-	/* Tooltip:
+	DisplayName: La Ventaja
+	Tooltip:
 		'''
-		Grant a buff which increases damage by {0}% for each enemy slain
-		Attacking enemies refreshes buff duration
-		''' */
+		Otorga un efecto que incrementa el daño un {0}% por cada enemigo derrotado
+		Refresca la duración del efecto al atacar enemigos
+		'''
 	// BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
 }
