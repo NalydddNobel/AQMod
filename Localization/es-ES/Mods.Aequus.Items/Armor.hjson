@@ -1,36 +1,36 @@
 Armor: {
 	Castaway: {
-		// DefenseDamageTip: Defense from this armor is Delicate
-		// DefenseDamageKeyword: Delicate
-		// DefenseDamageKeywordTip: Defense is reduced after receiving damage
+		DefenseDamageTip: La defensa de esta armadura es delicada
+		DefenseDamageKeyword: Delicado
+		DefenseDamageKeywordTip: La defensa es reducida al recibir daño
 
 		Helmet: {
-			// DisplayName: Castaway Helmet
-			/* Tooltip:
+			DisplayName: Casco de Náufrago
+			Tooltip:
 				'''
 				{$DefenseDamageTip}
-				'Stand tall.'
-				''' */
+				'Mantente fuerte.'
+				'''
 		}
 
 		Chestplate: {
-			// DisplayName: Castaway Chestplate
-			/* Tooltip:
+			DisplayName: Coraza de Náufrago
+			Tooltip:
 				'''
 				{$Items.CommonTooltips.KnockbackResist@0}
 				{$DefenseDamageTip}
-				'Stand sturdy.'
-				''' */
+				'Mantente firme.'
+				''' 
 		}
 
 		Leggings: {
-			// DisplayName: Castaway Leggings
-			/* Tooltip:
+			DisplayName: Perneras de Náufrago
+			Tooltip:
 				'''
 				{$Items.CommonTooltips.KnockbackResist@0}
 				{$DefenseDamageTip}
-				'Stand up.'
-				''' */
+				'Mantente de pie.'
+				'''
 		}
 
 		// Setbonus: Release a bundle of spiked balls when attacked
