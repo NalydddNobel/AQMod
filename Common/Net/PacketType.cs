@@ -55,5 +55,6 @@ public enum PacketType : byte {
     CartographyTable,
     CartographyTableSubmit,
     MagicChestPlacement,
+    Backpack,
     Count
 }

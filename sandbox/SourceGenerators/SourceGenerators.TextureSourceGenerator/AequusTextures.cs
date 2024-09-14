@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1441)</summary>
+/// <summary>(Total Textures: 1445)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -593,6 +593,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SplashGlint = new("Content/ItemPrefixes/Potions/SplashGlint");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
     public static readonly RequestCache<Texture2D> StuffedGlint = new("Content/ItemPrefixes/Potions/StuffedGlint");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag = new("Content/Items/Accessories/Backpacks/ScavengerBag");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBagBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBagBuilderToggle = new("Content/Items/Accessories/Backpacks/ScavengerBagBuilderToggle");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag_Back</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Content/Items/Accessories/Backpacks/ScavengerBag_Back");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag_Strap</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Content/Items/Accessories/Backpacks/ScavengerBag_Strap");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>

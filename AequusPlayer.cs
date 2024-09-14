@@ -1499,7 +1499,9 @@ public partial class AequusPlayer : ModPlayer {
 
     public void OnKillEffect(EnemyKillInfo npc) {
         SoulGem.TryFillSoulGems(Player, this, npc);
+#if !POLLUTED_OCEAN
         AmmoBackpack.Proc(Player, this, npc);
+#endif
         OnKillNPCInner(npc);
     }
 

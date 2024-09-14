@@ -481,7 +481,7 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_ModifyTooltips">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="!:AequusItem.ModifyTooltipsInner(Item, System.Collections.Generic.List&lt;TooltipLine&gt;)"/>).</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/> (<see cref="M:Aequus.AequusItem.ModifyTooltipsInner(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>).</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_OnSpawn">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.OnSpawn(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/> (<see cref="M:Aequus.AequusNPC.OnSpawnInner(Terraria.NPC,Terraria.DataStructures.IEntitySource)"/>).</summary>
@@ -2327,7 +2327,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1441)</summary>
+            <summary>(Total Textures: 1445)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3207,6 +3207,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.StuffedGlint">
             <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBagBuilderToggle">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBagBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag_Back">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag_Strap</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
             <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
@@ -7085,6 +7097,16 @@
             <param name="location"></param>
             <param name="genLocation"></param>
         </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
+            <summary>
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
+            <summary>
+            Lookup for tile Ids which are safe to generate over.
+            </summary>
+        </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>
         </member>
@@ -7157,6 +7179,24 @@
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
+        </member>
+        <member name="M:Aequus.Systems.Backpacks.BackpackData.Deactivate(Terraria.Player)">
+            <summary>
+            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Systems.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>Return false to override slot drawing.</summary>
+        </member>
+        <member name="M:Aequus.Systems.Backpacks.BackpackData.SyncNetStates(Terraria.Player,Aequus.Systems.Backpacks.BackpackData)">
+            <returns>Whether any items needed syncing.</returns>
+        </member>
+        <member name="M:Aequus.Systems.Backpacks.BackpackPlayerSyncPacket.SendSingleItem(Terraria.Player,Aequus.Systems.Backpacks.BackpackData,System.Int32,System.Int32,System.Int32)">
+            <summary>Invokes a single item being sent from a backpack.</summary>
+        </member>
+        <member name="M:Aequus.Systems.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,Aequus.Systems.Backpacks.BackpackData,System.Int32,System.Int32)">
+            <summary>Invokes a full sync of a backpack.</summary>
         </member>
         <member name="T:Aequus.Systems.Chests.ChestLootDatabase">
             <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for Aequus' chest loot.</summary>

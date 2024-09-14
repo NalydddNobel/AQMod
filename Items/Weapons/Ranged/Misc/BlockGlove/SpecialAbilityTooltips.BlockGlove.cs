@@ -13,7 +13,7 @@ namespace Aequus.Common.Items.Tooltips {
             }
             SpecialAbilityTooltipInfo tooltip = new(TextHelper.GetItemName<BlockGlove>().Value, Color.SaddleBrown * 2f, ModContent.ItemType<BlockGlove>());
             tooltip.AddLine(Language.GetTextValue(info.Key));
-            _tooltips.Add(tooltip);
+            Tooltips.Add(tooltip);
         }
     }
 }

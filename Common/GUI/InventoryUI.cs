@@ -1,4 +1,5 @@
-﻿using MonoMod.Cil;
+﻿using Aequus.Systems.Backpacks;
+using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -35,16 +36,16 @@ public class InventoryUI : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        //if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer AequusPlayer)) {
-        //    return;
-        //}
-        //BackpackLoader.AnimateBackpacks(AequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
+        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
+            return;
+        }
+        BackpackLoader.AnimateBackpacks(backpackPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
 
         // Offset for the coin and ammo slots
         int rightSlotOffset = 0;
-        //if (totalInventorySlots > 0) {
-        //    coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
-        //}
+        if (totalInventorySlots > 0) {
+            rightSlotOffset = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
+        }
 
         if (CoinsAmmoOffsetX < rightSlotOffset) {
             CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, rightSlotOffset, 0.33f);

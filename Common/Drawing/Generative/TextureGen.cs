@@ -59,7 +59,7 @@ public static class TextureGen {
         return NewAsset(next, name, errorAsset: texture);
     }
 
-    public static Texture2D? PerPixel(IColorEffect color, Texture2D texture) {
+    public static Texture2D PerPixel(IColorEffect color, Texture2D texture) {
         // Get context data
         ColorEffectContext context = ColorEffectContext.FromTexture(texture);
 
@@ -76,7 +76,7 @@ public static class TextureGen {
             Aequus.Instance.Logger.Error(ex);
 
             // return null if error occurs.
-            return null;
+            return texture;
         }
     }
 

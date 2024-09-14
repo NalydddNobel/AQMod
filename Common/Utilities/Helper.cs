@@ -85,6 +85,26 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static Chest? GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
+        if (player.chest > -1) {
+            return Main.chest[player.chest];
+        }
+        else if (player.chest == -2) {
+            return player.bank;
+        }
+        else if (player.chest == -3) {
+            return player.bank2;
+        }
+        else if (player.chest == -4) {
+            return player.bank3;
+        }
+        else if (!ignoreVoidBag && player.chest == -5) {
+            return player.bank4;
+        }
+
+        return null;
+    }
+
     internal static void RegisterMembers(this ILoadable loadable) {
         foreach (ModType type in loadable.GetVariableMembersOfType<ModType>()
             .ToImmutableArray().Sort((c1, c2) => c1.Name.CompareTo(c2.Name))) {
