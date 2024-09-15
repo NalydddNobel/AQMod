@@ -1,6 +1,6 @@
 displayName = Aequus
 author = Nalyd T.
-version = 2.7.2.6
+version = 2.7.2.7
 homepage = https://terrariamods.wiki.gg/wiki/Aequus
 hideResources = false
 hideCode = false
