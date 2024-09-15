@@ -179,3 +179,10 @@ DamageOnKillClaw: {
 		'''
 	// BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
 }
+
+PlanteraBackpack: {
+	DisplayName: Bulb Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Bulb Bag On
+	BackpackDisabled: Bulb Bag Off
+}

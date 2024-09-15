@@ -162,21 +162,6 @@ Calendar: {
 	Tooltip: Displays information about the date
 }
 
-UnusedItem: {
-	DisplayName: Unused Item
-	Tooltip: ""
-}
-
-SteampunkerFishingPole: {
-	DisplayName: Steampunker Fishing Pole
-	Tooltip: ""
-}
-
-UnopenedChestTracker: {
-	DisplayName: Unopened Chest Tracker
-	Tooltip: ""
-}
-
 DamageOnKillClaw: {
 	DisplayName: The Upper Hand
 	Tooltip:
@@ -185,4 +170,19 @@ DamageOnKillClaw: {
 		Attacking enemies refreshes buff duration
 		'''
 	BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
+}
+
+// Equipment: Backpacks
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Backpack On
+	BackpackDisabled: Backpack Off
+}
+
+PlanteraBackpack: {
+	DisplayName: Bulb Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Bulb Bag On
+	BackpackDisabled: Bulb Bag Off
 }

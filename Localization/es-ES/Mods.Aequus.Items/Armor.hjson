@@ -20,7 +20,7 @@ Armor: {
 				{$Items.CommonTooltips.KnockbackResist@0}
 				{$DefenseDamageTip}
 				'Mantente firme.'
-				''' 
+				'''
 		}
 
 		Leggings: {
