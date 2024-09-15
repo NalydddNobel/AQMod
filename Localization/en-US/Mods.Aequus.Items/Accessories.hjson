@@ -186,3 +186,11 @@ PlanteraBackpack: {
 	BackpackEnabled: Bulb Bag On
 	BackpackDisabled: Bulb Bag Off
 }
+
+// Do not translate yet, name is temporary.
+WallOfFleshBackpack: {
+	DisplayName: Stomach Sack
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Stomach Sack On
+	BackpackDisabled: Stomach Sack Off
+}

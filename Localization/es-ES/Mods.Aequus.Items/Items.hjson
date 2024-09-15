@@ -338,14 +338,6 @@ ManacleSeeds: {
 	Tooltip: ""
 }
 
-//# Backpacks
-ScavengerBag: {
-	DisplayName: Bolsa Carroñera
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-	BackpackEnabled: Mochila Visible
-	BackpackDisabled: Mochila No Visible
-}
-
 Toolbelt: {
 	Tooltip:
 		'''
@@ -394,5 +386,20 @@ DustDevilMask: {
 
 GasCan: {
 	// DisplayName: Jerry's Can
+	// Tooltip: ""
+}
+
+UnusedItem: {
+	// DisplayName: Unused Item
+	// Tooltip: ""
+}
+
+SteampunkerFishingPole: {
+	// DisplayName: Steampunker Fishing Pole
+	// Tooltip: ""
+}
+
+UnopenedChestTracker: {
+	// DisplayName: Unopened Chest Tracker
 	// Tooltip: ""
 }

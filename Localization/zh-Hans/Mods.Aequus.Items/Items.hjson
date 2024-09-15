@@ -338,14 +338,6 @@ ManacleSeeds: {
 	Tooltip: 会在早晨开花并产生花粉
 }
 
-//# Backpacks
-ScavengerBag: {
-	DisplayName: 拾荒者袋子
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-	BackpackEnabled: 背包开启
-	BackpackDisabled: 背包关闭
-}
-
 Toolbelt: {
 	Tooltip:
 		'''
@@ -394,5 +386,20 @@ DustDevilMask: {
 
 GasCan: {
 	DisplayName: 杰瑞的手杖
+	Tooltip: ""
+}
+
+UnusedItem: {
+	DisplayName: 未使用物品
+	Tooltip: ""
+}
+
+SteampunkerFishingPole: {
+	DisplayName: 蒸汽朋克人之杖
+	Tooltip: 能够自动收杆并重新投出钓鱼浮标
+}
+
+UnopenedChestTracker: {
+	DisplayName: 未打开宝箱追踪器
 	Tooltip: ""
 }

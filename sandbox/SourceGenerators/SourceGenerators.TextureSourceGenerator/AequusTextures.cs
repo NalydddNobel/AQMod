@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1449)</summary>
+/// <summary>(Total Textures: 1453)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -609,6 +609,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Content/Items/Accessories/Backpacks/ScavengerBag_Back");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag_Strap</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Content/Items/Accessories/Backpacks/ScavengerBag_Strap");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpack</summary>
+    public static readonly RequestCache<Texture2D> WallOfFleshBackpack = new("Content/Items/Accessories/Backpacks/WallOfFleshBackpack");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpackBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> WallOfFleshBackpackBuilderToggle = new("Content/Items/Accessories/Backpacks/WallOfFleshBackpackBuilderToggle");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpack_Back</summary>
+    public static readonly RequestCache<Texture2D> WallOfFleshBackpack_Back = new("Content/Items/Accessories/Backpacks/WallOfFleshBackpack_Back");
+    /// <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpack_Strap</summary>
+    public static readonly RequestCache<Texture2D> WallOfFleshBackpack_Strap = new("Content/Items/Accessories/Backpacks/WallOfFleshBackpack_Strap");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>

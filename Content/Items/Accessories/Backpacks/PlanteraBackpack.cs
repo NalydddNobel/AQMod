@@ -11,7 +11,7 @@ public class PlanteraBackpack : BackpackModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Capacity);
 
     public override int Capacity { get; set; } = 40;
-    public override float SlotHue { get; set; } = 0.4f;
+    public override float SlotHue { get; set; } = 0.64f;
 
     public override void SetDefaults() {
         base.SetDefaults();

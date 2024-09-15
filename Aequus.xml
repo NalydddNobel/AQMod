@@ -2327,7 +2327,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1449)</summary>
+            <summary>(Total Textures: 1453)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3231,6 +3231,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Items/Accessories/Backpacks/ScavengerBag_Strap</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallOfFleshBackpack">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpack</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallOfFleshBackpackBuilderToggle">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpackBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallOfFleshBackpack_Back">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpack_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallOfFleshBackpack_Strap">
+            <summary>Full Path: Content/Items/Accessories/Backpacks/WallOfFleshBackpack_Strap</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
             <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>

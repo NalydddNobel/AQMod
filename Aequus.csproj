@@ -44,6 +44,13 @@
 	<Compile Remove="SourceGenerators\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
+			
+  <ItemGroup>
+    <None Remove="Content\Items\Accessories\Backpacks\WallOfFleshBackpack.png" />
+    <None Remove="Content\Items\Accessories\Backpacks\WallOfFleshBackpackBuilderToggle.png" />
+    <None Remove="Content\Items\Accessories\Backpacks\WallOfFleshBackpack_Back.png" />
+    <None Remove="Content\Items\Accessories\Backpacks\WallOfFleshBackpack_Strap.png" />
+  </ItemGroup>
 						
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
