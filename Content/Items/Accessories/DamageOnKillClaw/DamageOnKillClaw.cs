@@ -75,6 +75,10 @@ public sealed class DamageOnKillClaw : ModItem {
 
     [Gen.AequusPlayer_OnKillNPC]
     public static void OnKillNPC(Player player, AequusPlayer aequus, EnemyKillInfo info) {
+        if (aequus.accDamageOnKill <= 0) {
+            return;
+        }
+
         // Increment kill count and keep it within the cap.
         aequus.buffDamageOnKill = Math.Min(aequus.buffDamageOnKill + 1, aequus.accDamageOnKill);
 

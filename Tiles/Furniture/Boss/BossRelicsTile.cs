@@ -99,7 +99,7 @@ public class BossRelicsTile : ModTile, ITileDrawSystem {
         foreach (Point p in this.GetDrawPoints()) {
             var tile = Main.tile[p];
             if (!tile.HasTile) {
-                return;
+                continue;
             }
 
             var tileTexture = AequusTextures.BossRelicsTile;
@@ -115,7 +115,7 @@ public class BossRelicsTile : ModTile, ITileDrawSystem {
 
             if (frameY == OmegaStarite) {
                 Render_OmegaStarite(sb, tileTexture, drawPos, frame, color, origin, effects, offset);
-                return;
+                continue;
             }
 
             DrawGlowySprite(sb, tileTexture, drawPos, frame, color, origin, effects, offset);
