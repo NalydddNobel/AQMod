@@ -23,7 +23,7 @@ internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuff
         ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = Settings?.DisableAutomaticDropItem ?? false;
     }
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent() {
         Item.ResearchUnlockCount = Settings?.Research ?? (Main.tileFrameImportant[_modTile.Type] ? 1 : 100);
     }
 

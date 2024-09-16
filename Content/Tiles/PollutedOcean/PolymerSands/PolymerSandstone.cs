@@ -33,7 +33,7 @@ public class PolymerSandstone : MultiMergeTile, IAddRecipes {
         Instance<PollutedTiles>().IsPolluted.Add(Type);
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         Item.CreateRecipe()
             .AddIngredient(Instance<PolymerSand>().Item)
             .AddIngredient(ItemID.StoneBlock)

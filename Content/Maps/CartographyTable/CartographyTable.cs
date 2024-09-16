@@ -39,7 +39,7 @@ public class CartographyTable : ModTile, IAddRecipes {
         DustType = DustID.WoodFurniture;
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         Item.CreateRecipe()
             .AddRecipeGroup(RecipeGroupID.Wood, 50)
             .AddIngredient<PaperMaterial>(10)

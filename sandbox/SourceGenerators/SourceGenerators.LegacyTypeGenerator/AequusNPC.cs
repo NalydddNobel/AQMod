@@ -13,6 +13,7 @@ public partial class AequusNPC {
     [CompilerGenerated]
     private void ModifyNPCLootInner(NPC npc, NPCLoot loot) {
         Content.Items.Accessories.Backpacks.PlanteraBackpack.ModifyNPCDrops(npc, loot);
+        Content.Items.Accessories.Backpacks.WallOfFleshBackpack.ModifyNPCDrops(npc, loot);
         Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.AddNPCLoot(npc, this, loot);
         Content.Items.Materials.PossessedShard.PossessedShard.ModifyNPCLoot(npc, loot);
     }

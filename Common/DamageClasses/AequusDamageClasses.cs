@@ -12,7 +12,7 @@ namespace Aequus.Common.DamageClasses {
         public void Load(Mod mod) {
         }
 
-        public void PostSetupContent(Aequus aequus) {
+        public void PostSetupContent() {
             DamageClasses.AddRange(new[] {
                 DamageClass.Default,
                 DamageClass.Generic,

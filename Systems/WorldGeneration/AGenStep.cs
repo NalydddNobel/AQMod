@@ -54,7 +54,7 @@ public abstract class AGenStep : ModType, ILocalizedModType, IPostSetupContent {
         SetStaticDefaults();
     }
 
-    void IPostSetupContent.PostSetupContent(Aequus mod) {
+    void IPostSetupContent.PostSetupContent() {
         this.GetLocalization("DisplayMessage");
         PostSetupContent();
     }

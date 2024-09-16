@@ -64,7 +64,7 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
         }
     }
 
-    void IPreExtractBestiaryItemDrops.PreExtractBestiaryItemDrops(Aequus aequus, BestiaryDatabase bestiaryDatabase, ItemDropDatabase database) {
+    void IPreExtractBestiaryItemDrops.PreExtractBestiaryItemDrops(BestiaryDatabase bestiaryDatabase, ItemDropDatabase database) {
         if (!GameplayConfig.Instance.EarlyMimics) {
             return;
         }

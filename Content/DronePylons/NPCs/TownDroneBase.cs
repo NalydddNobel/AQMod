@@ -36,7 +36,7 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes, IUnlockBestiaryEntryU
             .Add(new CommonDrop(ItemDrop, 5, chanceNumerator: 4));
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
+    public virtual void AddRecipes() {
         BestiaryBuilder.MoveBestiaryEntry(this, ModContent.NPCType<Physicist>());
     }
 

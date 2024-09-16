@@ -289,7 +289,7 @@ public class DedicatedFaeling : ModNPC {
             ItemID.Sets.ShimmerTransformToItem[Type] = _parentItem.Type;
         }
 
-        public void PostSetupContent(Aequus mod) {
+        void IPostSetupContent.PostSetupContent() {
             if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(_parentItem.Type, out int parentResearchCount)) {
                 // Inherit the parent item's research count, capped at 5.
                 Item.ResearchUnlockCount = Math.Min(parentResearchCount, 5);

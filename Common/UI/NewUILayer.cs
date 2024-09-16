@@ -69,7 +69,7 @@ public abstract class NewUILayer : GameInterfaceLayer, ILoadable, IPostSetupCont
         NewUILayersSystem.Register(this);
     }
 
-    void IPostSetupContent.PostSetupContent(Aequus aequus) {
+    void IPostSetupContent.PostSetupContent() {
         PostSetupContent();
     }
 

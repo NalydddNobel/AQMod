@@ -376,7 +376,7 @@ internal class InstancedTrappedChest : InstancedModTile, IAddRecipes {
         Parent.PostDraw(i, j, spriteBatch);
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes() {
         Recipe.Create(Item.Type)
             .AddIngredient(Parent.Type)
             .AddIngredient(ItemID.Wire, 10)

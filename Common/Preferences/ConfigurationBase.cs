@@ -20,7 +20,7 @@ namespace Aequus.Common.Preferences {
         public virtual void Load(Mod mod) {
         }
 
-        public virtual void PostSetupContent(Aequus aequus) {
+        public virtual void PostSetupContent() {
         }
 
         public virtual void Unload() {

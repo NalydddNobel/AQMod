@@ -53,7 +53,7 @@ public abstract class UnifiedOre : ModTexturedType, ILocalizedModType, IAddRecip
     protected virtual void AddRecipes() {
 
     }
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         AddRecipes();
     }
 }

@@ -43,7 +43,7 @@ public class PyramidOfferingUI : AequusUIState {
         }
     }
 
-    public override void PostSetupContent(Aequus aequus) {
+    public override void PostSetupContent() {
         AddNeutralOffering(new(
             ItemID.GoldCoin,
             "Mods.Aequus.Interface.PyramidStatue.Offerings.MoneyOffering",

@@ -23,7 +23,7 @@ public class ScrapBrick : ModTile, IAddRecipes {
         MineResist = 1.5f;
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
 #if POLLUTED_OCEAN_TODO
             Item.CreateRecipe()
                 .AddIngredient(Instance<ScrapBlock>().Item)

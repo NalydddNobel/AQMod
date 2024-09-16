@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1453)</summary>
+/// <summary>(Total Textures: 1461)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -845,6 +845,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> AdamantiteMimic = new("Content/Monsters/Mimics/AdamantiteMimic");
     /// <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
     public static readonly RequestCache<Texture2D> FrostMimic = new("Content/Monsters/Mimics/FrostMimic");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
+    public static readonly RequestCache<Texture2D> ScavengerGoreHead = new("Content/Monsters/PollutedOcean/Scavenger/Gores/ScavengerGoreHead");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Scavenger</summary>
+    public static readonly RequestCache<Texture2D> Scavenger = new("Content/Monsters/PollutedOcean/Scavenger/Scavenger");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/ScavengerBody</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBody = new("Content/Monsters/PollutedOcean/Scavenger/ScavengerBody");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/ScavengerHead</summary>
+    public static readonly RequestCache<Texture2D> ScavengerHead = new("Content/Monsters/PollutedOcean/Scavenger/ScavengerHead");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBanner = new("Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerBanner");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBannerItem = new("Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+    public static readonly RequestCache<Texture2D> ScavengerStatue = new("Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerStatue");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
+    public static readonly RequestCache<Texture2D> ScavengerStatueItem = new("Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Content/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>

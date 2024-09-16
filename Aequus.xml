@@ -793,6 +793,13 @@
         <member name="M:Aequus.Common.Structures.RefCache`1.RestoreOriginalValue">
             <summary>Restores overriden values back to their original value.</summary>
         </member>
+        <member name="M:Aequus.Common.Entities.Banners.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
+            <summary>
+            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+            </summary>
+            <typeparam name="TBannerNPC"></typeparam>
+            <param name="npcWithoutBanner"></param>
+        </member>
         <member name="F:Aequus.Common.Entities.DashPlayer.DashHaltSpeedMultiplier">
             <summary>Multiplier used to reduce velocity when above the dash's halting speed.</summary>
         </member>
@@ -832,6 +839,9 @@
         </member>
         <member name="F:Aequus.Common.GUI.InventoryUI.ContextsInv">
             <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and etc.</summary>
+        </member>
+        <member name="T:Aequus.Common.Initialization.IAttributeOnModLoad">
+            <summary>Apply to an <see cref="T:System.Attribute"/> in order to have them define <see cref="M:Aequus.Common.Initialization.IAttributeOnModLoad.OnModLoad(Terraria.ModLoader.Mod,Terraria.ModLoader.ILoadable)"/> to run on <see cref="T:Terraria.ModLoader.ILoadable"/> types when the mod loads.</summary>
         </member>
         <member name="F:Aequus.Common.Items.ItemDefaults.NPCSkyMerchant">
             <summary>1 Gold</summary>
@@ -2327,7 +2337,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1453)</summary>
+            <summary>(Total Textures: 1461)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3585,6 +3595,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrostMimic">
             <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Scavenger">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Scavenger</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBody">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/ScavengerBody</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerHead">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/ScavengerHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBanner">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBannerItem">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerStatue">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerStatueItem">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
@@ -6863,6 +6897,18 @@
             <summary>
             🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
             </summary>
+        </member>
+        <member name="T:Aequus.IAddRecipes">
+            <summary>Runs after <see cref="M:Aequus.IPostSetupContent.PostSetupContent"/>.</summary>
+        </member>
+        <member name="T:Aequus.IOnModLoad">
+            <summary>Runs after <see cref="M:Terraria.ModLoader.ILoadable.Load(Terraria.ModLoader.Mod)"/>.</summary>
+        </member>
+        <member name="M:Aequus.IOnModLoad.OnModLoad">
+            <summary><inheritdoc cref="T:Aequus.IOnModLoad"/></summary>
+        </member>
+        <member name="T:Aequus.IPostSetupContent">
+            <summary>Runs after <see cref="!:IOnModLoad.OnModLoad(Aequus)"/>.</summary>
         </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
             <summary>

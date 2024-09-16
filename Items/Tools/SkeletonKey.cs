@@ -16,7 +16,7 @@ namespace Aequus.Items.Tools {
             Item.ResearchUnlockCount = 1;
         }
 
-        public void PostSetupContent(Aequus aequus) {
+        public void PostSetupContent() {
             Split.AddItem("DungeonEnvelope", OtherDungeonLockBoxes);
         }
 

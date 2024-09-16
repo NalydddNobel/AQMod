@@ -22,7 +22,7 @@ public class ShadowMimic : ModNPC, IAddRecipes {
         NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowCandle] = true;
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
+    public virtual void AddRecipes() {
         BestiaryBuilder.MoveBestiaryEntry(this, NPCID.Mimic);
     }
 

@@ -18,7 +18,7 @@ public abstract class UnifiedArmorSet : ModTexturedType, IAddRecipes, IUnifiedTe
     }
 
     public virtual void AddRecipes() { }
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         AddRecipes();
     }
 }

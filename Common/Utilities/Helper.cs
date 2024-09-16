@@ -2799,7 +2799,7 @@ public static partial class Helper {
             iterations = 0;
         }
 
-        void IOnModLoad.OnModLoad(Aequus aequus) {
+        void IOnModLoad.OnModLoad() {
             SubstitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
             UnboxInt = new UnboxInt();
             UnboxFloat = new UnboxFloat();

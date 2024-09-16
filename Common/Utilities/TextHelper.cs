@@ -99,7 +99,7 @@ namespace Aequus {
             }
         }
 
-        public void PostAddRecipes(Aequus aequus) {
+        public void PostAddRecipes() {
             Modifications.updateModifications();
         }
 

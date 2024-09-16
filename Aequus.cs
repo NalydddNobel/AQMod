@@ -96,9 +96,6 @@ public class Aequus : Mod {
             UserInterface = new UserInterface();
         }
 
-        foreach (var t in GetContent<IOnModLoad>()) {
-            t.OnModLoad(this);
-        }
         //On.Terraria.WorldGen.TileFrame += WorldGen_TileFrame;
     }
 

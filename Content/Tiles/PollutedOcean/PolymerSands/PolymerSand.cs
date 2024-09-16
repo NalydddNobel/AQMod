@@ -51,7 +51,7 @@ public class PolymerSand : MultiMergeTile, IAddRecipes {
         Instance<PollutedTiles>().IsPolluted.Add(Type);
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
 #if POLLUTED_OCEAN_TODO
         Item.CreateRecipe(5)
             .AddIngredient(ItemID.SandBlock, 5)

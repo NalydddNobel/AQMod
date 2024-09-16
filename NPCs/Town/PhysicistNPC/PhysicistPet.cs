@@ -71,7 +71,7 @@ public class PhysicistPet : ModNPC, IAddRecipes, IUnlockBestiaryEntryUponExistin
         NPCSets.NameTagOverride[Type] = true;
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes() {
         BestiaryBuilder.MoveBestiaryEntry(this, ModContent.NPCType<Physicist>(), sortOffset: -1);
     }
 

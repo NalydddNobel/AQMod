@@ -108,7 +108,7 @@ public class MeadowArmor : UnifiedArmorSet, IAddRecipes, ISetbonusProvider {
         player.MinionAttackTargetNPC = target.whoAmI;
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         Helmet!.CreateRecipe()
             .AddIngredient(Instance<MeadowWood>().Item.Type, 20)
             .AddTile(TileID.WorkBenches)

@@ -20,11 +20,11 @@ public class LoadedType : ILoadable, IPostSetupContent, IAddRecipes {
         Load();
     }
 
-    void IPostSetupContent.PostSetupContent(Aequus aequus) {
+    void IPostSetupContent.PostSetupContent() {
         PostSetupContent();
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         AddRecipes();
     }
 

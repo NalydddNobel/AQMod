@@ -26,7 +26,7 @@ internal class MeadowWood : ModTile, IAddRecipeGroups {
         num = fail ? 1 : 3;
     }
 
-    public void AddRecipeGroups(Aequus aequus) {
+    public void AddRecipeGroups() {
         RecipeGroup.recipeGroups[RecipeGroupID.Wood].ValidItems.Add(Item.Type);
     }
 }

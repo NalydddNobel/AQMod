@@ -16,7 +16,7 @@ public class LegacyPushableEntities : IAddRecipes {
         ProjectileIDs.Add(type);
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         AutomaticEntries_NPCs(new HashSet<int>()
         {
             0,

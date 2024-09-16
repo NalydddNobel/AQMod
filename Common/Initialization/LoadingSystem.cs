@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Aequus.Common.Initialization;
+using System;
+using System.Linq;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
@@ -16,40 +18,60 @@ internal class LoadingSystem : ModSystem {
         orig(database);
         var aequus = Aequus.Instance;
         foreach (var t in aequus.GetContent<IPostPopulateItemDropDatabase>()) {
-            t.PostPopulateItemDropDatabase(Aequus.Instance, database);
+            t.PostPopulateItemDropDatabase(database);
         }
     }
 
     private static void On_BestiaryDatabase_Merge(On_BestiaryDatabase.orig_Merge orig, BestiaryDatabase bestiaryDatabase, ItemDropDatabase dropsDatabase) {
         var aequus = Aequus.Instance;
         foreach (var t in aequus.GetContent<IPreExtractBestiaryItemDrops>()) {
-            t.PreExtractBestiaryItemDrops(Aequus.Instance, bestiaryDatabase, dropsDatabase);
+            t.PreExtractBestiaryItemDrops(bestiaryDatabase, dropsDatabase);
         }
         orig(bestiaryDatabase, dropsDatabase);
+    }
+
+    public override void OnModLoad() {
+        // Must use "ToArray" to create a fixed list of content, as the list of content may be edited in the methods called within the foreach, thus creating an error.
+        foreach (ILoadable content in Mod.GetContent().ToArray()) {
+            if (content is IOnModLoad contentOnModLoad) {
+                contentOnModLoad.OnModLoad();
+            }
+
+            object[] attributes = content.GetType().GetCustomAttributes(inherit: false);
+            foreach (Attribute attr in attributes.Cast<Attribute>()) {
+                if (attr is IAttributeOnModLoad attributeOnModLoad) {
+                    attributeOnModLoad.OnModLoad(Mod, content);
+                }
+            }
+        }
+
+        foreach (var t in Mod.GetContent<IOnModLoad>()) {
+            t.OnModLoad();
+        }
     }
 
     public override void PostSetupContent() {
         OnPostSetupContent?.Invoke();
         foreach (var t in Mod.GetContent<IPostSetupContent>()) {
-            t.PostSetupContent(Aequus.Instance);
+            t.PostSetupContent();
         }
     }
 
     public override void AddRecipeGroups() {
         foreach (var t in Mod.GetContent<IAddRecipeGroups>()) {
-            t.AddRecipeGroups(Aequus.Instance);
+            t.AddRecipeGroups();
         }
     }
 
     public override void AddRecipes() {
         foreach (var t in Mod.GetContent<IAddRecipes>()) {
-            t.AddRecipes(Aequus.Instance);
+            t.AddRecipes();
         }
     }
 
     public override void PostAddRecipes() {
         foreach (var t in Mod.GetContent<IPostAddRecipes>()) {
-            t.PostAddRecipes(Aequus.Instance);
+            t.PostAddRecipes();
         }
     }
 
@@ -58,36 +80,4 @@ internal class LoadingSystem : ModSystem {
             t.PostSetupRecipes();
         }
     }
-}
-
-internal interface IOnModLoad : ILoadable {
-    void OnModLoad(Aequus aequus);
-}
-
-internal interface IPostSetupContent : ILoadable {
-    void PostSetupContent(Aequus aequus);
-}
-
-internal interface IAddRecipeGroups : ILoadable {
-    void AddRecipeGroups(Aequus aequus);
-}
-
-internal interface IAddRecipes : ILoadable {
-    void AddRecipes(Aequus aequus);
-}
-
-internal interface IPostAddRecipes : ILoadable {
-    void PostAddRecipes(Aequus aequus);
-}
-
-internal interface IPostSetupRecipes : ILoadable {
-    void PostSetupRecipes();
-}
-
-internal interface IPostPopulateItemDropDatabase : ILoadable {
-    void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database);
-}
-
-internal interface IPreExtractBestiaryItemDrops : ILoadable {
-    void PreExtractBestiaryItemDrops(Aequus aequus, BestiaryDatabase bestiaryDatabase, ItemDropDatabase database);
 }

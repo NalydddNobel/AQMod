@@ -782,7 +782,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         Sync(Main.npc[npc]);
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
     }
 
     public static void RestoreTarget() {

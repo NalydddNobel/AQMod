@@ -85,14 +85,14 @@ public partial class AequusTile : GlobalTile, IPostSetupContent, IAddRecipes {
     }
     #endregion
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent() {
         All = new bool[TileLoader.TileCount];
         for (int i = 0; i < All.Length; i++) {
             All[i] = true;
         }
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes() {
         LoadPylonColorsSet();
     }
 

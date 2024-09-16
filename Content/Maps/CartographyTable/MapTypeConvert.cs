@@ -14,7 +14,7 @@ public class MapTypeConvert : LoadedType, IPostAddRecipes {
 
     private readonly Dictionary<byte, ushort> CompressedIdToMapTileId = [];
 
-    void IPostAddRecipes.PostAddRecipes(Aequus aequus) {
+    void IPostAddRecipes.PostAddRecipes() {
         if (Main.dedServ) {
             return;
         }

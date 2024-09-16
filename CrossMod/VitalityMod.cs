@@ -12,7 +12,7 @@ namespace Aequus.CrossMod {
 
         public static int Miner_NPCID { get; private set; }
 
-        public void PostSetupContent(Aequus aequus) {
+        public void PostSetupContent() {
             Miner_NPCID = this.GetNPC("Miner");
         }
 

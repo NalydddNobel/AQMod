@@ -32,7 +32,7 @@ namespace Aequus.Buffs.Debuffs {
             BuffSets.PlayerDoTDebuff.Add(Type);
         }
 
-        public void PostAddRecipes(Aequus aequus) {
+        public void PostAddRecipes() {
             foreach (var i in NPCSets.IsHallow) {
                 AequusBuff.SetImmune(i, Type);
             }

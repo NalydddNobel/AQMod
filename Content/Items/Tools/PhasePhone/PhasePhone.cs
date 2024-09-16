@@ -55,7 +55,7 @@ public sealed class PhasePhones : ModTexturedType, IAddRecipes, ILocalizedModTyp
         }
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes() {
         Recipe.Create(PhasePhone!.Type)
             .AddRecipeGroup(AequusRecipes.Shellphone)
             .AddIngredient<PhaseMirror>()

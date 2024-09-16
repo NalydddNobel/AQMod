@@ -54,7 +54,7 @@ public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipe
         BannerItem = Item.BannerToItem(Banner);
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
+    public virtual void AddRecipes() {
         BestiaryBuilder.MoveBestiaryEntry(this, CloneNPC);
     }
 
@@ -111,7 +111,7 @@ public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipe
         return false;
     }
 
-    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+    public virtual void PostPopulateItemDropDatabase(ItemDropDatabase database) {
         Helper.InheritDropRules(CloneNPC, Type, database);
     }
 }
