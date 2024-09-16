@@ -181,16 +181,16 @@ ScavengerBag: {
 }
 
 PlanteraBackpack: {
-	DisplayName: Bulb Bag
+	DisplayName: 球茎袋
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-	BackpackEnabled: Bulb Bag On
-	BackpackDisabled: Bulb Bag Off
+	BackpackEnabled: 球茎袋开启
+	BackpackDisabled: 球茎袋开启
 }
 
 // Do not translate yet, name is temporary.
 WallOfFleshBackpack: {
-	// DisplayName: Stomach Sack
-	// Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-	// BackpackEnabled: Stomach Sack On
-	// BackpackDisabled: Stomach Sack Off
+	DisplayName: Stomach Sack
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Stomach Sack On
+	BackpackDisabled: Stomach Sack Off
 }
