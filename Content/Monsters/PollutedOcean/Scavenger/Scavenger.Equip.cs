@@ -1,4 +1,4 @@
-﻿#if SCAVENGER
+﻿using Aequus.Common.Entities.NPCs.AI;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -53,14 +53,15 @@ public partial class Scavenger {
     public static AccessoryUpdate AccessoryUsageBoots(int dustID) {
         return (s, attacking) => {
             var npc = s.NPC;
+            var fighter = s as IFighterAIProvider;
             if (npc.direction != Math.Sign(npc.velocity.X)) {
                 npc.velocity.X += s.playerDummy.runSlowdown * npc.direction;
                 return;
             }
-            if (Math.Abs(npc.velocity.X) > s.SpeedCap) {
+            if (Math.Abs(npc.velocity.X) > fighter.SpeedCap) {
                 npc.velocity.X += s.playerDummy.runSlowdown * -npc.direction;
             }
-            if (npc.velocity.Y != 0f || Math.Abs(npc.velocity.X) < s.SpeedCap - s.runSpeedCap) {
+            if (npc.velocity.Y != 0f || Math.Abs(npc.velocity.X) < fighter.SpeedCap - s.runSpeedCap) {
                 return;
             }
             s.accessoryUseData++;
@@ -80,4 +81,3 @@ public partial class Scavenger {
         CustomAccessoryUsage[ItemID.SailfishBoots] = AccessoryUsageBoots(DustID.SailfishBoots);
     }
 }
-#endif

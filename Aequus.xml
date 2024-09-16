@@ -1825,6 +1825,14 @@
         <member name="F:Aequus.Common.Utilities.Helpers.CommonColor.TextInteractable">
             <summary>Yellow text used by Beds, Clocks, etc.</summary>
         </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.GoreTool.NewGore(Aequus.Common.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>Spawns gore using a Texture. Removes the need for using silent string literals for getting gores.</summary>
+            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+            <param name="Source">The Source of the gore.</param>
+            <param name="Position">The Position to spawn the gore.</param>
+            <param name="Velocity">The Velocity to spawn the gore.</param>
+            <param name="Scale">The Scale of the gore.</param>
+        </member>
         <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightBrightness(Microsoft.Xna.Framework.Vector3)">
             <param name="rgb">The RGB.</param>
             <returns>Gets the Brightness of a Light Vector. (The largest X,Y,Z value.)</returns>
@@ -1884,6 +1892,9 @@
             <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.NPCTools.ManuallyDrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
+            <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>
         </member>
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
@@ -6954,6 +6965,15 @@
             <summary>
             Determines whether or not the mouse has an item
             </summary>
+        </member>
+        <member name="M:Aequus.Helper.NewGore(Terraria.NPC,Aequus.Common.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.DataStructures.IEntitySource,System.Single)">
+            <summary><inheritdoc cref="M:Aequus.Common.Utilities.Helpers.GoreTool.NewGore(Aequus.Common.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"/></summary>
+            <param name="npc"></param>
+            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+            <param name="Position">The Position to spawn the gore.</param>
+            <param name="Velocity">The Velocity to spawn the gore.</param>
+            <param name="Source">The Source of the gore, if null, defaults to <see cref="M:Terraria.Entity.GetSource_FromThis(System.String)"/>.</param>
+            <param name="Scale">The Scale of the gore.</param>
         </member>
         <member name="M:Aequus.Helper.CloneShopValues(Terraria.Item,System.Int32)">
             <summary>Clones the Rarity and Value of an item.</summary>

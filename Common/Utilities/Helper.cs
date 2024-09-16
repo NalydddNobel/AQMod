@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common;
+using Aequus.Common.Assets;
 using Aequus.Common.DataSets;
 using Aequus.Common.EntitySources;
 using Aequus.Common.IO;
@@ -9,6 +10,7 @@ using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Helpers;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.CrossMod;
 using Aequus.Projectiles;
@@ -84,6 +86,17 @@ public static partial class Helper {
     private const char FULL_NAME_SEPERATOR = '/';
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
+    /// <summary><inheritdoc cref="GoreTool.NewGore(RequestCache{Texture2D}, IEntitySource, Vector2, Vector2, float)"/></summary>
+    /// <param name="npc"></param>
+    /// <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+    /// <param name="Position">The Position to spawn the gore.</param>
+    /// <param name="Velocity">The Velocity to spawn the gore.</param>
+    /// <param name="Source">The Source of the gore, if null, defaults to <see cref="Entity.GetSource_FromThis(string)"/>.</param>
+    /// <param name="Scale">The Scale of the gore.</param>
+    internal static Gore NewGore(this NPC npc, RequestCache<Texture2D> Texture, Vector2 Position, Vector2 Velocity, IEntitySource Source = null, float Scale = 1f) {
+        return GoreTool.NewGore(Texture, Source ?? npc.GetSource_FromThis(), Position, Velocity, Scale);
+    }
 
     /// <summary>Clones the Rarity and Value of an item.</summary>
     public static void CloneShopValues(this Item item, int type) {
