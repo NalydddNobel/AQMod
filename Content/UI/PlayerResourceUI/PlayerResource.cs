@@ -3,6 +3,7 @@ using Aequus.Common.Preferences;
 
 namespace Aequus.Content.UI.PlayerResourceUI;
 
+[Autoload(Side = ModSide.Client)]
 public abstract class PlayerResource : ModType, ILocalizedModType {
     public float Animation { get; internal set; } = 1f;
     public float Priority { get; protected set; } = 0f;
