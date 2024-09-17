@@ -1,10 +1,18 @@
-﻿namespace Aequus.Common.Graphics.Shaders;
+﻿using Aequus.Common.Assets;
+
+namespace Aequus.Common.Graphics.Shaders;
 
 public class AequusShaders {
-    private static ShaderAsset GetShader(string name) {
+    public static readonly ShaderAsset GlintMiscShader = getLegacyShader("GlintMiscShader");
+    public static readonly ShaderAsset Trailshader = getLegacyShader("Prims/Trailshader");
+    public static readonly RequestCache<Effect> BubbleMerge = Get("BubbleMerge");
+
+    private static RequestCache<Effect> Get(string name) {
+        return new($"Aequus/Effects/{name}");
+    }
+
+    private static ShaderAsset getLegacyShader(string name) {
         return new($"{Aequus.AssetsPath}Effects/{name}");
     }
 
-    public static readonly ShaderAsset GlintMiscShader = GetShader("GlintMiscShader");
-    public static readonly ShaderAsset Trailshader = GetShader("Prims/Trailshader");
 }

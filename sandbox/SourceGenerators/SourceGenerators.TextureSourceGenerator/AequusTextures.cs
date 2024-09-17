@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1466)</summary>
+/// <summary>(Total Textures: 1474)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -845,6 +845,20 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> AdamantiteMimic = new("Content/Monsters/Mimics/AdamantiteMimic");
     /// <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
     public static readonly RequestCache<Texture2D> FrostMimic = new("Content/Monsters/Mimics/FrostMimic");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel</summary>
+    public static readonly RequestCache<Texture2D> Eel = new("Content/Monsters/PollutedOcean/Eel/Eel");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel_Bestiary</summary>
+    public static readonly RequestCache<Texture2D> Eel_Bestiary = new("Content/Monsters/PollutedOcean/Eel/Eel_Bestiary");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Gores/EekGoreBody</summary>
+    public static readonly RequestCache<Texture2D> EekGoreBody = new("Content/Monsters/PollutedOcean/Eel/Gores/EekGoreBody");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Gores/EekGoreHead</summary>
+    public static readonly RequestCache<Texture2D> EekGoreHead = new("Content/Monsters/PollutedOcean/Eel/Gores/EekGoreHead");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Gores/EekGoreTail</summary>
+    public static readonly RequestCache<Texture2D> EekGoreTail = new("Content/Monsters/PollutedOcean/Eel/Gores/EekGoreTail");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Tiles/EelBanner</summary>
+    public static readonly RequestCache<Texture2D> EelBanner = new("Content/Monsters/PollutedOcean/Eel/Tiles/EelBanner");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Tiles/EelBannerItem</summary>
+    public static readonly RequestCache<Texture2D> EelBannerItem = new("Content/Monsters/PollutedOcean/Eel/Tiles/EelBannerItem");
     /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlime</summary>
     public static readonly RequestCache<Texture2D> OilSlime = new("Content/Monsters/PollutedOcean/OilSlime/OilSlime");
     /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
@@ -2381,6 +2395,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BlueFireParticle = new("Particles/BlueFireParticle");
     /// <summary>Full Path: Particles/BlueFireSparkle</summary>
     public static readonly RequestCache<Texture2D> BlueFireSparkle = new("Particles/BlueFireSparkle");
+    /// <summary>Full Path: Particles/Common/UnderwaterBubbles</summary>
+    public static readonly RequestCache<Texture2D> UnderwaterBubbles = new("Particles/Common/UnderwaterBubbles");
     /// <summary>Full Path: Particles/Dusts/CarpenterSurpriseDust</summary>
     public static readonly RequestCache<Texture2D> CarpenterSurpriseDust = new("Particles/Dusts/CarpenterSurpriseDust");
     /// <summary>Full Path: Particles/Dusts/CosmicCrystalDust</summary>

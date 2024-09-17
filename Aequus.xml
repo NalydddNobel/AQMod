@@ -2399,7 +2399,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1466)</summary>
+            <summary>(Total Textures: 1474)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3657,6 +3657,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrostMimic">
             <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Eel">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Eel_Bestiary">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel_Bestiary</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EekGoreBody">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Gores/EekGoreBody</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EekGoreHead">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Gores/EekGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EekGoreTail">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Gores/EekGoreTail</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EelBanner">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Tiles/EelBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EelBannerItem">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Tiles/EelBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OilSlime">
             <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlime</summary>
@@ -5962,6 +5983,9 @@
         <member name="F:Aequus.AequusTextures.BlueFireSparkle">
             <summary>Full Path: Particles/BlueFireSparkle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.UnderwaterBubbles">
+            <summary>Full Path: Particles/Common/UnderwaterBubbles</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CarpenterSurpriseDust">
             <summary>Full Path: Particles/Dusts/CarpenterSurpriseDust</summary>
         </member>
@@ -7297,6 +7321,42 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.IdleWaveTimerMultiplier">
+            <summary>Multiplied by <see cref="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.Timer"/> to get the current position of the wave pattern used when the Eel is moving idly.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.IdleWaveMagnitude">
+            <summary>The vertical magnitude of the wave used when the Eel is moving idly.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.ShockDelay">
+            <summary>The delay (in ticks) before the eel can shock again. This delay is extended by -<see cref="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.ShockRecoilCooldown"/> after it performs its first shock.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.ShockTime">
+            <summary>The delay (in ticks) before the eel exits the shock state.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.ShockRecoilCooldown">
+            <summary>Added cooldown before it can perform (in ticks) after the eel does a shock.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.ShockRecoilTime">
+            <summary>Delay before <see cref="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.State"/> returns to <see cref="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.Normal"/> state from <see cref="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.ExitShocking"/>.</summary>
+        </member>
+        <member name="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.SegmentNumber">
+            <summary>Represents NPC.ai[0]. This value is the order the worm segment spawned in. Starts at 1 for the head, and increases for each next NPC. The tail has this same property, but it is negative.</summary>
+        </member>
+        <member name="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.NextSegment">
+            <summary>Represents NPC.ai[1]. This value is the index in <see cref="F:Terraria.Main.npc"/> for the next NPC in the worm chain. It is -1 for the head.</summary>
+        </member>
+        <member name="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.State">
+            <summary>Represents NPC.ai[2]. This value represents the Head's current state. Unused by the body segments.</summary>
+        </member>
+        <member name="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.Timer">
+            <summary>Represents NPC.ai[3]. This value represents the Head's current timer. Unused by the body segments.</summary>
+        </member>
+        <member name="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.HorizontalFrame">
+            <summary>Represents NPC.localAI[1]. This value is used as a frame offset in order to alternate between the zapping and regular frames. Use <see cref="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.RealHorizontalFrame"/> for drawing.</summary>
+        </member>
+        <member name="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.RealHorizontalFrame">
+            <summary>Gets the real horizontal frame from the head NPC. (or <see cref="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.HorizontalFrame"/> if it is the head.)</summary>
+        </member>
         <member name="P:Aequus.Content.Necromancy.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
             <summary>
             Default Value: 3600 (1 minute)
@@ -7321,6 +7381,9 @@
             Creates a Ring through a net package
             </summary>
             <param name="reader"></param>
+        </member>
+        <member name="T:Aequus.Particles.Common.UnderwaterBubbles">
+            <summary>Bubble particles which only work underwater. Floats upwards.</summary>
         </member>
         <member name="F:Aequus.Particles.DashBlurParticle.ScaleX">
             <summary>

@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Common.Utilities.Helpers;
 using ReLogic.Graphics;
 using Terraria.GameContent;
 using Terraria.GameContent.Shaders;
@@ -39,6 +39,10 @@ public sealed class DrawHelper : ModSystem {
 
     public static int ColorOnlyShaderId => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
     public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderId, Main.LocalPlayer);
+
+    public static GraphicsDeviceHelper gdHelper { get; private set; } = new();
+
+    public static Vector2 ScreenSize => new Vector2(Main.screenWidth, Main.screenHeight);
 
     public static void DrawCenteredText(SpriteBatch sb, string text, Vector2 drawCoordinates, Color color, Vector2? scaleOverride = null, float rotation = 0f, DynamicSpriteFont? font = null) {
         font ??= FontAssets.MouseText.Value;
