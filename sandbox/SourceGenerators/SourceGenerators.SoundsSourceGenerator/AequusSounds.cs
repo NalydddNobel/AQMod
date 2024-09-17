@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 132)</summary>
+/// <summary>(Total Sounds: 147)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -56,6 +56,36 @@ public partial class AequusSounds {
     public static readonly SoundStyle UseEightBall2 = new("Aequus/Assets/Sounds/EightBall/UseEightBall2");
     /// <summary>Full Path: Assets/Sounds/EightBall/UseEightBall3</summary>
     public static readonly SoundStyle UseEightBall3 = new("Aequus/Assets/Sounds/EightBall/UseEightBall3");
+    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
+    public static readonly SoundStyle BlackJellyfishCharge = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge");
+    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
+    public static readonly SoundStyle BlackJellyfishCharge_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater");
+    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion</summary>
+    public static readonly SoundStyle BlackJellyfishExplosion = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion");
+    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater</summary>
+    public static readonly SoundStyle BlackJellyfishExplosion_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater");
+    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
+    public static readonly SoundStyle BlackJellyfishUnderwaterBubbles = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving0</summary>
+    public static readonly SoundStyle EelMoving0 = new("Aequus/Assets/Sounds/Enemy/Eel/EelMoving0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving1</summary>
+    public static readonly SoundStyle EelMoving1 = new("Aequus/Assets/Sounds/Enemy/Eel/EelMoving1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving2</summary>
+    public static readonly SoundStyle EelMoving2 = new("Aequus/Assets/Sounds/Enemy/Eel/EelMoving2");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0</summary>
+    public static readonly SoundStyle Hit_OilSlime_0 = new("Aequus/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1</summary>
+    public static readonly SoundStyle Hit_OilSlime_1 = new("Aequus/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2</summary>
+    public static readonly SoundStyle Hit_OilSlime_2 = new("Aequus/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Killed_OilSlime</summary>
+    public static readonly SoundStyle Killed_OilSlime = new("Aequus/Assets/Sounds/Enemy/OilSlime/Killed_OilSlime");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Oil_Looping_OilSlime</summary>
+    public static readonly SoundStyle Oil_Looping_OilSlime = new("Aequus/Assets/Sounds/Enemy/OilSlime/Oil_Looping_OilSlime");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
+    public static readonly SoundStyle PhilBugHurt = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugHurt");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
+    public static readonly SoundStyle PhilBugKilled = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugKilled");
     /// <summary>Full Path: Assets/Sounds/goreNestStart</summary>
     public static readonly SoundStyle goreNestStart = new("Aequus/Assets/Sounds/goreNestStart");
     /// <summary>Full Path: Assets/Sounds/inflictaetherfire</summary>

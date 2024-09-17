@@ -5,6 +5,7 @@ using Terraria.Audio;
 namespace Aequus;
 
 public sealed partial class AequusSounds {
+    public static readonly ImplicitLazy<SoundStyle> HitOilSlime = NewMultisound(() => Hit_OilSlime_0, 3);
     public static readonly ImplicitLazy<SoundStyle> ThunderClap = NewMultisound(() => thunderClap0, 2);
     public static readonly ImplicitLazy<SoundStyle> CoinHit = NewMultisound(() => coinHit0, 2);
     public static readonly ImplicitLazy<SoundStyle> ElectricHit = NewMultisound(() => electricHit0, 2);

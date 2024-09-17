@@ -87,6 +87,36 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static bool GetItemSource(this Projectile projectile, out int itemSource, out int ammoSource) {
+        if (!projectile.TryGetGlobalProjectile(out AequusProjectile sources)) {
+            itemSource = ItemID.None;
+            ammoSource = ItemID.None;
+            return false;
+        }
+
+        itemSource = sources.sourceItemUsed;
+        ammoSource = sources.sourceAmmoUsed;
+
+        return itemSource > 0 || ammoSource > 0;
+    }
+
+    public static Vector2 GetTrajectoryTo(Vector2 startPoint, Vector2 endPoint, float wantedHeight) {
+        wantedHeight = Math.Max(wantedHeight, 8f);
+
+        float gravity = 0.3f;
+
+        float verticalDistance = endPoint.Y - startPoint.Y;
+
+        float timeToPeak = (float)Math.Sqrt(2 * wantedHeight / gravity);
+
+        float totalTime = timeToPeak + (float)Math.Sqrt(2 * (wantedHeight + verticalDistance) / gravity);
+
+        float horizontalSpeed = (endPoint.X - startPoint.X) / totalTime;
+        float verticalSpeed = -(gravity * timeToPeak);
+
+        return new Vector2(horizontalSpeed, verticalSpeed);
+    }
+
     /// <summary><inheritdoc cref="GoreTool.NewGore(RequestCache{Texture2D}, IEntitySource, Vector2, Vector2, float)"/></summary>
     /// <param name="npc"></param>
     /// <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>

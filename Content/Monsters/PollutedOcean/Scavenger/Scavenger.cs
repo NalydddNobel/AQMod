@@ -43,6 +43,12 @@ public partial class Scavenger : ModNPC, IFighterAIProvider, IPostPopulateItemDr
 
     float IFighterAIProvider.Acceleration => FighterAI.DefaultAcceleration + acceleration;
 
+#if !POLLUTED_OCEAN
+    public override bool IsLoadingEnabled(Mod mod) {
+        return false;
+    }
+#endif
+
     #region Initialization
     public Scavenger() {
         weapon = new();

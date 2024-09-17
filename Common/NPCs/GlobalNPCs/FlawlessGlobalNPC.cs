@@ -3,6 +3,7 @@
 public class FlawlessGlobalNPC : GlobalNPC {
     public override bool InstancePerEntity => true;
 
+    public bool anyInteractedPlayersAreDamaged;
     public bool[] damagedPlayers;
     public bool preventNoHitCheck;
 
@@ -14,6 +15,7 @@ public class FlawlessGlobalNPC : GlobalNPC {
         if (!preventNoHitCheck) {
             foreach (byte p in FlawlessFightSystem.DamagedPlayers) {
                 damagedPlayers[p] = true;
+                anyInteractedPlayersAreDamaged = true;
             }
         }
     }

@@ -637,6 +637,12 @@
             <param name="nameSuffix">Extra text added to the end of the name.</param>
             <param name="Settings">Various settings which changes the resulting tile item.</param>
         </member>
+        <member name="T:Aequus.Common.ContentTemplates.Projectiles.FloorHazard">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
+        <member name="M:Aequus.Common.ContentTemplates.Projectiles.FloorHazard.#ctor(Aequus.Common.ContentTemplates.Projectiles.FloorHazard.FloorHazardInfo)">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
         <member name="P:Aequus.Common.ContentTemplates.UnifiedBuffPotion.DrinkColors">
             <summary>Shorthand for <see cref="F:Terraria.ID.ItemID.Sets.DrinkParticleColors"/>[Type].</summary>
         </member>
@@ -1949,7 +1955,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 132)</summary>
+            <summary>(Total Sounds: 147)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -2025,6 +2031,51 @@
         </member>
         <member name="F:Aequus.AequusSounds.UseEightBall3">
             <summary>Full Path: Assets/Sounds/EightBall/UseEightBall3</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishCharge_Underwater">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishExplosion">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishExplosion_Underwater">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishUnderwaterBubbles">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.EelMoving0">
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.EelMoving1">
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.EelMoving2">
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Hit_OilSlime_0">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Hit_OilSlime_1">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Hit_OilSlime_2">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Killed_OilSlime">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Killed_OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Oil_Looping_OilSlime">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Oil_Looping_OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PhilBugHurt">
+            <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PhilBugKilled">
+            <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
         </member>
         <member name="F:Aequus.AequusSounds.goreNestStart">
             <summary>Full Path: Assets/Sounds/goreNestStart</summary>
@@ -2348,7 +2399,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1461)</summary>
+            <summary>(Total Textures: 1466)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3606,6 +3657,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrostMimic">
             <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlime">
+            <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeDeathProj">
+            <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeHazard">
+            <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlimeHazard</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeBanner">
+            <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeBannerItem">
+            <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>

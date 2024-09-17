@@ -1,12 +1,14 @@
 ﻿using ReLogic.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria.Localization;
 
 namespace Aequus.Common.DataSets;
 public class ItemSets : DataSet {
     protected override ContentFileInfo ContentFileInfo => new(ItemID.Search);
 
+    public static readonly HashSet<int> IsJunk = [];
     public static readonly HashSet<int> IceChestPrimaryLoot = [
         ItemID.IceBlade, ItemID.IceBoomerang, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
     ];
@@ -83,6 +85,11 @@ public class ItemSets : DataSet {
                 }
             }
         }
+        PopulateSet(IsJunk, i => ItemID.Sets.ExtractinatorMode[i.type] == ItemID.OldShoe);
+    }
+
+    void PopulateSet(ICollection<int> set, Func<Item, bool> predicate) {
+        set.AddRange(ContentSamples.ItemsByType.Values.Where(predicate).Select(i => i.type));
     }
 }
 

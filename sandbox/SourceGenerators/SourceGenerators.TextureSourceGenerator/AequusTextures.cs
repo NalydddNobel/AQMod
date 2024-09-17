@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1461)</summary>
+/// <summary>(Total Textures: 1466)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -845,6 +845,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> AdamantiteMimic = new("Content/Monsters/Mimics/AdamantiteMimic");
     /// <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
     public static readonly RequestCache<Texture2D> FrostMimic = new("Content/Monsters/Mimics/FrostMimic");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlime</summary>
+    public static readonly RequestCache<Texture2D> OilSlime = new("Content/Monsters/PollutedOcean/OilSlime/OilSlime");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeDeathProj = new("Content/Monsters/PollutedOcean/OilSlime/OilSlimeDeathProj");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/OilSlimeHazard</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeHazard = new("Content/Monsters/PollutedOcean/OilSlime/OilSlimeHazard");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeBanner = new("Content/Monsters/PollutedOcean/OilSlime/Tiles/OilSlimeBanner");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeBannerItem = new("Content/Monsters/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem");
     /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
     public static readonly RequestCache<Texture2D> ScavengerGoreHead = new("Content/Monsters/PollutedOcean/Scavenger/Gores/ScavengerGoreHead");
     /// <summary>Full Path: Content/Monsters/PollutedOcean/Scavenger/Scavenger</summary>
