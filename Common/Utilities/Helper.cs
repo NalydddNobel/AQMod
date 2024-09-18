@@ -129,9 +129,9 @@ public static partial class Helper {
     }
 
     /// <summary>Clones the Rarity and Value of an item.</summary>
-    public static void CloneShopValues(this Item item, int type) {
-        item.rare = ItemRarityByType(type);
-        item.value = ItemValueByType(type, stack: 1);
+    public static void CloneShopValues(this Item item, int type, int rarityOff = 0, float valueMultiplier = 1f) {
+        item.rare = Math.Clamp(ItemRarityByType(type) + rarityOff, ItemRarityID.Gray, ItemRarityID.Purple);
+        item.value = (int)(ItemValueByType(type, stack: 1) * valueMultiplier);
     }
 
     /// <summary>Get an Item's value by Type.</summary>

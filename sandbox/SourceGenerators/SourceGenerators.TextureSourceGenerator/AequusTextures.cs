@@ -811,8 +811,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbow");
     /// <summary>Full Path: Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
     public static readonly RequestCache<Texture2D> SkyHunterCrossbowChain = new("Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbowChain");
-    /// <summary>Full Path: Content/Items/Weapons/RangedMisc/GasCan</summary>
-    public static readonly RequestCache<Texture2D> GasCan = new("Content/Items/Weapons/RangedMisc/GasCan");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/GasCan</summary>
+    public static readonly RequestCache<Texture2D> GasCan = new("Content/Items/Weapons/Ranged/GasCan");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/JunkJet/JunkJet</summary>
+    public static readonly RequestCache<Texture2D> JunkJet = new("Content/Items/Weapons/Ranged/JunkJet/JunkJet");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/StarPhish/StarPhish</summary>
+    public static readonly RequestCache<Texture2D> StarPhish = new("Content/Items/Weapons/Ranged/StarPhish/StarPhish");
     /// <summary>Full Path: Content/Items/Weapons/SummonSentries/Meadow/MeadowSentryStaff</summary>
     public static readonly RequestCache<Texture2D> MeadowSentryStaff = new("Content/Items/Weapons/SummonSentries/Meadow/MeadowSentryStaff");
     /// <summary>Full Path: Content/Items/Weapons/SummonWhips/DemonCorruptWhip/DemonSoulscourge</summary>
@@ -2123,10 +2127,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Baozhu_Glow = new("Items/Weapons/Ranged/Misc/GaleStreams/Baozhu/Baozhu_Glow");
     /// <summary>Full Path: Items/Weapons/Ranged/Misc/GaleStreams/SnowflakeCannon/SnowflakeCannon</summary>
     public static readonly RequestCache<Texture2D> SnowflakeCannon = new("Items/Weapons/Ranged/Misc/GaleStreams/SnowflakeCannon/SnowflakeCannon");
-    /// <summary>Full Path: Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
-    public static readonly RequestCache<Texture2D> JunkJet = new("Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
-    /// <summary>Full Path: Items/Weapons/Ranged/Misc/StarPhish/StarPhish</summary>
-    public static readonly RequestCache<Texture2D> StarPhish = new("Items/Weapons/Ranged/Misc/StarPhish/StarPhish");
     /// <summary>Full Path: Items/Weapons/Sentry/PhysicistSentry/PhysicistSentry</summary>
     public static readonly RequestCache<Texture2D> PhysicistSentry = new("Items/Weapons/Sentry/PhysicistSentry/PhysicistSentry");
     /// <summary>Full Path: Items/Weapons/Sentry/PhysicistSentry/PhysicistSentryProj</summary>

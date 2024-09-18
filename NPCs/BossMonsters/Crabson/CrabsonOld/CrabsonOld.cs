@@ -9,7 +9,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.GrabBags.TreasureBags;
 using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Potions.Healing.Restoration;
-using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.BossMonsters.Crabson.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old;
 using Aequus.NPCs.BossMonsters.Crabson.Segments;
@@ -828,7 +827,7 @@ public class CrabsonOld : AequusBoss, ICrabson {
         npcLoot.AddExpertDrop<MoneyTrashcan>(bossBag);
         npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<AquaticEnergy>(min: 3, max: 3));
         npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), chanceDenominator: AequusDropRules.DroprateMask));
-        npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<JunkJet>()));
+        npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<global::Aequus.Content.Items.Weapons.Ranged.JunkJet.JunkJet>()));
     }
 
     private void CheckClosestSegmentForLoot(byte player, ref float distance, NPC npc) {

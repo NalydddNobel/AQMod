@@ -3636,7 +3636,13 @@
             <summary>Full Path: Content/Items/Weapons/RangedBows/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GasCan">
-            <summary>Full Path: Content/Items/Weapons/RangedMisc/GasCan</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/GasCan</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JunkJet">
+            <summary>Full Path: Content/Items/Weapons/Ranged/JunkJet/JunkJet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StarPhish">
+            <summary>Full Path: Content/Items/Weapons/Ranged/StarPhish/StarPhish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowSentryStaff">
             <summary>Full Path: Content/Items/Weapons/SummonSentries/Meadow/MeadowSentryStaff</summary>
@@ -5603,12 +5609,6 @@
         <member name="F:Aequus.AequusTextures.SnowflakeCannon">
             <summary>Full Path: Items/Weapons/Ranged/Misc/GaleStreams/SnowflakeCannon/SnowflakeCannon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.JunkJet">
-            <summary>Full Path: Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StarPhish">
-            <summary>Full Path: Items/Weapons/Ranged/Misc/StarPhish/StarPhish</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PhysicistSentry">
             <summary>Full Path: Items/Weapons/Sentry/PhysicistSentry/PhysicistSentry</summary>
         </member>
@@ -7147,7 +7147,7 @@
             <param name="Source">The Source of the gore, if null, defaults to <see cref="M:Terraria.Entity.GetSource_FromThis(System.String)"/>.</param>
             <param name="Scale">The Scale of the gore.</param>
         </member>
-        <member name="M:Aequus.Helper.CloneShopValues(Terraria.Item,System.Int32)">
+        <member name="M:Aequus.Helper.CloneShopValues(Terraria.Item,System.Int32,System.Int32,System.Single)">
             <summary>Clones the Rarity and Value of an item.</summary>
         </member>
         <member name="M:Aequus.Helper.ItemRarityByType(System.Int32)">

@@ -16,7 +16,6 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;
-using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
 using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture.Crab;
@@ -153,7 +152,7 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
             .Add(ItemID.WaterWalkingBoots, Condition.MoonPhaseNew)
             .Add<SentrySquid>(Condition.MoonPhaseNew)
             .Add<DavyJonesAnchor>(Condition.MoonPhaseWaxingCrescent)
-            .Add<StarPhish>(Condition.MoonPhaseFirstQuarter)
+            .Add<Content.Items.Weapons.Ranged.StarPhish.StarPhish>(Condition.MoonPhaseFirstQuarter)
             .Add<BreathConserver>(Condition.MoonPhaseWaxingGibbous)
 
             .AddWithCustomValue(ItemID.TatteredCloth, Item.buyPrice(silver: 50), Condition.DownedGoblinArmy)

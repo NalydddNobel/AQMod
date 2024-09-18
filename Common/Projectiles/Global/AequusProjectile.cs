@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.DataSets;
+using Aequus.Common.Entities.Items;
 using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.SentryChip;
@@ -7,8 +8,6 @@ using Aequus.Common.Projectiles;
 using Aequus.Content.ItemPrefixes;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Potions.DeathsEmbrace;
-using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
-using Aequus.NPCs;
 using Aequus.Projectiles.Misc.CrownOfBlood;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles.Blocks;
@@ -386,8 +385,8 @@ public partial class AequusProjectile : GlobalProjectile {
     }
 
     public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers) {
-        if (sourceItemUsed == ModContent.ItemType<StarPhish>() && (target.wet || target.honeyWet || target.lavaWet || target.HasBuff(BuffID.Wet))) {
-            modifiers.FinalDamage *= 1.25f;
+        if (ItemLoader.GetItem(sourceItemUsed) is IOnHitWithProjectile onHitItem) {
+            onHitItem.OnHitNPCWithProj(projectile, target, ref modifiers);
         }
     }
 
