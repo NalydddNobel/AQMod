@@ -20,10 +20,9 @@ public partial class BlackJellyfish : ModNPC, IJellyfishAIProvider {
     public static int AttackRange => 60;
 
     int IJellyfishAIProvider.ShockAttackLength => 70;
-    NPC IJellyfishAIProvider.NPC => NPC;
 
-    public int ShockAttackLength => (this as IJellyfishAIProvider).ShockAttackLength;
-    public int ShockRampUpDistance => (this as IJellyfishAIProvider).ShockRampUpDistance;
+    int ShockAttackLength => (this as IJellyfishAIProvider).ShockAttackLength;
+    int ShockRampUpDistance => (this as IJellyfishAIProvider).ShockRampUpDistance;
     public float DashSpeed => 8f;
 
     #region Initialization

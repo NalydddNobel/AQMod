@@ -65,12 +65,11 @@ public class RenderTargetRequests : LoadedType {
         void DrawOntoRenderTarget(GraphicsDevice graphics, SpriteBatch sb);
     }
 
-    public void Load(Mod mod) {
+    protected override void Load() {
         Main.OnPreDraw += HandleRenderTargetRequests;
     }
 
-
-    public void Unload() {
+    protected override void Unload() {
         Main.OnPreDraw -= HandleRenderTargetRequests;
     }
 }
