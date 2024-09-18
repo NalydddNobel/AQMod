@@ -79,7 +79,7 @@ public class AequusUI : ModSystem {
         (UserInterfaces ??= new()).Add(face);
     }
 
-    public static float Elapsed => (float)Math.Max(Main._drawInterfaceGameTime.ElapsedGameTime.TotalSeconds, float.Epsilon);
+    public static float Elapsed => (float)Math.Max((float)Main._drawInterfaceGameTime.ElapsedGameTime.TotalMilliseconds / 1000f, float.Epsilon);
 
     public override void Load() {
         LoadHooks();
