@@ -1,7 +1,7 @@
 ﻿namespace Aequus.Common.ContentTemplates.Generic;
 
 [Autoload(false)]
-internal class InstancedBuff : ModBuff {
+internal class InstancedNPC : ModNPC {
     private readonly string _name;
     private readonly string _texture;
 
@@ -9,7 +9,7 @@ internal class InstancedBuff : ModBuff {
 
     public override string Texture => _texture;
 
-    public InstancedBuff(string name, string texture) {
+    public InstancedNPC(string name, string texture) {
         _name = name;
         _texture = texture;
     }

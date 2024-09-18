@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs;
 
@@ -84,7 +82,11 @@ internal static class BestiaryBuilder {
     #endregion
 
     public static Entry CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        return new Entry("Mods.Aequus.NPCs." + modNPC.Name + ".Bestiary", database, bestiaryEntry, modNPC);
+        return CreateEntry(modNPC, modNPC.GetLocalizationKey("Bestiary"), database, bestiaryEntry);
+    }
+
+    public static Entry CreateEntry(this ModNPC modNPC, string key, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        return new Entry(key, database, bestiaryEntry, modNPC);
     }
 
     public static Entry CreateGaleStreamsEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry, bool miniBoss = false) {
