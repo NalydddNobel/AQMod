@@ -1,26 +1,17 @@
 ﻿using Aequus;
 using Aequus.Common;
-using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
-using Aequus.Common.Utilities;
-using Aequus.Items.Equipment.Vanity.Masks;
-using Aequus.Items.Materials.Energies;
-using Aequus.Items.Misc.GrabBags.TreasureBags;
-using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Potions.Healing.Restoration;
 using Aequus.NPCs.BossMonsters.Crabson.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles;
 using Aequus.NPCs.BossMonsters.Crabson.Segments;
 using Aequus.NPCs.Town.ExporterNPC;
 using Aequus.Particles;
-using Aequus.Tiles.Furniture.Boss.Relics;
-using Aequus.Tiles.Furniture.Boss.Trophies;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.NPCs.BossMonsters.Crabson;
 
@@ -537,15 +528,6 @@ public class Crabson : CrabsonBossNPC, ICrabson {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        int bossBag = ModContent.ItemType<CrabsonBag>();
-        npcLoot.Add(AequusDropRules.Trophy<CrabsonTrophy>());
-        npcLoot.Add(ItemDropRule.BossBag(bossBag));
-        npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
-        //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<CrabsonPetItem>(), AequusDropRules.MasterPetDroprate));
-        npcLoot.AddExpertDrop<MoneyTrashcan>(bossBag);
-        npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<AquaticEnergy>(min: 3, max: 3));
-        npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), chanceDenominator: AequusDropRules.DroprateMask));
-        npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<global::Aequus.Content.Items.Weapons.Ranged.JunkJet.JunkJet>()));
     }
 
     private void CheckClosestSegmentForLoot(byte player, ref float distance, NPC npc) {

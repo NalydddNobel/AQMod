@@ -61,7 +61,7 @@ public class ItemSets : DataSet {
         }
         #endregion
         foreach (var modItem in Aequus.Instance.GetContent<ModItem>()) {
-            if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null || modItem.GetType().GetAttribute<WorkInProgressAttribute>() != null) {
+            if (modItem.GetType().GetAttribute<WorkInProgressAttribute>() != null) {
                 modItem.Item.ResearchUnlockCount = 0;
             }
             var modRequired = modItem.GetType().GetAttribute<ModRequiredAttribute>();

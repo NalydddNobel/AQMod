@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1492)</summary>
+/// <summary>(Total Textures: 1496)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -799,6 +799,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowStaffLaser = new("Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffLaser");
     /// <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffProj</summary>
     public static readonly RequestCache<Texture2D> MeadowStaffProj = new("Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffProj");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
+    public static readonly RequestCache<Texture2D> TrashStaff = new("Content/Items/Weapons/Magic/TrashStaff/TrashStaff");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffCritEffect = new("Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffCritEffectStrip = new("Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffProj = new("Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj");
     /// <summary>Full Path: Content/Items/Weapons/MeleeSwords/AncientCutlass/AncientCutlass</summary>
     public static readonly RequestCache<Texture2D> AncientCutlass = new("Content/Items/Weapons/MeleeSwords/AncientCutlass/AncientCutlass");
     /// <summary>Full Path: Content/Items/Weapons/RangedAmmo/PlasticDart</summary>

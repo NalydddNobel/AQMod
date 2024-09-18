@@ -1,9 +1,7 @@
-﻿using Aequus.Common;
-
+﻿#if POLLUTED_OCEAN
 namespace Aequus.Content.Items.Materials.CompressedTrash;
 
 [LegacyName("ItemScrap")]
-[WorkInProgress]
 public class CompressedTrash : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
@@ -27,3 +25,4 @@ public class CompressedTrash : ModItem {
         */
     }
 }
+#endif

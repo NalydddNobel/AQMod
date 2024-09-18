@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities.Helpers;
+﻿using Aequus.Common.Graphics.Shaders;
+using Aequus.Common.Utilities.Helpers;
 using ReLogic.Graphics;
 using Terraria.GameContent;
 using Terraria.GameContent.Shaders;
@@ -104,6 +105,19 @@ public sealed class DrawHelper : ModSystem {
         }
     }
 
+    public static void ApplyUVEffect(Texture2D texture, Vector2 uvMultiplier, Vector2 uvAdd) {
+        GetWorldViewProjection(out var view, out var projection);
+
+        Main.instance.GraphicsDevice.Textures[0] = texture;
+        var effect = AequusShaders.UVVertexShader.Value;
+        effect.CurrentTechnique = effect.Techniques["UVWrap"];
+        effect.Parameters["XViewProjection"].SetValue(view * projection);
+        effect.Parameters["UVMultiplier"].SetValue(uvMultiplier);
+        effect.Parameters["UVAdd"].SetValue(uvAdd);
+        foreach (var pass in effect.CurrentTechnique.Passes) {
+            pass.Apply();
+        }
+    }
     public static Color GetYoyoStringColor(int stringColorId) {
         if (stringColorId == 27) {
             return Main.DiscoColor;

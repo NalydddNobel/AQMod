@@ -2427,7 +2427,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1492)</summary>
+            <summary>(Total Textures: 1496)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3616,6 +3616,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowStaffProj">
             <summary>Full Path: Content/Items/Weapons/MagicStaffs/Meadow/MeadowStaffProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaff">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffCritEffect">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffCritEffectStrip">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffProj">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AncientCutlass">
             <summary>Full Path: Content/Items/Weapons/MeleeSwords/AncientCutlass/AncientCutlass</summary>
