@@ -15,7 +15,7 @@ public class HypnoticPearl : ModItem {
         Item.width = 20;
         Item.height = 20;
         Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(gold: 5);
+        Item.value = Item.buyPrice(gold: 2, silver: 50);
     }
 
     public override bool CanUseItem(Player player) {

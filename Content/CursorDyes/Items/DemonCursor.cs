@@ -1,12 +1,12 @@
-﻿using Terraria.ModLoader;
+﻿namespace Aequus.Content.CursorDyes.Items;
+[LegacyName("DemonicCursorDye")]
+public class DemonCursor : CursorDyeBase {
+    public override void SetDefaults() {
+        base.SetDefaults();
+        Item.value = Item.buyPrice(gold: 1);
+    }
 
-namespace Aequus.Content.CursorDyes.Items {
-    [LegacyName("DemonicCursorDye")]
-    public class DemonCursor : CursorDyeBase
-    {
-        public override ICursorDye InitalizeDye()
-        {
-            return new TextureChangeCursor($"{Texture}/DemonCursor");
-        }
+    public override ICursorDye InitalizeDye() {
+        return new TextureChangeCursor($"{Texture}/DemonCursor");
     }
 }

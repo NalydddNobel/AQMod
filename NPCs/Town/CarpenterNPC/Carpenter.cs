@@ -104,11 +104,11 @@ public class Carpenter : AequusTownNPC<Carpenter> {
     public override void AddShops() {
         NPCShop shop = new(Type);
         shop.Add<Shutterstocker>()
-            .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
-            .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)
+            .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(silver: 50), Condition.TimeDay)
+            .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(silver: 50), Condition.TimeNight)
             .Add<LavaproofMitten>(AequusConditions.DownedDemonSiege)
             .Add<CarpenterResetSheet>(AllCarpenterBountiesCompleteCondition)
-            .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2));
+            .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 1));
 
         foreach (var buildChallenge in BuildChallengeLoader.registeredBuildChallenges) {
             var rewards = buildChallenge.GetRewards();

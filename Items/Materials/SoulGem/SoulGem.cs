@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Structures;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials.SoulGem;
 
@@ -18,7 +15,7 @@ public class SoulGem : ModItem {
     public override void SetDefaults() {
         Item.DefaultToPlaceableTile(ModContent.TileType<SoulGemTile>());
         Item.rare = ItemRarityID.Orange;
-        Item.value = Item.buyPrice(gold: 1, silver: 50);
+        Item.value = Item.buyPrice(silver: 75);
     }
 
     public static void TryFillSoulGems(Player player, AequusPlayer aequus, EnemyKillInfo npc) {

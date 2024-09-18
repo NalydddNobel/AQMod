@@ -4,12 +4,7 @@ using Aequus.Common.Items.SentryChip;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Aequus.Content.Items.SentryChip;
-using Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Items.Equipment.Accessories.CrownOfBlood;
@@ -35,7 +30,7 @@ public partial class CrownOfBloodItem : ModItem, ItemHooks.IUpdateItemDye {
     public override void SetDefaults() {
         Item.DefaultToAccessory(14, 20);
         Item.rare = ItemRarityID.LightPurple;
-        Item.value = Item.buyPrice(gold: 10);
+        Item.value = Item.buyPrice(gold: 5);
         Item.hasVanityEffects = true;
     }
 

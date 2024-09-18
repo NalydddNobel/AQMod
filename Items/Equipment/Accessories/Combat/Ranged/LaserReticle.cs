@@ -1,10 +1,7 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using System;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Combat.Ranged {
     [AutoloadGlowMask()]
@@ -27,7 +24,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Ranged {
             Item.height = 20;
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {

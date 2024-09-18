@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Events.DemonSiege;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
 namespace Aequus.Content.Necromancy.Accessories.SpiritKeg;
 
@@ -12,7 +11,7 @@ public class BottleOSpirits : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemRarityID.Orange;
-        Item.value = Item.buyPrice(gold: 20);
+        Item.value = Item.buyPrice(gold: 5);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

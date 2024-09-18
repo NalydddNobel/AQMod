@@ -1,15 +1,11 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Sentry.SentrySquid;
 
@@ -150,9 +146,8 @@ public class SentrySquid : ModItem, ItemHooks.IUpdateItemDye {
         Item.width = 24;
         Item.height = 24;
         Item.accessory = true;
-        Item.rare = ItemRarityID.Green;
         Item.hasVanityEffects = true;
-        Item.value = Item.buyPrice(gold: 5);
+        Item.CloneShopValues(ItemID.Flipper);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

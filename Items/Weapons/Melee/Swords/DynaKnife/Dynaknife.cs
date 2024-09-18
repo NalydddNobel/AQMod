@@ -21,7 +21,7 @@ public class Dynaknife : ModItem {
         Item.useStyle = ItemUseStyleID.Shoot;
         Item.UseSound = SoundID.Item1;
         Item.rare = ItemRarityID.Green;
-        Item.value = Item.buyPrice(gold: 10);
+        Item.value = Item.buyPrice(gold: 5);
         Item.shootSpeed = 2f;
         Item.noMelee = true;
         Item.noUseGraphic = true;

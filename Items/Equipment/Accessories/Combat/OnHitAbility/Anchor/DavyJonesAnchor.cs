@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Items;
-using Terraria;
-using Terraria.Localization;
-using Terraria.ModLoader;
+﻿using Terraria.Localization;
 
 namespace Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.Anchor;
 
@@ -11,8 +8,7 @@ public class DavyJonesAnchor : ModItem, IDavyJonesAnchor {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemDefaults.RarityCrabCrevice;
-        Item.value = ItemDefaults.ValueCrabCrevice;
+        Item.CloneShopValues(ItemID.Flipper);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

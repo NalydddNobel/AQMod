@@ -13,7 +13,7 @@ public class GravityBlock : ModItem {
     public override void SetDefaults() {
         Item.DefaultToPlaceableTile(ModContent.TileType<GravityBlockTile>());
         Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(silver: 1);
+        Item.value = Item.buyPrice(copper: 50);
     }
 }
 
