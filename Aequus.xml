@@ -1831,6 +1831,9 @@
         <member name="F:Aequus.Common.Utilities.Helpers.CommonColor.TextInteractable">
             <summary>Yellow text used by Beds, Clocks, etc.</summary>
         </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.Cull.ClipIJ(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <returns>Whether a tile is in a screen clipping zone.</returns>
+        </member>
         <member name="M:Aequus.Common.Utilities.Helpers.GoreTool.NewGore(Aequus.Common.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
             <summary>Spawns gore using a Texture. Removes the need for using silent string literals for getting gores.</summary>
             <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
@@ -2399,7 +2402,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1474)</summary>
+            <summary>(Total Textures: 1492)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3657,6 +3660,60 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrostMimic">
             <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish">
+            <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishVertexStrip">
+            <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish_Bag">
+            <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBanner">
+            <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
+            <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Conductor">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Conductor</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Conductor_Wave">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Conductor_Wave</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductorGoreHead">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductorBanner">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductorBannerItem">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieBald">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieBald</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieBasic">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieFemale">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieFemale</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieHeadless">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieHeadless</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombiePincushion">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombiePincushion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieSlimed">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieSlimed</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieSwamp">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieSwamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieTwiggy">
+            <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Eel">
             <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel</summary>
@@ -7321,6 +7378,48 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Content.Monsters.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
+            <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
+            <returns><inheritdoc cref="M:Aequus.Content.Monsters.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)"/></returns>
+        </member>
+        <member name="M:Aequus.Content.Monsters.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)">
+            <param name="lightColor">The Light color</param>
+            <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_TARGETING">
+            <summary>Targetting state. The conductor walks towards the player and activates his attack here.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.TARGETTING_TELEPORT_TIME_THRESHOLD">
+            <summary>Upon ai[1] reaching this value, set <see cref="P:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_TELEPORT"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.TARGETTING_TELEPORT_TICK">
+            <summary>This tick value is subtracted to ai[1] every AI tick when the Conductor cannot see the player. Upon reaching <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.TARGETTING_TELEPORT_TIME_THRESHOLD"/>, set <see cref="P:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_TELEPORT"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.TARGETTING_ATTACK_TIME_THRESHOLD">
+            <summary>Upon ai[1] reaching this value, set <see cref="P:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_ATTACKING"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_SLIDE_BACK">
+            <summary>Dodge state. The Conductor slides backwards to avoid melee confrontation with the player. 
+            Upon the state ending if the distance is greater than <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.MELEE_DISTANCE"/>, set <see cref="P:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_TARGETING"/>, otherwise <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_TELEPORT"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.SLIDE_BACK_REQUIRED_TIME">
+            <summary>How long the Conductor must be in the <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_SLIDE_BACK"/> state even if he has no horizontal velocity.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.SLIDE_BACK_COUNT">
+            <summary>How many times the Conductor can enter the <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_SLIDE_BACK"/> state. Tracked using ai[2]. ai[2] is reset in <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_ATTACKING"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.SLIDE_ATTACK_AGGRESSION">
+            <summary>Sets ai[1] (attack delay timer) to this value upon entering <see cref="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.A_TARGETING"/>. This makes the Conductor enter the attack state faster.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.FTW_TELEPORT_SPAM">
+            <summary>How many update ticks to waste teleporting when <see cref="F:Terraria.Main.zenithWorld"/> equals <see langword="true"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.MELEE_DISTANCE">
+            <summary>The distance in pixels which is considered "Melee distance"</summary>
+        </member>
+        <member name="F:Aequus.Content.Monsters.PollutedOcean.Conductor.Conductor.FRAME_COUNT">
+            <summary><see cref="F:Terraria.Main.npcFrameCount"/></summary>
+        </member>
         <member name="F:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.IdleWaveTimerMultiplier">
             <summary>Multiplied by <see cref="P:Aequus.Content.Monsters.PollutedOcean.Eel.Eel.Timer"/> to get the current position of the wave pattern used when the Eel is moving idly.</summary>
         </member>
@@ -7603,6 +7702,31 @@
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockRampUpDistance">
+            <summary>
+            When the target is within this range, the delay for activating the electric state is dramatically decreased.
+            <para><see cref="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockStartRampUp"/> is used to decrease the cooldown of the attack.</para>
+            <para><see cref="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockEndRampUp"/> is used to increase the duration of the attack.</para>
+            </summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockStartRampUp">
+            <summary>Decreases the cooldown of the shock attack when within <see cref="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockRampUpDistance"/>.</summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockEndRampUp">
+            <summary>Increases the duration of the shock attack when within <see cref="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockRampUpDistance"/>.</summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockAttackCooldown">
+            <summary>The duration of the shock attack's cooldown.</summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.ShockAttackLength">
+            <summary>The duration of the shock attack.</summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.DashAttackSlowdown">
+            <summary>Multiplier on velocity when it wants to slow down for a dash attack.</summary>
+        </member>
+        <member name="P:AequusRemake.Core.Entities.NPCs.IJellyfishAIProvider.DashAttackSpeedThreshold">
+            <summary>How slow the Jellyfish must be moving in order for it to be allowed to dash.</summary>
         </member>
     </members>
 </doc>

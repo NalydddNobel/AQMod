@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1474)</summary>
+/// <summary>(Total Textures: 1492)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -845,6 +845,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> AdamantiteMimic = new("Content/Monsters/Mimics/AdamantiteMimic");
     /// <summary>Full Path: Content/Monsters/Mimics/FrostMimic</summary>
     public static readonly RequestCache<Texture2D> FrostMimic = new("Content/Monsters/Mimics/FrostMimic");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfish = new("Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfish");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishVertexStrip = new("Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfish_Bag = new("Content/Monsters/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBanner = new("Content/Monsters/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBannerItem = new("Content/Monsters/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Conductor</summary>
+    public static readonly RequestCache<Texture2D> Conductor = new("Content/Monsters/PollutedOcean/Conductor/Conductor");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Conductor_Wave</summary>
+    public static readonly RequestCache<Texture2D> Conductor_Wave = new("Content/Monsters/PollutedOcean/Conductor/Conductor_Wave");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
+    public static readonly RequestCache<Texture2D> ConductorGoreHead = new("Content/Monsters/PollutedOcean/Conductor/Gores/ConductorGoreHead");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
+    public static readonly RequestCache<Texture2D> ConductorBanner = new("Content/Monsters/PollutedOcean/Conductor/Tiles/ConductorBanner");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
+    public static readonly RequestCache<Texture2D> ConductorBannerItem = new("Content/Monsters/PollutedOcean/Conductor/Tiles/ConductorBannerItem");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieBald</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieBald = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieBald");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieBasic = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieBasic");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieFemale</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieFemale = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieFemale");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieHeadless</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieHeadless = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieHeadless");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombiePincushion</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombiePincushion = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombiePincushion");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieSlimed</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieSlimed = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieSlimed");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieSwamp</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieSwamp = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieSwamp");
+    /// <summary>Full Path: Content/Monsters/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieTwiggy = new("Content/Monsters/PollutedOcean/Conehead/ConeheadZombieTwiggy");
     /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel</summary>
     public static readonly RequestCache<Texture2D> Eel = new("Content/Monsters/PollutedOcean/Eel/Eel");
     /// <summary>Full Path: Content/Monsters/PollutedOcean/Eel/Eel_Bestiary</summary>

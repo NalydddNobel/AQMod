@@ -22,6 +22,8 @@ public sealed class DrawHelper : ModSystem {
 
     public static SpriteBatchCache SpriteBatchCache { get; private set; }
 
+    public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
+    public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
     public static Matrix WorldViewPointMatrix {
         get {
             var graphics = Main.graphics.GraphicsDevice;
@@ -83,10 +85,13 @@ public sealed class DrawHelper : ModSystem {
             Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
     }
 
-    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
+    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
         GetWorldViewProjection(out var view, out var projection);
+        ApplyBasicEffect(view, projection, texture, vertexColorsEnabled);
+    }
 
-        _basicEffect.VertexColorEnabled = vertexTCommonColorEnabled;
+    public static void ApplyBasicEffect(Matrix view, Matrix projection, Texture2D texture = default, bool vertexColorsEnabled = true) {
+        _basicEffect.VertexColorEnabled = vertexColorsEnabled;
         _basicEffect.Projection = projection;
         _basicEffect.View = view;
 

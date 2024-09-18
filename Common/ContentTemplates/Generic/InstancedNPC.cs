@@ -9,6 +9,8 @@ internal class InstancedNPC : ModNPC {
 
     public override string Texture => _texture;
 
+    protected override bool CloneNewInstances => true;
+
     public InstancedNPC(string name, string texture) {
         _name = name;
         _texture = texture;

@@ -8,7 +8,7 @@ public class AequusShaders {
     public static readonly RequestCache<Effect> BubbleMerge = Get("BubbleMerge");
 
     private static RequestCache<Effect> Get(string name) {
-        return new($"Aequus/Effects/{name}");
+        return new($"Effects/{name}");
     }
 
     private static ShaderAsset getLegacyShader(string name) {

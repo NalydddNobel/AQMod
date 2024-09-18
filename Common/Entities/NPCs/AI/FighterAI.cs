@@ -144,7 +144,6 @@ public class FighterAI {
 }
 
 public interface IFighterAIProvider {
-
     virtual bool IsWiderNPC => false;
     virtual float SpeedCap => FighterAI.DefaultSpeedCap;
     virtual float Acceleration => FighterAI.DefaultAcceleration;

@@ -172,7 +172,7 @@ public class ConductorProj : ModNPC {
     }
 
     private void Action_Dead() {
-        if (WaterSphere) {
+        if (NPC.collideX || NPC.collideY || NPC.velocity.Y == 0f) {
             NPC.KillEffects();
             SoundEngine.PlaySound(NPC.DeathSound, NPC.Center);
         }

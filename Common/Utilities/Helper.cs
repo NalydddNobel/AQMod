@@ -2824,7 +2824,7 @@ public static partial class Helper {
         return value < 0f ? -value : value;
     }
 
-    public static string NamespacePath(Type t) {
+    public static string NamespacePath(this Type t) {
         return t.Namespace.Replace('.', '/');
     }
     public static string NamespacePath(this object obj) {
