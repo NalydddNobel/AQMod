@@ -15,7 +15,6 @@ internal class WallOfFleshBackpack : BackpackModItem {
     public override void SetDefaults() {
         base.SetDefaults();
         Item.CloneShopValues(ItemID.LaserRifle);
-        Item.color = Color.Red;
     }
 
     [Gen.AequusNPC_ModifyNPCLoot]
