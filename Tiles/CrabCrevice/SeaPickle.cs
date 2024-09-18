@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿#if !CRAB_CREVICE_DISABLE
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Tiles.CrabCrevice {
@@ -14,3 +15,4 @@ namespace Aequus.Tiles.CrabCrevice {
         }
     }
 }
+#endif

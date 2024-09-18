@@ -5,6 +5,9 @@ using Aequus.Content.Biomes.PollutedOcean;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 
+#if CRAB_CREVICE_DISABLE
+[LegacyName("SedimentaryRockTile")]
+#endif
 public class PolymerSandstone : MultiMergeTile, IAddRecipes {
     public readonly ModItem Item;
 

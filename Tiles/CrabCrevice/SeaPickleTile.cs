@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles.Base;
+﻿#if !CRAB_CREVICE_DISABLE
+using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -59,3 +60,4 @@ public class SeaPickleTile : BaseGemTile {
         return true;
     }
 }
+#endif

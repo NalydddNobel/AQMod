@@ -4,8 +4,10 @@ using Aequus.Common.Entities.Tiles;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 
-#if POLLUTED_OCEAN_TODO
-[LegacyName("SedimentaryRockWall", "PolymerSandWall")]
+#if CRAB_CREVICE_DISABLE
+[LegacyName("SedimentaryRockWall", "SedimentaryRockWallPlaced", "PolymerSandWall")]
+#else
+[LegacyName("PolymerSandWall")]
 #endif
 public class PolymerSandstoneWall : ModWall, IWaterVisibleWall {
     public int WaterMapEntry { get; set; }
