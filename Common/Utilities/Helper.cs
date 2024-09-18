@@ -450,6 +450,12 @@ public static partial class Helper {
     #endregion
 
     #region Collision
+    public static void ShimmerReflection(this NPC npc) {
+        if (TryShimmerReflection(npc)) {
+            npc.netUpdate = true;
+        }
+    }
+
     public static void ShimmerReflection(this Projectile projectile) {
         if (TryShimmerReflection(projectile)) {
             projectile.netUpdate = true;
