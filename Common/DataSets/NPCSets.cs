@@ -1,4 +1,5 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Common.Entities.Bestiary;
+using Aequus.Common.NPCs;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 
@@ -6,6 +7,10 @@ namespace Aequus.Common.DataSets;
 
 public class NPCSets : DataSet {
     protected override ContentFileInfo ContentFileInfo => new(NPCID.Search);
+
+    public static readonly List<int> Eclipse = [NPCID.Vampire, NPCID.VampireBat, NPCID.MothronEgg, NPCID.MothronSpawn];
+    public static readonly List<int> Glimmer = [];
+    public static readonly List<int> BloodMoon = [];
 
     public static readonly Dictionary<int, bool> PickpocketOverride = [];
     public static readonly Dictionary<int, bool> NameTagOverride = new();
@@ -104,6 +109,45 @@ public class NPCSets : DataSet {
     }
 
     public override void PostSetupContent() {
+        // Make all of these NPCs immune to the vanilla "Slow" debuff.
+        // Debuffs which modify movement speed should inherit this immunity.
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.HallowBoss][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistBoss][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.BloodEelBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.BloodEelTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.BoneSerpentBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.BoneSerpentTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody1][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody2][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody3][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody4][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.DevourerBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.DevourerTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.DiggerBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.DiggerTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.DuneSplicerBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.DuneSplicerTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.EaterofWorldsBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.EaterofWorldsTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.GiantWormBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.GiantWormTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.LeechBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.LeechTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.SeekerBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.SeekerTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.SolarCrawltipedeBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.SolarCrawltipedeTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.StardustWormBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.StardustWormTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.TombCrawlerBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.TombCrawlerTail][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernBody][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernBody2][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernBody3][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernLegs][BuffID.Slow] = true;
+        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernTail][BuffID.Slow] = true;
+
         for (int i = 0; i < NPCLoader.NPCCount; i++) {
             var npc = ContentSamples.NpcsByNetId[i];
             if (npc.boss || Helper.IsImmune(i, BuffID.Weak, BuffID.Slow)) {
@@ -131,6 +175,12 @@ public class NPCSets : DataSet {
             }
             if (CheckBestiary(info, PillarElements)) {
                 FromPillarEvent.Add(i);
+            }
+            if (BestiaryTagCollection.BloodMoon.ContainsNPCIdInner(i)) {
+                BloodMoon.Add(i);
+            }
+            if (BestiaryTagCollection.Eclipse.ContainsNPCIdInner(i)) {
+                Eclipse.Add(i);
             }
         }
     }

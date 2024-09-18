@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1496)</summary>
+/// <summary>(Total Textures: 1502)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -629,6 +629,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DamageOnKillBuff = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillBuff");
     /// <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
     public static readonly RequestCache<Texture2D> DamageOnKillClaw = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw");
+    /// <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses</summary>
+    public static readonly RequestCache<Texture2D> EclipseGlasses = new("Content/Items/Accessories/EventPrevention/EclipseGlasses");
+    /// <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses_Face</summary>
+    public static readonly RequestCache<Texture2D> EclipseGlasses_Face = new("Content/Items/Accessories/EventPrevention/EclipseGlasses_Face");
+    /// <summary>Full Path: Content/Items/Accessories/EventPrevention/RoseTintedGlasses</summary>
+    public static readonly RequestCache<Texture2D> RoseTintedGlasses = new("Content/Items/Accessories/EventPrevention/RoseTintedGlasses");
+    /// <summary>Full Path: Content/Items/Accessories/EventPrevention/RoseTintedGlasses_Face</summary>
+    public static readonly RequestCache<Texture2D> RoseTintedGlasses_Face = new("Content/Items/Accessories/EventPrevention/RoseTintedGlasses_Face");
+    /// <summary>Full Path: Content/Items/Accessories/EventPrevention/StellarGlasses</summary>
+    public static readonly RequestCache<Texture2D> StellarGlasses = new("Content/Items/Accessories/EventPrevention/StellarGlasses");
+    /// <summary>Full Path: Content/Items/Accessories/EventPrevention/StellarGlasses_Face</summary>
+    public static readonly RequestCache<Texture2D> StellarGlasses_Face = new("Content/Items/Accessories/EventPrevention/StellarGlasses_Face");
     /// <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoe</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoeVisual</summary>

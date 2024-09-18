@@ -128,6 +128,8 @@ StellarGlasses: {
 }
 
 EclipseGlasses: {
+	DisplayName: Eclipse Glasses
+	Tooltip: Ignore enemy spawns of the Eclipse
 }
 
 //# Equipment: Informational

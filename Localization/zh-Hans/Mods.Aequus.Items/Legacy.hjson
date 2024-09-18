@@ -2254,36 +2254,6 @@ FamiliarPickaxe: {
 	Tooltip: 召唤一个迷你版的你自己
 }
 
-HardSandstoneChest: {
-	DisplayName: 禁戒箱
-	Tooltip: ""
-}
-
-HardMushroomChest: {
-	DisplayName: 蘑菇箱
-	Tooltip: ""
-}
-
-HardMarbleChest: {
-	DisplayName: 大理石宝藏
-	Tooltip: ""
-}
-
-HardJungleChest: {
-	DisplayName: 乌龟保险箱
-	Tooltip: ""
-}
-
-HardGraniteChest: {
-	DisplayName: 活体花岗岩箱
-	Tooltip: ""
-}
-
-HardFrozenChest: {
-	DisplayName: 冰霜箱
-	Tooltip: ""
-}
-
 AdamantiteChest: {
 	DisplayName: 精金箱
 	Tooltip: ""
@@ -2447,21 +2417,6 @@ Baguette: {
 HeartLamp.DisplayName: 心灯
 YuckyOrb.DisplayName: 迷人诱饵
 WaterFisg.DisplayName: 水鱼
-
-Transistor: {
-	DisplayName: 晶体管
-	Tooltip: 阻止柔光的自然生成
-}
-
-EclipseGlasses: {
-	DisplayName: 日蚀眼镜
-	Tooltip: 阻止日食的自然生成
-}
-
-Cosmicanon: {
-	DisplayName: 星宇律则
-	Tooltip: 阻止血月的自然生成
-}
 
 JeweledChalice: {
 	DisplayName: 宝石杯

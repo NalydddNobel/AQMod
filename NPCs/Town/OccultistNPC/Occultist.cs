@@ -135,7 +135,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             .Add<SoulGem>(Condition.TimeNight)
             .Add<Wabbajack>(Condition.BloodMoon, Condition.NotDontStarveWorld)
 
-            .AddWithCustomValue(Item.buyPrice(gold: 5), ItemID.ShadowKey, Condition.DownedSkeletron, Condition.MoonPhaseFull)
+            .AddWithCustomValue(ItemID.ShadowKey, Item.buyPrice(gold: 5), Condition.DownedSkeletron, Condition.MoonPhaseFull)
             .Add<PandorasBox>(Condition.DownedSkeletron, Condition.MoonPhaseFull)
             .Add(ItemID.Handgun, Condition.DownedSkeletron, Condition.MoonPhaseWaningGibbous)
             .AddCrossMod<ThoriumMod>("StreamSting", Condition.DownedSkeletron, Condition.MoonPhaseWaningGibbous)
@@ -158,7 +158,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             .AddCrossMod<ThoriumMod>("NaiadShiv", Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
 
             .Add<OblivionCraftingStationItem>()
-            .AddWithCustomValue(Item.buyPrice(gold: 5), ModContent.GetInstance<OblivionAltar>().Item.Type, Condition.Hardmode)
+            .AddWithCustomValue(ModContent.GetInstance<OblivionAltar>().Item.Type, Item.buyPrice(gold: 5), Condition.Hardmode)
 
             .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
 

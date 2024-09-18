@@ -2254,36 +2254,6 @@ FamiliarPickaxe: {
 	Tooltip: Summons a mini version of yourself
 }
 
-HardSandstoneChest: {
-	DisplayName: Forbidden Chest
-	Tooltip: ""
-}
-
-HardMushroomChest: {
-	DisplayName: Shroomite Chest
-	Tooltip: ""
-}
-
-HardMarbleChest: {
-	DisplayName: Marble Trove
-	Tooltip: ""
-}
-
-HardJungleChest: {
-	DisplayName: Tortoise Case
-	Tooltip: ""
-}
-
-HardGraniteChest: {
-	DisplayName: Living Granite Chest
-	Tooltip: ""
-}
-
-HardFrozenChest: {
-	DisplayName: Frost Chest
-	Tooltip: ""
-}
-
 AdamantiteChest: {
 	DisplayName: Adamantite Chest
 	Tooltip: ""
@@ -2447,21 +2417,6 @@ Baguette: {
 HeartLamp.DisplayName: Heart Lamp
 YuckyOrb.DisplayName: Charming Lure
 WaterFisg.DisplayName: Water Fish
-
-Transistor: {
-	DisplayName: Transistor
-	Tooltip: Prevents the Glimmer from naturally spawning
-}
-
-EclipseGlasses: {
-	DisplayName: Eclipse Glasses
-	Tooltip: Prevents the Eclipse from naturally spawning
-}
-
-Cosmicanon: {
-	DisplayName: Cosmicanon
-	Tooltip: Prevents the Blood Moon from naturally spawning
-}
 
 JeweledChalice: {
 	DisplayName: Jeweled Chalice

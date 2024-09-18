@@ -44,6 +44,15 @@
 	<Compile Remove="SourceGenerators\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
+			
+  <ItemGroup>
+    <None Remove="Content\Items\Accessories\EventPrevention\EclipseGlasses.png" />
+    <None Remove="Content\Items\Accessories\EventPrevention\EclipseGlasses_Face.png" />
+    <None Remove="Content\Items\Accessories\EventPrevention\RoseTintedGlasses.png" />
+    <None Remove="Content\Items\Accessories\EventPrevention\RoseTintedGlasses_Face.png" />
+    <None Remove="Content\Items\Accessories\EventPrevention\StellarGlasses.png" />
+    <None Remove="Content\Items\Accessories\EventPrevention\StellarGlasses_Face.png" />
+  </ItemGroup>
 									
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Drawing;
 using Aequus.Common.Utilities;
-using AequusRemake.Core.Graphics;
+using Aequus.Common.Graphics;
 using System;
 using Terraria.GameContent;
 

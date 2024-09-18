@@ -121,6 +121,8 @@ StellarGlasses: {
 }
 
 EclipseGlasses: {
+	DisplayName: Gafas de Eclipse
+	Tooltip: Ignora la aparición de enemigos del eclipse
 }
 
 //# Equipment: Informational

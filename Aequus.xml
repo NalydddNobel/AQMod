@@ -806,6 +806,9 @@
             <typeparam name="TBannerNPC"></typeparam>
             <param name="npcWithoutBanner"></param>
         </member>
+        <member name="M:Aequus.Common.Entities.Bestiary.BestiaryTagCollection.Add(Terraria.ModLoader.ModBiome)">
+            <summary>Call in PostSetupContent.</summary>
+        </member>
         <member name="P:Aequus.Common.Entities.NPCs.AI.IJellyfishAIProvider.ShockRampUpDistance">
             <summary>
             When the target is within this range, the delay for activating the electric state is dramatically decreased.
@@ -2427,7 +2430,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1496)</summary>
+            <summary>(Total Textures: 1502)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3361,6 +3364,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.DamageOnKillClaw">
             <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseGlasses">
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseGlasses_Face">
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses_Face</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RoseTintedGlasses">
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/RoseTintedGlasses</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RoseTintedGlasses_Face">
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/RoseTintedGlasses_Face</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StellarGlasses">
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/StellarGlasses</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StellarGlasses_Face">
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/StellarGlasses_Face</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Items/Accessories/FallSpeedHorseshoe/WeightedHorseshoe</summary>

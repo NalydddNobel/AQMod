@@ -3,7 +3,7 @@ using Aequus.Common.Utilities;
 using System;
 using System.Collections.Generic;
 
-namespace AequusRemake.Core.Graphics;
+namespace Aequus.Common.Graphics;
 
 public class RenderTargetRequests : LoadedType {
     private readonly List<IRenderTargetRequest> _requests = new(4);
