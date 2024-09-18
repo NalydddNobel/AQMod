@@ -51,11 +51,16 @@ internal partial class Split {
         int dungeonEnvelope = TryGetItem("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
         int bloodMoonEnvelope = TryGetItem("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
 
+        int bocEnvelope = bloodMoonEnvelope;
+#if !CRAB_CREVICE_DISABLE
+        bocEnvelope = ModContent.ItemType<EnvelopeUndergroundOcean>();
+#endif
+
         RegisterPhotographyPage(
             order: 10f,
             specialReward: ModContent.ItemType<FamiliarPickaxe>(),
             [
-                new(0, ModContent.NPCType<BreadOfCthulhu>(), ModContent.ItemType<EnvelopeUndergroundOcean>(), ModContent.ItemType<PosterBreadOfCthulhu>()),
+                new(0, ModContent.NPCType<BreadOfCthulhu>(), bocEnvelope, ModContent.ItemType<PosterBreadOfCthulhu>()),
                 new(1, ModContent.NPCType<BloodMimic>(), bloodMoonEnvelope, ModContent.ItemType<PosterBloodMimic>()),
                 new(2, ModContent.NPCType<UltraStarite>(), ModContent.ItemType<EnvelopeGlimmer>(), ModContent.ItemType<PosterUltraStarite>()),
                 new(3, ModContent.NPCType<Heckto>(), dungeonEnvelope, ModContent.ItemType<PosterHeckto>()),

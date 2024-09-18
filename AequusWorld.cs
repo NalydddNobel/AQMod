@@ -14,7 +14,6 @@ using Aequus.NPCs.Monsters.Glimmer.UltraStarite;
 using Aequus.NPCs.RedSprite;
 using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Town.CarpenterNPC;
-using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc;
 using Aequus.Tiles.MossCaves.ElitePlants;
 using System;
@@ -324,7 +323,9 @@ public partial class AequusWorld : ModSystem {
     }
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
-        SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
+#if !CRAB_CREVICE_DISABLE
+        Tiles.CrabCrevice.SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<Tiles.CrabCrevice.SedimentaryRockTile>()];
+#endif
         foreach (var mossBiome in AequusBiomes.MossBiomes) {
             mossBiome.tileCount = tileCounts[mossBiome.MossTileID] + tileCounts[mossBiome.MossBrickTileID];
         }

@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
@@ -77,10 +76,12 @@ public partial class AequusNPC {
             spawnRate /= 2;
             maxSpawns /= 2;
         }
-        if (player.InModBiome<CrabCreviceBiome>()) {
+#if !CRAB_CREVICE_DISABLE
+        if (player.InModBiome<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>()) {
             spawnRate /= 2;
             maxSpawns = (int)(maxSpawns * 1.25f);
         }
+#endif
     }
 
     private static void GlimmerEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
@@ -174,9 +175,11 @@ public partial class AequusNPC {
                 pool.Add(ModContent.NPCType<DwarfStarite>(), spawnInfo.Player.InModBiome<PeacefulGlimmerZone>() ? 3f : 0.01f);
             }
         }
-        if ((!Main.remixWorld || Main.rand.NextBool()) && CrabCreviceBiome.SpawnCrabCreviceEnemies(pool, spawnInfo)) {
+#if !CRAB_CREVICE_DISABLE
+        if ((!Main.remixWorld || Main.rand.NextBool()) && global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.SpawnCrabCreviceEnemies(pool, spawnInfo)) {
             return;
         }
+#endif
 
         TrapSkeleton.CheckSpawn(spawnInfo, pool);
         AddHardmodeTierEnemies(pool, spawnInfo);

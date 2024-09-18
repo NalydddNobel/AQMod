@@ -5,11 +5,6 @@ using Aequus.Common.World;
 using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.NPCs.Monsters.DemonSiege;
-using Aequus.Tiles.CrabCrevice;
-using Aequus.Tiles.Herbs.Manacle;
-using Aequus.Tiles.Herbs.Mistral;
-using Aequus.Tiles.Herbs.Moonflower;
-using Aequus.Tiles.Herbs.Moray;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.GameInput;
@@ -178,38 +173,6 @@ internal partial class TesterItem : ModItem {
         int x = parameters.X;
         int y = parameters.Y;
         AequusWorldGenerator.RadonCaves.GrowStalactite(x, y, AequusWorldGenerator.RadonCaves.MaxWidth, AequusWorldGenerator.RadonCaves.MaxHeight);
-    }
-
-    public void PlacePollenExamples(TestParameters parameters) {
-        int x = parameters.X;
-        int y = parameters.Y;
-        WorldGen.PlaceTile(x, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
-        WorldGen.PlaceTile(x, y - 1, ModContent.TileType<MorayTile>(), forced: true);
-        WorldGen.PlaceTile(x + 2, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
-        WorldGen.PlaceTile(x + 2, y - 1, ModContent.TileType<MorayTile>(), forced: true, style: 1);
-        WorldGen.PlaceTile(x + 4, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
-        WorldGen.PlaceTile(x + 4, y - 1, ModContent.TileType<MorayTile>(), forced: true, style: 2);
-
-        WorldGen.PlaceTile(x, y + 3, TileID.Ash, forced: true);
-        WorldGen.PlaceTile(x, y + 2, ModContent.TileType<ManacleTile>(), forced: true);
-        WorldGen.PlaceTile(x + 2, y + 3, TileID.Ash, forced: true);
-        WorldGen.PlaceTile(x + 2, y + 2, ModContent.TileType<ManacleTile>(), forced: true, style: 1);
-        WorldGen.PlaceTile(x + 4, y + 3, TileID.Ash, forced: true);
-        WorldGen.PlaceTile(x + 4, y + 2, ModContent.TileType<ManacleTile>(), forced: true, style: 2);
-
-        WorldGen.PlaceTile(x, y + 6, TileID.Meteorite, forced: true);
-        WorldGen.PlaceTile(x, y + 5, ModContent.TileType<MoonflowerTile>(), forced: true);
-        WorldGen.PlaceTile(x + 2, y + 6, TileID.Meteorite, forced: true);
-        WorldGen.PlaceTile(x + 2, y + 5, ModContent.TileType<MoonflowerTile>(), forced: true, style: 1);
-        WorldGen.PlaceTile(x + 4, y + 6, TileID.Meteorite, forced: true);
-        WorldGen.PlaceTile(x + 4, y + 5, ModContent.TileType<MoonflowerTile>(), forced: true, style: 2);
-
-        WorldGen.PlaceTile(x, y + 9, TileID.Cloud, forced: true);
-        WorldGen.PlaceTile(x, y + 8, ModContent.TileType<MistralTile>(), forced: true);
-        WorldGen.PlaceTile(x + 2, y + 9, TileID.RainCloud, forced: true);
-        WorldGen.PlaceTile(x + 2, y + 8, ModContent.TileType<MistralTile>(), forced: true, style: 1);
-        WorldGen.PlaceTile(x + 4, y + 9, TileID.SnowCloud, forced: true);
-        WorldGen.PlaceTile(x + 4, y + 8, ModContent.TileType<MistralTile>(), forced: true, style: 2);
     }
 
     public void SpawnPhysicalTestDummies(TestParameters parameters, int npcId) {

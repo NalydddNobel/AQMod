@@ -4,7 +4,6 @@ using Aequus.Common.Effects;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.GrabBags.TreasureBags;
@@ -109,8 +108,9 @@ public class CrabsonOld : AequusBoss, ICrabson {
             SceneEffectPriority = SceneEffectPriority.BossLow;
         }
 
-        this.SetBiome<CrabCreviceBiome>();
-
+#if !CRAB_CREVICE_DISABLE
+        this.SetBiome<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>();
+#endif
         crabson = -1;
         leftClaw = -1;
         rightClaw = -1;

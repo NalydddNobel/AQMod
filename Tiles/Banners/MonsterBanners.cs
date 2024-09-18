@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Drawing;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.BloodMoon;
-using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.DemonSiege;
 using Aequus.NPCs.Monsters.GaleStreams;
 using Aequus.NPCs.Monsters.Glimmer;
@@ -58,10 +57,13 @@ public class MonsterBanners : ModTile {
                 if (ItemID.Sets.BannerStrength.IndexInRange(bannerItem) && ItemID.Sets.BannerStrength[bannerItem].Enabled) {
                     Main.SceneMetrics.NPCBannerBuff[npcType] = true;
                     Main.SceneMetrics.hasBanner = true;
-                    if (npcType == ModContent.NPCType<SummonerCrab>()) {
-                        Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<SummonerCrabMinion>()] = true;
+
+#if !CRAB_CREVICE_DISABLE
+                    if (npcType == ModContent.NPCType<global::Aequus.NPCs.Monsters.CrabCrevice.SummonerCrab>()) {
+                        Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<global::Aequus.NPCs.Monsters.CrabCrevice.SummonerCrabMinion>()] = true;
                         Main.SceneMetrics.hasBanner = true;
                     }
+#endif
                 }
             }
         }
@@ -101,14 +103,16 @@ public class MonsterBanners : ModTile {
                 return ModContent.NPCType<WhiteSlime>();
             case UltraStariteBanner:
                 return ModContent.NPCType<UltraStarite>();
+#if !CRAB_CREVICE_DISABLE
             case CrabFishBanner:
-                return ModContent.NPCType<CrabFish>();
+                return ModContent.NPCType<global::Aequus.NPCs.Monsters.CrabCrevice.CrabFish>();
             case HijivarchCrabBanner:
-                return ModContent.NPCType<SummonerCrab>();
+                return ModContent.NPCType<global::Aequus.NPCs.Monsters.CrabCrevice.SummonerCrab>();
             case SoldierCrabBanner:
-                return ModContent.NPCType<SoldierCrab>();
+                return ModContent.NPCType<global::Aequus.NPCs.Monsters.CrabCrevice.SoldierCrab>();
             case CoconutCrabBanner:
-                return ModContent.NPCType<CoconutCrab>();
+                return ModContent.NPCType<global::Aequus.NPCs.Monsters.CrabCrevice.CoconutCrab>();
+#endif
             case BreadofCthulhuBanner:
                 return ModContent.NPCType<BreadOfCthulhu>();
             case BloodMimicBanner:

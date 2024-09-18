@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Preferences;
 using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.Oblivion;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
@@ -124,22 +123,24 @@ public class AequusWorldGenerator : ModSystem {
             BigGemsTile.Generate();
         }, tasks);
 
+#if !CRAB_CREVICE_DISABLE
         AddPass("Dungeon", "Crab Home", (progress, configuration) => {
             progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
-            ModContent.GetInstance<CrabCreviceGenerator>().Generate(progress, configuration);
+            ModContent.GetInstance<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator>().Generate(progress, configuration);
         }, tasks);
-        AddPass("Create Ocean Caves", "Crab Sand Fix", (progress, configuration) => ModContent.GetInstance<CrabCreviceGenerator>().FixSand(), tasks);
+        AddPass("Create Ocean Caves", "Crab Sand Fix", (progress, configuration) => ModContent.GetInstance<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator>().FixSand(), tasks);
         AddPass("Moss", "Crab Growth", (progress, configuration) => {
             progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCreviceGrowth");
-            var crabCreviceGen = ModContent.GetInstance<CrabCreviceGenerator>();
+            var crabCreviceGen = ModContent.GetInstance<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator>();
             crabCreviceGen.SetGenerationValues(progress, configuration);
             crabCreviceGen.FinalizeGeneration();
             crabCreviceGen.SetGenerationValues(null, null);
         }, tasks);
         AddPass("Pots", "Crab Pottery", (progress, configuration) => {
             progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevicePots");
-            ModContent.GetInstance<CrabCreviceGenerator>().TransformPots();
+            ModContent.GetInstance<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator>().TransformPots();
         }, tasks);
+#endif
 
         AddPass("Underworld", "Gore Nests", (progress, configuration) => {
             progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNests");

@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Fishing;
 using Aequus.Common.Items;
-using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.Oblivion;
 using Aequus.Content.Fishing.Junk;
 using Aequus.Content.Vampirism.Items;
@@ -10,7 +9,6 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.FishCatches.LegendaryFish;
 using Aequus.Items.Misc.FishCatches.QuestFish;
 using Aequus.Items.Misc.FishingBait;
-using Aequus.Items.Misc.GrabBags.Crates;
 using Aequus.Items.Tools.FishingPoles;
 using Aequus.NPCs.Monsters;
 using System.Collections.Generic;
@@ -70,7 +68,13 @@ public partial class AequusPlayer : ModPlayer {
                 }
             }
 
-            if (item.rare == -1 || player.InModBiome<CrabCreviceBiome>() || zenithSeed) {
+            bool canCatchBreadOfCthulhu = item.rare == -1 || zenithSeed;
+#if !CRAB_CREVICE_DISABLE
+            if (player.InModBiome<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>()) {
+                canCatchBreadOfCthulhu = true;
+            }
+#endif
+            if (canCatchBreadOfCthulhu) {
                 int breadMonsterChance = 30;
                 if (!Main.dayTime) {
                     breadMonsterChance /= 2; // 1/15
@@ -186,21 +190,23 @@ public partial class AequusPlayer : ModPlayer {
             }
         }
 
-        if (Player.InModBiome<CrabCreviceBiome>()) {
+#if !CRAB_CREVICE_DISABLE
+        if (Player.InModBiome<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>()) {
             if (attempt.crate && Main.rand.NextBool()) {
                 if (Main.hardMode) {
-                    itemDrop = ModContent.ItemType<CrabCreviceCrateHard>();
+                    itemDrop = ModContent.ItemType<global::Aequus.Items.Misc.GrabBags.Crates.CrabCreviceCrateHard>();
                 }
                 else {
-                    itemDrop = ModContent.ItemType<CrabCreviceCrate>();
+                    itemDrop = ModContent.ItemType<global::Aequus.Items.Misc.GrabBags.Crates.CrabCreviceCrate>();
                 }
             }
             else {
                 if (attempt.veryrare && Main.rand.NextBool(4)) {
-                    itemDrop = ModContent.ItemType<CrabDaughter>();
+                    itemDrop = ModContent.ItemType<global::Aequus.Items.Misc.FishCatches.LegendaryFish.CrabDaughter>();
                 }
             }
         }
+#endif
     }
 
     public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition) {

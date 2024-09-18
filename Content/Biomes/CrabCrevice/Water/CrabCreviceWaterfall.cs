@@ -1,7 +1,5 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Content.Biomes.CrabCrevice.Water {
-    public class CrabCreviceWaterfall : ModWaterfallStyle
-    {
-    }
+﻿#if !CRAB_CREVICE_DISABLE
+namespace Aequus.Content.Biomes.CrabCrevice.Water;
+public class CrabCreviceWaterfall : ModWaterfallStyle {
 }
+#endif

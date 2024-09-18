@@ -1,8 +1,8 @@
-﻿using Aequus.Common;
+﻿#if !CRAB_CREVICE_DISABLE
+using Aequus.Common;
 using Aequus.Content.Biomes.CrabCrevice;
 using System;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.SplitSupport.ItemContent.Envelopes;
 
@@ -16,3 +16,4 @@ public class EnvelopeUndergroundOcean : BaseEnvelope {
         itemLoot.Add(ItemDropRule.OneFromOptions(4, Array.ConvertAll(CrabCreviceBiome.ChestTertiaryLoot, i => i.item)));
     }
 }
+#endif

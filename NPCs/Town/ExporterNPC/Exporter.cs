@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Items.Accessories.Informational.Monocle;
@@ -78,7 +77,9 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
 
         NPC.Happiness
             .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
-            .SetBiomeAffection<CrabCreviceBiome>(AffectionLevel.Hate)
+#if !CRAB_CREVICE_DISABLE
+            .SetBiomeAffection<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>(AffectionLevel.Hate)
+#endif
             .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
             .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)
@@ -233,9 +234,11 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
         if (player.ZoneBeach) {
             chat.Add("Ocean");
         }
-        if (player.InModBiome<CrabCreviceBiome>()) {
+#if !CRAB_CREVICE_DISABLE
+        if (player.InModBiome<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>()) {
             chat.Add("CrabCrevice");
         }
+#endif
         if (player.ZoneGraveyard) {
             chat.Add("Graveyard");
         }
@@ -322,7 +325,15 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
         Helper.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.NoHome_{gender}"));
         Helper.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
         Helper.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
+
+        string hateBiome = "Evils";
+#if !CRAB_CREVICE_DISABLE
+        if (player.InModBiome<global::Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome>()) {
+            hateBiome = "CrabCrevice";
+        }
+#endif
+
         Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
-            $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.InModBiome<CrabCreviceBiome>() ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
+            $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{hateBiome}", (s) => new { BiomeName = s[1], });
     }
 }

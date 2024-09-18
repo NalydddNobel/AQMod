@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿#if !CRAB_CREVICE_DISABLE
+using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.CrabCrevice.Background {
     public class CrabCreviceSurfaceBackground : ModSurfaceBackgroundStyle
@@ -58,3 +59,4 @@ namespace Aequus.Content.Biomes.CrabCrevice.Background {
         }
     }
 }
+#endif
