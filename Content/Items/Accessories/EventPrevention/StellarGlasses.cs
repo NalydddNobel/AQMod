@@ -45,11 +45,13 @@ public class StellarGlasses : ModItem {
     }
 
     public override void AddRecipes() {
+#if DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
             .AddIngredient(ItemID.FallenStar, 5)
             .AddIngredient<global::Aequus.Items.Materials.Glimmer.StariteMaterial>(5)
             .AddTile(TileID.Anvils)
             .Register();
+#endif
     }
 }

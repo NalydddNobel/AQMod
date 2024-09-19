@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
@@ -46,6 +47,7 @@ public class HyperStarite : ModNPC {
             Scale = 0.6f,
         });
         SnowgraveCorpse.NPCBlacklist.Add(Type);
+        NPCSets.Glimmer.Add(Type);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
