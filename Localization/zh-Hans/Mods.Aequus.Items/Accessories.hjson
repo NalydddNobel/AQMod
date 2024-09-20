@@ -39,7 +39,7 @@ HorseshoeCombination: {
 
 BreathConserver: {
 	DisplayName: 呼吸救生器
-	Tooltip: 当未处于水中时使你获得{0}秒的水下呼吸
+	Tooltip: 摧毁物块以及击杀敌人时会回复呼吸条
 }
 
 ValentineRing: {
