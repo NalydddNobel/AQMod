@@ -110,7 +110,6 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
 
     private void TryToLand() {
         if (NPC.collideY && NPC.velocity.Y >= 0f && Math.Abs(NPC.velocity.X) < 0.1f) {
-
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 state = MovementState.Walking;
                 NPC.netUpdate = true;
@@ -293,6 +292,10 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
             NPC.spriteDirection = NPC.direction = Math.Sign(NPC.velocity.X);
 
             if (StopForPlayers()) {
+                if (Main.netMode == NetmodeID.Server && NPC.netSpam <= 0 && Main.GameUpdateCount % 50 == 0) {
+                    NPC.netUpdate = true;
+                }
+                Mod.Logger.Info(NPC.netSpam);
                 TryToLand();
                 return false;
             }

@@ -1,7 +1,9 @@
 ﻿using Aequus.Common;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Aequus.Content.Items.Accessories.EventPrevention;
 
@@ -15,19 +17,30 @@ internal class EventDeactivatorHooks : LoadedType {
     }
 
     #region Hooks
-    private static void OverrideFishingFlags(On_Projectile.orig_FishingCheck orig, Projectile projectile) {
+    void OverrideFishingFlags(On_Projectile.orig_FishingCheck orig, Projectile projectile) {
         EventDeactivatorPlayer.CheckPlayerFlagOverrides(Main.player[projectile.owner]);
         orig(projectile);
         EventDeactivatorPlayer.UndoPlayerFlagOverrides();
     }
 
-    private static void SpawnNPCUndoFlags(On_NPC.orig_SpawnNPC orig) {
-        orig();
-        EventDeactivatorPlayer.UndoPlayerFlagOverrides();
+    // This method and the IL Hook sometimes just dont work when compiling the mod from Visual Studio.
+    // REally stupid, but whatever. Atleast it SHOULD work in in-game builds (which are used in releases), from my testing.
+    [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+    void SpawnNPCUndoFlags(On_NPC.orig_SpawnNPC orig) {
+        try {
+            orig();
+        }
+        catch (Exception ex) {
+            Mod!.Logger.Error(ex);
+        }
+        finally {
+            EventDeactivatorPlayer.UndoPlayerFlagOverrides();
+            //Main.NewText(Main.bloodMoon);
+        }
     }
 
-    private static bool _spawnNPCOverrideEventsPerPlayer;
-    private void SpawnNPCOverrideEventsPerPlayer(ILContext il) {
+    static bool _spawnNPCOverrideEventsPerPlayer;
+    void SpawnNPCOverrideEventsPerPlayer(ILContext il) {
         ILCursor c = new ILCursor(il);
 
         if (!c.TryGotoNext(MoveType.Before, i => i.MatchLdsfld(typeof(Main), nameof(Main.slimeRain)))) {
@@ -54,7 +67,7 @@ internal class EventDeactivatorHooks : LoadedType {
         });
     }
 
-    private void OverrideBloodMoonWaterStyle(ILContext il) {
+    void OverrideBloodMoonWaterStyle(ILContext il) {
         ILCursor c = new ILCursor(il);
         if (!c.TryGotoNext(MoveType.After, i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)))) {
             Mod.Logger.Error($"Could not find {nameof(Main)}.{nameof(Main.bloodMoon)} ldsfld-branching code."); return;
@@ -63,7 +76,7 @@ internal class EventDeactivatorHooks : LoadedType {
         c.EmitDelegate((bool bloodMoon) => bloodMoon && (!Main.LocalPlayer.TryGetModPlayer(out EventDeactivatorPlayer eventDeactivator) || !eventDeactivator.accDisableBloodMoon));
     }
 
-    private void OverrideEventsForMusic(ILContext il) {
+    void OverrideEventsForMusic(ILContext il) {
         const string SwapMusicField = "swapMusic";
         const BindingFlags SwapMusicBindings = BindingFlags.Static | BindingFlags.NonPublic;
 

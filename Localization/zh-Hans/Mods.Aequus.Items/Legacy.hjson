@@ -156,11 +156,6 @@ MermanFins: {
 	Tooltip: 当未处于水中时使你获得{0}秒的水下呼吸
 }
 
-BreathConserver: {
-	DisplayName: 呼吸救生器
-	Tooltip: 当未处于水中时使你获得{0}秒的水下呼吸
-}
-
 CrownOfBloodItem: {
 	DisplayName: 鲜血王冠
 	Tooltip:

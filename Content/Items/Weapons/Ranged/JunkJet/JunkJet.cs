@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Content.Items.Materials.CompressedTrash;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -29,7 +28,7 @@ public class JunkJet : ModItem {
     public override void AddRecipes() {
 #if POLLUTED_OCEAN
         CreateRecipe()
-            .AddIngredient<CompressedTrash>(25)
+            .AddIngredient<Items.Materials.CompressedTrash.CompressedTrash>(25)
             .AddTile(TileID.Anvils)
             .Register();
 #elif !CRAB_CREVICE_DISABLE

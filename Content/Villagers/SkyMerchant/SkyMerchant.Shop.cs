@@ -22,8 +22,10 @@ public partial class SkyMerchant {
             .AddWithCustomValue<global::Aequus.Items.Tools.Pumpinator>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .AddWithCustomValue<global::Aequus.Items.Tools.Bellows>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .AddWithCustomValue<global::Aequus.Items.Tools.FishingPoles.Nimrod>(ItemDefaults.NPCSkyMerchantCustomPrice)
+            .AddWithCustomValue<Items.Accessories.ValentinesRing.ValentineRing>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .Add<global::Aequus.Items.Potions.Healing.Restoration.LesserRestorationPotion>()
             .Add<Items.Accessories.Informational.Calendar.Calendar>()
+            .AddWithCustomValue(ItemID.WormholePotion, Item.buyPrice(silver: 8), Condition.Multiplayer)
             .Add<Systems.Renaming.NameTag>()
             .Register();
     }

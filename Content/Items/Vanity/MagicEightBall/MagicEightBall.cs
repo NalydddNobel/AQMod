@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Entities.Players;
 using Aequus.Common.Items;
+using Aequus.Common.Net;
 using Aequus.Common.Utilities.Helpers;
 using Aequus.Systems;
 using System;
@@ -20,7 +21,7 @@ public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
 
     const string TagKey = "Text2";
     const byte MaxText = 20;
-    static readonly LocalizedText[] Text = new LocalizedText[MaxText];
+    internal static readonly LocalizedText[] Text = new LocalizedText[MaxText];
 
     byte _textId = Invalid;
 
@@ -71,43 +72,11 @@ public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
             while (old == _textId) {
                 _textId = (byte)Main.rand.Next(Text.Length);
             }
-            PushUpCombatText(player.Top);
-            string textValue = Text[_textId].Value;
-            var spawnRectangle = new Rectangle((int)player.position.X, (int)player.position.Y + 10, player.width, player.height / 3);
-            var color = Color.Lerp(Main.mouseColor, Color.White, 0.5f);
-            int t = CombatText.NewText(spawnRectangle, color, textValue, true);
-            Main.combatText[t].position.X = player.Center.X - FontAssets.CombatText[1].Value.MeasureString(textValue).X / 2f;
-            Main.combatText[t].rotation *= 0.33f;
+
+            Instance<MagicEightBallSpawnRequest>().Send(player.whoAmI, _textId, TextColor);
         }
         this.SetCooldown(player);
         return true;
-    }
-    static void PushUpCombatText(Vector2 position) {
-        var r = new Rectangle((int)position.X - 300, (int)position.Y - 160, 500, 180);
-        float highestY = 0f;
-        float lowestY = float.MaxValue;
-        int combatTextId = -1;
-
-    Reiterate:
-        for (int i = 0; i < Main.maxCombatText; i++) {
-            if (!Main.combatText[i].active || Main.combatText[i].position.Y <= highestY || Main.combatText[i].position.Y >= lowestY || !r.Contains(Main.combatText[i].position.ToPoint())) {
-                continue;
-            }
-
-            combatTextId = i;
-            highestY = Main.combatText[i].position.Y;
-        }
-
-        if (combatTextId != -1) {
-            var combatText = Main.combatText[combatTextId];
-            combatText.velocity.Y = Math.Min(combatText.velocity.Y, -8f);
-
-            combatTextId = -1;
-            position.Y = combatText.position.Y;
-            highestY = 0f;
-            lowestY = combatText.position.Y - 1f;
-            goto Reiterate;
-        }
     }
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
@@ -191,11 +160,78 @@ public class MagicEightBall : ModItem, ICooldownItem, ICustomHeldItemGraphics {
 
         drawLocation += player.GetDrawOffset(drawOffset);
 
-        Color color = item.GetAlpha(Lighting.GetColor(drawLocation.ToTileCoordinates()));
+        Color color = item.GetAlpha(Lighting.GetColor(drawLocation.ToTileCoordinates())) * (1f - info.shadow);
         Vector2 origin = itemFrame.Size() / 2f;
         float rotation = player.bodyRotation;
         SpriteEffects effects = player.GetSpriteEffect();
 
-        info.DrawDataCache.Add(new DrawData(texture, (drawLocation - Main.screenPosition).Floor(), itemFrame, Color.White, rotation, origin, 1f, effects, 0f));
+        info.DrawDataCache.Add(new DrawData(texture, (drawLocation - Main.screenPosition).Floor(), itemFrame, color, rotation, origin, 1f, effects, 0f));
+    }
+}
+
+public class MagicEightBallSpawnRequest : PacketHandler {
+    public override PacketType LegacyPacketType => PacketType.EightBal;
+
+    public void Send(int player, byte id, Color textColor) {
+        var packet = GetPacket();
+
+        packet.Write(player);
+        packet.Write(id);
+        packet.WriteRGB(textColor);
+
+        SendPacket(packet);
+    }
+
+    public override void Receive(BinaryReader reader, int sender) {
+        int player = reader.ReadInt32();
+        byte id = reader.ReadByte();
+        Color clr = reader.ReadRGB();
+
+
+        // Server will broadcast to all players.
+        if (Main.netMode == NetmodeID.Server) {
+            Send(player, id, clr);
+        }
+        // Clients will create the popup.
+        else if (Main.player.IndexInRange(player) && Main.player[player].active) {
+            CreatePopup(Main.player[player], id, clr);
+        }
+    }
+
+    void CreatePopup(Player player, byte id, Color color) {
+        PushUpCombatText(player.Top);
+        string textValue = MagicEightBall.Text[id].Value;
+        var spawnRectangle = new Rectangle((int)player.position.X, (int)player.position.Y + 10, player.width, player.height / 3);
+        int t = CombatText.NewText(spawnRectangle, color, textValue, true);
+        Main.combatText[t].position.X = player.Center.X - FontAssets.CombatText[1].Value.MeasureString(textValue).X / 2f;
+        Main.combatText[t].rotation *= 0.33f;
+    }
+
+    static void PushUpCombatText(Vector2 position) {
+        var r = new Rectangle((int)position.X - 300, (int)position.Y - 160, 500, 180);
+        float highestY = 0f;
+        float lowestY = float.MaxValue;
+        int combatTextId = -1;
+
+    Reiterate:
+        for (int i = 0; i < Main.maxCombatText; i++) {
+            if (!Main.combatText[i].active || Main.combatText[i].position.Y <= highestY || Main.combatText[i].position.Y >= lowestY || !r.Contains(Main.combatText[i].position.ToPoint())) {
+                continue;
+            }
+
+            combatTextId = i;
+            highestY = Main.combatText[i].position.Y;
+        }
+
+        if (combatTextId != -1) {
+            var combatText = Main.combatText[combatTextId];
+            combatText.velocity.Y = Math.Min(combatText.velocity.Y, -8f);
+
+            combatTextId = -1;
+            position.Y = combatText.position.Y;
+            highestY = 0f;
+            lowestY = combatText.position.Y - 1f;
+            goto Reiterate;
+        }
     }
 }

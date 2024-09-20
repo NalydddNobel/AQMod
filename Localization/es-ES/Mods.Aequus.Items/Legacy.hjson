@@ -160,11 +160,6 @@ MermanFins: {
 	// Tooltip: Recieve {0} seconds of gills while outside of water
 }
 
-BreathConserver: {
-	DisplayName: Conservador de aire
-	Tooltip: Restaura respiración al romper bloques y derrotar enemigos
-}
-
 CrownOfBloodItem: {
 	// DisplayName: Crown of Blood
 	/* Tooltip:

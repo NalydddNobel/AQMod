@@ -6,8 +6,6 @@ using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.Anchor;
 using Aequus.Items.Equipment.Accessories.Sentry.SentrySquid;
-using Aequus.Items.Equipment.Accessories.Water;
-using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.Tiles.CrabCrevice;
 using System.Collections.Generic;
@@ -102,9 +100,9 @@ public class CrabCreviceBiome : ModBiome {
     public void SetChestLoot() {
         ChestPrimaryLoot = new ItemDrop[]
         {
-            ModContent.ItemType<StarPhish>(),
+            ModContent.ItemType<Items.Weapons.Ranged.StarPhish.StarPhish>(),
             ModContent.ItemType<DavyJonesAnchor>(),
-            ModContent.ItemType<BreathConserver>(),
+            ModContent.ItemType<Items.Accessories.Breath.BreathConserver>(),
             ModContent.ItemType<SentrySquid>(),
         };
 

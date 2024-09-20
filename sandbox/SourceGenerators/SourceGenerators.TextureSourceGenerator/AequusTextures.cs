@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1503)</summary>
+/// <summary>(Total Textures: 1505)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -705,6 +705,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TerraBalloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon_Balloon</summary>
     public static readonly RequestCache<Texture2D> TerraBalloon_Balloon = new("Content/Items/Accessories/Tinkers/QuadBalloonCombos/TerraBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/ValentinesRing/ValentineRing</summary>
+    public static readonly RequestCache<Texture2D> ValentineRing = new("Content/Items/Accessories/ValentinesRing/ValentineRing");
+    /// <summary>Full Path: Content/Items/Accessories/ValentinesRing/ValentineRingBuff</summary>
+    public static readonly RequestCache<Texture2D> ValentineRingBuff = new("Content/Items/Accessories/ValentinesRing/ValentineRingBuff");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
     public static readonly RequestCache<Texture2D> MeadowBreastplate = new("Content/Items/Armor/Meadow/MeadowBreastplate");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate_Body</summary>

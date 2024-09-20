@@ -45,6 +45,8 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public byte accGoldenFeatherTeammate;
     [CompilerGenerated]
+    public string accGifterRing;
+    [CompilerGenerated]
     public bool setMeadow;
     [CompilerGenerated]
     public bool setMeadowMagicTag;
@@ -69,6 +71,7 @@ public partial class AequusPlayer {
         SourceGeneratorTools.ResetObj(ref accGoldenFeather);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
+        SourceGeneratorTools.ResetObj(ref accGifterRing);
         SourceGeneratorTools.ResetObj(ref setMeadow);
         SourceGeneratorTools.ResetObj(ref setMeadowMagicTag);
         SourceGeneratorTools.ResetObj(ref equipDartTrapHat);
@@ -97,6 +100,7 @@ public partial class AequusPlayer {
     private void PostUpdateEquipsInner() {
         Content.Items.Accessories.FallSpeedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
         Content.Items.Accessories.RespawnFeather.GoldenFeather.UpdateGoldenFeather(Player, this);
+        Content.Items.Accessories.ValentinesRing.ValentineRing.PostUpdateEquips(Player, this);
     }
     
     [CompilerGenerated]

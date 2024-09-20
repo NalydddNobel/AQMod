@@ -1,5 +1,5 @@
-﻿using Aequus.Common.NPCs;
-using Aequus.Content.Items.Materials.CompressedTrash;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.NPCs;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
@@ -35,9 +35,10 @@ public partial class Conductor {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CompressedTrash>(), minimumDropped: 1, maximumDropped: 4));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.CompressedTrash.CompressedTrash>(), minimumDropped: 1, maximumDropped: 4));
 #if COPPER_KEY
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperKey>(), chanceDenominator: CopperKey.DropRate));
 #endif
     }
 }
+#endif

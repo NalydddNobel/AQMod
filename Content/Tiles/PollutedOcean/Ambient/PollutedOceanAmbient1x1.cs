@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates.Tiles.Rubblemaker;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.ContentTemplates.Tiles.Rubblemaker;
 using Aequus.Content.Items.Materials.CompressedTrash;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Ambient;
@@ -19,3 +20,4 @@ internal class PollutedOceanAmbient1x1 : Rubble1x1 {
         AddMapEntry(new Color(80, 80, 80));
     }
 }
+#endif
