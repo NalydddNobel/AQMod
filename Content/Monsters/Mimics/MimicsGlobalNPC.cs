@@ -9,6 +9,12 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Monsters.Mimics;
 
 public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
+    public static readonly float IceMimicSpawnrate = 0.022f;
+    public static readonly float ShadowMimicSpawnrate = 0.022f;
+
+    public static readonly float MimicUGSpawnrate = 0.002f;
+    public static readonly float MimicCavernsSpawnrate = 0.01f;
+
     public override void SetDefaults(NPC npc) {
         if ((npc.type != NPCID.Mimic && npc.type != NPCID.IceMimic) || Main.remixWorld || !GameplayConfig.Instance.EarlyMimics) {
             return;
@@ -49,18 +55,18 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
 
         Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
         if (TileID.Sets.IcesSnow[tile.TileType]) {
-            pool[NPCID.IceMimic] = 0.025f;
+            pool[NPCID.IceMimic] = IceMimicSpawnrate;
             return;
         }
 
         if (spawnInfo.SpawnTileY >= Main.UnderworldLayer) {
             // Prevent mimics spawning in the Underworld if Skeletron hasn't been defeated.
             if (NPC.downedBoss3) {
-                pool[NPCID.Mimic] = 0.025f;
+                pool[NPCID.Mimic] = ShadowMimicSpawnrate;
             }
         }
         else {
-            pool[NPCID.Mimic] = spawnInfo.SpawnTileY >= Main.rockLayer ? 0.02f : 0.005f;
+            pool[NPCID.Mimic] = spawnInfo.SpawnTileY >= Main.rockLayer ? MimicCavernsSpawnrate : MimicUGSpawnrate;
         }
     }
 
