@@ -153,7 +153,7 @@ public class Exporter : ModNPC, IModifyShoppingSettings {
             .AddWithCustomValue<SentrySquid>(Item.buyPrice(gold: 5), Condition.MoonPhaseNew)
             .AddWithCustomValue<DavyJonesAnchor>(Item.buyPrice(gold: 5), Condition.MoonPhaseWaxingCrescent)
             .AddWithCustomValue<Content.Items.Weapons.Ranged.StarPhish.StarPhish>(Item.buyPrice(gold: 5), Condition.MoonPhaseFirstQuarter)
-            .AddWithCustomValue<BreathConserver>(Item.buyPrice(gold: 5), Condition.MoonPhaseWaxingGibbous)
+            .AddWithCustomValue<Content.Items.Accessories.Breath.BreathConserver>(Item.buyPrice(gold: 5), Condition.MoonPhaseWaxingGibbous)
 
             .AddWithCustomValue(ItemID.TatteredCloth, Item.buyPrice(silver: 25), Condition.DownedGoblinArmy)
             .AddWithCustomValue(ItemID.PirateMap, Item.buyPrice(gold: 2, silver: 50), Condition.DownedPirates)

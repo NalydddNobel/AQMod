@@ -26,7 +26,7 @@ internal class EventDeactivatorHooks : LoadedType {
         EventDeactivatorPlayer.UndoPlayerFlagOverrides();
     }
 
-    private static bool _hookWorked;
+    private static bool _spawnNPCOverrideEventsPerPlayer;
     private void SpawnNPCOverrideEventsPerPlayer(ILContext il) {
         ILCursor c = new ILCursor(il);
 
@@ -47,8 +47,8 @@ internal class EventDeactivatorHooks : LoadedType {
         c.EmitDelegate((int player) => {
             EventDeactivatorPlayer.UndoPlayerFlagOverrides();
             EventDeactivatorPlayer.CheckPlayerFlagOverrides(Main.player[player]);
-            if (!_hookWorked) {
-                _hookWorked = true;
+            if (!_spawnNPCOverrideEventsPerPlayer) {
+                _spawnNPCOverrideEventsPerPlayer = true;
                 Aequus.Instance.Logger.Info("Event deactivation hook success!");
             }
         });

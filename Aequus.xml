@@ -222,6 +222,9 @@
             <param name="healAmt"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.AequusPlayer.HealBreath(System.Int32,System.Boolean)">
+            <summary>Restores player breath without going over <see cref="F:Terraria.Player.breathMax"/>.</summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.regenerationFlat">
             <summary>
             An amount of regen to add to the player in <see cref="M:Aequus.AequusPlayer.UpdateLifeRegen"/>
@@ -536,6 +539,9 @@
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_OnKillNPC">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.OnKillEffect(Aequus.Common.Structures.EnemyKillInfo)"/>-<see cref="M:Aequus.AequusPlayer.OnKillNPCInner(Aequus.Common.Structures.EnemyKillInfo)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_OnBreakTile">
+            <summary>Adds a reference to the target method <see cref="M:Aequus.AequusPlayer.OnBreakTileInner(System.Int32,System.Int32)"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
@@ -2430,7 +2436,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1502)</summary>
+            <summary>(Total Textures: 1503)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3352,6 +3358,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreathConserver">
+            <summary>Full Path: Content/Items/Accessories/Breath/BreathConserver</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreathConserver_Back">
+            <summary>Full Path: Content/Items/Accessories/Breath/BreathConserver_Back</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorus">
             <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorus</summary>
@@ -4666,9 +4678,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
             <summary>Full Path: Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BreathConserver">
-            <summary>Full Path: Items/Equipment/Accessories/Water/BreathConserver</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MermanFins">
             <summary>Full Path: Items/Equipment/Accessories/Water/MermanFins</summary>

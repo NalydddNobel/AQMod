@@ -51,4 +51,8 @@ internal partial class Gen {
     /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.OnKillEffect(EnemyKillInfo)"/>-<see cref="AequusPlayer.OnKillNPCInner(EnemyKillInfo)"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_OnKillNPC : Attribute { }
+
+    /// <summary>Adds a reference to the target method <see cref="AequusPlayer.OnBreakTileInner(int, int)"/>.</summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    internal class AequusPlayer_OnBreakTile : Attribute { }
 }

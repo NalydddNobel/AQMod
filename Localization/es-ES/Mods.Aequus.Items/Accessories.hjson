@@ -38,6 +38,8 @@ HorseshoeCombination: {
 }
 
 BreathConserver: {
+	DisplayName: Conservador de aire
+	Tooltip: Restaura respiración al romper bloques y derrotar enemigos
 }
 
 ValentineRing: {

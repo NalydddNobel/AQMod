@@ -38,6 +38,8 @@ HorseshoeCombination: {
 }
 
 BreathConserver: {
+	DisplayName: Breath Conserver
+	Tooltip: Restore breath upon breaking tiles and slaying foes
 }
 
 ValentineRing: {

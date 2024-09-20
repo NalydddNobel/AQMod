@@ -16,6 +16,8 @@ public static class CommonColor {
     public static readonly Color TooltipPrefixGood = new Color(120, 190, 120);
     public static readonly Color TooltipPrefixBad = new Color(190, 120, 120);
 
+    public static readonly Color CombatText_RestoreBreath = new Color(100, 150, 150);
+
     public static readonly Color[] CoinColors = [
         Colors.CoinCopper,      // 0
         Colors.CoinSilver,      // 1

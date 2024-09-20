@@ -9,6 +9,10 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [CompilerGenerated]
+    public Item accBreathRestore;
+    [CompilerGenerated]
+    public int accBreathRestoreStacks;
+    [CompilerGenerated]
     public Item accStariteExpert;
     [CompilerGenerated]
     public global::Aequus.Content.Items.Accessories.CelesteTorus.CelesteTorusDrawData stariteExpertDrawData;
@@ -51,6 +55,8 @@ public partial class AequusPlayer {
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
+        SourceGeneratorTools.ResetObj(ref accBreathRestore);
+        SourceGeneratorTools.ResetObj(ref accBreathRestoreStacks);
         SourceGeneratorTools.ResetObj(ref accStariteExpert);
         SourceGeneratorTools.ResetObj(ref stariteExpertDrawData);
         SourceGeneratorTools.ResetObj(ref stariteExpertStacks);
@@ -70,15 +76,21 @@ public partial class AequusPlayer {
     }
     
     [CompilerGenerated]
-    private void OnHitNPCInner(NPC target, NPC.HitInfo hit) {
-        Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.OnHitNPC(Player, this, target, hit);
-        Content.Items.Armor.Meadow.MeadowArmor.OnHitNPC(Player, this, target, hit);
-        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(Player, this, target, hit);
+    private void OnBreakTileInner(int X, int Y) {
+        Content.Items.Accessories.Breath.BreathConserver.RestoreBreathOnBrokenTile(Player, this, X, Y);
     }
     
     [CompilerGenerated]
     private void OnKillNPCInner(EnemyKillInfo info) {
+        Content.Items.Accessories.Breath.BreathConserver.RestoreBreathOnKillNPC(Player, this, info);
         Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.OnKillNPC(Player, this, info);
+    }
+    
+    [CompilerGenerated]
+    private void OnHitNPCInner(NPC target, NPC.HitInfo hit) {
+        Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.OnHitNPC(Player, this, target, hit);
+        Content.Items.Armor.Meadow.MeadowArmor.OnHitNPC(Player, this, target, hit);
+        Content.Items.GrapplingHooks.Meathook.Meathook.CheckMeathookSound(Player, this, target, hit);
     }
     
     [CompilerGenerated]

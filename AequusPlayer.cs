@@ -19,10 +19,10 @@ using Aequus.Common.Structures;
 using Aequus.Common.Tiles;
 using Aequus.Common.UI;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Helpers;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Tiles.Tombstones;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BlackPhial;
-using Aequus.Items.Equipment.Accessories.Combat.Ranged;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
@@ -741,7 +741,7 @@ public partial class AequusPlayer : ModPlayer {
             statProjectileSpeed.Clear();
             armorAetherialAmmoCost = false;
             accNeonGenesis = null;
-            breathConserver = 0;
+            mermanFins = 0;
             accWormScarf = null;
             accBoneHelm = null;
             flatDamageReduction = 0;
@@ -886,7 +886,7 @@ public partial class AequusPlayer : ModPlayer {
             Player.gravity = 0.4f;
         }
         PostUpdateEquips_NeonGenesis();
-        PostUpdateEquips_BreathConserver();
+        PostUpdateEquips_MermanFins();
     }
 
     public override void PostUpdateMiscEffects() {
@@ -2007,5 +2007,28 @@ public partial class AequusPlayer : ModPlayer {
 
         stacks = item.EquipmentStacks();
         return true;
+    }
+
+    /// <summary>Restores player breath without going over <see cref="Player.breathMax"/>.</summary>
+    public void HealBreath(int amount, bool showPopupText = true) {
+        if (Player.breath >= Player.breathMax) {
+            return;
+        }
+
+        Player.breath = Math.Min(Player.breath + amount, Player.breathMax);
+
+        if (Main.netMode != NetmodeID.Server && showPopupText) {
+            string seconds = $"{ALanguage.Seconds(amount * Player.breathCDMax)}s";
+            int combatText = CombatText.NewText(Player.getRect(), CommonColor.CombatText_RestoreBreath, seconds);
+
+            // Breath meter usually hides the text with its normal velocity.
+            if (Main.combatText.IndexInRange(combatText)) {
+                Main.combatText[combatText].velocity.Y *= 0.5f;
+            }
+        }
+    }
+
+    public void OnBreakTile(int X, int Y) {
+        OnBreakTileInner(X, Y);
     }
 }

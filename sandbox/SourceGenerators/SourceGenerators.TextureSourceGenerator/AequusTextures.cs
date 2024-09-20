@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1502)</summary>
+/// <summary>(Total Textures: 1503)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -621,6 +621,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/Breath/BreathConserver</summary>
+    public static readonly RequestCache<Texture2D> BreathConserver = new("Content/Items/Accessories/Breath/BreathConserver");
+    /// <summary>Full Path: Content/Items/Accessories/Breath/BreathConserver_Back</summary>
+    public static readonly RequestCache<Texture2D> BreathConserver_Back = new("Content/Items/Accessories/Breath/BreathConserver_Back");
     /// <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorus</summary>
     public static readonly RequestCache<Texture2D> CelesteTorus = new("Content/Items/Accessories/CelesteTorus/CelesteTorus");
     /// <summary>Full Path: Content/Items/Accessories/CelesteTorus/CelesteTorusProj</summary>
@@ -1497,8 +1501,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SentrySquid = new("Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid");
     /// <summary>Full Path: Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
     public static readonly RequestCache<Texture2D> SentrySquid_Hat = new("Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat");
-    /// <summary>Full Path: Items/Equipment/Accessories/Water/BreathConserver</summary>
-    public static readonly RequestCache<Texture2D> BreathConserver = new("Items/Equipment/Accessories/Water/BreathConserver");
     /// <summary>Full Path: Items/Equipment/Accessories/Water/MermanFins</summary>
     public static readonly RequestCache<Texture2D> MermanFins = new("Items/Equipment/Accessories/Water/MermanFins");
     /// <summary>Full Path: Items/Equipment/Accessories/Water/MermanFins_Ears</summary>

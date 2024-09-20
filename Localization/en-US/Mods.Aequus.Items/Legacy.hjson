@@ -156,11 +156,6 @@ MermanFins: {
 	Tooltip: Recieve {0} seconds of gills while outside of water
 }
 
-BreathConserver: {
-	DisplayName: Breath Conserver
-	Tooltip: Recieve {0} seconds of gills while outside of water
-}
-
 CrownOfBloodItem: {
 	DisplayName: Crown of Blood
 	Tooltip:
