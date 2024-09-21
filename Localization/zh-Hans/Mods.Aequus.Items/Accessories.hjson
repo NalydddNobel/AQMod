@@ -2,22 +2,22 @@
 HallowCanteen: {
 	DisplayName: 魔力壶
 	DisplayNameAlt: 魔力壶 ({0})
-	Tooltip:
-		'''
-		能够无限使用两种药水
-		光标悬停在堆叠数量为15的药水上并点击右键
-		'''
+	Tooltip: "{$Items.PotionCanteen.Tooltip}"
 }
 
 PotionCanteen: {
 	DisplayName: 药水壶
-	DisplayNameAlt: "{0}壶"
+	DisplayNameAlt: 药水壶 ({0})
 	// Fancy plural syntax. "{^0:potion;potions}" This makes it use "potion" and "potions" correctly for pluralization.
 	// "duration of 1 potion"
 	// "duration of 2 potions"
 	// Translate the two words inside. Ensure to keep the format looking like this example:
 	// {^0:XXXXXX;YYYYYY}
-	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
+	Tooltip: 
+		'''
+		装备后允许{0}种{^0:药水;药水}的增益具有无限的持续时间
+		光标悬停在{1}药水上并点击右键以将其填充至壶中
+		'''
 }
 
 TerraBalloon: {
