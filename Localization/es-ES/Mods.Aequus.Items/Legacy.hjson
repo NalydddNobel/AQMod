@@ -102,21 +102,6 @@ CrownOfDarkness: {
 	// Tooltip: "{0}% increased damage while in the dark"
 }
 
-PotionCanteenEmpty: {
-	// DisplayName: Potion Canteen
-	// Tooltip: Allows infinite use of a potion when equipped
-}
-
-PotionCanteen: {
-	DisplayName: Cantina de pociónes
-	DisplayNameAlt: Cantina de pociónes ({0})
-	Tooltip:
-		'''
-		Permite el uso infinito de una poción
-		Presiona <right> con 15 de una poción en la cantina para aplicar
-		'''
-}
-
 NeonGenesis: {
 	// DisplayName: Neon Genesis
 	/* Tooltip:

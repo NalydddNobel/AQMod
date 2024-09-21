@@ -56,18 +56,3 @@ GreaterRestorationPotion: {
 
 SuperRestorationPotion: {
 }
-
-// Canteens
-
-HallowCanteen: {
-	DisplayName: Cantina Mágica
-	DisplayNameAlt: Cantina Mágica ({0})
-	Tooltip:
-		'''
-		Permite el uso infinito de dos pociones
-		Presiona <right> con 15 de una poción en la cantina para aplicar
-		'''
-}
-
-PotionCanteen: {
-}

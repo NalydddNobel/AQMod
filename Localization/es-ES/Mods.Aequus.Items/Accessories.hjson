@@ -1,4 +1,29 @@
 // Equipment: Accessories
+HallowCanteen: {
+	DisplayName: Cantina Mágica
+	DisplayNameAlt: Cantina Mágica ({0})
+	Tooltip:
+		'''
+		Permite el uso infinito de dos pociones
+		Presiona <right> con 15 de una poción en la cantina para aplicar
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: Cantina de pociónes
+	DisplayNameAlt: Cantina de pociónes ({0})
+	// Fancy plural syntax. "{^0:potion;potions}" This makes it use "potion" and "potions" correctly for pluralization.
+	// "duration of 1 potion"
+	// "duration of 2 potions"
+	// Translate the two words inside. Ensure to keep the format looking like this example:
+	// {^0:XXXXXX;YYYYYY}
+	Tooltip:
+		'''
+		Permite el uso infinito de una poción
+		Presiona <right> con 15 de una poción en la cantina para aplicar
+		'''
+}
+
 TerraBalloon: {
 	DisplayName: Coalescencia de globos ecuestres
 	Tooltip:

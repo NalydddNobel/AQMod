@@ -102,17 +102,6 @@ CrownOfDarkness: {
 	Tooltip: 当处于黑暗中时增加{0}%伤害
 }
 
-PotionCanteenEmpty: {
-	DisplayName: 药水壶
-	Tooltip: 装备后允许无限饮用该药水
-}
-
-PotionCanteen: {
-	DisplayName: 药水壶
-	DisplayNameAlt: "{0}壶"
-	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
-}
-
 NeonGenesis: {
 	DisplayName: 新世纪
 	Tooltip:

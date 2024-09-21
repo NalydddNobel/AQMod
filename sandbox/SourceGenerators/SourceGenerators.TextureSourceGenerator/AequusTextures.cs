@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1505)</summary>
+/// <summary>(Total Textures: 1506)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -679,6 +679,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
+    /// <summary>Full Path: Content/Items/Accessories/PotionCanteen/HallowCanteen</summary>
+    public static readonly RequestCache<Texture2D> HallowCanteen = new("Content/Items/Accessories/PotionCanteen/HallowCanteen");
+    /// <summary>Full Path: Content/Items/Accessories/PotionCanteen/HallowCanteenEmpty</summary>
+    public static readonly RequestCache<Texture2D> HallowCanteenEmpty = new("Content/Items/Accessories/PotionCanteen/HallowCanteenEmpty");
+    /// <summary>Full Path: Content/Items/Accessories/PotionCanteen/PotionCanteen</summary>
+    public static readonly RequestCache<Texture2D> PotionCanteen = new("Content/Items/Accessories/PotionCanteen/PotionCanteen");
+    /// <summary>Full Path: Content/Items/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
+    public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Content/Items/Accessories/PotionCanteen/PotionCanteenEmpty");
     /// <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeather</summary>
     public static readonly RequestCache<Texture2D> GoldenFeather = new("Content/Items/Accessories/RespawnFeather/GoldenFeather");
     /// <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeatherBuff</summary>
@@ -1479,12 +1487,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FoolsGoldRingBuff = new("Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRingBuff");
     /// <summary>Full Path: Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRing_HandsOn</summary>
     public static readonly RequestCache<Texture2D> FoolsGoldRing_HandsOn = new("Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRing_HandsOn");
-    /// <summary>Full Path: Items/Equipment/Accessories/PotionCanteen/PotionCanteen</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteen = new("Items/Equipment/Accessories/PotionCanteen/PotionCanteen");
-    /// <summary>Full Path: Items/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Items/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty");
-    /// <summary>Full Path: Items/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteen_Liquid = new("Items/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid");
     /// <summary>Full Path: Items/Equipment/Accessories/Sentry/SentryChip/InventoryBack</summary>
     public static readonly RequestCache<Texture2D> Items_Equipment_Accessories_Sentry_SentryChip_InventoryBack = new("Items/Equipment/Accessories/Sentry/SentryChip/InventoryBack");
     /// <summary>Full Path: Items/Equipment/Accessories/Sentry/SentryChip/InventoryDecal</summary>

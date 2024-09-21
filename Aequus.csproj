@@ -44,6 +44,17 @@
 	<Compile Remove="SourceGenerators\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
+			
+  <ItemGroup>
+    <None Remove="Assets\Sounds\Item\PotionCanteen\CanteenUse.ogg" />
+    <None Remove="Content\Items\Accessories\PotionCanteen\HallowCanteen.png" />
+    <None Remove="Content\Items\Accessories\PotionCanteen\HallowCanteenEmpty.png" />
+    <None Remove="Content\Items\Accessories\PotionCanteen\PotionCanteen.png" />
+    <None Remove="Content\Items\Accessories\PotionCanteen\PotionCanteenEmpty.png" />
+    <None Remove="Effects\LuminentMultiply.fx" />
+    <None Remove="Effects\Multiply.fx" />
+    <None Remove="Effects\SeaFireflies.fx" />
+  </ItemGroup>
 									
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

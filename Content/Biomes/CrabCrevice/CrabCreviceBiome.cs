@@ -100,6 +100,7 @@ public class CrabCreviceBiome : ModBiome {
     public void SetChestLoot() {
         ChestPrimaryLoot = new ItemDrop[]
         {
+            ModContent.ItemType<Items.Accessories.PotionCanteen.PotionCanteen>(),
             ModContent.ItemType<Items.Weapons.Ranged.StarPhish.StarPhish>(),
             ModContent.ItemType<DavyJonesAnchor>(),
             ModContent.ItemType<Items.Accessories.Breath.BreathConserver>(),

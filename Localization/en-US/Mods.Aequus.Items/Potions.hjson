@@ -56,18 +56,3 @@ GreaterRestorationPotion: {
 
 SuperRestorationPotion: {
 }
-
-// Canteens
-
-HallowCanteen: {
-	DisplayName: Magic Canteen
-	DisplayNameAlt: Magic Canteen ({0})
-	Tooltip:
-		'''
-		Allows infinite usage of two potions
-		Hover over with a stack of 15 potions and press <right>
-		'''
-}
-
-PotionCanteen: {
-}

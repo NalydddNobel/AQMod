@@ -1,4 +1,25 @@
 // Equipment: Accessories
+HallowCanteen: {
+	DisplayName: Magic Canteen
+	DisplayNameAlt: Magic Canteen ({0})
+	Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	DisplayName: Potion Canteen
+	DisplayNameAlt: Potion Canteen ({0})
+	// Fancy plural syntax. "{^0:potion;potions}" This makes it use "potion" and "potions" correctly for pluralization.
+	// "duration of 1 potion"
+	// "duration of 2 potions"
+	// Translate the two words inside. Ensure to keep the format looking like this example:
+	// {^0:XXXXXX;YYYYYY}
+	Tooltip:
+		'''
+		Allows infinite buff duration of {0} {^0:potion;potions} while equipped
+		Hover over with {1} potions and press <right> to fill the canteen
+		'''
+}
+
 TerraBalloon: {
 	DisplayName: Coalescence of Equestrador Balloons
 	Tooltip:

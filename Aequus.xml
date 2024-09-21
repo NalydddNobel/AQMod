@@ -466,9 +466,7 @@
             </summary>
         </member>
         <member name="F:Aequus.Common.Buffs.AequusBuff.preventRightClick">
-            <summary>
-            Used to prevent right click effects when the <see cref="T:Aequus.Items.Equipment.Accessories.PotionCanteen.PotionCanteen"/> is equipped.
-            </summary>
+            <summary>Used to prevent right click effects.</summary>
         </member>
         <member name="M:Aequus.Common.Buffs.AequusBuff.IsDebuff(System.Int32)">
             <summary>
@@ -815,6 +813,9 @@
         <member name="M:Aequus.Common.Entities.Bestiary.BestiaryTagCollection.Add(Terraria.ModLoader.ModBiome)">
             <summary>Call in PostSetupContent.</summary>
         </member>
+        <member name="M:Aequus.Common.Entities.Items.IHoverItemSlotOverride.RightClickSlot(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
         <member name="P:Aequus.Common.Entities.NPCs.AI.IJellyfishAIProvider.ShockRampUpDistance">
             <summary>
             When the target is within this range, the delay for activating the electric state is dramatically decreased.
@@ -882,6 +883,15 @@
         </member>
         <member name="T:Aequus.Common.Initialization.IAttributeOnModLoad">
             <summary>Apply to an <see cref="T:System.Attribute"/> in order to have them define <see cref="M:Aequus.Common.Initialization.IAttributeOnModLoad.OnModLoad(Terraria.ModLoader.Mod,Terraria.ModLoader.ILoadable)"/> to run on <see cref="T:Terraria.ModLoader.ILoadable"/> types when the mod loads.</summary>
+        </member>
+        <member name="F:Aequus.Common.IO.IDCommons`1.Count">
+            <summary>The vanilla count.</summary>
+        </member>
+        <member name="F:Aequus.Common.IO.IDCommons`1.StartCount">
+            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.IO.IDLoader`1">
+            <summary>Helper for loading content which uses a legacy Id system.</summary>
         </member>
         <member name="F:Aequus.Common.Items.ItemDefaults.NPCSkyMerchant">
             <summary>1 Gold</summary>
@@ -1992,7 +2002,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 147)</summary>
+            <summary>(Total Sounds: 148)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -2188,6 +2198,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.PossessedShardHit1">
             <summary>Full Path: Assets/Sounds/Item/PossessedShard/PossessedShardHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CanteenUse">
+            <summary>Full Path: Assets/Sounds/Item/PotionCanteen/CanteenUse</summary>
         </member>
         <member name="F:Aequus.AequusSounds.raygun">
             <summary>Full Path: Assets/Sounds/Item/raygun</summary>
@@ -2436,7 +2449,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1505)</summary>
+            <summary>(Total Textures: 1506)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3445,6 +3458,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
             <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowCanteen">
+            <summary>Full Path: Content/Items/Accessories/PotionCanteen/HallowCanteen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowCanteenEmpty">
+            <summary>Full Path: Content/Items/Accessories/PotionCanteen/HallowCanteenEmpty</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteen">
+            <summary>Full Path: Content/Items/Accessories/PotionCanteen/PotionCanteen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
+            <summary>Full Path: Content/Items/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoldenFeather">
             <summary>Full Path: Content/Items/Accessories/RespawnFeather/GoldenFeather</summary>
@@ -4645,15 +4670,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing_HandsOn">
             <summary>Full Path: Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRing_HandsOn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteen">
-            <summary>Full Path: Items/Equipment/Accessories/PotionCanteen/PotionCanteen</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
-            <summary>Full Path: Items/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteen_Liquid">
-            <summary>Full Path: Items/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Items_Equipment_Accessories_Sentry_SentryChip_InventoryBack">
             <summary>Full Path: Items/Equipment/Accessories/Sentry/SentryChip/InventoryBack</summary>
@@ -7392,29 +7408,15 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestPrimaryLoot">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
             <summary>
-            The primary loot pool for Crab Crevice chests
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestSecondaryLoot">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
             <summary>
-            The secondary loot pool for Crab Crevice chests
+            Lookup for tile Ids which are safe to generate over.
             </summary>
-        </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestTertiaryLoot">
-            <summary>
-            The tertiary (3rd) loot pool for Crab Crevice chests
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator.SetLocationParams(System.Int32@,System.Int32@,Microsoft.Xna.Framework.Point@,Microsoft.Xna.Framework.Point@)">
-            <summary>
-            
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="location"></param>
-            <param name="genLocation"></param>
         </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>
@@ -7440,6 +7442,9 @@
             Finds and returns the closest demon siege
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Items.Accessories.PotionCanteen.UnifiedCanteen.HasBuffs">
+            <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
         <member name="M:Aequus.Content.Monsters.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
             <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
