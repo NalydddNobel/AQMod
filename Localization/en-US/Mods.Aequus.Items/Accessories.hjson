@@ -13,6 +13,7 @@ PotionCanteen: {
 	// "duration of 2 potions"
 	// Translate the two words inside. Ensure to keep the format looking like this example:
 	// {^0:XXXXXX;YYYYYY}
+	// UPDATE: If the word DOES NOT change, you do not need to keep the fancy syntax. Forgot to note that earlier.
 	Tooltip:
 		'''
 		Allows infinite buff duration of {0} {^0:potion;potions} while equipped
