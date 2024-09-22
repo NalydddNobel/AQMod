@@ -73,6 +73,20 @@ public static class TileHelper {
         }
     }
 
+    public static float GetWaterY(byte liquidAmount) {
+        return (1f - liquidAmount / 255f) * 16f;
+    }
+
+    /// <returns>The water line in World Coordinates.</returns>
+    public static int GetWaterLine(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        return j * 16 + (int)(GetWaterY(tile.LiquidAmount) * 16f);
+    }
+    /// <returns><inheritdoc cref="GetWaterLine(int, int)"/></returns>
+    public static int GetWaterLine(Point point) {
+        return GetWaterLine(point.X, point.Y);
+    }
+
     public static void GetTileCorner(int i, int j, out int left, out int top) {
         Tile tile = Main.tile[i, j];
         TileObjectData data = TileObjectData.GetTileData(tile);

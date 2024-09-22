@@ -2449,7 +2449,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1506)</summary>
+            <summary>(Total Textures: 1515)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3302,6 +3302,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMapBackground">
             <summary>Full Path: Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot">
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Back">
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Highlight">
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
+            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
+            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPotItem">
+            <summary>Full Path: Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot">
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Back">
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Killifish">
             <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
@@ -7400,6 +7427,12 @@
             <param name="text"></param>
             <param name="color"></param>
         </member>
+        <member name="M:Aequus.TileHelper.GetWaterLine(System.Int32,System.Int32)">
+            <returns>The water line in World Coordinates.</returns>
+        </member>
+        <member name="M:Aequus.TileHelper.GetWaterLine(Microsoft.Xna.Framework.Point)">
+            <returns><inheritdoc cref="M:Aequus.TileHelper.GetWaterLine(System.Int32,System.Int32)"/></returns>
+        </member>
         <member name="M:Aequus.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Properly removes a liquid at the given tile coordinates.
@@ -7442,6 +7475,18 @@
             Finds and returns the closest demon siege
             </summary>
             <returns></returns>
+        </member>
+        <member name="F:Aequus.Content.Fishing.CrabPots.TECrabPot.BaitEffectiveness">
+            <summary>
+            Determines how effective bait is. Defaults to 0.5 (50% effectiveness)
+            <para>Bait divides <see cref="F:Aequus.Content.Fishing.CrabPots.TECrabPot.NaturalCatchRate"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="F:Aequus.Content.Fishing.CrabPots.TECrabPot.NaturalCatchRate"/> by 25 by default.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.Fishing.CrabPots.TECrabPot.caught">
+            <summary>
+            Determines whether or not the item was from a catch.
+            This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
+            </summary>
         </member>
         <member name="M:Aequus.Content.Items.Accessories.PotionCanteen.UnifiedCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>

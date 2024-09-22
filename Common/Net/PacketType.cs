@@ -57,5 +57,8 @@ public enum PacketType : byte {
     MagicChestPlacement,
     Backpack,
     EightBal,
+    CrabPotUse,
+    CrabPotPlace,
+    CrabPotAddBait,
     Count
 }

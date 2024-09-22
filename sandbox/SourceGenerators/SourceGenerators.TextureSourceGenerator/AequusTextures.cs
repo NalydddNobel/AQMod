@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1506)</summary>
+/// <summary>(Total Textures: 1515)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -575,6 +575,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerEventIcon = new("Content/Events/GlimmerEvent/Textures/GlimmerEventIcon");
     /// <summary>Full Path: Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
     public static readonly RequestCache<Texture2D> GlimmerMapBackground = new("Content/Events/GlimmerEvent/Textures/GlimmerMapBackground");
+    /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
+    public static readonly RequestCache<Texture2D> CrabPot = new("Content/Fishing/CrabPots/CrabPot");
+    /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
+    public static readonly RequestCache<Texture2D> CrabPot_Back = new("Content/Fishing/CrabPots/CrabPot_Back");
+    /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Highlight</summary>
+    public static readonly RequestCache<Texture2D> CrabPot_Highlight = new("Content/Fishing/CrabPots/CrabPot_Highlight");
+    /// <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotCopperItem = new("Content/Fishing/CrabPots/Items/CrabPotCopperItem");
+    /// <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotTinItem = new("Content/Fishing/CrabPots/Items/CrabPotTinItem");
+    /// <summary>Full Path: Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPotItem = new("Content/Fishing/CrabPots/Items/ObsidianCrabPotItem");
+    /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot = new("Content/Fishing/CrabPots/ObsidianCrabPot");
+    /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Content/Fishing/CrabPots/ObsidianCrabPot_Back");
+    /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Content/Fishing/CrabPots/ObsidianCrabPot_Highlight");
     /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
     public static readonly RequestCache<Texture2D> Killifish = new("Content/Fishing/Fish/Killifish");
     /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
