@@ -95,13 +95,6 @@ PlanterBox: {
 	Mistral.ItemDisplayName: 寒风花种植箱
 }
 
-HangingPot: {
-	Moray.ItemDisplayName: 海鳝花吊盆
-	Mistral.ItemDisplayName: 寒风花吊盆
-	Manacle.ItemDisplayName: 镣铐花吊盆
-	Moonflower.ItemDisplayName: 月光花吊盆
-}
-
 Moonflower.MapEntry: 月光花
 Mistral.MapEntry: 寒风花
 Manacle.MapEntry: 镣铐花

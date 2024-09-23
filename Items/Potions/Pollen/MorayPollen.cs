@@ -1,32 +1,33 @@
 ﻿using Aequus.Content.ItemPrefixes.Potions;
+using Aequus.Content.Tiles.HangingPots;
 using Aequus.CrossMod;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions.Pollen {
-    public class MorayPollen : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 25;
-        }
+namespace Aequus.Items.Potions.Pollen;
+public class MorayPollen : ModItem {
+    public override void Load() {
+        Mod.AddContent(new InstancedHangingPot(this, "MorayPot", AequusTextures.MorayPot.FullPath));
+    }
 
-        public override void SetDefaults() {
-            Item.CloneDefaults(ItemID.PixieDust);
-            Item.rare = ItemRarityID.Green;
-        }
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 25;
+    }
 
-        public override void AddRecipes() {
-            var prefix = PrefixLoader.GetPrefix(ModContent.PrefixType<SplashPrefix>());
-            for (int i = 0; i < ItemLoader.ItemCount; i++) {
-                if (prefix.CanRoll(ContentSamples.ItemsByType[i])) {
-                    var r = Recipe.Create(i, 1)
-                        .ResultPrefix<SplashPrefix>()
-                        .AddIngredient(i)
-                        .AddIngredient(Type)
-                        .DisableDecraft()
-                        .TryRegisterAfter(i);
-                    MagicStorage.AddBlacklistedItemData(i, prefix.Type);
-                }
+    public override void SetDefaults() {
+        Item.CloneDefaults(ItemID.PixieDust);
+        Item.rare = ItemRarityID.Green;
+    }
+
+    public override void AddRecipes() {
+        var prefix = PrefixLoader.GetPrefix(ModContent.PrefixType<SplashPrefix>());
+        for (int i = 0; i < ItemLoader.ItemCount; i++) {
+            if (prefix.CanRoll(ContentSamples.ItemsByType[i])) {
+                var r = Recipe.Create(i, 1)
+                    .ResultPrefix<SplashPrefix>()
+                    .AddIngredient(i)
+                    .AddIngredient(Type)
+                    .DisableDecraft()
+                    .TryRegisterAfter(i);
+                MagicStorage.AddBlacklistedItemData(i, prefix.Type);
             }
         }
     }

@@ -4014,6 +4014,18 @@
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ManaclePot">
+            <summary>Full Path: Content/Tiles/HangingPots/ManaclePot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralPot">
+            <summary>Full Path: Content/Tiles/HangingPots/MistralPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerPot">
+            <summary>Full Path: Content/Tiles/HangingPots/MoonflowerPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayPot">
+            <summary>Full Path: Content/Tiles/HangingPots/MorayPot</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
         </member>
@@ -4205,6 +4217,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.YinYangXmasPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ManaclePlanterBox">
+            <summary>Full Path: Content/Tiles/PlantBoxes/ManaclePlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralPlanterBox">
+            <summary>Full Path: Content/Tiles/PlantBoxes/MistralPlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerPlanterBox">
+            <summary>Full Path: Content/Tiles/PlantBoxes/MoonflowerPlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayPlanterBox">
+            <summary>Full Path: Content/Tiles/PlantBoxes/MorayPlanterBox</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
@@ -6771,23 +6795,11 @@
         <member name="F:Aequus.AequusTextures.HerbPots">
             <summary>Full Path: Tiles/Herbs/HerbPots</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ManacleHangingPot">
-            <summary>Full Path: Tiles/Herbs/Manacle/ManacleHangingPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ManaclePlanterBox">
-            <summary>Full Path: Tiles/Herbs/Manacle/ManaclePlanterBox</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ManacleSeeds">
             <summary>Full Path: Tiles/Herbs/Manacle/ManacleSeeds</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ManacleTile">
             <summary>Full Path: Tiles/Herbs/Manacle/ManacleTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralHangingPot">
-            <summary>Full Path: Tiles/Herbs/Mistral/MistralHangingPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralPlanterBox">
-            <summary>Full Path: Tiles/Herbs/Mistral/MistralPlanterBox</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MistralSeeds">
             <summary>Full Path: Tiles/Herbs/Mistral/MistralSeeds</summary>
@@ -6798,12 +6810,6 @@
         <member name="F:Aequus.AequusTextures.MistralTile_Pinwheel">
             <summary>Full Path: Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerHangingPot">
-            <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerHangingPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerPlanterBox">
-            <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerPlanterBox</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.MoonflowerSeeds">
             <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
         </member>
@@ -6812,12 +6818,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.MoonflowerTileEffect">
             <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerTileEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayHangingPot">
-            <summary>Full Path: Tiles/Herbs/Moray/MorayHangingPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayPlanterBox">
-            <summary>Full Path: Tiles/Herbs/Moray/MorayPlanterBox</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoraySeeds">
             <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds</summary>

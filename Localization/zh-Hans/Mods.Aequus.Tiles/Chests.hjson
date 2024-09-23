@@ -34,3 +34,8 @@ Chests: {
 		DisplayName_Trapped: 机关禁戒宝箱
 	}
 }
+
+// ManaclePot.ItemDisplayName: Mods.Aequus.Tiles.ManaclePot.ItemDisplayName
+// MistralPot.ItemDisplayName: Mods.Aequus.Tiles.MistralPot.ItemDisplayName
+// MoonflowerPot.ItemDisplayName: Mods.Aequus.Tiles.MoonflowerPot.ItemDisplayName
+// MorayPot.ItemDisplayName: Mods.Aequus.Tiles.MorayPot.ItemDisplayName

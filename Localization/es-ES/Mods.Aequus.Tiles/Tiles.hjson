@@ -99,13 +99,6 @@ PlanterBox: {
 	// Mistral.ItemDisplayName: Mistral Planter Box
 }
 
-HangingPot: {
-	// Moray.ItemDisplayName: Hanging Moray
-	// Mistral.ItemDisplayName: Hanging Mistral
-	// Manacle.ItemDisplayName: Hanging Manacle
-	// Moonflower.ItemDisplayName: Hanging Moonflower
-}
-
 // Moonflower.MapEntry: Moonflower
 // Mistral.MapEntry: Mistral
 // Manacle.MapEntry: Manacle

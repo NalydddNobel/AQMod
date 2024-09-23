@@ -65,3 +65,8 @@ HellTombstones: {
 		10: 公爵坟墓
 	}
 }
+
+ManaclePot.ItemDisplayName: 镣铐花吊盆
+MistralPot.ItemDisplayName: 寒风花吊盆
+MoonflowerPot.ItemDisplayName: 月光花吊盆
+MorayPot.ItemDisplayName: 海鳝花吊盆
