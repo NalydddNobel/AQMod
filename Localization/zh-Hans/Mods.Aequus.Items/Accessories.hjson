@@ -13,7 +13,8 @@ PotionCanteen: {
 	// "duration of 2 potions"
 	// Translate the two words inside. Ensure to keep the format looking like this example:
 	// {^0:XXXXXX;YYYYYY}
-	Tooltip: 
+	// UPDATE: If the word DOES NOT change, you do not need to keep the fancy syntax. Forgot to note that earlier.
+	Tooltip:
 		'''
 		装备后允许{0}种药水的增益具有无限的持续时间
 		光标悬停在{1}药水上并点击右键以将其填充至壶中
