@@ -87,6 +87,10 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static bool WithinRemixSafeUnderworldRange(int x) {
+        return x > (int)(Main.maxTilesX * 0.38) + 50 && x < (int)(Main.maxTilesX * 0.62);
+    }
+
     public static bool GetItemSource(this Projectile projectile, out int itemSource, out int ammoSource) {
         if (!projectile.TryGetGlobalProjectile(out AequusProjectile sources)) {
             itemSource = ItemID.None;

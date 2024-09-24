@@ -88,16 +88,34 @@ OblivionCraftingStation: {
 	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
-PlanterBox: {
-	Moray.ItemDisplayName: 海鳝花种植箱
-	Moonflower.ItemDisplayName: 月光花种植箱
-	Manacle.ItemDisplayName: 镣铐花种植箱
-	Mistral.ItemDisplayName: 寒风花种植箱
+ManaclePlanterBox.ItemDisplayName: 镣铐花种植箱
+MistralPlanterBox.ItemDisplayName: 寒风花种植箱
+MoonflowerPlanterBox.ItemDisplayName: 月光花种植箱
+MorayPlanterBox.ItemDisplayName: 海鳝花种植箱
+
+Moray: {
+	MapEntry: 海鳝花
+	ItemDisplayName: 海鳝花种
+	ItemTooltip: 会在雨夜开花并产生花粉
 }
 
-Moonflower.MapEntry: 月光花
-Mistral.MapEntry: 寒风花
-Manacle.MapEntry: 镣铐花
+Moonflower: {
+	MapEntry: 月光花
+	ItemDisplayName: 月光花种
+	ItemTooltip: 会在午夜附近开花并产生花粉
+}
+
+Mistral: {
+	MapEntry: 寒风花
+	ItemDisplayName: 寒风花种
+	ItemTooltip: 会在大风天开花并产生花粉
+}
+
+Manacle: {
+	MapEntry: 镣铐花
+	ItemDisplayName: 镣铐花种
+	ItemTooltip: 会在早晨开花并产生花粉
+}
 
 GravityBlock: {
 	MapEntry: 普通重力块

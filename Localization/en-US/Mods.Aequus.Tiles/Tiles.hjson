@@ -88,16 +88,34 @@ OblivionCraftingStation: {
 	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
-PlanterBox: {
-	Moray.ItemDisplayName: Moray Planter Box
-	Moonflower.ItemDisplayName: Moonflower Planter Box
-	Manacle.ItemDisplayName: Manacle Planter Box
-	Mistral.ItemDisplayName: Mistral Planter Box
+ManaclePlanterBox.ItemDisplayName: Manacle Planter Box
+MistralPlanterBox.ItemDisplayName: Mistral Planter Box
+MoonflowerPlanterBox.ItemDisplayName: Moonflower Planter Box
+MorayPlanterBox.ItemDisplayName: Moray Planter Box
+
+Moray: {
+	MapEntry: Moray
+	ItemDisplayName: Moray Seeds
+	ItemTooltip: Blooms and produces pollen during rainy nights
 }
 
-Moonflower.MapEntry: Moonflower
-Mistral.MapEntry: Mistral
-Manacle.MapEntry: Manacle
+Moonflower: {
+	MapEntry: Moonflower
+	ItemDisplayName: Moonflower Seeds
+	ItemTooltip: Blooms and produces pollen near midnight
+}
+
+Mistral: {
+	MapEntry: Mistral
+	ItemDisplayName: Mistral Seeds
+	ItemTooltip: Blooms and produces pollen while the wind is strong
+}
+
+Manacle: {
+	MapEntry: Manacle
+	ItemDisplayName: Manacle Seeds
+	ItemTooltip: Blooms and produces pollen in the morning
+}
 
 GravityBlock: {
 	MapEntry: Normal Gravity Block

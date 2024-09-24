@@ -1,5 +1,7 @@
-﻿using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Common;
+using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Content.Tiles.HangingPots;
+using Aequus.Content.Tiles.PlantBoxes;
 using Aequus.CrossMod;
 
 namespace Aequus.Items.Potions.Pollen;
@@ -7,6 +9,9 @@ namespace Aequus.Items.Potions.Pollen;
 public class ManaclePollen : ModItem {
     public override void Load() {
         Mod.AddContent(new InstancedHangingPot(this, "ManaclePot", AequusTextures.ManaclePot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("ManaclePlanterBox", AequusTextures.ManaclePlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedDemonSiege,
+        }));
     }
 
     public override void SetStaticDefaults() {

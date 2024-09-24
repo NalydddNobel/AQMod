@@ -1,11 +1,16 @@
-﻿using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Common;
+using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Content.Tiles.HangingPots;
+using Aequus.Content.Tiles.PlantBoxes;
 using Aequus.CrossMod;
 
 namespace Aequus.Items.Potions.Pollen;
 public class MistralPollen : ModItem {
     public override void Load() {
         Mod.AddContent(new InstancedHangingPot(this, "MistralPot", AequusTextures.MistralPot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("MistralPlanterBox", AequusTextures.MistralPlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedDustDevil,
+        }));
     }
 
     public override void SetStaticDefaults() {

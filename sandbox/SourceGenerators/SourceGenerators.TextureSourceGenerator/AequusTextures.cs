@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1515)</summary>
+/// <summary>(Total Textures: 1518)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -559,6 +559,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NeonAttack = new("Content/Elites/Misc/NeonAttack");
     /// <summary>Full Path: Content/Elites/Misc/XenonSpore</summary>
     public static readonly RequestCache<Texture2D> XenonSpore = new("Content/Elites/Misc/XenonSpore");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Manacle/BoundedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Content/Entities/PotionAffixes/Manacle/BoundedPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Moonflower/MoonflowerPollen</summary>
+    public static readonly RequestCache<Texture2D> Content_Entities_PotionAffixes_Moonflower_MoonflowerPollen = new("Content/Entities/PotionAffixes/Moonflower/MoonflowerPollen");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Moonflower/StuffedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Content/Entities/PotionAffixes/Moonflower/StuffedPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Moray/SplashPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Content/Entities/PotionAffixes/Moray/SplashPrefixGlint");
     /// <summary>Full Path: Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
     public static readonly RequestCache<Texture2D> DemonSiegeBestiaryIcon = new("Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon");
     /// <summary>Full Path: Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
@@ -1057,6 +1067,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MoonflowerPot = new("Content/Tiles/HangingPots/MoonflowerPot");
     /// <summary>Full Path: Content/Tiles/HangingPots/MorayPot</summary>
     public static readonly RequestCache<Texture2D> MorayPot = new("Content/Tiles/HangingPots/MorayPot");
+    /// <summary>Full Path: Content/Tiles/Herbs/Manacle</summary>
+    public static readonly RequestCache<Texture2D> Manacle = new("Content/Tiles/Herbs/Manacle");
+    /// <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>
+    public static readonly RequestCache<Texture2D> ManacleItem = new("Content/Tiles/Herbs/ManacleItem");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
     public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Tiles/Meadows/MeadowGrass");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
@@ -1924,7 +1938,7 @@ public partial class AequusTextures {
     /// <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
     public static readonly RequestCache<Texture2D> MistralPollen = new("Items/Potions/Pollen/MistralPollen");
     /// <summary>Full Path: Items/Potions/Pollen/MoonflowerPollen</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerPollen = new("Items/Potions/Pollen/MoonflowerPollen");
+    public static readonly RequestCache<Texture2D> Items_Potions_Pollen_MoonflowerPollen = new("Items/Potions/Pollen/MoonflowerPollen");
     /// <summary>Full Path: Items/Potions/Pollen/MorayPollen</summary>
     public static readonly RequestCache<Texture2D> MorayPollen = new("Items/Potions/Pollen/MorayPollen");
     /// <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>
@@ -2901,12 +2915,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionTable = new("Tiles/Furniture/Oblivion/OblivionTable");
     /// <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
     public static readonly RequestCache<Texture2D> OblivionWorkbench = new("Tiles/Furniture/Oblivion/OblivionWorkbench");
-    /// <summary>Full Path: Tiles/Herbs/HerbPots</summary>
-    public static readonly RequestCache<Texture2D> HerbPots = new("Tiles/Herbs/HerbPots");
-    /// <summary>Full Path: Tiles/Herbs/Manacle/ManacleSeeds</summary>
-    public static readonly RequestCache<Texture2D> ManacleSeeds = new("Tiles/Herbs/Manacle/ManacleSeeds");
-    /// <summary>Full Path: Tiles/Herbs/Manacle/ManacleTile</summary>
-    public static readonly RequestCache<Texture2D> ManacleTile = new("Tiles/Herbs/Manacle/ManacleTile");
     /// <summary>Full Path: Tiles/Herbs/Mistral/MistralSeeds</summary>
     public static readonly RequestCache<Texture2D> MistralSeeds = new("Tiles/Herbs/Mistral/MistralSeeds");
     /// <summary>Full Path: Tiles/Herbs/Mistral/MistralTile</summary>
@@ -2927,8 +2935,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MorayTile = new("Tiles/Herbs/Moray/MorayTile");
     /// <summary>Full Path: Tiles/Herbs/Moray/MorayTile_Glow</summary>
     public static readonly RequestCache<Texture2D> MorayTile_Glow = new("Tiles/Herbs/Moray/MorayTile_Glow");
-    /// <summary>Full Path: Tiles/Herbs/PlanterBoxes</summary>
-    public static readonly RequestCache<Texture2D> PlanterBoxes = new("Tiles/Herbs/PlanterBoxes");
     /// <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>
     public static readonly RequestCache<Texture2D> AloeVeraTile = new("Tiles/Misc/AloeVeraTile");
     /// <summary>Full Path: Tiles/Misc/BigGems/BigGemsTile</summary>

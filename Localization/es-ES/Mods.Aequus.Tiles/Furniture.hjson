@@ -65,3 +65,8 @@ HellTombstones: {
 		// 10: Duke Sepulcher
 	}
 }
+
+// ManaclePot.ItemDisplayName: Hanging Manacle
+// MistralPot.ItemDisplayName: Hanging Mistral
+// MoonflowerPot.ItemDisplayName: Hanging Moonflower
+// MorayPot.ItemDisplayName: Hanging Moray

@@ -323,21 +323,6 @@ HealerDrone: {
 		'''
 }
 
-MoonflowerSeeds: {
-	DisplayName: Semillas de Flor Lunar
-	Tooltip: ""
-}
-
-MistralSeeds: {
-	DisplayName: Semillas de Mistral
-	Tooltip: ""
-}
-
-ManacleSeeds: {
-	DisplayName: Semillas de Manilla
-	Tooltip: ""
-}
-
 Toolbelt: {
 	Tooltip:
 		'''

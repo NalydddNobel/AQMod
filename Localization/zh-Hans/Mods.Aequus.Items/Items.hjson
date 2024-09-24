@@ -323,21 +323,6 @@ HealerDrone: {
 		'''
 }
 
-MoonflowerSeeds: {
-	DisplayName: 月光花种
-	Tooltip: 会在午夜附近开花并产生花粉
-}
-
-MistralSeeds: {
-	DisplayName: 寒风花种
-	Tooltip: 会在大风天开花并产生花粉
-}
-
-ManacleSeeds: {
-	DisplayName: 镣铐花种
-	Tooltip: 会在早晨开花并产生花粉
-}
-
 Toolbelt: {
 	Tooltip:
 		'''

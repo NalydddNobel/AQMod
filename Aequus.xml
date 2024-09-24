@@ -477,6 +477,7 @@
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen">
             <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusPlayer"/>.</summary>
+            <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusPlayer"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_UseItem">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
@@ -726,6 +727,10 @@
         </member>
         <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawLiquids">
             <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
+        </member>
+        <member name="M:Aequus.Common.Drawing.TileAnimations.IDrawWindyGrass.Draw(Aequus.Common.Drawing.TileAnimations.TileDrawCall)">
+            <param name="drawInfo"></param>
+            <returns>Whether to run vanilla rendering. Return false to prevent vanilla rendering.</returns>
         </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
             <summary>
@@ -2449,7 +2454,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1515)</summary>
+            <summary>(Total Textures: 1518)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3279,6 +3284,21 @@
         <member name="F:Aequus.AequusTextures.XenonSpore">
             <summary>Full Path: Content/Elites/Misc/XenonSpore</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BoundedPrefixGlint">
+            <summary>Full Path: Content/Entities/PotionAffixes/Manacle/BoundedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
+            <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_Entities_PotionAffixes_Moonflower_MoonflowerPollen">
+            <summary>Full Path: Content/Entities/PotionAffixes/Moonflower/MoonflowerPollen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StuffedPrefixGlint">
+            <summary>Full Path: Content/Entities/PotionAffixes/Moonflower/StuffedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
+            <summary>Full Path: Content/Entities/PotionAffixes/Moray/SplashPrefixGlint</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DemonSiegeBestiaryIcon">
             <summary>Full Path: Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
         </member>
@@ -4025,6 +4045,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MorayPot">
             <summary>Full Path: Content/Tiles/HangingPots/MorayPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Manacle">
+            <summary>Full Path: Content/Tiles/Herbs/Manacle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ManacleItem">
+            <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
@@ -5325,7 +5351,7 @@
         <member name="F:Aequus.AequusTextures.MistralPollen">
             <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerPollen">
+        <member name="F:Aequus.AequusTextures.Items_Potions_Pollen_MoonflowerPollen">
             <summary>Full Path: Items/Potions/Pollen/MoonflowerPollen</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MorayPollen">
@@ -6792,15 +6818,6 @@
         <member name="F:Aequus.AequusTextures.OblivionWorkbench">
             <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HerbPots">
-            <summary>Full Path: Tiles/Herbs/HerbPots</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ManacleSeeds">
-            <summary>Full Path: Tiles/Herbs/Manacle/ManacleSeeds</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ManacleTile">
-            <summary>Full Path: Tiles/Herbs/Manacle/ManacleTile</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.MistralSeeds">
             <summary>Full Path: Tiles/Herbs/Mistral/MistralSeeds</summary>
         </member>
@@ -6830,9 +6847,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.MorayTile_Glow">
             <summary>Full Path: Tiles/Herbs/Moray/MorayTile_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PlanterBoxes">
-            <summary>Full Path: Tiles/Herbs/PlanterBoxes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AloeVeraTile">
             <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>
@@ -7004,6 +7018,16 @@
         <member name="F:Aequus.AequusItem.itemGravityCheck">
             <summary>
             How long the item should float for. Set to 255 for permanent duration.
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusTile.VeinmineCondition">
+            <summary>
+            1) int | x
+            <para>2) int | y</para>
+            <para>3) int | type</para>
+            <para>4) Player | player</para>
+            <para>5) int | pickaxe power</para>
+            <para>returns: Whether the block can be veinmined.</para>
             </summary>
         </member>
         <member name="T:Aequus.SkyDarkness">
@@ -7212,16 +7236,6 @@
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
             <summary>
             An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusTile.VeinmineCondition">
-            <summary>
-            1) int | x
-            <para>2) int | y</para>
-            <para>3) int | type</para>
-            <para>4) Player | player</para>
-            <para>5) int | pickaxe power</para>
-            <para>returns: Whether the block can be veinmined.</para>
             </summary>
         </member>
         <member name="P:Aequus.Helper.HasMouseItem">

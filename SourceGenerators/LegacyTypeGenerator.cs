@@ -98,6 +98,11 @@ public class LegacyTypeGenerator : ISourceGenerator {
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusSystem"] = "this",
              }),
+            ["AequusTile"] = new TypeConstructor("AequusTile", "Aequus",
+             Usings: ["Terraria.ModLoader.IO", "Aequus.Common.Structures", "System.IO", "System.Collections.Generic"],
+             MethodInputConversions: new Dictionary<string, string>() {
+                 ["AequusTile"] = "this",
+             }),
         };
         foreach (ClassDeclarationSyntax definedClass in context.Compilation.SyntaxTrees.SelectMany(tree => tree.GetRoot(context.CancellationToken)
                 .DescendantNodes()

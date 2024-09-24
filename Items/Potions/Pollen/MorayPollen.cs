@@ -1,11 +1,16 @@
-﻿using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Common;
+using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Content.Tiles.HangingPots;
+using Aequus.Content.Tiles.PlantBoxes;
 using Aequus.CrossMod;
 
 namespace Aequus.Items.Potions.Pollen;
 public class MorayPollen : ModItem {
     public override void Load() {
         Mod.AddContent(new InstancedHangingPot(this, "MorayPot", AequusTextures.MorayPot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("MorayPlanterBox", AequusTextures.MorayPlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedCrabson,
+        }));
     }
 
     public override void SetStaticDefaults() {

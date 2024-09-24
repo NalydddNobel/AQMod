@@ -1,5 +1,7 @@
-﻿using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Common;
+using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Content.Tiles.HangingPots;
+using Aequus.Content.Tiles.PlantBoxes;
 using Aequus.CrossMod;
 using Aequus.Particles.Dusts;
 
@@ -7,6 +9,11 @@ namespace Aequus.Items.Potions.Pollen;
 public class MoonflowerPollen : ModItem {
     public override void Load() {
         Mod.AddContent(new InstancedHangingPot(this, "MoonflowerPot", AequusTextures.MoonflowerPot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("MoonflowerPlanterBox", AequusTextures.MoonflowerPlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedOmegaStarite,
+            LightColor = new Vector3(0.32f, 0.16f, 0.12f),
+            GlowColor = new Color(100, 100, 100, 0)
+        }));
     }
 
     public override void SetStaticDefaults() {

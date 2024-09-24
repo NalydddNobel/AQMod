@@ -2219,20 +2219,6 @@ RadonMoss: {
 	Tooltip: ""
 }
 
-MistralSeeds: {
-}
-
-MoraySeeds: {
-	DisplayName: Moray Seeds
-	Tooltip: Blooms and produces pollen during rainy nights
-}
-
-ManacleSeeds: {
-}
-
-MoonflowerSeeds: {
-}
-
 FamiliarPickaxe: {
 	DisplayName: Familiar Pickaxe
 	Tooltip: Summons a mini version of yourself

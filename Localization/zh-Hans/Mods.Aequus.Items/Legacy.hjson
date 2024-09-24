@@ -2219,20 +2219,6 @@ RadonMoss: {
 	Tooltip: ""
 }
 
-MistralSeeds: {
-}
-
-MoraySeeds: {
-	DisplayName: 海鳝花种
-	Tooltip: 会在雨夜开花并产生花粉
-}
-
-ManacleSeeds: {
-}
-
-MoonflowerSeeds: {
-}
-
 FamiliarPickaxe: {
 	DisplayName: 令人熟悉的镐子
 	Tooltip: 召唤一个迷你版的你自己
