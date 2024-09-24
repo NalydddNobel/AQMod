@@ -46,7 +46,7 @@ public class Aluminum : UnifiedOre {
 #if !POLLUTED_OCEAN
 
     public override bool IsLoadingEnabled(Mod mod) {
-        return base.IsLoadingEnabled(mod);
+        return false;
     }
 #endif
 }
