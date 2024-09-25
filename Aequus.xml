@@ -4062,6 +4062,15 @@
         <member name="F:Aequus.AequusTextures.MistralItem">
             <summary>Full Path: Content/Tiles/Herbs/MistralItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Moonflower">
+            <summary>Full Path: Content/Tiles/Herbs/Moonflower</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerEffect">
+            <summary>Full Path: Content/Tiles/Herbs/MoonflowerEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerItem">
+            <summary>Full Path: Content/Tiles/Herbs/MoonflowerItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
         </member>
@@ -6827,15 +6836,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionWorkbench">
             <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerSeeds">
-            <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerTile">
-            <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerTileEffect">
-            <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerTileEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoraySeeds">
             <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds</summary>

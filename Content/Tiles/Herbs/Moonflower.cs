@@ -9,26 +9,25 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Herbs;
 
-[LegacyName("MistralTile")]
-public class Mistral : UnifiedHerb, IDrawWindyGrass {
+[LegacyName("MoonflowerTile")]
+public class Moonflower : UnifiedHerb, IDrawWindyGrass {
     public readonly ModItem Seeds;
 
-    public Mistral() {
+    public Moonflower() {
         Seeds = new InstancedTileItem(this);
     }
 
     public override void Load() {
         Mod.AddContent(Seeds);
-        ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "MistralSeeds");
+        ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "MoonflowerSeeds");
     }
 
     public override void SetStaticDefaultsInner(TileObjectData obj) {
+        Main.tileLighted[Type] = true;
         TileID.Sets.SwaysInWindBasic[Type] = true;
 
         obj.AnchorValidTiles = [
-            TileID.Cloud,
-            TileID.RainCloud,
-            TileID.SnowCloud,
+            TileID.Meteorite,
             TileID.Grass,
             TileID.HallowedGrass,
             ModContent.TileType<MeadowGrass>(),
@@ -37,44 +36,39 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
         obj.CoordinateHeights = [30];
         obj.DrawYOffset = -10;
 
-        Settings.PlantDrop = ModContent.ItemType<MistralPollen>();
+        Settings.PlantDrop = ModContent.ItemType<MoonflowerPollen>();
         Settings.SeedDrop = Seeds.Type;
-        Settings.BloomParticleColor = new Color(45, 150, 35);
+        Settings.BloomParticleColor = Color.Yellow;
 
         AddMapEntry(new Color(186, 122, 255), CreateMapEntryName());
-
-        DustType = DustID.Grass;
+        DustType = DustID.Grubby;
     }
 
     [Gen.AequusTile_RandomUpdate]
     internal static void OnRandomUpdate(int i, int j, int type, int wall) {
-        if (j > Main.worldSurface) {
+        if (j > Main.worldSurface || type != TileID.Meteorite) {
             return;
         }
 
-        switch (type) {
-            case TileID.Cloud:
-            case TileID.RainCloud:
-            case TileID.SnowCloud:
-                Tile tile = Framing.GetTileSafely(i, j);
-                Tile above = Framing.GetTileSafely(i, j - 1);
-                int mistralType = ModContent.TileType<Mistral>();
+        Tile tile = Framing.GetTileSafely(i, j);
+        Tile above = Framing.GetTileSafely(i, j - 1);
+        int plantType = ModContent.TileType<Moonflower>();
 
-                if (tile.Slope != SlopeType.Solid || tile.IsHalfBlock || tile.IsActuated || above.HasTile || TileHelper.ScanTilesSquare(i, j, 25, TileHelper.HasTileAction(mistralType))) {
-                    return;
-                }
-
-                WorldGen.PlaceTile(i, j - 1, mistralType, mute: true);
-                above.CopyPaintAndCoating(tile);
-
-                if (Main.netMode != NetmodeID.SinglePlayer) {
-                    NetMessage.SendTileSquare(-1, i, j - 1, 3, 3);
-                }
-                break;
+        if (tile.Slope != SlopeType.Solid || tile.IsHalfBlock || tile.IsActuated || above.HasTile || TileHelper.ScanTilesSquare(i, j, 25, TileHelper.HasTileAction(plantType))) {
+            return;
         }
+
+        WorldGen.PlaceTile(i, j - 1, plantType, mute: true);
+        above.CopyPaintAndCoating(tile);
+
+        if (Main.netMode != NetmodeID.SinglePlayer) {
+            NetMessage.SendTileSquare(-1, i, j - 1, 3, 3);
+        }
+
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        Settings.BloomParticleColor = new Color(150, 150, 30);
         Tile tile = Main.tile[i, j];
 
         if (Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom) {
@@ -99,7 +93,7 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
         }
 
         Vector2 rayPosition = groundPosition + offset + new Vector2(0f, -20f);
-        DrawPinwheel(i, j, spriteBatch, texture, rayPosition);
+        DrawLightFlare(i, j, spriteBatch, rayPosition);
 
         return false;
     }
@@ -111,29 +105,34 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
 
         Vector2 rayPosition = drawInfo.Position - new Vector2(0f, drawInfo.Origin.Y - 8f).RotatedBy(drawInfo.Rotation);
         drawInfo.DrawSelf();
-        DrawPinwheel(drawInfo.X, drawInfo.Y, drawInfo.SpriteBatch, drawInfo.Texture, rayPosition);
+        DrawLightFlare(drawInfo.X, drawInfo.Y, drawInfo.SpriteBatch, rayPosition);
 
         return false;
     }
 
-    void DrawPinwheel(int i, int j, SpriteBatch spriteBatch, Texture2D texture, Vector2 position) {
-        int rotation = Main.tileFrame[Type];
-        Rectangle frame = new Rectangle(54, 34, 28, 28);
-        spriteBatch.DrawAlign(texture, position, frame, Lighting.GetColor(i, j), rotation / 16f * MathHelper.TwoPi, 1f, SpriteEffects.None);
+    void DrawLightFlare(int i, int j, SpriteBatch spriteBatch, Vector2 position) {
+        Texture2D bloom = AequusTextures.BloomStrong;
+        Texture2D ray = AequusTextures.MoonflowerEffect;
+        float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 2f, 1f, 1.25f);
+        float hueWave = MathF.Sin(Main.GlobalTimeWrappedHourly * 7.1f + i);
+        Color rayColor = new Color(120, 100, 25).HueAdd(hueWave * 0.04f - 0.02f) with { A = 0 } * wave;
+        Vector2 rayScale = new Vector2(1f, 0.5f) * wave;
+        spriteBatch.Draw(bloom, position, null, rayColor * 0.1f, 0f, bloom.Size() / 2f, 0.2f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(bloom, position, null, rayColor * 0.2f, 0f, bloom.Size() / 2f, 0.7f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(ray, position, null, rayColor, 0f, ray.Size() / 2f, rayScale, SpriteEffects.None, 0f);
     }
 
-    public override void AnimateTile(ref int frame, ref int frameCounter) {
-        frameCounter += (int)Math.Abs(Main.windSpeedCurrent * 6f);
-        if (frameCounter > 3) {
-            frameCounter = 0;
-            frame++;
-            if (frame >= 16 || frame <= 0) {
-                frame = 0;
-            }
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
+        if (Main.tile[i, j].TileFrameX <= FullFrameWidth) {
+            return;
         }
+
+        r = 0.45f;
+        g = 0.05f;
+        b = 1f;
     }
 
     protected override bool BloomConditionsMet(int i, int j) {
-        return Main.WindyEnoughForKiteDrops;
+        return !Main.dayTime && Main.time > Main.nightLength / 2 - 3600 && Main.time < Main.nightLength / 2 + 3600;
     }
 }

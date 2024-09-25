@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Tiles.Global;
 using Aequus.Content.Items.Materials.OmniGem;
-using Aequus.Tiles.Herbs.Moonflower;
 using Aequus.Tiles.Misc;
 using Aequus.Tiles.MossCaves.ElitePlants;
 using System.Collections.Generic;
@@ -52,7 +51,6 @@ public partial class AequusTile {
                     }
                 }
             }
-            MoonflowerTile.GlobalRandomUpdate(i, j);
         }
         else {
             if (WorldGen.genRand.NextBool(ElitePlantTile.spawnChance)) {

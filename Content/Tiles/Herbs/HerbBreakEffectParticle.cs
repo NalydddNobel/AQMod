@@ -24,13 +24,14 @@ internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.P
 
             Vector2 drawCoordinates = p.Location - Main.screenPosition;
             Color color = Color.White with { A = 100 } * p.Opacity;
+            color = Color.White;
             float end = (1f - p.Opacity) * 0.2f;
             //startCircle.SetValue(end - 0.02f);
-            startCircle.SetValue(end - 0.1f);
+            startCircle.SetValue(end - 0.05f);
             endCircle.SetValue(end);
             circleColor.SetValue(color.ToVector4());
 
-            spriteBatch.DrawAlign(texture, drawCoordinates, null, color, 0f, 60f, SpriteEffects.None);
+            spriteBatch.DrawAlign(texture, drawCoordinates, null, color, 0f, 240f, SpriteEffects.None);
         }
         spriteBatch.End();
     }
@@ -43,7 +44,7 @@ internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.P
                 continue;
             }
 
-            p.Opacity -= 0.08f;
+            p.Opacity -= 0.02f;
             if (p.Opacity <= 0f) {
                 p.Active = false;
             }

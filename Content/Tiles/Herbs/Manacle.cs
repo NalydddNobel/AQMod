@@ -43,11 +43,12 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
 
         Settings.PlantDrop = ModContent.ItemType<ManaclePollen>();
         Settings.SeedDrop = Seeds.Type;
-        Settings.BloomParticleColor = Color.MediumVioletRed;
+        Settings.BloomParticleColor = new Color(255, 50, 150);
 
         ItemID.Sets.IsLavaImmuneRegardlessOfRarity[Seeds.Type] = true;
 
         AddMapEntry(new Color(75, 2, 17), CreateMapEntryName());
+        DustType = DustID.Blood;
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
@@ -86,7 +87,6 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-        Settings.BloomParticleColor = new Color(255, 50, 150);
         Tile tile = Main.tile[i, j];
 
         if (Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom || !TileDrawing.IsVisible(tile)) {
@@ -113,10 +113,6 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
         return false;
     }
 
-    protected override bool BloomConditionsMet(int i, int j) {
-        return Main.dayTime && Main.time < 17100;
-    }
-
     bool IDrawWindyGrass.Draw(TileDrawCall drawInfo) {
         if (GetState(drawInfo.X, drawInfo.Y) != HerbState.Bloom) {
             return true;
@@ -134,5 +130,9 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
         for (int k = 0; k < 4; k++) {
             spriteBatch.Draw(texture, drawCoordinates + (k * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 2.5f).ToRotationVector2() * MathF.Sin(Main.GlobalTimeWrappedHourly * 0.61f) * 2f, frame, GlowColor, rotation, origin, 1f, effects, 0f);
         }
+    }
+
+    protected override bool BloomConditionsMet(int i, int j) {
+        return Main.dayTime && Main.time < 17100;
     }
 }

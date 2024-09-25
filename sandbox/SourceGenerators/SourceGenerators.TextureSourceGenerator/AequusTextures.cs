@@ -1075,6 +1075,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Mistral = new("Content/Tiles/Herbs/Mistral");
     /// <summary>Full Path: Content/Tiles/Herbs/MistralItem</summary>
     public static readonly RequestCache<Texture2D> MistralItem = new("Content/Tiles/Herbs/MistralItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/Moonflower</summary>
+    public static readonly RequestCache<Texture2D> Moonflower = new("Content/Tiles/Herbs/Moonflower");
+    /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerEffect</summary>
+    public static readonly RequestCache<Texture2D> MoonflowerEffect = new("Content/Tiles/Herbs/MoonflowerEffect");
+    /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerItem</summary>
+    public static readonly RequestCache<Texture2D> MoonflowerItem = new("Content/Tiles/Herbs/MoonflowerItem");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
     public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Tiles/Meadows/MeadowGrass");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
@@ -2919,12 +2925,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionTable = new("Tiles/Furniture/Oblivion/OblivionTable");
     /// <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
     public static readonly RequestCache<Texture2D> OblivionWorkbench = new("Tiles/Furniture/Oblivion/OblivionWorkbench");
-    /// <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerSeeds = new("Tiles/Herbs/Moonflower/MoonflowerSeeds");
-    /// <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerTile</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerTile = new("Tiles/Herbs/Moonflower/MoonflowerTile");
-    /// <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerTileEffect</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerTileEffect = new("Tiles/Herbs/Moonflower/MoonflowerTileEffect");
     /// <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds</summary>
     public static readonly RequestCache<Texture2D> MoraySeeds = new("Tiles/Herbs/Moray/MoraySeeds");
     /// <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds_Glow</summary>

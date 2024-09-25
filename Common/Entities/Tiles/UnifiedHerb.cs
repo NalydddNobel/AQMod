@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 namespace Aequus.Common.Entities.Tiles;
 
 public abstract class UnifiedHerb : ModTile {
-    public static readonly int GrowChance = 30;
+    public static readonly int GrowChance = 15;
 
     protected int FrameWidth { get; private set; }
     protected int FullFrameWidth { get; private set; }
@@ -52,14 +52,14 @@ public abstract class UnifiedHerb : ModTile {
             TileID.PlanterBox
         ];
 
+        DustType = DustID.Grass;
+        HitSound = SoundID.Grass;
+
         SetStaticDefaultsInner(TileObjectData.newTile);
 
         FrameWidth = TileObjectData.newTile.CoordinateWidth;
         FullFrameWidth = TileObjectData.newTile.CoordinateFullWidth;
         TileObjectData.addTile(Type);
-
-        DustType = DustID.Grass;
-        HitSound = SoundID.Grass;
     }
 
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {

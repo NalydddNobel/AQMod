@@ -220,3 +220,8 @@ WallOfFleshBackpack: {
 	BackpackEnabled: Stomach Sack On
 	BackpackDisabled: Stomach Sack Off
 }
+
+MoraySeeds: {
+	DisplayName: Moray Seeds
+	Tooltip: ""
+}
