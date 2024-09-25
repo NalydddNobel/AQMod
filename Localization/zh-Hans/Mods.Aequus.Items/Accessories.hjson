@@ -222,6 +222,6 @@ WallOfFleshBackpack: {
 }
 
 MoraySeeds: {
-	// DisplayName: Moray Seeds
-	// Tooltip: ""
+	DisplayName: 海鳝花种
+	Tooltip: ""
 }
