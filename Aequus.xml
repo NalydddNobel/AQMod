@@ -477,7 +477,7 @@
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen">
             <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusPlayer"/>.</summary>
-            <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusPlayer"/>.</summary>
+            <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusTile"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusItem_UseItem">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
@@ -553,6 +553,12 @@
         </member>
         <member name="M:Aequus.Common.CodeGeneration.Gen.AequusSystem_WorldFieldAttribute`1.#ctor(System.String)">
             <summary><inheritdoc cref="T:Aequus.Common.CodeGeneration.Gen.AequusSystem_FieldAttribute`1"/> This field is Saved and Loaded through <see cref="!:AequusSystem.SaveWorldData(Terraria.ModLoader.IO.TagCompound)"/> and <see cref="!:AequusSystem.LoadWorldData(Terraria.ModLoader.IO.TagCompound)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusTile_RandomUpdate">
+            <summary><see cref="M:Aequus.AequusTile.RandomUpdate(System.Int32,System.Int32,System.Int32)"/></summary>
+        </member>
+        <member name="M:Aequus.Common.CodeGeneration.Gen.AequusTile_RandomUpdate.#ctor">
+            <summary><see cref="M:Aequus.AequusTile.RandomUpdate(System.Int32,System.Int32,System.Int32)"/></summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.IExpandedBySourceGenerator">
             <summary>Determines that this object is expanded by source generators and needs source generator extensions.</summary>
@@ -1648,9 +1654,7 @@
             </summary>
         </member>
         <member name="T:Aequus.Common.Particles.New.ParticleManager">
-            <summary>
-            Handles and updates particle systems.
-            </summary>
+            <summary>Handles and updates particle systems.</summary>
         </member>
         <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.CanDraw">
             <returns>Whether or not to draw an equip.</returns>
@@ -2417,11 +2421,11 @@
         <member name="F:Aequus.AequusSounds.ConductiveBlock3">
             <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.MoonflowerBreak">
-            <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
-        </member>
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollenCollect">
+            <summary>Full Path: Assets/Sounds/Tile/PollenCollect</summary>
         </member>
         <member name="F:Aequus.AequusSounds.RadioAmbient">
             <summary>Full Path: Assets/Sounds/Tile/RadioAmbient</summary>
@@ -2454,7 +2458,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1518)</summary>
+            <summary>(Total Textures: 1517)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -4051,6 +4055,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.ManacleItem">
             <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Mistral">
+            <summary>Full Path: Content/Tiles/Herbs/Mistral</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralItem">
+            <summary>Full Path: Content/Tiles/Herbs/MistralItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
@@ -6817,15 +6827,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionWorkbench">
             <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralSeeds">
-            <summary>Full Path: Tiles/Herbs/Mistral/MistralSeeds</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralTile">
-            <summary>Full Path: Tiles/Herbs/Mistral/MistralTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralTile_Pinwheel">
-            <summary>Full Path: Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonflowerSeeds">
             <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>

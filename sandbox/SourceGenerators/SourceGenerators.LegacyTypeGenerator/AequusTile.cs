@@ -13,5 +13,6 @@ public partial class AequusTile {
     [CompilerGenerated]
     private void RandomUpdateInner(int i, int j, int type, int wall) {
         Content.Tiles.Herbs.Manacle.OnRandomUpdate(i, j, type, wall);
+        Content.Tiles.Herbs.Mistral.OnRandomUpdate(i, j, type, wall);
     }
 }

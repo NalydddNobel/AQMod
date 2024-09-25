@@ -62,6 +62,7 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
 
     private void CheckInit() {
         if (!Active) {
+            Active = true;
             Activate();
             ModContent.GetInstance<ParticleManager>()._activeSystems.AddLast(this);
         }

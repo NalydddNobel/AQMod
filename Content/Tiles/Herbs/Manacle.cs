@@ -43,6 +43,7 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
 
         Settings.PlantDrop = ModContent.ItemType<ManaclePollen>();
         Settings.SeedDrop = Seeds.Type;
+        Settings.BloomParticleColor = Color.MediumVioletRed;
 
         ItemID.Sets.IsLavaImmuneRegardlessOfRarity[Seeds.Type] = true;
 
@@ -85,6 +86,7 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        Settings.BloomParticleColor = new Color(255, 50, 150);
         Tile tile = Main.tile[i, j];
 
         if (Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom || !TileDrawing.IsVisible(tile)) {

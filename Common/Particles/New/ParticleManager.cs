@@ -2,11 +2,9 @@
 
 namespace Aequus.Common.Particles.New;
 
-/// <summary>
-/// Handles and updates particle systems.
-/// </summary>
+/// <summary>Handles and updates particle systems.</summary>
 [Autoload(Side = ModSide.Client)]
-public class ParticleManager : ModSystem {
+public sealed class ParticleManager : ModSystem {
     private static readonly List<IParticleSystem> _registeredSystems = new();
     internal readonly LinkedList<IParticleSystem> _activeSystems = new();
 

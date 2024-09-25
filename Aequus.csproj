@@ -44,15 +44,7 @@
 	<Compile Remove="SourceGenerators\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
-			
-  <ItemGroup>
-    <None Remove="Content\Entities\PotionAffixes\Manacle\BoundedPrefixGlint.png" />
-    <None Remove="Content\Entities\PotionAffixes\Mistral\EmpoweredPrefixGlint.png" />
-    <None Remove="Content\Entities\PotionAffixes\Moonflower\MoonflowerPollen.png" />
-    <None Remove="Content\Entities\PotionAffixes\Moonflower\StuffedPrefixGlint.png" />
-    <None Remove="Content\Entities\PotionAffixes\Moray\SplashPrefixGlint.png" />
-  </ItemGroup>
-												
+															
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
 	<DefineConstants>POLLUTED_OCEAN;CUSTOM_RESOURCE_UI;CRAB_CREVICE_DISABLE</DefineConstants>

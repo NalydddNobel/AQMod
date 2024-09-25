@@ -278,10 +278,10 @@ public partial class AequusSounds {
     public static readonly SoundStyle ConductiveBlock2 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock2");
     /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
     public static readonly SoundStyle ConductiveBlock3 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock3");
-    /// <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
-    public static readonly SoundStyle MoonflowerBreak = new("Aequus/Assets/Sounds/Tile/MoonflowerBreak");
     /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
     public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
+    /// <summary>Full Path: Assets/Sounds/Tile/PollenCollect</summary>
+    public static readonly SoundStyle PollenCollect = new("Aequus/Assets/Sounds/Tile/PollenCollect");
     /// <summary>Full Path: Assets/Sounds/Tile/RadioAmbient</summary>
     public static readonly SoundStyle RadioAmbient = new("Aequus/Assets/Sounds/Tile/RadioAmbient");
     /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1518)</summary>
+/// <summary>(Total Textures: 1517)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -1071,6 +1071,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Manacle = new("Content/Tiles/Herbs/Manacle");
     /// <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>
     public static readonly RequestCache<Texture2D> ManacleItem = new("Content/Tiles/Herbs/ManacleItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/Mistral</summary>
+    public static readonly RequestCache<Texture2D> Mistral = new("Content/Tiles/Herbs/Mistral");
+    /// <summary>Full Path: Content/Tiles/Herbs/MistralItem</summary>
+    public static readonly RequestCache<Texture2D> MistralItem = new("Content/Tiles/Herbs/MistralItem");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
     public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Tiles/Meadows/MeadowGrass");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
@@ -2915,12 +2919,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionTable = new("Tiles/Furniture/Oblivion/OblivionTable");
     /// <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
     public static readonly RequestCache<Texture2D> OblivionWorkbench = new("Tiles/Furniture/Oblivion/OblivionWorkbench");
-    /// <summary>Full Path: Tiles/Herbs/Mistral/MistralSeeds</summary>
-    public static readonly RequestCache<Texture2D> MistralSeeds = new("Tiles/Herbs/Mistral/MistralSeeds");
-    /// <summary>Full Path: Tiles/Herbs/Mistral/MistralTile</summary>
-    public static readonly RequestCache<Texture2D> MistralTile = new("Tiles/Herbs/Mistral/MistralTile");
-    /// <summary>Full Path: Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
-    public static readonly RequestCache<Texture2D> MistralTile_Pinwheel = new("Tiles/Herbs/Mistral/MistralTile_Pinwheel");
     /// <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
     public static readonly RequestCache<Texture2D> MoonflowerSeeds = new("Tiles/Herbs/Moonflower/MoonflowerSeeds");
     /// <summary>Full Path: Tiles/Herbs/Moonflower/MoonflowerTile</summary>

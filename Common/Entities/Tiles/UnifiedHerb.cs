@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Content.Tiles.Herbs;
+using System.Collections.Generic;
+using Terraria.Audio;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
 
 namespace Aequus.Common.Entities.Tiles;
 
 public abstract class UnifiedHerb : ModTile {
-    public static readonly int GrowChance = 100;
+    public static readonly int GrowChance = 30;
 
     protected int FrameWidth { get; private set; }
     protected int FullFrameWidth { get; private set; }
@@ -150,9 +152,63 @@ public abstract class UnifiedHerb : ModTile {
             yield return new Item(Settings.SeedDrop, seedStack);
         }
     }
+
+    public override bool KillSound(int i, int j, bool fail) {
+        if (GetState(i, j) == HerbState.Bloom) {
+            SoundEngine.PlaySound(AequusSounds.PollenCollect with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
+        }
+
+        return base.KillSound(i, j, fail);
+    }
+
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = 1;
+    }
+
+    public override bool CreateDust(int i, int j, ref int type) {
+        if (Main.netMode == NetmodeID.Server) {
+            return true;
+        }
+
+        int petals = 3;
+        var state = GetState(i, j);
+
+        if (state == HerbState.Mature) {
+            petals = 6;
+        }
+        else if (state == HerbState.Bloom) {
+            petals = 12;
+
+
+            Vector2 center = new Vector2(i * 16f + 8f, j * 16f + 4f);
+
+            var breakEffect = Instance<HerbBreakEffectParticle>().New();
+            breakEffect.Location = center;
+            breakEffect.Opacity = 1f;
+            Helper.Punch(Vector2.UnitY, frames: 30);
+            for (int k = 0; k < 12; k++) {
+                var p = Instance<HerbBreakParticles>().New();
+                var n = (MathHelper.TwoPi / 12f * k + Main.rand.NextFloat(-0.15f, 0.15f)).ToRotationVector2();
+
+                p.Location = center + n * 1f;
+                p.Velocity = n * 6f;
+                if (p.Velocity.Y < 0f) {
+                    p.Velocity.Y *= 0.2f;
+                }
+                p.Color = Settings.BloomParticleColor;
+                p.Opacity = 1f;
+            }
+        }
+
+        for (int k = 0; k < petals; k++) {
+            Dust.NewDust(new Vector2(i * 16f, j * 16f), 16, 16, DustID.Grass);
+        }
+
+        return false;
+    }
 }
 
-public record struct HerbSettings(int SeedDrop, int PlantDrop);
+public record struct HerbSettings(int SeedDrop, int PlantDrop, Color BloomParticleColor);
 
 public enum HerbState {
     Baby,

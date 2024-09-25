@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Tiles.Global;
 using Aequus.Content.Items.Materials.OmniGem;
-using Aequus.Tiles.Herbs.Mistral;
 using Aequus.Tiles.Herbs.Moonflower;
 using Aequus.Tiles.Misc;
 using Aequus.Tiles.MossCaves.ElitePlants;
@@ -40,6 +39,8 @@ public partial class AequusTile {
         }
         GlobalRandomTileUpdateParams info = new(i, j, type, Main.tile[i, j].WallType);
 
+        RandomUpdateInner(i, j, type, Main.tile[i, j].WallType);
+
         if (Main.remixWorld ? WorldGen.genRand.NextBool() : j <= Main.worldSurface) {
             if (!Helper.ZoneSkyHeight(info.GemY)) {
                 if (Main.dayTime) {
@@ -51,7 +52,6 @@ public partial class AequusTile {
                     }
                 }
             }
-            MistralTile.GlobalRandomUpdate(i, j);
             MoonflowerTile.GlobalRandomUpdate(i, j);
         }
         else {
