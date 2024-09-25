@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1517)</summary>
+/// <summary>(Total Textures: 1515)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -1081,6 +1081,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MoonflowerEffect = new("Content/Tiles/Herbs/MoonflowerEffect");
     /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerItem</summary>
     public static readonly RequestCache<Texture2D> MoonflowerItem = new("Content/Tiles/Herbs/MoonflowerItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/Moray</summary>
+    public static readonly RequestCache<Texture2D> Moray = new("Content/Tiles/Herbs/Moray");
+    /// <summary>Full Path: Content/Tiles/Herbs/MorayItem</summary>
+    public static readonly RequestCache<Texture2D> MorayItem = new("Content/Tiles/Herbs/MorayItem");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
     public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Tiles/Meadows/MeadowGrass");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
@@ -2925,14 +2929,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionTable = new("Tiles/Furniture/Oblivion/OblivionTable");
     /// <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
     public static readonly RequestCache<Texture2D> OblivionWorkbench = new("Tiles/Furniture/Oblivion/OblivionWorkbench");
-    /// <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds</summary>
-    public static readonly RequestCache<Texture2D> MoraySeeds = new("Tiles/Herbs/Moray/MoraySeeds");
-    /// <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds_Glow</summary>
-    public static readonly RequestCache<Texture2D> MoraySeeds_Glow = new("Tiles/Herbs/Moray/MoraySeeds_Glow");
-    /// <summary>Full Path: Tiles/Herbs/Moray/MorayTile</summary>
-    public static readonly RequestCache<Texture2D> MorayTile = new("Tiles/Herbs/Moray/MorayTile");
-    /// <summary>Full Path: Tiles/Herbs/Moray/MorayTile_Glow</summary>
-    public static readonly RequestCache<Texture2D> MorayTile_Glow = new("Tiles/Herbs/Moray/MorayTile_Glow");
     /// <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>
     public static readonly RequestCache<Texture2D> AloeVeraTile = new("Tiles/Misc/AloeVeraTile");
     /// <summary>Full Path: Tiles/Misc/BigGems/BigGemsTile</summary>

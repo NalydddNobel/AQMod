@@ -46,7 +46,7 @@ public class HerbBreakParticles : ParticleArray<HerbBreakParticles.Particle> {
                 p.Velocity *= 0.8f;
             }
             if (Main.rand.NextBool(7)) {
-                p.Velocity.X += Main.rand.NextFloat(-0.75f, 0.75f);
+                p.Velocity.X += Main.rand.NextFloat(-1f, 1f);
             }
             Dust d = Dust.NewDustPerfect(p.Location, ModContent.DustType<MonoDust>(), p.Velocity * 0.2f, newColor: p.Color with { A = 0 } * p.Opacity);
             p.Velocity.Y -= Main.rand.NextFloat(0.12f);

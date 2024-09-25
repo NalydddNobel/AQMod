@@ -2,23 +2,25 @@
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
 using Aequus.Items.Potions.Pollen;
-using System;
+using System.Collections.Generic;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Herbs;
 
-[LegacyName("MoonflowerTile")]
-public class Moonflower : UnifiedHerb, IDrawWindyGrass {
+[LegacyName("MorayTile")]
+public class Moray : UnifiedHerb, IDrawWindyGrass {
     public readonly ModItem Seeds;
 
-    public Moonflower() {
+    public readonly HashSet<int> Growable = [];
+
+    public Moray() {
         Seeds = new InstancedTileItem(this, Settings: new() { Research = 25 });
     }
 
     public override void Load() {
         Mod.AddContent(Seeds);
-        ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "MoonflowerSeeds");
+        ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "MoraySeeds");
     }
 
     public override void SetStaticDefaultsInner(TileObjectData obj) {
@@ -26,32 +28,47 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
         TileID.Sets.SwaysInWindBasic[Type] = true;
 
         obj.AnchorValidTiles = [
-            TileID.Meteorite,
             TileID.Grass,
             TileID.HallowedGrass,
             ModContent.TileType<Meadows.MeadowGrass>(),
+            TileID.Sand,
+            TileID.HardenedSand,
+            TileID.Sandstone,
+            TileID.Pearlsand,
+            TileID.HallowHardenedSand,
+            TileID.HallowSandstone,
+#if !CRAB_CREVICE_DISABLE
+            ModContent.TileType<global::Aequus.Tiles.CrabCrevice.SedimentaryRockTile>(),
+#endif
+#if POLLUTED_OCEAN
+            ModContent.TileType<PollutedOcean.PolymerSands.PolymerSand>(),
+            ModContent.TileType<PollutedOcean.PolymerSands.PolymerSandstone>(),
+#endif
         ];
+
+        Growable.AddRange(obj.AnchorValidTiles[3..]);
+
         obj.CoordinateWidth = 26;
         obj.CoordinateHeights = [30];
         obj.DrawYOffset = -10;
 
-        Settings.PlantDrop = ModContent.ItemType<MoonflowerPollen>();
+        Settings.PlantDrop = ModContent.ItemType<MorayPollen>();
         Settings.SeedDrop = Seeds.Type;
-        Settings.BloomParticleColor = new Color(150, 150, 30);
+        Settings.BloomParticleColor = new Color(30, 50, 150);
 
         AddMapEntry(new Color(186, 122, 255), CreateMapEntryName());
-        DustType = DustID.Grubby;
+        DustType = DustID.BrownMoss;
     }
 
     [Gen.AequusTile_RandomUpdate]
     internal static void OnRandomUpdate(int i, int j, int type, int wall) {
-        if (j > Main.worldSurface || type != TileID.Meteorite) {
+        Tile tile = Framing.GetTileSafely(i, j);
+        if (tile.LiquidAmount < 255 || tile.LiquidType != LiquidID.Water || !WorldGen.oceanDepths(i, (int)Main.worldSurface) || !Instance<Moray>().Growable.Contains(type)) {
             return;
         }
 
-        Tile tile = Framing.GetTileSafely(i, j);
         Tile above = Framing.GetTileSafely(i, j - 1);
-        int plantType = ModContent.TileType<Moonflower>();
+        int plantType = ModContent.TileType<Moray>();
 
         if (tile.Slope != SlopeType.Solid || tile.IsHalfBlock || tile.IsActuated || above.HasTile || TileHelper.ScanTilesSquare(i, j, 25, TileHelper.HasTileAction(plantType))) {
             return;
@@ -63,13 +80,12 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
         if (Main.netMode != NetmodeID.SinglePlayer) {
             NetMessage.SendTileSquare(-1, i, j - 1, 3, 3);
         }
-
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         Tile tile = Main.tile[i, j];
 
-        if (Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom) {
+        if (Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom || !TileDrawing.IsVisible(tile)) {
             return true;
         }
 
@@ -86,12 +102,8 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
         Rectangle frame = new Rectangle(tile.TileFrameX + FrameWidth - 1, tile.TileFrameY, FrameWidth, 30);
         Vector2 drawCoordinates = groundPosition + offset;
         Vector2 origin = new Vector2(FrameWidth / 2f, frame.Height - 2f);
-        if (TileDrawing.IsVisible(tile)) {
-            spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
-        }
-
-        Vector2 rayPosition = groundPosition + offset + new Vector2(0f, -20f);
-        DrawLightFlare(i, j, spriteBatch, rayPosition);
+        spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frame with { Y = 32 }, Color.White, 0f, origin, 1f, effects, 0f);
 
         return false;
     }
@@ -103,21 +115,9 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
 
         Vector2 rayPosition = drawInfo.Position - new Vector2(0f, drawInfo.Origin.Y - 8f).RotatedBy(drawInfo.Rotation);
         drawInfo.DrawSelf();
-        DrawLightFlare(drawInfo.X, drawInfo.Y, drawInfo.SpriteBatch, rayPosition);
+        (drawInfo with { Frame = drawInfo.Frame with { Y = 32 }, Color = Color.White }).DrawSelf();
 
         return false;
-    }
-
-    void DrawLightFlare(int i, int j, SpriteBatch spriteBatch, Vector2 position) {
-        Texture2D bloom = AequusTextures.BloomStrong;
-        Texture2D ray = AequusTextures.MoonflowerEffect;
-        float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 2f, 1f, 1.25f);
-        float hueWave = MathF.Sin(Main.GlobalTimeWrappedHourly * 7.1f + i);
-        Color rayColor = new Color(120, 100, 25).HueAdd(hueWave * 0.04f - 0.02f) with { A = 0 } * wave;
-        Vector2 rayScale = new Vector2(1f, 0.5f) * wave;
-        spriteBatch.Draw(bloom, position, null, rayColor * 0.1f, 0f, bloom.Size() / 2f, 0.2f, SpriteEffects.None, 0f);
-        spriteBatch.Draw(bloom, position, null, rayColor * 0.2f, 0f, bloom.Size() / 2f, 0.7f, SpriteEffects.None, 0f);
-        spriteBatch.Draw(ray, position, null, rayColor, 0f, ray.Size() / 2f, rayScale, SpriteEffects.None, 0f);
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
@@ -125,12 +125,12 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
             return;
         }
 
-        r = 0.45f;
+        r = 0.2f;
         g = 0.05f;
-        b = 1f;
+        b = 0.66f;
     }
 
     protected override bool BloomConditionsMet(int i, int j) {
-        return !Main.dayTime && Main.time > Main.nightLength / 2 - 3600 && Main.time < Main.nightLength / 2 + 3600;
+        return Main.raining && !Main.dayTime;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
-using Aequus.Content.Tiles.Meadows;
 using Aequus.Items.Potions.Pollen;
 using System;
 using Terraria.GameContent.Drawing;
@@ -14,7 +13,7 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
     public readonly ModItem Seeds;
 
     public Mistral() {
-        Seeds = new InstancedTileItem(this);
+        Seeds = new InstancedTileItem(this, Settings: new() { Research = 25 });
     }
 
     public override void Load() {
@@ -31,7 +30,7 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
             TileID.SnowCloud,
             TileID.Grass,
             TileID.HallowedGrass,
-            ModContent.TileType<MeadowGrass>(),
+            ModContent.TileType<Meadows.MeadowGrass>(),
         ];
         obj.CoordinateWidth = 26;
         obj.CoordinateHeights = [30];

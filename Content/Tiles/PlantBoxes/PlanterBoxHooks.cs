@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Tiles.Herbs;
+using Aequus.Common.Entities.Tiles;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
@@ -25,7 +25,7 @@ internal class PlanterBoxHooks : LoadedType {
     static void On_Player_FigureOutWhatToPlace(On_Player.orig_FigureOutWhatToPlace orig, Player self, Tile targetTile, Item sItem, out int tileToCreate, out int previewPlaceStyle, out bool? overrideCanPlace, out int? forcedRandom) {
         orig(self, targetTile, sItem, out tileToCreate, out previewPlaceStyle, out overrideCanPlace, out forcedRandom);
 
-        if (targetTile.HasTile && TileLoader.GetTile(targetTile.TileType) is HerbTileBase modHerb && !modHerb.IsBlooming(Player.tileTargetX, Player.tileTargetY)) {
+        if (targetTile.HasTile && TileLoader.GetTile(targetTile.TileType) is UnifiedHerb modHerb && !modHerb.IsBlooming(Player.tileTargetX, Player.tileTargetY)) {
             overrideCanPlace = false;
         }
     }

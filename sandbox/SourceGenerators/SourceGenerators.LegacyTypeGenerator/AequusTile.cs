@@ -15,5 +15,6 @@ public partial class AequusTile {
         Content.Tiles.Herbs.Manacle.OnRandomUpdate(i, j, type, wall);
         Content.Tiles.Herbs.Mistral.OnRandomUpdate(i, j, type, wall);
         Content.Tiles.Herbs.Moonflower.OnRandomUpdate(i, j, type, wall);
+        Content.Tiles.Herbs.Moray.OnRandomUpdate(i, j, type, wall);
     }
 }

@@ -12,7 +12,6 @@ internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.P
 
         spriteBatch.Begin_Dusts(immediate: true);
         var effect = AequusShaders.CircleRings.Value;
-        effect.Techniques[0].Passes[0].Apply();
         var endCircle = effect.Parameters["uvEnd"];
         var startCircle = effect.Parameters["uvStart"];
         var circleColor = effect.Parameters["ringColor"];
@@ -24,12 +23,12 @@ internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.P
 
             Vector2 drawCoordinates = p.Location - Main.screenPosition;
             Color color = Color.White with { A = 100 } * p.Opacity;
-            color = Color.White;
             float end = (1f - p.Opacity) * 0.2f;
             //startCircle.SetValue(end - 0.02f);
-            startCircle.SetValue(end - 0.05f);
+            startCircle.SetValue(end - 0.04f);
             endCircle.SetValue(end);
             circleColor.SetValue(color.ToVector4());
+            effect.Techniques[0].Passes[0].Apply();
 
             spriteBatch.DrawAlign(texture, drawCoordinates, null, color, 0f, 240f, SpriteEffects.None);
         }

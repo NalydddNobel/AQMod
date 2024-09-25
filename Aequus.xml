@@ -2458,7 +2458,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1517)</summary>
+            <summary>(Total Textures: 1515)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -4070,6 +4070,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MoonflowerItem">
             <summary>Full Path: Content/Tiles/Herbs/MoonflowerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Moray">
+            <summary>Full Path: Content/Tiles/Herbs/Moray</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayItem">
+            <summary>Full Path: Content/Tiles/Herbs/MorayItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
@@ -6836,18 +6842,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionWorkbench">
             <summary>Full Path: Tiles/Furniture/Oblivion/OblivionWorkbench</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoraySeeds">
-            <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoraySeeds_Glow">
-            <summary>Full Path: Tiles/Herbs/Moray/MoraySeeds_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayTile">
-            <summary>Full Path: Tiles/Herbs/Moray/MorayTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayTile_Glow">
-            <summary>Full Path: Tiles/Herbs/Moray/MorayTile_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AloeVeraTile">
             <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>

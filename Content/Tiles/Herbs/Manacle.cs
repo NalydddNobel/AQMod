@@ -15,7 +15,7 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
     readonly Color GlowColor = new Color(60, 60, 60, 0);
 
     public Manacle() {
-        Seeds = new InstancedTileItem(this);
+        Seeds = new InstancedTileItem(this, Settings: new() { Research = 25 });
     }
 
     public override void Load() {
@@ -28,6 +28,9 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
         TileID.Sets.SwaysInWindBasic[Type] = true;
 
         obj.AnchorValidTiles = [
+            TileID.Grass,
+            TileID.HallowedGrass,
+            ModContent.TileType<Meadows.MeadowGrass>(),
             TileID.Ash,
             TileID.AshGrass,
             TileID.Obsidian,

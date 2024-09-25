@@ -72,7 +72,7 @@ public class WindAnimations : LoadedType {
         // Emit a delegate which will uses all of the sprite drawing data.
         cursor.EmitDelegate((int X, int Y, SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle? frame, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) => {
             if (TileLoader.GetTile(Main.tile[X, Y].TileType) is IDrawWindyGrass drawWindyGrass) {
-                return drawWindyGrass.Draw(new TileDrawCall(X, Y, spriteBatch, texture, position, frame, color, rotation, origin, scale, effects, layerDepth));
+                return drawWindyGrass.Draw(new TileDrawCall(X, Y, spriteBatch, texture, position, frame ?? texture.Bounds, color, rotation, origin, scale, effects, layerDepth));
             }
 
             // test
@@ -89,7 +89,7 @@ public class WindAnimations : LoadedType {
     }
 }
 
-public record struct TileDrawCall(int X, int Y, SpriteBatch SpriteBatch, Texture2D Texture, Vector2 Position, Rectangle? Frame, Color Color, float Rotation, Vector2 Origin, float Scale, SpriteEffects SpriteEffects, float _layerDepth) {
+public record struct TileDrawCall(int X, int Y, SpriteBatch SpriteBatch, Texture2D Texture, Vector2 Position, Rectangle Frame, Color Color, float Rotation, Vector2 Origin, float Scale, SpriteEffects SpriteEffects, float _layerDepth) {
     public void DrawSelf() {
         SpriteBatch.Draw(Texture, Position, Frame, Color, Rotation, Origin, Scale, SpriteEffects, _layerDepth);
     }
