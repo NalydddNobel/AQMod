@@ -1059,32 +1059,40 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Osiris = new("Content/Necromancy/Sceptres/Forbidden/Osiris");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
     public static readonly RequestCache<Texture2D> Osiris_Glow = new("Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
-    /// <summary>Full Path: Content/Tiles/HangingPots/ManaclePot</summary>
-    public static readonly RequestCache<Texture2D> ManaclePot = new("Content/Tiles/HangingPots/ManaclePot");
-    /// <summary>Full Path: Content/Tiles/HangingPots/MistralPot</summary>
-    public static readonly RequestCache<Texture2D> MistralPot = new("Content/Tiles/HangingPots/MistralPot");
-    /// <summary>Full Path: Content/Tiles/HangingPots/MoonflowerPot</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerPot = new("Content/Tiles/HangingPots/MoonflowerPot");
-    /// <summary>Full Path: Content/Tiles/HangingPots/MorayPot</summary>
-    public static readonly RequestCache<Texture2D> MorayPot = new("Content/Tiles/HangingPots/MorayPot");
     /// <summary>Full Path: Content/Tiles/Herbs/Manacle</summary>
     public static readonly RequestCache<Texture2D> Manacle = new("Content/Tiles/Herbs/Manacle");
     /// <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>
     public static readonly RequestCache<Texture2D> ManacleItem = new("Content/Tiles/Herbs/ManacleItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/ManaclePlanterBox</summary>
+    public static readonly RequestCache<Texture2D> ManaclePlanterBox = new("Content/Tiles/Herbs/ManaclePlanterBox");
+    /// <summary>Full Path: Content/Tiles/Herbs/ManaclePot</summary>
+    public static readonly RequestCache<Texture2D> ManaclePot = new("Content/Tiles/Herbs/ManaclePot");
     /// <summary>Full Path: Content/Tiles/Herbs/Mistral</summary>
     public static readonly RequestCache<Texture2D> Mistral = new("Content/Tiles/Herbs/Mistral");
     /// <summary>Full Path: Content/Tiles/Herbs/MistralItem</summary>
     public static readonly RequestCache<Texture2D> MistralItem = new("Content/Tiles/Herbs/MistralItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/MistralPlanterBox</summary>
+    public static readonly RequestCache<Texture2D> MistralPlanterBox = new("Content/Tiles/Herbs/MistralPlanterBox");
+    /// <summary>Full Path: Content/Tiles/Herbs/MistralPot</summary>
+    public static readonly RequestCache<Texture2D> MistralPot = new("Content/Tiles/Herbs/MistralPot");
     /// <summary>Full Path: Content/Tiles/Herbs/Moonflower</summary>
     public static readonly RequestCache<Texture2D> Moonflower = new("Content/Tiles/Herbs/Moonflower");
     /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerEffect</summary>
     public static readonly RequestCache<Texture2D> MoonflowerEffect = new("Content/Tiles/Herbs/MoonflowerEffect");
     /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerItem</summary>
     public static readonly RequestCache<Texture2D> MoonflowerItem = new("Content/Tiles/Herbs/MoonflowerItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerPlanterBox</summary>
+    public static readonly RequestCache<Texture2D> MoonflowerPlanterBox = new("Content/Tiles/Herbs/MoonflowerPlanterBox");
+    /// <summary>Full Path: Content/Tiles/Herbs/MoonflowerPot</summary>
+    public static readonly RequestCache<Texture2D> MoonflowerPot = new("Content/Tiles/Herbs/MoonflowerPot");
     /// <summary>Full Path: Content/Tiles/Herbs/Moray</summary>
     public static readonly RequestCache<Texture2D> Moray = new("Content/Tiles/Herbs/Moray");
     /// <summary>Full Path: Content/Tiles/Herbs/MorayItem</summary>
     public static readonly RequestCache<Texture2D> MorayItem = new("Content/Tiles/Herbs/MorayItem");
+    /// <summary>Full Path: Content/Tiles/Herbs/MorayPlanterBox</summary>
+    public static readonly RequestCache<Texture2D> MorayPlanterBox = new("Content/Tiles/Herbs/MorayPlanterBox");
+    /// <summary>Full Path: Content/Tiles/Herbs/MorayPot</summary>
+    public static readonly RequestCache<Texture2D> MorayPot = new("Content/Tiles/Herbs/MorayPot");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
     public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Tiles/Meadows/MeadowGrass");
     /// <summary>Full Path: Content/Tiles/Meadows/MeadowGrassItem</summary>
@@ -1213,14 +1221,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> YinYangXmasPainting = new("Content/Tiles/Paintings/YinYang/YinYangXmasPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
     public static readonly RequestCache<Texture2D> YinYangXmasPaintingItem = new("Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem");
-    /// <summary>Full Path: Content/Tiles/PlantBoxes/ManaclePlanterBox</summary>
-    public static readonly RequestCache<Texture2D> ManaclePlanterBox = new("Content/Tiles/PlantBoxes/ManaclePlanterBox");
-    /// <summary>Full Path: Content/Tiles/PlantBoxes/MistralPlanterBox</summary>
-    public static readonly RequestCache<Texture2D> MistralPlanterBox = new("Content/Tiles/PlantBoxes/MistralPlanterBox");
-    /// <summary>Full Path: Content/Tiles/PlantBoxes/MoonflowerPlanterBox</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerPlanterBox = new("Content/Tiles/PlantBoxes/MoonflowerPlanterBox");
-    /// <summary>Full Path: Content/Tiles/PlantBoxes/MorayPlanterBox</summary>
-    public static readonly RequestCache<Texture2D> MorayPlanterBox = new("Content/Tiles/PlantBoxes/MorayPlanterBox");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
     public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>

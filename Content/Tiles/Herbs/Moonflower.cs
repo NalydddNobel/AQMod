@@ -1,6 +1,8 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿using Aequus.Common;
+using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
+using Aequus.Common.Structures.ID;
 using Aequus.Items.Potions.Pollen;
 using System;
 using Terraria.GameContent.Drawing;
@@ -18,6 +20,12 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
 
     public override void Load() {
         Mod.AddContent(Seeds);
+        Mod.AddContent(new InstancedHangingPot(new TypeId<MoonflowerPollen>(), "MoonflowerPot", AequusTextures.MoonflowerPot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("MoonflowerPlanterBox", AequusTextures.MoonflowerPlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedOmegaStarite,
+            LightColor = new Vector3(0.32f, 0.16f, 0.12f),
+            GlowColor = new Color(100, 100, 100, 0)
+        }));
         ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "MoonflowerSeeds");
     }
 

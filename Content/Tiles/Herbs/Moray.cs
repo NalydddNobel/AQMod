@@ -1,6 +1,8 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿using Aequus.Common;
+using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
+using Aequus.Common.Structures.ID;
 using Aequus.Items.Potions.Pollen;
 using System.Collections.Generic;
 using Terraria.GameContent.Drawing;
@@ -20,6 +22,10 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
     public override void Load() {
         Mod.AddContent(Seeds);
+        Mod.AddContent(new InstancedHangingPot(new TypeId<MorayPollen>(), "MorayPot", AequusTextures.MorayPot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("MorayPlanterBox", AequusTextures.MorayPlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedCrabson,
+        }));
         ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "MoraySeeds");
     }
 

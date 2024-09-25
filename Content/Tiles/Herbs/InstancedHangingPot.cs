@@ -1,24 +1,25 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing;
 using Aequus.Common.Entities.Items;
+using Aequus.Common.Structures.ID;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.HangingPots;
+namespace Aequus.Content.Tiles.Herbs;
 
 internal class InstancedHangingPot : InstancedModTile, IAddRecipes {
     private readonly ModItem Item;
-    private readonly ModItem Parent;
+    private readonly IProvideId Ingredient;
 
-    public InstancedHangingPot(ModItem Parent, string Name, string Texture) : base(Name, Texture) {
+    public InstancedHangingPot(IProvideId ingredient, string Name, string Texture) : base(Name, Texture) {
         Item = new InstancedTileItem(this, 0, Settings: new() {
             Value = Terraria.Item.silver,
             Texture = Texture,
             //Journey: new JourneySortByTileId(TileID.PotsSuspended)
         });
 
-        this.Parent = Parent;
+        Ingredient = ingredient;
     }
 
     public override void Load() {
@@ -78,7 +79,7 @@ internal class InstancedHangingPot : InstancedModTile, IAddRecipes {
     void IAddRecipes.AddRecipes() {
         Item.CreateRecipe()
             .AddIngredient(ItemID.PotSuspended)
-            .AddIngredient(Parent.Type)
+            .AddIngredient(Ingredient.GetId())
             .Register()
             .SortAfterFirstRecipesOf(ItemID.PotSuspendedFireblossom);
     }

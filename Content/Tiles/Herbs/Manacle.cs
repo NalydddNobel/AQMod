@@ -1,6 +1,8 @@
-﻿using Aequus.Common.ContentTemplates.Generic;
+﻿using Aequus.Common;
+using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
+using Aequus.Common.Structures.ID;
 using Aequus.Items.Potions.Pollen;
 using System;
 using Terraria.GameContent.Drawing;
@@ -20,6 +22,10 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
 
     public override void Load() {
         Mod.AddContent(Seeds);
+        Mod.AddContent(new InstancedHangingPot(new TypeId<ManaclePollen>(), "ManaclePot", AequusTextures.ManaclePot.FullPath));
+        Mod.AddContent(new InstancedPlanterBox("ManaclePlanterBox", AequusTextures.ManaclePlanterBox.FullPath, new() {
+            SellCondition = AequusConditions.DownedDemonSiege,
+        }));
         ModTypeLookup<ModItem>.RegisterLegacyNames(Seeds, "ManacleSeeds");
     }
 

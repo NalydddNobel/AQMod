@@ -3,7 +3,7 @@ using Aequus.Common.Entities.Tiles;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
-namespace Aequus.Content.Tiles.PlantBoxes;
+namespace Aequus.Content.Tiles.Herbs;
 
 internal class PlanterBoxHooks : LoadedType {
     protected override void Load() {

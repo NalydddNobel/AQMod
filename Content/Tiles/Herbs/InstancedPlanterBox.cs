@@ -7,7 +7,7 @@ using System.Linq;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.PlantBoxes;
+namespace Aequus.Content.Tiles.Herbs;
 
 internal class InstancedPlanterBox : InstancedTile, IPostSetupContent, IAddRecipes {
     public readonly ModItem Item;

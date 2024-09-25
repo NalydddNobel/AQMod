@@ -4038,29 +4038,29 @@
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ManaclePot">
-            <summary>Full Path: Content/Tiles/HangingPots/ManaclePot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralPot">
-            <summary>Full Path: Content/Tiles/HangingPots/MistralPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerPot">
-            <summary>Full Path: Content/Tiles/HangingPots/MoonflowerPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayPot">
-            <summary>Full Path: Content/Tiles/HangingPots/MorayPot</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Manacle">
             <summary>Full Path: Content/Tiles/Herbs/Manacle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ManacleItem">
             <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ManaclePlanterBox">
+            <summary>Full Path: Content/Tiles/Herbs/ManaclePlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ManaclePot">
+            <summary>Full Path: Content/Tiles/Herbs/ManaclePot</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Mistral">
             <summary>Full Path: Content/Tiles/Herbs/Mistral</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MistralItem">
             <summary>Full Path: Content/Tiles/Herbs/MistralItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralPlanterBox">
+            <summary>Full Path: Content/Tiles/Herbs/MistralPlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralPot">
+            <summary>Full Path: Content/Tiles/Herbs/MistralPot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Moonflower">
             <summary>Full Path: Content/Tiles/Herbs/Moonflower</summary>
@@ -4071,11 +4071,23 @@
         <member name="F:Aequus.AequusTextures.MoonflowerItem">
             <summary>Full Path: Content/Tiles/Herbs/MoonflowerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerPlanterBox">
+            <summary>Full Path: Content/Tiles/Herbs/MoonflowerPlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerPot">
+            <summary>Full Path: Content/Tiles/Herbs/MoonflowerPot</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Moray">
             <summary>Full Path: Content/Tiles/Herbs/Moray</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MorayItem">
             <summary>Full Path: Content/Tiles/Herbs/MorayItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayPlanterBox">
+            <summary>Full Path: Content/Tiles/Herbs/MorayPlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayPot">
+            <summary>Full Path: Content/Tiles/Herbs/MorayPot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadows/MeadowGrass</summary>
@@ -4268,18 +4280,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.YinYangXmasPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/YinYang/YinYangXmasPaintingItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ManaclePlanterBox">
-            <summary>Full Path: Content/Tiles/PlantBoxes/ManaclePlanterBox</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralPlanterBox">
-            <summary>Full Path: Content/Tiles/PlantBoxes/MistralPlanterBox</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerPlanterBox">
-            <summary>Full Path: Content/Tiles/PlantBoxes/MoonflowerPlanterBox</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayPlanterBox">
-            <summary>Full Path: Content/Tiles/PlantBoxes/MorayPlanterBox</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
