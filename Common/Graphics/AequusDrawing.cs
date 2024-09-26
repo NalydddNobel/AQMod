@@ -24,7 +24,7 @@ namespace Aequus.Common.Graphics {
             CullMode = CullMode.None,
             ScissorTestEnable = true
         };
-        public static SpriteBatchCache spriteBatchCache = new();
+        public static LegacySpriteBatchCache spriteBatchCache = new();
 
         public static Matrix WorldViewPointMatrix {
             get {

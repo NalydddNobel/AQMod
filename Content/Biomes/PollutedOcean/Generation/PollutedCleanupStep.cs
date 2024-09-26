@@ -11,8 +11,8 @@ internal class PollutedCleanupStep : AGenStep {
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         SetMessage(progress);
-        var isPollutedTile = ModContent.GetInstance<PollutedTiles>().IsPolluted;
-        var removeFromGen = ModContent.GetInstance<PollutedTiles>().RemoveFromGen;
+        var isPollutedTile = ModContent.GetInstance<PollutedOceanSystem>().IsPolluted;
+        var removeFromGen = ModContent.GetInstance<PollutedOceanSystem>().RemoveFromGen;
         ModContent.GetInstance<PollutedBiomeStep>().GetIterationValues(out int left, out int right, out int top, out int bottom);
         for (int i = left; i < right; i++) {
             for (int j = top; j < bottom; j++) {

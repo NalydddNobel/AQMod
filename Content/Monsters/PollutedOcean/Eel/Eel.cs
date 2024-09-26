@@ -12,8 +12,8 @@ namespace Aequus.Content.Monsters.PollutedOcean.Eel;
 
 [AutoloadBanner]
 #if POLLUTED_OCEAN_TODO
-[BestiaryBiome<PollutedOceanBiomeSurface>()]
-[BestiaryBiome<PollutedOceanBiomeUnderground>()]
+[BestiaryBiome<PollutedOceanSurface>()]
+[BestiaryBiome<PollutedOceanUnderground>()]
 #endif
 internal class Eel : ModNPC {
     #region AI Values

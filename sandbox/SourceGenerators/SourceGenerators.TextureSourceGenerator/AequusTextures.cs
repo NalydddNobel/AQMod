@@ -377,16 +377,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OceanCreviceBG_3 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceRain</summary>
     public static readonly RequestCache<Texture2D> OceanCreviceRain = new("Content/Biomes/PollutedOcean/Background/OceanCreviceRain");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/PollutedOceanSurfaceBG</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanSurfaceBG = new("Content/Biomes/PollutedOcean/Background/PollutedOceanSurfaceBG");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanBiomeSurface_Background = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanBiomeSurface_Icon = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanBiomeUnderground_Background = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanBiomeUnderground_Icon = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/PollutedSurfaceBG</summary>
+    public static readonly RequestCache<Texture2D> PollutedSurfaceBG = new("Content/Biomes/PollutedOcean/Background/PollutedSurfaceBG");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Textures/Biome_PollutedSurface</summary>
+    public static readonly RequestCache<Texture2D> Biome_PollutedSurface = new("Content/Biomes/PollutedOcean/Textures/Biome_PollutedSurface");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Textures/Biome_PollutedUnderground</summary>
+    public static readonly RequestCache<Texture2D> Biome_PollutedUnderground = new("Content/Biomes/PollutedOcean/Textures/Biome_PollutedUnderground");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Textures/MapBG_PollutedSurface</summary>
+    public static readonly RequestCache<Texture2D> MapBG_PollutedSurface = new("Content/Biomes/PollutedOcean/Textures/MapBG_PollutedSurface");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Textures/MapBG_PollutedUnderground</summary>
+    public static readonly RequestCache<Texture2D> MapBG_PollutedUnderground = new("Content/Biomes/PollutedOcean/Textures/MapBG_PollutedUnderground");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater</summary>
     public static readonly RequestCache<Texture2D> PollutedWater = new("Content/Biomes/PollutedOcean/Water/PollutedWater");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Block</summary>

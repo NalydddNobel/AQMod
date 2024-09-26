@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ContentTemplates;
+using Aequus.Content.Biomes.PollutedOcean;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Ambient.Pots;
@@ -15,16 +16,11 @@ public class TrashPots2x2 : UnifiedBreakablePot {
     }
 
     protected override bool DoSpecialBiomeTorch(ref int itemID) {
-#if POLLUTED_OCEAN_TODO
-        itemID = ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
-#endif
+        itemID = ModContent.GetInstance<PollutedOceanUnderground>().BiomeTorchItemType;
         return true;
     }
 
     protected override int ChooseGlowstick(int i, int j) {
-#if POLLUTED_OCEAN_TODO
-        return ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
-#endif
-        return ItemID.Glowstick;
+        return ModContent.GetInstance<PollutedOceanUnderground>().BiomeTorchItemType;
     }
 }

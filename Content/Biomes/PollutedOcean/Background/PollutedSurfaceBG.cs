@@ -1,8 +1,8 @@
 ﻿namespace Aequus.Content.Biomes.PollutedOcean.Background;
 
-public class PollutedOceanSurfaceBG : ModSurfaceBackgroundStyle {
+public class PollutedSurfaceBG : ModSurfaceBackgroundStyle {
     public override void Load() {
-        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.PollutedOceanSurfaceBG.FullPath);
+        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.PollutedSurfaceBG.FullPath);
     }
 
     public override void ModifyFarFades(float[] fades, float transitionSpeed) {
@@ -23,7 +23,7 @@ public class PollutedOceanSurfaceBG : ModSurfaceBackgroundStyle {
     }
 
     public override int ChooseFarTexture() {
-        return BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.PollutedOceanSurfaceBG.Path);
+        return BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.PollutedSurfaceBG.Path);
     }
 
     public override int ChooseMiddleTexture() {

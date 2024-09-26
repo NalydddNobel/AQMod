@@ -10,8 +10,8 @@ namespace Aequus.Content.Monsters.PollutedOcean.OilSlime;
 
 [AutoloadBanner]
 #if POLLUTED_OCEAN_TODO
-[BestiaryBiome<PollutedOceanBiomeSurface>()]
-[BestiaryBiome<PollutedOceanBiomeUnderground>()]
+[BestiaryBiome<PollutedOceanSurface>()]
+[BestiaryBiome<PollutedOceanUnderground>()]
 #endif
 public class OilSlime : ModNPC, IBodyItemContainer, IOilSlimeInheritedBurning {
     public int ItemId { get => (int)NPC.ai[1]; set => NPC.ai[1] = value; }

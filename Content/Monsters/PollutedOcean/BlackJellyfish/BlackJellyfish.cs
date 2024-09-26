@@ -14,7 +14,7 @@ namespace Aequus.Content.Monsters.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
 #if POLLUTED_OCEAN_TODO
-[BestiaryBiome<PollutedOceanBiomeUnderground>()]
+[BestiaryBiome<PollutedOceanUnderground>()]
 #endif
 public partial class BlackJellyfish : ModNPC, IJellyfishAIProvider {
     public static int AttackRange => 60;

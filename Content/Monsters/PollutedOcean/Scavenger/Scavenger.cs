@@ -18,7 +18,7 @@ namespace Aequus.Content.Monsters.PollutedOcean.Scavenger;
 [AutoloadBanner]
 //[AutoloadStatue]
 #if POLLUTED_OCEAN_TODO
-[BestiaryBiome<PollutedOceanBiomeUnderground>()]
+[BestiaryBiome<PollutedOceanUnderground>()]
 #endif
 public partial class Scavenger : ModNPC, IFighterAIProvider, IPostPopulateItemDropDatabase {
     public const int Slot_Head = 0;

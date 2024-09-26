@@ -3,6 +3,8 @@
 namespace Aequus.Common.Graphics.Shaders;
 
 public class AequusShaders {
+    public static readonly RequestCache<Effect> Multiply = Get("Multiply");
+    public static readonly RequestCache<Effect> VertexShader = Get("VertexShader");
     public static readonly RequestCache<Effect> CircleRings = Get("CircleRings");
     public static readonly RequestCache<Effect> BubbleMerge = Get("BubbleMerge");
     public static readonly RequestCache<Effect> UVVertexShader = Get("UVVertexShader");

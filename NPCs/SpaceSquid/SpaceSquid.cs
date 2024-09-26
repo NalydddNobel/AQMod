@@ -735,7 +735,7 @@ namespace Aequus.NPCs.SpaceSquid {
         public static void DrawBGAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Vector2 screenPos, Rectangle frame, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, bool bestiary = false) {
             int aura = (int)(Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
             if (aura > 0f) {
-                var batchData = new SpriteBatchCache(spriteBatch);
+                var batchData = new LegacySpriteBatchCache(spriteBatch);
                 spriteBatch.End();
                 if (bestiary) {
                     RasterizerState rasterizer = new RasterizerState {

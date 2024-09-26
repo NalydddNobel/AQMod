@@ -58,7 +58,7 @@ internal class PollutedDecorationStep : AGenStep {
         ChestsPlaced = 0;
 
         var biome = Instance<PollutedBiomeStep>();
-        var isPolluted = Instance<PollutedTiles>().IsPolluted;
+        var isPolluted = Instance<PollutedOceanSystem>().IsPolluted;
 
         int left = biome.LeftPadded;
         int right = biome.RightPadded;
@@ -100,7 +100,7 @@ internal class PollutedDecorationStep : AGenStep {
     }
 
     private static void CheckTile(int i, int j, Tile tile, ref bool wantChest) {
-        if (Instance<PollutedTiles>().RemoveFromGen.Contains(tile.TileType)) {
+        if (Instance<PollutedOceanSystem>().RemoveFromGen.Contains(tile.TileType)) {
             WorldGen.KillTile(i, j);
         }
 

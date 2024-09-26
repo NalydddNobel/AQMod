@@ -48,7 +48,7 @@ public class PolymerSand : MultiMergeTile, IAddRecipes {
         HitSound = SoundID.Dig;
         MineResist = 0.75f;
 
-        Instance<PollutedTiles>().IsPolluted.Add(Type);
+        Instance<PollutedOceanSystem>().IsPolluted.Add(Type);
     }
 
     void IAddRecipes.AddRecipes() {

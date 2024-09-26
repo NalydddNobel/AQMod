@@ -10,12 +10,12 @@ Biomes: {
 		TownNPCDialogueName: 遗境祭坛
 	}
 
-	PollutedOceanBiomeSurface: {
+	PollutedOceanSurface: {
 		DisplayName: 被污染的海洋
 		TownNPCDialogueName: 被污染的海洋
 	}
 
-	PollutedOceanBiomeUnderground: {
+	PollutedOceanUnderground: {
 		DisplayName: 被污染的地底
 		TownNPCDialogueName: 被污染的地底
 	}
@@ -31,8 +31,8 @@ Biomes: {
 	}
 
 	CrabCreviceBiome: {
-		DisplayName: "{$Biomes.PollutedOceanBiomeSurface.DisplayName}"
-		TownNPCDialogueName: "{$Biomes.PollutedOceanBiomeSurface.TownNPCDialogueName}"
+		DisplayName: "{$Biomes.PollutedOceanSurface.DisplayName}"
+		TownNPCDialogueName: "{$Biomes.PollutedOceanSurface.TownNPCDialogueName}"
 	}
 
 	GaleStreamsZone: {

@@ -1,13 +1,12 @@
-﻿#if POLLUTED_OCEAN_TODO
-using Aequus.Core.Graphics;
-using Aequus.Core.Structures.Pooling;
+﻿using Aequus.Common.Entities.Backgrounds;
+using Aequus.Common.Structures.Pooling;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Background;
 
-public class PollutedOceanUndergroundBG : CustomDrawnUGBackground {
+public class PollutedUndergroundBG : CustomDrawnUGBackground, ICavernLitUGBackground {
     public override void FillTextureArray(int[] textureSlots) {
         textureSlots[0] = 290; // Beach Top Layer
         textureSlots[1] = 291; // Beach Fill
@@ -69,7 +68,7 @@ public class PollutedOceanUndergroundBG : CustomDrawnUGBackground {
         double timeElapsed = gameTime.ElapsedGameTime.TotalMilliseconds * timeScale;
         _nextRainDroplet += timeElapsed;
 
-        Texture2D rainTexture = AequusTextures.BackgroundRainDroplets;
+        Texture2D rainTexture = AequusTextures.OceanCreviceRain;
         Rectangle frame = rainTexture.Frame(horizontalFrames: 3, frameX: 2);
         Vector2 velocity = new Vector2(Main.windSpeedCurrent * 0.01f, 1f) * (float)timeElapsed * 0.9f;
         float rotation = velocity.ToRotation() - MathHelper.PiOver2;
@@ -107,5 +106,8 @@ public class PollutedOceanUndergroundBG : CustomDrawnUGBackground {
         }
     }
     #endregion
+
+    Vector3 ICavernLitUGBackground.GetLightColor() {
+        return new Vector3(0f, 0.1f, 0.1f);
+    }
 }
-#endif

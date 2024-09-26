@@ -93,7 +93,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
             drawRectangle.Y += y + (int)(y * approxProgress);
             drawRectangle.Y = Math.Max(drawRectangle.Y, -400);
             var starEndColor = Main.tenthAnniversaryWorld ? Color.Pink : Color.Blue;
-            var cache = new SpriteBatchCache(spriteBatch);
+            var cache = new LegacySpriteBatchCache(spriteBatch);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, cache.customEffect, cache.transformMatrix);
 

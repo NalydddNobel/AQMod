@@ -814,6 +814,13 @@
         <member name="M:Aequus.Common.Structures.RefCache`1.RestoreOriginalValue">
             <summary>Restores overriden values back to their original value.</summary>
         </member>
+        <member name="M:Aequus.Common.Entities.Backgrounds.CustomDrawnUGBackground.RenderBackground(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            Renders the background to the background render target.
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="graphicsDevice"></param>
+        </member>
         <member name="M:Aequus.Common.Entities.Banners.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
             <summary>
             Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
@@ -1964,6 +1971,14 @@
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
+        <member name="M:Aequus.Common.Utilities.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
+            Use <see cref="M:Aequus.Common.Utilities.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
+            </summary>
+            <param name="spriteBatch"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="M:Aequus.Common.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
@@ -3015,20 +3030,20 @@
         <member name="F:Aequus.AequusTextures.OceanCreviceRain">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceRain</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanSurfaceBG">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Background/PollutedOceanSurfaceBG</summary>
+        <member name="F:Aequus.AequusTextures.PollutedSurfaceBG">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/PollutedSurfaceBG</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeSurface_Background">
-            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
+        <member name="F:Aequus.AequusTextures.Biome_PollutedSurface">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Textures/Biome_PollutedSurface</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeSurface_Icon">
-            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
+        <member name="F:Aequus.AequusTextures.Biome_PollutedUnderground">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Textures/Biome_PollutedUnderground</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeUnderground_Background">
-            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background</summary>
+        <member name="F:Aequus.AequusTextures.MapBG_PollutedSurface">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Textures/MapBG_PollutedSurface</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeUnderground_Icon">
-            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
+        <member name="F:Aequus.AequusTextures.MapBG_PollutedUnderground">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Textures/MapBG_PollutedUnderground</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PollutedWater">
             <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater</summary>

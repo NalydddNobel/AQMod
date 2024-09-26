@@ -6,7 +6,7 @@ namespace Aequus.Content.Monsters.PollutedOcean.Conductor;
 
 [AutoloadBanner]
 #if POLLUTED_OCEAN_TODO
-[BestiaryBiome<PollutedOceanBiomeUnderground>()]
+[BestiaryBiome<PollutedOceanUnderground>()]
 #endif
 public partial class Conductor : ModNPC {
     #region States

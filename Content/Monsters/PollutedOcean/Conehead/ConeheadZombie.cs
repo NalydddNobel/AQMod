@@ -22,7 +22,7 @@ public class ConeheadZombieLoader : LoadedType {
 }
 
 #if POLLUTED_OCEAN_TODO
-[BestiaryBiome<PollutedOceanBiomeSurface>()]
+[BestiaryBiome<PollutedOceanSurface>()]
 #endif
 internal class InstancedConeheadZombie : InstancedNPC, IPostPopulateItemDropDatabase {
     private readonly int _zombieClone;

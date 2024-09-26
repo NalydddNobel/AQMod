@@ -13,14 +13,14 @@ namespace Aequus.Content.CursorDyes.Items {
 
         public class DyableCursorDye : ICursorDye {
             public int Type { get; set; }
-            private SpriteBatchCache cache;
+            private LegacySpriteBatchCache cache;
 
             Color? ICursorDye.GetCursorColor() => Color.White;
 
             bool ICursorDye.PreDrawCursor(ref Vector2 bonus, ref bool smart) {
                 cache = null;
                 if (cursorShaderID != 0) {
-                    cache = new SpriteBatchCache(Main.spriteBatch);
+                    cache = new LegacySpriteBatchCache(Main.spriteBatch);
                     Main.spriteBatch.End();
                     Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, cache.rasterizerState, null, cache.transformMatrix);
                     var loc = Main.LocalPlayer.position;

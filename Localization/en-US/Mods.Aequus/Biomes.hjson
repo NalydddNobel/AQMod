@@ -10,12 +10,12 @@ Biomes: {
 		TownNPCDialogueName: an Oblivion Altar
 	}
 
-	PollutedOceanBiomeSurface: {
+	PollutedOceanSurface: {
 		DisplayName: Polluted Ocean
 		TownNPCDialogueName: the Polluted Ocean
 	}
 
-	PollutedOceanBiomeUnderground: {
+	PollutedOceanUnderground: {
 		DisplayName: Polluted Underground
 		TownNPCDialogueName: the Polluted Underground
 	}
@@ -31,8 +31,8 @@ Biomes: {
 	}
 
 	CrabCreviceBiome: {
-		DisplayName: "{$Biomes.PollutedOceanBiomeSurface.DisplayName}"
-		TownNPCDialogueName: "{$Biomes.PollutedOceanBiomeSurface.TownNPCDialogueName}"
+		DisplayName: "{$Biomes.PollutedOceanSurface.DisplayName}"
+		TownNPCDialogueName: "{$Biomes.PollutedOceanSurface.TownNPCDialogueName}"
 	}
 
 	GaleStreamsZone: {

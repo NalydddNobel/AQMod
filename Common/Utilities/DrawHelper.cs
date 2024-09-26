@@ -21,7 +21,7 @@ public sealed class DrawHelper : ModSystem {
         ScissorTestEnable = true
     };
 
-    public static SpriteBatchCache SpriteBatchCache { get; private set; }
+    public static LegacySpriteBatchCache SpriteBatchCache { get; private set; }
 
     public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
     public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
@@ -46,6 +46,25 @@ public sealed class DrawHelper : ModSystem {
     public static GraphicsDeviceHelper gdHelper { get; private set; } = new();
 
     public static Vector2 ScreenSize => new Vector2(Main.screenWidth, Main.screenHeight);
+
+    public static Vector2 ApplyZoom(Vector2 screenCoordinate, float zoomFactor) {
+        Vector2 screenCenter = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+        Vector2 difference = screenCoordinate - screenCenter;
+        float zoom = zoomFactor;
+        return screenCenter + difference * zoom;
+    }
+    public static float ApplyZoomY(float screenCoordinateY, float zoomFactor) {
+        float screenCenterY = Main.screenHeight / 2f;
+        float differenceY = screenCoordinateY - screenCenterY;
+        float zoom = zoomFactor;
+        return screenCenterY + differenceY * zoom;
+    }
+    public static float ApplyZoomX(float screenCoordinateX, float zoomFactor) {
+        float screenCenterX = Main.screenWidth / 2f;
+        float differenceX = screenCoordinateX - screenCenterX;
+        float zoom = zoomFactor;
+        return screenCenterX + differenceX * zoom;
+    }
 
     public static void DrawCenteredText(SpriteBatch sb, string text, Vector2 drawCoordinates, Color color, Vector2? scaleOverride = null, float rotation = 0f, DynamicSpriteFont? font = null) {
         font ??= FontAssets.MouseText.Value;
@@ -125,11 +144,11 @@ public sealed class DrawHelper : ModSystem {
         return WorldGen.paintColor(stringColorId);
     }
 
-    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
+    public static bool BadRenderTarget(RenderTarget2D? renderTarget2D) {
         return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
     }
-    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int wantedWidth, int wantedHeight) {
-        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
+    public static bool BadRenderTarget(RenderTarget2D? renderTarget2D, int wantedWidth, int wantedHeight) {
+        return BadRenderTarget(renderTarget2D) || renderTarget2D!.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
     }
 
     #region Dust

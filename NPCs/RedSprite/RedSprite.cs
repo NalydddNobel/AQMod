@@ -995,7 +995,7 @@ public class RedSprite : ModNPC {
             var color = new Color(255, 150, 0, 20) * 0.3f;
             var circular = Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f);
 
-            var batchData = new SpriteBatchCache(spriteBatch);
+            var batchData = new LegacySpriteBatchCache(spriteBatch);
             spriteBatch.End();
             if (bestiary) {
                 RasterizerState rasterizer = AequusDrawing.RasterizerState_BestiaryUI;

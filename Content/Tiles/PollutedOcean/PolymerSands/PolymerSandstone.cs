@@ -33,7 +33,7 @@ public class PolymerSandstone : MultiMergeTile, IAddRecipes {
         HitSound = SoundID.Tink;
         MineResist = 1.1f;
 
-        Instance<PollutedTiles>().IsPolluted.Add(Type);
+        Instance<PollutedOceanSystem>().IsPolluted.Add(Type);
     }
 
     void IAddRecipes.AddRecipes() {

@@ -114,7 +114,7 @@ public class AequusBuff : GlobalBuff {
 
     public override void PostDraw(SpriteBatch spriteBatch, int type, int buffIndex, BuffDrawParams drawParams) {
         if (Main.LocalPlayer.Aequus().BoundedPotionIDs.Contains(type)) {
-            var buffSB = new SpriteBatchCache(Main.spriteBatch);
+            var buffSB = new LegacySpriteBatchCache(Main.spriteBatch);
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
