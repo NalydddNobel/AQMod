@@ -1,0 +1,21 @@
+﻿SkyMerchant: {
+	// WormholePotion: A mighty useful brew! Drinking it instantly transports you to an ally... I think, I'm not actually sure on the logistics of how it works.
+	// LesserRestorationPotion: A handy brew! Equally restores the body and soul, not the mind though, that one is a different potion which I've yet to restock.
+	// ValentineRing: A wonderful gift to give to those you really care about! You could purchase multiple and give it to many, but it would only spread its power thin.
+	// CelestialMagnet: I confused this one for a treasure magnet thinking it would get me riches, instead all I got is an increased likelihood of stars piercing my balloon. But you seem more magically inclined than me, I bet you could find a use for it.
+	// TreasureMagnet: I use this one to scavenge for merchandise! Sometimes you'll be having a walk and suddenly a magic sword rises from the ground.
+	// Furystar: Here's a fun story, y'know those fancy pink swords from the sky islands? Apparently they were forged as a set with another weapon, this one!
+	// WeightedHorseshoe: I got this one from a garage sale dirt cheap, not sure why anyone would buy this, but you people seem to have weird taste so here.
+	// GoldenFeather: They say it comes from a legendary golden bird, or something like that, looks cool right?
+	// StunGun: A handy self-defense tool. not like you already have swords, and guns, and spells, and...
+	// SlimyBlueBalloon: I think its supposed to be an inflated slime?... I mean-- Very useful mobility item!
+	// Bellows: Useful for smithing I hear, or you could use it to give yourself a lift, that works too.
+	// Calendar: I've got new wares every day of the week! Here's a calendar incase you dont keep track.
+	// SkyHunterCrossbow: Made by yours truly! Those goblins got a monopoly on the harpoon market, so its either pay up, or make your own.
+	HotAirBalloonMountItem: 嫉妒我的住所, 嗯? 为什么不买一个属于你自己的热气球呢?
+	Pumpinator: 从飞艇船员那里买了这个. 它非常有助于导航; 只需要把它指向你想让风带你去的地方!	
+	Nimrod: 闪电击中湖泊时可以杀死其中的数百条鱼, 但我只能干掉三条. 也许是巫师担心鳟鱼的数量?
+	// FlashwayShield: Crafted by a master thundersmith, this shield will grant lightning-fast reflexes to dodge any attack!
+	NameTag: 在宠物身上贴标签的低技术替代品. 我可以给它加个名字让你用!
+	TornadoInABottle: 最近在天空岛上发现的东西. 我不喜欢它发出的剧烈声响, 所以如果你能把它从我的手中拿走, 那就太好不过了.
+}

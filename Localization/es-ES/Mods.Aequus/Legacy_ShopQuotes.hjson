@@ -71,29 +71,6 @@ ShopQuote: {
 		// HomeworldPainting: A speculative depiction of the Starite homeworld. Unfortunately, it is too far away for me to teleport there and confirm.
 	}
 
-	SkyMerchant: {
-		// BalloonKit: Jealous of my digs, huh? Why not buy your very own hot air balloon?
-		// Pumpinator: Bought this one off an airship crew. It's super helpful for navigating; just point it where you want the wind to go!
-		// Nimrod: Lightning striking a lake can kill hundreds of fish, but best I can do is three. Maybe the wizard who made this was concerned about the trout population?
-		// FlashwayNecklace: Crafted by a master thundersmith, this jewelry will grant lightning-fast reflexes to dodge any attack!
-		// NameTag: A lower-tech alternative to sticking label maker tags on your pets. I can imbue a name into it for you to use!
-		// EquippedAcc: Hmm... that accessory you've got is a nice one for sure, but maybe I can pique your interest with this?
-		// Banners: Trophies and rugs are a bit... brutish for my tastes. How about a more symbolic representation of mass slaughter?
-		// BongBongPainting: This abstract painting seems to depict some sort of creature. Are you the kind of person that would want this on your wall?
-		// CatalystPainting: Whoever came up with this piece must've not been fond of the Lunar Cult. Which, you know, fair!
-		// YinYangDuoPainting: Light and dark, coexisting in harmony. Do you think it could ever happen?
-		// YinPainting: They say this piece depicts the ancient spirit of dark. Wonder which poor sap had to get it to pose for a portrait.
-		// YangPainting: They say this piece depicts the ancient spirit of light. Speaking of, I've been flying through a lot more rainbows lately...
-		// SkyrimRocks: This stone is carved with an ancient dragon language. Sadly, I haven't yet found anyone who can translate it...
-		// AncientBreakdownDye: Guaranteed to be the best dye to use at EDM raves, or your money back... if you can find me again!
-		// CensorDye: They use this all the time on TV shows! ...what do you mean, 'editing'?
-		// OutlineDye: You'll always be the center of attention with a giant white border around your clothes!
-		// ScrollDye: Apparently this lets you get in touch with your 'inner spritesheet'. No clue what that's supposed to mean.
-		// SimplifiedDye: This mix blends colors together, great for hiding bruises or blemishes and smoothing out unsightly attire.
-		// AncientHueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
-		// TornadoInABottle: Found this thing on a sky island recently. I'm not a fan of how violently it's rattling, so if you could take it off my hands that'd be great.
-	}
-
 	Occultist: {
 		// GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
 		// OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.

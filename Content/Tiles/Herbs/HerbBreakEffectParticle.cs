@@ -5,7 +5,7 @@ using Aequus.Common.Particles.New;
 namespace Aequus.Content.Tiles.Herbs;
 
 internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.Particle> {
-    public override int ParticleCount => 100;
+    public override int ParticleCount => 10;
 
     public override void Draw(SpriteBatch spriteBatch) {
         Texture2D texture = AequusTextures.None;
@@ -30,7 +30,7 @@ internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.P
             circleColor.SetValue(color.ToVector4());
             effect.Techniques[0].Passes[0].Apply();
 
-            spriteBatch.DrawAlign(texture, drawCoordinates, null, color, 0f, 240f, SpriteEffects.None);
+            spriteBatch.DrawAlign(texture, drawCoordinates, null, color, 0f, 60f, SpriteEffects.None);
         }
         spriteBatch.End();
     }
@@ -43,7 +43,7 @@ internal class HerbBreakEffectParticle : ParticleArray<HerbBreakEffectParticle.P
                 continue;
             }
 
-            p.Opacity -= 0.02f;
+            p.Opacity -= 0.08f;
             if (p.Opacity <= 0f) {
                 p.Active = false;
             }

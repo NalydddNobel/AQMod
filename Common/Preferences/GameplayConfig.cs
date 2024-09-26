@@ -30,8 +30,6 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
 
 #if POLLUTED_OCEAN
     [DefaultBackgroundColor]
-    [DefaultValue(1f)]
-    [Range(0f, 1f)]
     public Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerationSideConfig PollutedOceanSide { get; set; }
 #endif
 

@@ -29,6 +29,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
 
     internal void SetupShopQuotes(Mod shopQuotes) {
         shopQuotes.Call("AddNPC", Mod, Type);
+        shopQuotes.Call("CustomHead", Type, AequusTextures.SkyMerchant_Head.Asset);
         shopQuotes.Call("SetColor", Type, Color.SkyBlue * 1.2f);
     }
 
@@ -205,6 +206,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
 
         // Stop at player if nearby.
         if (distance < 100f) {
+            NPC.velocity.X *= 0.8f;
             NPC.ai[0] = 0f;
             NPC.ai[1] = 300f;
             NPC.localAI[3] = 100f;
