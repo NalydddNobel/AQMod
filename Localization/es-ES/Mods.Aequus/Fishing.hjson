@@ -51,16 +51,4 @@ Fishing: {
 			// Tooltip: Increases fishing power by {0}% while in the Hallow
 		}
 	}
-
-	Catches: {
-		Killifish: {
-			DisplayName: Killi
-			// Tooltip: ""
-		}
-
-		Piraiba: {
-			DisplayName: Piraiba
-			// Tooltip: ""
-		}
-	}
 }

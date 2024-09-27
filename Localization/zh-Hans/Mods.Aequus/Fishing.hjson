@@ -51,16 +51,4 @@ Fishing: {
 			Tooltip: 在神圣之地钓鱼时增加{0}%鱼饵力
 		}
 	}
-
-	Catches: {
-		Killifish: {
-			DisplayName: 鳉鱼
-			Tooltip: ""
-		}
-
-		Piraiba: {
-			DisplayName: 须鲇鱼
-			Tooltip: ""
-		}
-	}
 }

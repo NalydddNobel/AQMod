@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ContentTemplates;
-using Aequus.Items.Materials.Fish;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Potions.Buff.Sentry;
@@ -27,7 +26,11 @@ public class SentryPotion() : UnifiedBuffPotion(Duration: 28800) {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient(ItemID.BottledWater)
-            .AddIngredient<IcebergFish>()
+#if POLLUTED_OCEAN
+            .AddIngredient<Fishing.Fish.Killifish>()
+#else
+            .AddIngredient<global::Aequus.Items.Materials.Fish.IcebergFish>()
+#endif
             .AddIngredient(ItemID.Shiverthorn)
             .AddTile(TileID.Bottles)
             .Register();

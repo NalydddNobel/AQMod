@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1521)</summary>
+/// <summary>(Total Textures: 1523)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -787,6 +787,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> VenomDartTrapHatProj = new("Content/Items/Armor/TrapArtist/VenomDartTrapHatProj");
     /// <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHat_Head</summary>
     public static readonly RequestCache<Texture2D> VenomDartTrapHat_Head = new("Content/Items/Armor/TrapArtist/VenomDartTrapHat_Head");
+    /// <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/FoodPoisoningDebuff</summary>
+    public static readonly RequestCache<Texture2D> FoodPoisoningDebuff = new("Content/Items/Consumable/Food/TaintedSeafood/FoodPoisoningDebuff");
+    /// <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood</summary>
+    public static readonly RequestCache<Texture2D> TaintedSeafood = new("Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
     public static readonly RequestCache<Texture2D> CosmicChest = new("Content/Items/Consumable/ShimmerPowerups/CosmicChest");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/ShimmerCoin</summary>

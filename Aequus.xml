@@ -2494,7 +2494,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1521)</summary>
+            <summary>(Total Textures: 1523)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3665,6 +3665,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.VenomDartTrapHat_Head">
             <summary>Full Path: Content/Items/Armor/TrapArtist/VenomDartTrapHat_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FoodPoisoningDebuff">
+            <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/FoodPoisoningDebuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TaintedSeafood">
+            <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
