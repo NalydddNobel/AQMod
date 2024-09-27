@@ -149,9 +149,11 @@ public partial class AequusPlayer : ModPlayer {
             if (Player.ZoneCorrupt && Main.rand.NextBool(3)) {
                 itemDrop = ModContent.ItemType<Depthscale>();
             }
+#if !POLLUTED_OCEAN
             if (Player.ZoneSnow && Main.rand.NextBool(3)) {
                 itemDrop = ModContent.ItemType<IcebergFish>();
             }
+#endif
             if (Player.ZoneDesert && Main.rand.NextBool(3)) {
                 itemDrop = ModContent.ItemType<HeatFish>();
             }
