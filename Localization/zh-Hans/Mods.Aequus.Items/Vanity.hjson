@@ -1,13 +1,13 @@
 Vanity: {
 	OccultistVanity: {
 		OccultistVanityHood: {
-			// DisplayName: Occultist Hood
-			// Tooltip: ""
+			DisplayName: 秘术师兜帽
+			Tooltip: ""
 		}
 
 		OccultistVanityRobes: {
-			// DisplayName: Occultist Robes
-			// Tooltip: ""
+			DisplayName: 秘术师长袍
+			Tooltip: ""
 		}
 	}
 }

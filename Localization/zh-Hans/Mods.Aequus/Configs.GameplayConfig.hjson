@@ -47,13 +47,13 @@ Configs: {
 		}
 
 		DungeonMimics: {
-			// Label: "[i:GoldChest] [i:GoldenKey] Dungeon Mimics"
-			// Tooltip: Whether Dungeon Mimics should in the Dungeon. (And drop Lock Boxes.)
+			Label: "[i:GoldChest] [i:GoldenKey] 地牢宝箱怪"
+			Tooltip: 决定地牢宝箱怪是否会出现在地牢中. (并掉落锁盒.)
 		}
 
 		ShadowMimics: {
 			Label: "[i:ShadowChest] [i:ShadowKey] 暗影宝箱怪"
-			Tooltip: 决定暗影宝箱怪在骷髅王被击败后是否会生成. (并掉落暗影宝箱战利品.)
+			Tooltip: 决定暗影宝箱怪在骷髅王被击败后是否会生成. (并掉落黑曜石锁盒.)
 		}
 
 		HardmodeMimics: {

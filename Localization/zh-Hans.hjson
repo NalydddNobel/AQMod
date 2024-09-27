@@ -571,7 +571,7 @@ Mods: {
 			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
 			DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 			SkyMerchantBalloon.DisplayName: 热气球
-			// DungeonChestMimic.DisplayName: Dungeon Mimic
+			DungeonChestMimic.DisplayName: 地牢宝箱怪
 		}
 
 		PaintingSignature: {
