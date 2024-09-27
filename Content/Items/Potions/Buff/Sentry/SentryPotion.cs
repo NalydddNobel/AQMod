@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ContentTemplates;
+﻿using Aequus.Common.Buffs;
+using Aequus.Common.ContentTemplates;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Potions.Buff.Sentry;
@@ -21,6 +22,8 @@ public class SentryPotion() : UnifiedBuffPotion(Duration: 28800) {
             new Color(241, 216, 109, 0),
             new Color(138, 76, 31, 0),
         ];
+
+        AequusBuff.AddPotionConflict(Item.buffType, BuffID.Summoning);
     }
 
     public override void AddRecipes() {
