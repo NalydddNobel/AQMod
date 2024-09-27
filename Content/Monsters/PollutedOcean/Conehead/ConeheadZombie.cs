@@ -80,9 +80,7 @@ internal class InstancedConeheadZombie : InstancedNPC, IPostPopulateItemDropData
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-#if POLLUTED_OCEAN_TODO
-        npcLoot.Add(ItemDropRule.Common(ModContent.GetInstance<ConeHelmet>().Items[0].Type, chanceDenominator: 50));
-#endif
+        npcLoot.Add(ItemDropRule.Common(ModContent.GetInstance<Items.Armor.Conehead.ConeHelmet>().Items[0].Type, chanceDenominator: 50));
     }
 
     public void PostPopulateItemDropDatabase(ItemDropDatabase database) {

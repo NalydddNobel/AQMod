@@ -87,6 +87,17 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    /// <summary>
+    /// Adds <paramref name="damageReduction"/> to <see cref="Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
+    /// (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="damageReduction">The damage reduction to add. The formula for the final endurance addition looks like this: (<paramref name="damageReduction"/> - <paramref name="damageReduction"/> * <see cref="Player.endurance"/>)</param>
+    /// <returns></returns>
+    public static float SafelyAddDamageReduction(this Player player, float damageReduction) {
+        return player.endurance += damageReduction - damageReduction * Math.Clamp(player.endurance, 0f, 1f);
+    }
+
     public static bool WithinRemixSafeUnderworldRange(int x) {
         return x > (int)(Main.maxTilesX * 0.38) + 50 && x < (int)(Main.maxTilesX * 0.62);
     }

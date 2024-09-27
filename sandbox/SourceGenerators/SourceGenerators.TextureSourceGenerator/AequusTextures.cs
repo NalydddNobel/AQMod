@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1515)</summary>
+/// <summary>(Total Textures: 1521)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -745,6 +745,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ValentineRing = new("Content/Items/Accessories/ValentinesRing/ValentineRing");
     /// <summary>Full Path: Content/Items/Accessories/ValentinesRing/ValentineRingBuff</summary>
     public static readonly RequestCache<Texture2D> ValentineRingBuff = new("Content/Items/Accessories/ValentinesRing/ValentineRingBuff");
+    /// <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet = new("Content/Items/Armor/Conehead/ConeHelmet");
+    /// <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_1</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_1 = new("Content/Items/Armor/Conehead/ConeHelmet_1");
+    /// <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_1_Head</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_1_Head = new("Content/Items/Armor/Conehead/ConeHelmet_1_Head");
+    /// <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_2</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_2 = new("Content/Items/Armor/Conehead/ConeHelmet_2");
+    /// <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_2_Head</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_2_Head = new("Content/Items/Armor/Conehead/ConeHelmet_2_Head");
+    /// <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_Head</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_Head = new("Content/Items/Armor/Conehead/ConeHelmet_Head");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
     public static readonly RequestCache<Texture2D> MeadowBreastplate = new("Content/Items/Armor/Meadow/MeadowBreastplate");
     /// <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate_Body</summary>

@@ -831,6 +831,24 @@
         <member name="M:Aequus.Common.Entities.Bestiary.BestiaryTagCollection.Add(Terraria.ModLoader.ModBiome)">
             <summary>Call in PostSetupContent.</summary>
         </member>
+        <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_SIMPLE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot.</summary>
+        </member>
+        <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_EQUIPMENT_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is an equipable and follows conditions depending on the context.</summary>
+        </member>
+        <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_DYE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is a Dye.</summary>
+        </member>
+        <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_BUY_ITEM">
+            <summary>Returning this result will attempt to purchase the item.</summary>
+        </member>
+        <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_SELL_ITEM">
+            <summary>Returning this result will attempt to sell the item.</summary>
+        </member>
+        <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_JOURNEY_DUPE">
+            <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
+        </member>
         <member name="M:Aequus.Common.Entities.Items.IHoverItemSlotOverride.RightClickSlot(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <returns>true to prevent vanilla right click actions.</returns>
         </member>
@@ -2026,7 +2044,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 148)</summary>
+            <summary>(Total Sounds: 149)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -2186,6 +2204,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.evilConvert">
             <summary>Full Path: Assets/Sounds/Item/evilConvert</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ItemBreak">
+            <summary>Full Path: Assets/Sounds/Item/ItemBreak</summary>
         </member>
         <member name="F:Aequus.AequusSounds.JunkJetShoot0">
             <summary>Full Path: Assets/Sounds/Item/JunkJet/JunkJetShoot0</summary>
@@ -2473,7 +2494,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1515)</summary>
+            <summary>(Total Textures: 1521)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3581,6 +3602,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.ValentineRingBuff">
             <summary>Full Path: Content/Items/Accessories/ValentinesRing/ValentineRingBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet">
+            <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_1">
+            <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_1_Head">
+            <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_1_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_2">
+            <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_2_Head">
+            <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_2_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_Head">
+            <summary>Full Path: Content/Items/Armor/Conehead/ConeHelmet_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowBreastplate">
             <summary>Full Path: Content/Items/Armor/Meadow/MeadowBreastplate</summary>
@@ -7252,6 +7291,15 @@
             <summary>
             Determines whether or not the mouse has an item
             </summary>
+        </member>
+        <member name="M:Aequus.Helper.SafelyAddDamageReduction(Terraria.Player,System.Single)">
+            <summary>
+            Adds <paramref name="damageReduction"/> to <see cref="F:Terraria.Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
+            (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
+            </summary>
+            <param name="player"></param>
+            <param name="damageReduction">The damage reduction to add. The formula for the final endurance addition looks like this: (<paramref name="damageReduction"/> - <paramref name="damageReduction"/> * <see cref="F:Terraria.Player.endurance"/>)</param>
+            <returns></returns>
         </member>
         <member name="M:Aequus.Helper.NewGore(Terraria.NPC,Aequus.Common.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.DataStructures.IEntitySource,System.Single)">
             <summary><inheritdoc cref="M:Aequus.Common.Utilities.Helpers.GoreTool.NewGore(Aequus.Common.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"/></summary>
