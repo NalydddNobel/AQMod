@@ -10,7 +10,7 @@ public class NameTag : ModItem {
         Item.ResearchUnlockCount = 5;
         SkyMerchantRenameUIState.PriceMultiplier[Type] = 0f;
         ItemID.Sets.DuplicationMenuToolsFilter[Type] = true;
-        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Underground, ModContent.ItemType<NameTag>(), chanceDemoninator: 4);
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Underground, ModContent.ItemType<NameTag>(), chanceDenominator: 4);
     }
 
     public override void SetDefaults() {

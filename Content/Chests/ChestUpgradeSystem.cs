@@ -302,7 +302,7 @@ public sealed class ChestUpgradeSystem : ModSystem {
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.DesertHard, utilBuffPotions);
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.DesertHard, miningBuffPotions);
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.DesertHard, torches);
-        ChestLootDatabase.Instance.RegisterCommon(ChestPool.DesertHard, ItemID.AncientBattleArmorMaterial, chanceDemoninator: 3);
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.DesertHard, ItemID.AncientBattleArmorMaterial, chanceDenominator: 3);
         ChestLootDatabase.Instance.Register(ChestPool.DesertHard, money);
         #endregion
 
@@ -325,7 +325,7 @@ public sealed class ChestUpgradeSystem : ModSystem {
             new CommonChestRule(ItemID.IceTorch, MinStack: minTorch, MaxStack: maxTorch),
             new CommonChestRule(ItemID.Glowstick, MinStack: minTorch, MaxStack: maxTorch),
         ]);
-        ChestLootDatabase.Instance.RegisterCommon(ChestPool.SnowHard, ItemID.FrostCore, chanceDemoninator: 3);
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.SnowHard, ItemID.FrostCore, chanceDenominator: 3);
         ChestLootDatabase.Instance.Register(ChestPool.SnowHard, money);
         #endregion
 
@@ -345,7 +345,7 @@ public sealed class ChestUpgradeSystem : ModSystem {
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.JungleHard, utilBuffPotions);
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.JungleHard, miningBuffPotions);
         ChestLootDatabase.Instance.RegisterOneFromOptions(2, ChestPool.JungleHard, torches);
-        ChestLootDatabase.Instance.RegisterCommon(ChestPool.JungleHard, ItemID.TurtleShell, chanceDemoninator: 3);
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.JungleHard, ItemID.TurtleShell, chanceDenominator: 3);
         ChestLootDatabase.Instance.Register(ChestPool.JungleHard, money);
         #endregion
 

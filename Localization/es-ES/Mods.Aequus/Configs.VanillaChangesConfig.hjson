@@ -1,18 +1,6 @@
 Configs: {
 	VanillaChangesConfig: {
 		DisplayName: Cambios Vanilla
-		NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
-
-		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] Mover Imán de tesoros"
-			Tooltip:
-				'''
-				Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
-				y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
-
-				{$NoteExploit}
-				'''
-		}
 
 		RestorationPotionRecipe: {
 			Label: "[i:RestorationPotion] Receta de Poción de recuperación"
@@ -60,15 +48,6 @@ Configs: {
 				y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
 
 				{$NoteExploit}
-				'''
-		}
-
-		MoveMagicConch: {
-			Label: "[i:MagicConch] Mover Concha mágica"
-			Tooltip:
-				'''
-				Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mágica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
-				Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterráneo].
 				'''
 		}
 	}

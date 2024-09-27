@@ -1,5 +1,7 @@
 Configs: {
 	GameplayConfig: {
+		NoteExploit: "[{$ColorNote}:Disable this config for personal preference, or to prevent unintended exploits.]"
+
 		MoveTreasureMagnet: {
 			Label: "[i:TreasureMagnet] [i:CelestialMagnet] Move Treasure Magnet"
 			Tooltip:
@@ -81,6 +83,17 @@ Configs: {
 		ShowNPCSettleDownMessage: {
 			Label: "[i:WoodenTable] Villager Settle Down Message"
 			Tooltip: Ocassionally in the morning a message will appear exclaiming that a villager which has not moved in yet would like to settle down.
+		}
+
+		MoveTreasureMagnet: {
+			Label: "[i:TreasureMagnet] Move Treasure Magnet"
+			Tooltip:
+				'''
+				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
+				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+
+				{$NoteExploit}
+				'''
 		}
 	}
 }

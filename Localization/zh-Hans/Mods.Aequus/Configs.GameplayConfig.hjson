@@ -1,5 +1,7 @@
 Configs: {
 	GameplayConfig: {
+		NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该配置.]"
+
 		MoveTreasureMagnet: {
 			Label: "[i:TreasureMagnet] [i:CelestialMagnet] 移动宝藏磁石"
 			Tooltip:
@@ -81,6 +83,15 @@ Configs: {
 		ShowNPCSettleDownMessage: {
 			Label: "[i:WoodenTable] 镇民定居信息"
 			Tooltip: 在一天开始时, 可能会出现一条信息, 说一个未搬进来的镇民想要定居于此.
+		}
+
+		MoveMagicConch: {
+			Label: "[i:MagicConch] 移动魔法海螺"
+			Tooltip:
+				'''
+				[{$ColorImportant}:启用后], [{$ColorImportant}:魔法海螺]可以在[{$ColorImportant}:被污染的海洋]中发现,
+				并且[{$ColorImportant2}:地下沙漠]中的[{$ColorImportant}:不会再出现].
+				'''
 		}
 	}
 }

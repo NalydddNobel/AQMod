@@ -3,8 +3,8 @@
 namespace Aequus.Systems.Chests;
 
 public static class ChestLootExtensions {
-    public static void RegisterCommon(this ChestLootDatabase database, ChestPool type, int item, int minStack = 1, int maxStack = 1, int chanceDemoninator = 1, int chanceNumerator = 1, params Condition[] conditions) {
-        database.Register(type, new CommonChestRule(item, minStack, maxStack, chanceDemoninator, chanceNumerator, conditions));
+    public static void RegisterCommon(this ChestLootDatabase database, ChestPool type, int item, int minStack = 1, int maxStack = 1, int chanceDenominator = 1, int chanceNumerator = 1, params Condition[] conditions) {
+        database.Register(type, new CommonChestRule(item, minStack, maxStack, chanceDenominator, chanceNumerator, conditions));
     }
 
     public static void RegisterIndexed(this ChestLootDatabase database, int chanceDenominator, ChestPool type, params IChestLootRule[] rules) {

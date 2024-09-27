@@ -1,18 +1,6 @@
 Configs: {
 	VanillaChangesConfig: {
 		DisplayName: 原版更改
-		NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该配置.]"
-
-		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] 移动宝藏磁石"
-			Tooltip:
-				'''
-				[{$ColorImportant}:启用后], [{$ColorImportant}:宝藏磁石]将会由[{$ColorImportant}:天空商人]出售,
-				并且[{$ColorImportant2}:暗影箱]或[{$ColorImportant2}:黑曜石锁盒]中的[{$ColorImportant}:不会再出现].
-
-				{$NoteExploit}
-				'''
-		}
 
 		RestorationPotionRecipe: {
 			Label: "[i:RestorationPotion] 恢复药水配方"
@@ -60,15 +48,6 @@ Configs: {
 				并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
 
 				{$NoteExploit}
-				'''
-		}
-
-		MoveMagicConch: {
-			Label: "[i:MagicConch] 移动魔法海螺"
-			Tooltip:
-				'''
-				[{$ColorImportant}:启用后], [{$ColorImportant}:魔法海螺]可以在[{$ColorImportant}:被污染的海洋]中发现,
-				并且[{$ColorImportant2}:地下沙漠]中的[{$ColorImportant}:不会再出现].
 				'''
 		}
 	}

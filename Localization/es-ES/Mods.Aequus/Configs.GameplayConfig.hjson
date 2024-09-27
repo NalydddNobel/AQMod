@@ -1,14 +1,16 @@
 Configs: {
 	GameplayConfig: {
+		NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
+
 		MoveTreasureMagnet: {
-			// Label: "[i:TreasureMagnet] [i:CelestialMagnet] Move Treasure Magnet"
-			/* Tooltip:
+			Label: "[i:TreasureMagnet] Mover Imán de tesoros"
+			Tooltip:
 				'''
-				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
-				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+				Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
+				y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
 
 				{$NoteExploit}
-				''' */
+				'''
 		}
 
 		PollutedOceanSide: {
@@ -81,6 +83,15 @@ Configs: {
 		ShowNPCSettleDownMessage: {
 			// Label: "[i:WoodenTable] Villager Settle Down Message"
 			// Tooltip: Ocassionally in the morning a message will appear exclaiming that a villager which has not moved in yet would like to settle down.
+		}
+
+		MoveMagicConch: {
+			Label: "[i:MagicConch] Mover Concha mágica"
+			Tooltip:
+				'''
+				Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mágica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
+				Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterráneo].
+				'''
 		}
 	}
 }

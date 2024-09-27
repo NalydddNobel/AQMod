@@ -612,6 +612,17 @@ public static partial class Helper {
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Add<T>(ref T[] array, T value) {
+        Array.Resize(ref array, array.Length + 1);
+        array[^1] = value;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void Add<T>(this ICollection<T> myCollection, T value) {
+        myCollection.Add(value);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void AddRange<T>(this ICollection<T> myCollection, IEnumerable<T> collection) {
         foreach (var v in collection) {
             myCollection.Add(v);

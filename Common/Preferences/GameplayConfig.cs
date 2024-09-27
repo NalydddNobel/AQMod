@@ -60,6 +60,11 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [DefaultBackgroundColor]
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool MoveMagicConch { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool MoveTreasureMagnet { get; set; }
 
     [DefaultBackgroundColor]
