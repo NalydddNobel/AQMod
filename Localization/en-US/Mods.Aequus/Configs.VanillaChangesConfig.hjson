@@ -50,14 +50,5 @@ Configs: {
 				{$NoteExploit}
 				'''
 		}
-
-		MoveMagicConch: {
-			Label: "[i:MagicConch] Move Magic Conch"
-			Tooltip:
-				'''
-				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
-				and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
-				'''
-		}
 	}
 }

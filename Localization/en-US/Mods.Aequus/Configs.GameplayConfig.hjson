@@ -3,7 +3,7 @@ Configs: {
 		NoteExploit: "[{$ColorNote}:Disable this config for personal preference, or to prevent unintended exploits.]"
 
 		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] [i:CelestialMagnet] Move Treasure Magnet"
+			Label: "[i:TreasureMagnet] Move Treasure Magnet"
 			Tooltip:
 				'''
 				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
@@ -85,14 +85,12 @@ Configs: {
 			Tooltip: Ocassionally in the morning a message will appear exclaiming that a villager which has not moved in yet would like to settle down.
 		}
 
-		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] Move Treasure Magnet"
+		MoveMagicConch: {
+			Label: "[i:MagicConch] Move Magic Conch"
 			Tooltip:
 				'''
-				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
-				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
-
-				{$NoteExploit}
+				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
+				and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
 				'''
 		}
 	}

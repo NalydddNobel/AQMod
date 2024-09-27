@@ -57,10 +57,12 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [ReloadRequired]
     public bool EyeOfCthulhuOres { get; set; }
 
+#if POLLUTED_OCEAN
     [DefaultBackgroundColor]
     [DefaultValue(true)]
     [ReloadRequired]
     public bool MoveMagicConch { get; set; }
+#endif
 
     [DefaultBackgroundColor]
     [DefaultValue(true)]
