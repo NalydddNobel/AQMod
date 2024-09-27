@@ -2494,7 +2494,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1526)</summary>
+            <summary>(Total Textures: 1531)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3779,6 +3779,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.MagicEightBall_Held">
             <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHood">
+            <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistHood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHood_Head">
+            <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistHood_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistRobes">
+            <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistRobes_Body">
+            <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes_Body</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistRobes_Legs">
+            <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes_Legs</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeteorFist">
             <summary>Full Path: Content/Items/Weapons/Classless/MeteorFist/MeteorFist</summary>

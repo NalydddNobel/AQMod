@@ -5,6 +5,7 @@ using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Items.Vanity.SetOccultist;
 using Aequus.Content.Necromancy.Accessories;
 using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Content.Necromancy.Sceptres.Dungeon;
@@ -161,6 +162,9 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             .AddWithCustomValue(ModContent.GetInstance<OblivionAltar>().Item.Type, Item.buyPrice(gold: 5), Condition.Hardmode)
 
             .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
+
+            .Add(Instance<OccultistVanity>().Hood!.Type, Condition.Halloween)
+            .Add(Instance<OccultistVanity>().Robes!.Type, Condition.Halloween)
 
             .Register();
     }

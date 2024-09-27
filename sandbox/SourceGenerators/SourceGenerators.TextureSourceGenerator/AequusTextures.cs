@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1526)</summary>
+/// <summary>(Total Textures: 1531)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -863,6 +863,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MagicEightBall = new("Content/Items/Vanity/MagicEightBall/MagicEightBall");
     /// <summary>Full Path: Content/Items/Vanity/MagicEightBall/MagicEightBall_Held</summary>
     public static readonly RequestCache<Texture2D> MagicEightBall_Held = new("Content/Items/Vanity/MagicEightBall/MagicEightBall_Held");
+    /// <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistHood</summary>
+    public static readonly RequestCache<Texture2D> OccultistHood = new("Content/Items/Vanity/SetOccultist/OccultistHood");
+    /// <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistHood_Head</summary>
+    public static readonly RequestCache<Texture2D> OccultistHood_Head = new("Content/Items/Vanity/SetOccultist/OccultistHood_Head");
+    /// <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes</summary>
+    public static readonly RequestCache<Texture2D> OccultistRobes = new("Content/Items/Vanity/SetOccultist/OccultistRobes");
+    /// <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes_Body</summary>
+    public static readonly RequestCache<Texture2D> OccultistRobes_Body = new("Content/Items/Vanity/SetOccultist/OccultistRobes_Body");
+    /// <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes_Legs</summary>
+    public static readonly RequestCache<Texture2D> OccultistRobes_Legs = new("Content/Items/Vanity/SetOccultist/OccultistRobes_Legs");
     /// <summary>Full Path: Content/Items/Weapons/Classless/MeteorFist/MeteorFist</summary>
     public static readonly RequestCache<Texture2D> MeteorFist = new("Content/Items/Weapons/Classless/MeteorFist/MeteorFist");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>

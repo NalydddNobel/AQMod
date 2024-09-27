@@ -1,0 +1,13 @@
+Vanity: {
+	OccultistVanity: {
+		OccultistVanityHood: {
+			DisplayName: Occultist Hood
+			Tooltip: ""
+		}
+
+		OccultistVanityRobes: {
+			DisplayName: Occultist Robes
+			Tooltip: ""
+		}
+	}
+}
