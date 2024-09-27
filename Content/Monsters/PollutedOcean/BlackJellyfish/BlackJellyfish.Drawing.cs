@@ -140,7 +140,7 @@ public partial class BlackJellyfish : IDrawOntoLayer, RenderTargetRequests.IRend
             Vector2.Zero, includeBacksides: true);
         DrawHelper.VertexStrip.DrawTrail();
 
-        //DrawHelper.DrawBasicVertexLine(AequusRemakeTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
+        //DrawHelper.DrawBasicVertexLine(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
         //    p => lightningColor * attackRangeNormalized * NPC.Opacity,
         //    p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
         //);

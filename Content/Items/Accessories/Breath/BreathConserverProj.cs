@@ -18,10 +18,10 @@ public class BreathConserverProj : ModProjectile {
 
     public override void AI() {
         Player owner = Main.player[Projectile.owner];
-        AequusPlayer AequusRemake = owner.GetModPlayer<AequusPlayer>();
+        AequusPlayer aequus = owner.GetModPlayer<AequusPlayer>();
         Player target = Main.player[(int)Projectile.ai[0]];
 
-        if (AequusRemake.accBreathRestoreStacks <= 0 || target.breath >= target.breathMax) {
+        if (aequus.accBreathRestoreStacks <= 0 || target.breath >= target.breathMax) {
             Projectile.Kill();
             return;
         }
@@ -43,9 +43,9 @@ public class BreathConserverProj : ModProjectile {
 
     private void HealBreath(Player target) {
         Player owner = Main.player[Projectile.owner];
-        AequusPlayer AequusRemake = owner.GetModPlayer<AequusPlayer>();
+        AequusPlayer Aequus = owner.GetModPlayer<AequusPlayer>();
 
-        int restoreBreath = Math.Max((int)(target.breathMax * BreathConserver.RestoreBreathMaxOnEnemyKill), 1) * AequusRemake.accBreathRestoreStacks;
+        int restoreBreath = Math.Max((int)(target.breathMax * BreathConserver.RestoreBreathMaxOnEnemyKill), 1) * Aequus.accBreathRestoreStacks;
         target.GetModPlayer<AequusPlayer>().HealBreath(restoreBreath);
 
         if (Main.netMode != NetmodeID.Server) {

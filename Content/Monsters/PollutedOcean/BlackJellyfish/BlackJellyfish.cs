@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Entities.Banners;
+using Aequus.Common.Entities.Bestiary;
 using Aequus.Common.Entities.NPCs.AI;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.Helpers;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Particles.Common;
 using System;
 using Terraria.Audio;
@@ -13,9 +15,7 @@ using Terraria.GameContent.Shaders;
 namespace Aequus.Content.Monsters.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
-#if POLLUTED_OCEAN_TODO
 [BestiaryBiome<PollutedOceanUnderground>()]
-#endif
 public partial class BlackJellyfish : ModNPC, IJellyfishAIProvider {
     public static int AttackRange => 60;
 

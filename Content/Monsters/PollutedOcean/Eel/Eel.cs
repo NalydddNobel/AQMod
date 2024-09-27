@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.Entities.Banners;
+using Aequus.Common.Entities.Bestiary;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Particles.Common;
 using System;
 using Terraria.Audio;
@@ -11,10 +13,8 @@ using Terraria.GameContent.Bestiary;
 namespace Aequus.Content.Monsters.PollutedOcean.Eel;
 
 [AutoloadBanner]
-#if POLLUTED_OCEAN_TODO
 [BestiaryBiome<PollutedOceanSurface>()]
 [BestiaryBiome<PollutedOceanUnderground>()]
-#endif
 internal class Eel : ModNPC {
     #region AI Values
     public const float IdleMinSpeed = 1f;

@@ -1,7 +1,9 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Entities.Banners;
+using Aequus.Common.Entities.Bestiary;
 using Aequus.Common.Entities.DropRules;
 using Aequus.Common.NPCs;
+using Aequus.Content.Biomes.PollutedOcean;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -9,10 +11,8 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Monsters.PollutedOcean.OilSlime;
 
 [AutoloadBanner]
-#if POLLUTED_OCEAN_TODO
 [BestiaryBiome<PollutedOceanSurface>()]
 [BestiaryBiome<PollutedOceanUnderground>()]
-#endif
 public class OilSlime : ModNPC, IBodyItemContainer, IOilSlimeInheritedBurning {
     public int ItemId { get => (int)NPC.ai[1]; set => NPC.ai[1] = value; }
     public int Stack { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }

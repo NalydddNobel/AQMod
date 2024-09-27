@@ -5,7 +5,7 @@ namespace Aequus.Common.Entities.Banners;
 
 internal class InstancedBannerItem(ModNPC Parent, ModTile Banner) : InstancedModItem(Banner.Name, Banner.Texture + "Item")/*, IOverrideGroupOrder*/ {
     public override LocalizedText DisplayName => Parent.GetLocalization("BannerName", () => Parent.DisplayName.Value + " Banner");
-    public override LocalizedText Tooltip => Language.GetText("Mods.AequusRemake.Items.CommonTooltips.Banner").WithFormatArgs(Parent.DisplayName);
+    public override LocalizedText Tooltip => Language.GetText("Mods.Aequus.Items.CommonTooltips.Banner").WithFormatArgs(Parent.DisplayName);
 
     public override void SetDefaults() {
         Item.width = 12;

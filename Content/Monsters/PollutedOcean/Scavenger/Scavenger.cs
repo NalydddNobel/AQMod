@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Entities.Banners;
+using Aequus.Common.Entities.Bestiary;
 using Aequus.Common.Entities.NPCs.AI;
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Global;
 using Aequus.Common.Utilities.Helpers;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Items.Accessories.Backpacks;
 using System.Collections.Generic;
 using System.IO;
@@ -17,9 +19,7 @@ namespace Aequus.Content.Monsters.PollutedOcean.Scavenger;
 
 [AutoloadBanner]
 //[AutoloadStatue]
-#if POLLUTED_OCEAN_TODO
 [BestiaryBiome<PollutedOceanUnderground>()]
-#endif
 public partial class Scavenger : ModNPC, IFighterAIProvider, IPostPopulateItemDropDatabase {
     public const int Slot_Head = 0;
     public const int Slot_Body = 1;

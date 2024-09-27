@@ -1,8 +1,10 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ContentTemplates.Generic;
+using Aequus.Common.Entities.Bestiary;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.Helpers;
+using Aequus.Content.Biomes.PollutedOcean;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
@@ -21,9 +23,7 @@ public class ConeheadZombieLoader : LoadedType {
     }
 }
 
-#if POLLUTED_OCEAN_TODO
 [BestiaryBiome<PollutedOceanSurface>()]
-#endif
 internal class InstancedConeheadZombie : InstancedNPC, IPostPopulateItemDropDatabase {
     private readonly int _zombieClone;
 
@@ -68,11 +68,11 @@ internal class InstancedConeheadZombie : InstancedNPC, IPostPopulateItemDropData
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        string key = $"Mods.AequusRemake.NPCs.ConeheadZombie.{_realName}_Bestiary";
+        string key = $"Mods.Aequus.NPCs.ConeheadZombie.{_realName}_Bestiary";
 
         // Use the default key if there is not one specified for this zombie type.
         if (!ALanguage.ContainsKey(key)) {
-            key = "Mods.AequusRemake.NPCs.ConeheadZombie.Bestiary";
+            key = "Mods.Aequus.NPCs.ConeheadZombie.Bestiary";
         }
 
         this.CreateEntry(key, database, bestiaryEntry)

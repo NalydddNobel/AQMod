@@ -51,8 +51,8 @@ public class PollutedOceanSurface : PollutedOceanBiomes, IPostSetupContent {
 
 public class PollutedOceanUnderground : PollutedOceanBiomes, IPostSetupContent {
     public Vector3 CavernLight { get; set; } = Color.Cyan.ToVector3();
-    public override string BackgroundPath => AequusTextures.MapBG_PollutedSurface.FullPath;
-    public override string BestiaryIcon => AequusTextures.Biome_PollutedSurface.FullPath;
+    public override string BackgroundPath => AequusTextures.MapBG_PollutedUnderground.FullPath;
+    public override string BestiaryIcon => AequusTextures.Biome_PollutedUnderground.FullPath;
 
     public override bool IsBiomeActive(Player player) {
         return player.position.Y >= Main.worldSurface * 16.0 && base.IsBiomeActive(player);
