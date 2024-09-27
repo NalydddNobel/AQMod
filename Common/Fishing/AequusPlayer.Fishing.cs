@@ -2,6 +2,7 @@
 using Aequus.Common.Fishing;
 using Aequus.Common.Items;
 using Aequus.Content.Biomes.Oblivion;
+using Aequus.Content.Fishing.Fish;
 using Aequus.Content.Fishing.Junk;
 using Aequus.Content.Vampirism.Items;
 using Aequus.Items.Materials.Fish;
@@ -11,7 +12,6 @@ using Aequus.Items.Misc.FishCatches.QuestFish;
 using Aequus.Items.Misc.FishingBait;
 using Aequus.Items.Tools.FishingPoles;
 using Aequus.NPCs.Monsters;
-using System.Collections.Generic;
 using System.Reflection;
 using Terraria.DataStructures;
 
@@ -142,24 +142,18 @@ public partial class AequusPlayer : ModPlayer {
             }
         }
 
-        if (attempt.uncommon && Main.rand.NextBool(3)) {
-            var chooseableFish = new List<int>();
-            if (attempt.heightLevel < HeightLevel.Underworld) {
-                if (Player.ZoneCrimson) {
-                    chooseableFish.Add(ModContent.ItemType<Leecheel>());
-                }
-                if (Player.ZoneCorrupt) {
-                    chooseableFish.Add(ModContent.ItemType<Depthscale>());
-                }
-                if (Player.ZoneSnow) {
-                    chooseableFish.Add(ModContent.ItemType<IcebergFish>());
-                }
-                if (Player.ZoneDesert) {
-                    chooseableFish.Add(ModContent.ItemType<HeatFish>());
-                }
+        if (attempt.uncommon) {
+            if (Player.ZoneCrimson && Main.rand.NextBool(3)) {
+                itemDrop = ModContent.ItemType<Leecheel>();
             }
-            if (chooseableFish.Count != 0) {
-                itemDrop = Main.rand.Next(chooseableFish);
+            if (Player.ZoneCorrupt && Main.rand.NextBool(3)) {
+                itemDrop = ModContent.ItemType<Depthscale>();
+            }
+            if (Player.ZoneSnow && Main.rand.NextBool(3)) {
+                itemDrop = ModContent.ItemType<IcebergFish>();
+            }
+            if (Player.ZoneDesert && Main.rand.NextBool(3)) {
+                itemDrop = ModContent.ItemType<HeatFish>();
             }
         }
 
@@ -204,6 +198,17 @@ public partial class AequusPlayer : ModPlayer {
                 if (attempt.veryrare && Main.rand.NextBool(4)) {
                     itemDrop = ModContent.ItemType<global::Aequus.Items.Misc.FishCatches.LegendaryFish.CrabDaughter>();
                 }
+            }
+        }
+#endif
+
+#if POLLUTED_OCEAN
+        if (Player.InModBiome<Content.Biomes.PollutedOcean.PollutedOceanSurface>() || Player.InModBiome<Content.Biomes.PollutedOcean.PollutedOceanUnderground>()) {
+            if (Main.rand.NextBool(3)) {
+                itemDrop = ModContent.ItemType<Killifish>();
+            }
+            if (Main.rand.NextBool(3)) {
+                itemDrop = ModContent.ItemType<Piraiba>();
             }
         }
 #endif
