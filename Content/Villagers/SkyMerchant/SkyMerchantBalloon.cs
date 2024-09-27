@@ -8,6 +8,12 @@ public class SkyMerchantBalloon : ModNPC {
 
     public SkyMerchant.TextureDrawSet drawSet;
 
+    public override void SetStaticDefaults() {
+        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+            Hide = true,
+        };
+    }
+
     public override void SetDefaults() {
         NPC.width = 18;
         NPC.height = 40;
