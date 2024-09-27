@@ -1,12 +1,12 @@
 Configs: {
 	GameplayConfig: {
-		NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
+		NoteExploit: "[{$ColorNote}:Desactiva esta configuraciÃ³n por preferencia personal, o para prevenir ventajas no deseadas.]"
 
 		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] Mover Imán de tesoros"
+			Label: "[i:TreasureMagnet] Mover ImÃ¡n de tesoros"
 			Tooltip:
 				'''
-				Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
+				Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:ImÃ¡n de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
 				y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
 
 				{$NoteExploit}
@@ -46,9 +46,14 @@ Configs: {
 			// Tooltip: Whether Mimics should appear in Pre-Hardmode. (and drop Pre-Hardmode loot.)
 		}
 
+		DungeonMimics: {
+			// Label: "[i:GoldChest] [i:GoldenKey] Dungeon Mimics"
+			// Tooltip: Whether Dungeon Mimics should in the Dungeon. (And drop Lock Boxes.)
+		}
+
 		ShadowMimics: {
-			// Label: "[i:ShadowChest] Shadow Mimics"
-			// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Chest loot.)
+			// Label: "[i:ShadowChest] [i:ShadowKey] Shadow Mimics"
+			// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Lock Boxes.)
 		}
 
 		HardmodeMimics: {
@@ -86,11 +91,11 @@ Configs: {
 		}
 
 		MoveMagicConch: {
-			Label: "[i:MagicConch] Mover Concha mágica"
+			Label: "[i:MagicConch] Mover Concha mÃ¡gica"
 			Tooltip:
 				'''
-				Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mágica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
-				Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterráneo].
+				Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mÃ¡gica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
+				Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterrÃ¡neo].
 				'''
 		}
 	}

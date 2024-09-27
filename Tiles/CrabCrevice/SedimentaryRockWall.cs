@@ -3,9 +3,9 @@ using Aequus.Common.Recipes;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CrabCrevice.Ambient;
-using Aequus.Tiles.Herbs.Moray;
 
 namespace Aequus.Tiles.CrabCrevice;
+
 [LegacyName("SedimentaryRockWallWall")]
 public class SedimentaryRockWallPlaced : ModWall {
     public override void SetStaticDefaults() {
@@ -14,9 +14,6 @@ public class SedimentaryRockWallPlaced : ModWall {
     }
 
     public override void RandomUpdate(int i, int j) {
-        if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(1600)) {
-            MorayTile.TryGrow(i, j);
-        }
         if (Main.tile[i, j].IsFullySolid()) {
             if (WorldGen.genRand.NextBool(2000)) {
                 PearlsTile.TryGrow(i, j);

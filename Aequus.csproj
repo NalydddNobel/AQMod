@@ -44,7 +44,7 @@
 	<Compile Remove="SourceGenerators\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
-															
+																
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
 	<DefineConstants>POLLUTED_OCEAN;CUSTOM_RESOURCE_UI;CRAB_CREVICE_DISABLE</DefineConstants>

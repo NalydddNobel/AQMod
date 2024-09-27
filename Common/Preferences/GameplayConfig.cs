@@ -92,6 +92,16 @@ public class GameplayConfig : ConfigurationBase, IPostSetupContent {
     [DefaultBackgroundColor]
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool DungeonMimics { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool ShadowMimics { get; set; }
+
+    [DefaultBackgroundColor]
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool EarlyHallow { get; set; }
 
     [DefaultBackgroundColor]

@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Entities.Items;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common.Entities.Items;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ObjectData;
@@ -41,3 +42,4 @@ internal class PollutedOceanCrate : UnifiedModCrate {
         yield return ItemDropRule.NotScalingWithLuck(Instance<Tiles.PollutedOcean.PolymerSands.PolymerSand>().Item.Type, 3, 20, 50);
     }
 }
+#endif

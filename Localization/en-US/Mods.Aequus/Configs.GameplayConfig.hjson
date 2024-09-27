@@ -46,9 +46,14 @@ Configs: {
 			Tooltip: Whether Mimics should appear in Pre-Hardmode. (and drop Pre-Hardmode loot.)
 		}
 
+		DungeonMimics: {
+			Label: "[i:GoldChest] [i:GoldenKey] Dungeon Mimics"
+			Tooltip: Whether Dungeon Mimics should in the Dungeon. (And drop Lock Boxes.)
+		}
+
 		ShadowMimics: {
-			Label: "[i:ShadowChest] Shadow Mimics"
-			Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Chest loot.)
+			Label: "[i:ShadowChest] [i:ShadowKey] Shadow Mimics"
+			Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Obsidian Lock Boxes.)
 		}
 
 		HardmodeMimics: {

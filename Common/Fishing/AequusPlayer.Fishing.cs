@@ -2,7 +2,6 @@
 using Aequus.Common.Fishing;
 using Aequus.Common.Items;
 using Aequus.Content.Biomes.Oblivion;
-using Aequus.Content.Fishing.Fish;
 using Aequus.Content.Fishing.Junk;
 using Aequus.Content.Vampirism.Items;
 using Aequus.Items.Materials.Fish;
@@ -207,10 +206,10 @@ public partial class AequusPlayer : ModPlayer {
 #if POLLUTED_OCEAN
         if (Player.InModBiome<Content.Biomes.PollutedOcean.PollutedOceanSurface>() || Player.InModBiome<Content.Biomes.PollutedOcean.PollutedOceanUnderground>()) {
             if (Main.rand.NextBool(3)) {
-                itemDrop = ModContent.ItemType<Killifish>();
+                itemDrop = ModContent.ItemType<Content.Fishing.Fish.Killifish>();
             }
             if (Main.rand.NextBool(3)) {
-                itemDrop = ModContent.ItemType<Piraiba>();
+                itemDrop = ModContent.ItemType<Content.Fishing.Fish.Piraiba>();
             }
 
             if (attempt.crate) {

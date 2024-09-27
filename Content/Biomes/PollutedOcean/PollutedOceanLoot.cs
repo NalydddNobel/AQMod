@@ -1,4 +1,5 @@
-﻿using Aequus.Common;
+﻿#if POLLUTED_OCEAN
+using Aequus.Common;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.PollutedOcean.Generation;
 using Aequus.Content.Fishing.Crates;
@@ -139,3 +140,4 @@ public class PollutedOceanLoot : LoadedType {
         }
     }
 }
+#endif

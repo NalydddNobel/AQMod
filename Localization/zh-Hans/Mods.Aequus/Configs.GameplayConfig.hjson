@@ -46,8 +46,13 @@ Configs: {
 			Tooltip: 决定宝箱怪能否在困难模式前生成. (并掉落困难模式前战利品.)
 		}
 
+		DungeonMimics: {
+			// Label: "[i:GoldChest] [i:GoldenKey] Dungeon Mimics"
+			// Tooltip: Whether Dungeon Mimics should in the Dungeon. (And drop Lock Boxes.)
+		}
+
 		ShadowMimics: {
-			Label: "[i:ShadowChest] 暗影宝箱怪"
+			Label: "[i:ShadowChest] [i:ShadowKey] 暗影宝箱怪"
 			Tooltip: 决定暗影宝箱怪在骷髅王被击败后是否会生成. (并掉落暗影宝箱战利品.)
 		}
 

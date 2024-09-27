@@ -37,7 +37,7 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
             }
         }
         else if (npc.type == NPCID.Mimic) {
-            if (NPC.downedBoss3 && npc.position.Y / 16f > Main.UnderworldLayer) {
+            if (GameplayConfig.Instance.ShadowMimics && NPC.downedBoss3 && npc.position.Y / 16f > Main.UnderworldLayer) {
                 npc.Transform(ModContent.NPCType<ShadowMimic>());
             }
             if (Main.hardMode && GameplayConfig.Instance.AdamantiteMimics && !Main.rand.NextBool(3)) {
@@ -49,11 +49,19 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
     }
 
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        if (!GameplayConfig.Instance.EarlyMimics || Main.hardMode || Main.remixWorld || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || !spawnInfo.Allowed()) {
+        if (!GameplayConfig.Instance.EarlyMimics || Main.hardMode || Main.remixWorld || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100)) {
             return;
         }
 
         Tile tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
+        if (GameplayConfig.Instance.DungeonMimics && spawnInfo.SpawnTileY > Main.worldSurface && Main.wallDungeon[tile.WallType]) {
+            pool[ModContent.NPCType<DungeonChestMimic>()] = DungeonChestMimic.Spawnrate;
+        }
+
+        if (!spawnInfo.Allowed()) {
+            return;
+        }
+
         if (TileID.Sets.IcesSnow[tile.TileType]) {
             pool[NPCID.IceMimic] = IceMimicSpawnrate;
             return;
@@ -61,7 +69,7 @@ public class MimicsGlobalNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
 
         if (spawnInfo.SpawnTileY >= Main.UnderworldLayer) {
             // Prevent mimics spawning in the Underworld if Skeletron hasn't been defeated.
-            if (NPC.downedBoss3) {
+            if (GameplayConfig.Instance.ShadowMimics && NPC.downedBoss3) {
                 pool[NPCID.Mimic] = ShadowMimicSpawnrate;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using System;
 using Terraria.GameContent;
@@ -9,6 +10,10 @@ namespace Aequus.Content.Monsters.Mimics;
 
 public class ShadowMimic : ModNPC, IAddRecipes {
     public override string Texture => Aequus.NPCTexture(NPCID.Mimic);
+
+    public override bool IsLoadingEnabled(Mod mod) {
+        return GameplayConfig.Instance.ShadowMimics;
+    }
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Mimic];
@@ -78,7 +83,7 @@ public class ShadowMimic : ModNPC, IAddRecipes {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(new Conditions.NotRemixSeed(), ItemDropRule.OneFromOptions(1, ItemID.DarkLance, ItemID.Sunfury, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.HellwingBow));
+        npcLoot.Add(new Conditions.NotRemixSeed(), ItemDropRule.Common(ItemID.ObsidianLockbox));
     }
 
     public override void AI() {
