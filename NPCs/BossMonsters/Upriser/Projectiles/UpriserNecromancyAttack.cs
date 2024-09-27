@@ -1,10 +1,6 @@
-﻿using Aequus.Common.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿#if DEBUG
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 
 namespace Aequus.NPCs.BossMonsters.Upriser.Projectiles;
 
@@ -64,3 +60,4 @@ public class UpriserNecromancyAttack : ModProjectile {
         return false;
     }
 }
+#endif
