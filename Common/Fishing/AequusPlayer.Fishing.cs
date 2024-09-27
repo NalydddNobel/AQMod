@@ -210,6 +210,15 @@ public partial class AequusPlayer : ModPlayer {
             if (Main.rand.NextBool(3)) {
                 itemDrop = ModContent.ItemType<Piraiba>();
             }
+
+            if (attempt.crate) {
+                if (Main.hardMode) {
+                    itemDrop = Instance<Content.Fishing.Crates.PollutedOceanCrate>().HardmodeVariant.Type;
+                }
+                else {
+                    itemDrop = Instance<Content.Fishing.Crates.PollutedOceanCrate>().PreHardmodeVariant.Type;
+                }
+            }
         }
 #endif
     }

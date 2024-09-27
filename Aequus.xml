@@ -2494,7 +2494,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1523)</summary>
+            <summary>(Total Textures: 1526)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3389,6 +3389,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
             <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanCrate">
+            <summary>Full Path: Content/Fishing/Crates/PollutedOceanCrate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanCrateHardItem">
+            <summary>Full Path: Content/Fishing/Crates/PollutedOceanCrateHardItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanCrateItem">
+            <summary>Full Path: Content/Fishing/Crates/PollutedOceanCrateItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Killifish">
             <summary>Full Path: Content/Fishing/Fish/Killifish</summary>

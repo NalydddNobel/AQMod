@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1523)</summary>
+/// <summary>(Total Textures: 1526)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -603,6 +603,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Content/Fishing/CrabPots/ObsidianCrabPot_Back");
     /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Content/Fishing/CrabPots/ObsidianCrabPot_Highlight");
+    /// <summary>Full Path: Content/Fishing/Crates/PollutedOceanCrate</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanCrate = new("Content/Fishing/Crates/PollutedOceanCrate");
+    /// <summary>Full Path: Content/Fishing/Crates/PollutedOceanCrateHardItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanCrateHardItem = new("Content/Fishing/Crates/PollutedOceanCrateHardItem");
+    /// <summary>Full Path: Content/Fishing/Crates/PollutedOceanCrateItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanCrateItem = new("Content/Fishing/Crates/PollutedOceanCrateItem");
     /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
     public static readonly RequestCache<Texture2D> Killifish = new("Content/Fishing/Fish/Killifish");
     /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
