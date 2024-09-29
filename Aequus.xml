@@ -7546,29 +7546,15 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestPrimaryLoot">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
             <summary>
-            The primary loot pool for Crab Crevice chests
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestSecondaryLoot">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
             <summary>
-            The secondary loot pool for Crab Crevice chests
+            Lookup for tile Ids which are safe to generate over.
             </summary>
-        </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestTertiaryLoot">
-            <summary>
-            The tertiary (3rd) loot pool for Crab Crevice chests
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator.SetLocationParams(System.Int32@,System.Int32@,Microsoft.Xna.Framework.Point@,Microsoft.Xna.Framework.Point@)">
-            <summary>
-            
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="location"></param>
-            <param name="genLocation"></param>
         </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>

@@ -3,17 +3,12 @@ using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
 using Aequus.Common.Buffs;
 using Aequus.Common.ModPlayers;
-using Aequus.Content;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Items.Potions;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Potions {
     public class VeinminerPotion : ModItem {
@@ -53,7 +48,6 @@ namespace Aequus.Items.Potions {
 namespace Aequus.Buffs {
     public class VeinminerBuff : ModBuff {
         public override void SetStaticDefaults() {
-            LegacyPotionColorsDatabase.BuffToColor.Add(Type, new Color(85, 195, 160));
             AequusBuff.AddPotionConflict(Type, BuffID.Mining);
         }
 

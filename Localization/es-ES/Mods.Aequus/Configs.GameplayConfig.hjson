@@ -53,7 +53,7 @@ Configs: {
 
 		ShadowMimics: {
 			// Label: "[i:ShadowChest] [i:ShadowKey] Shadow Mimics"
-			// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Lock Boxes.)
+			// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Obsidian Lock Boxes.)
 		}
 
 		HardmodeMimics: {
