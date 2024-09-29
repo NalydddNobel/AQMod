@@ -9,8 +9,38 @@ Prefixes: {
 	EmpoweredPrefix: {
 		DisplayName: 增强的
 		Ability: "{0}增益强度"
+		// Downside: -{0}% buff duration
 		// ItemName: Mistral Pollen
 		// ItemTooltip: Grant the 'Empowered' affix when held and pressing <right> on a potion
+
+		Description: {
+			// WaterWalking: Increased movement speed while walking on liquids
+			// Warmth: Further reduced damage from cold sources
+			// ObsidianSkin: Doubled defense while submerged in a liquid
+			// Flipper: Increased movement speed while submerged in a liquid
+			// Gills: Increase defense by {0} while submerged in a liquid
+			// Swiftness: Further increased movement speed
+			// Builder: Further increased building potential
+			// Invisibility: Enemies are less likely to target you
+			// Featherfall: Increases wing time by {0} {^0:second;seconds}
+			// ManaRegeneration: Further increased mana regeneration
+			// Titan: Further increased knockback
+			// Dangersense: "{$ItemTooltip.MechanicalLens}"
+			// Regeneration: Further increased regeneration
+			// Ironskin: Further increased defense
+			// MagicPower: Further increased magic damage
+			// Shine: Further increased shine
+			// Thorns: Further increased thorns
+			// Archery: Further increased arrow damage
+			// Mining: Further increased mining speed
+			// Fishing: Further increased fishing skill
+			// Summoning: Further increased minion slots
+			// Lifeforce: Further increased maximum life
+			// Endurance: Further increased damage reduction
+			// Rage: Further increased critical strike chance
+			// Wrath: Further increased damage
+			// Lucky: Doubled luck!
+		}
 	}
 
 	StuffedPrefix: {

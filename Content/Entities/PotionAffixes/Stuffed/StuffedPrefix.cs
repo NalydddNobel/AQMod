@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Utilities;
 using System.Collections.Generic;
 using Terraria.Localization;
 
@@ -24,7 +25,7 @@ public class StuffedPrefix : UnifiedPotionAffix {
     }
 
     public override bool CanRoll(Item item) {
-        return AequusItem.IsPotion(item);
+        return AequusItem.IsPotion(item) && !BuffSets.DontChangeDuration.Contains(item.type);
     }
 
     public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {

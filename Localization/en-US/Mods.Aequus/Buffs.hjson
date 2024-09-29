@@ -493,6 +493,7 @@ Buffs: {
 	VeinminerBuff: {
 		DisplayName: Veinfracture
 		Description: Ores will be magically mined for you
+		EmpoweredDescription: Increased ore droprate and veinmine speed
 	}
 
 	VeinminerBuffEmpowered: {

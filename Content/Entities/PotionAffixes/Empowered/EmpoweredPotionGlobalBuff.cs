@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Content.ItemPrefixes.Potions;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Mistral;
+namespace Aequus.Content.Entities.PotionAffixes.Empowered;
 
 public class EmpoweredPotionGlobalBuff : GlobalBuff {
     public Dictionary<int, Action<Player>> CustomAction = [];
@@ -19,8 +18,8 @@ public class EmpoweredPotionGlobalBuff : GlobalBuff {
         // We check the buffType array to make sure the buff wasn't deleted already.
         // If it was, we really don't want to risk deleting another buff, so just don't run the empowered update code
         if (type == potionPlayer.empowered && player.buffType.IndexInRange(buffIndex) && player.buffType[buffIndex] == type) {
-            if (CustomAction.TryGetValue(type, out var buffOverride)) {
-                buffOverride(player);
+            if (Instance<EmpoweredDatabase>().Info.TryGetValue(type, out var info) && info.CustomAction != null) {
+                info.CustomAction(player);
             }
             else if (type >= BuffID.Count) {
                 // Run the buff code again.
@@ -37,8 +36,9 @@ public class EmpoweredPotionGlobalBuff : GlobalBuff {
 
         if (potionPlayer.empowered == type) {
             buffName = $"{Instance<EmpoweredPrefix>().DisplayName} {buffName}";
-            if (CustomTooltip.TryGetValue(type, out LocalizedText tooltip)) {
-                tip += "\n" + tooltip.Value;
+            rare = ItemRarityID.Green;
+            if (Instance<EmpoweredDatabase>().Info.TryGetValue(type, out var info) && info.Tooltip != null) {
+                tip += "\n" + info.Tooltip.Value;
             }
         }
     }

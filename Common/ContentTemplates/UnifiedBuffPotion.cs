@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
-using Aequus.Content.Items.Potions.Modifiers.Empowered;
 using Terraria.Localization;
 
 namespace Aequus.Common.ContentTemplates;
@@ -19,7 +18,6 @@ public abstract class UnifiedBuffPotion : ModItem {
     public UnifiedBuffPotion(int Duration) {
         this.Duration = Duration;
         Buff = new InstancedPotionBuff(this);
-        EmpoweredBuff = new InstancedLegacyEmpoweredBuff(this);
     }
 
     protected override bool CloneNewInstances => true;
@@ -40,14 +38,6 @@ public abstract class UnifiedBuffPotion : ModItem {
 
     /// <summary>This method is not instanced.</summary>
     public abstract void UpdateBuff(Player player, ref int buffIndex);
-
-    #region Empowered
-    public virtual LocalizedText EmpoweredTooltip => this.GetLocalization("EmpoweredTooltip");
-    public virtual LocalizedText EmpoweredBuffDescription => EmpoweredTooltip;
-
-    [CloneByReference]
-    internal readonly InstancedLegacyEmpoweredBuff EmpoweredBuff;
-    #endregion
 }
 
 internal class InstancedPotionBuff(UnifiedBuffPotion Parent, string nameSuffix = "") : InstancedBuff($"{Parent.Name}{nameSuffix}", $"{Parent.Texture}Buff") {

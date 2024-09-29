@@ -1,10 +1,8 @@
 ﻿using Aequus.Buffs;
-using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
 using Aequus.Common.Buffs;
 using Aequus.Common.ModPlayers;
-using Aequus.Content.ItemPrefixes.Potions;
-using Aequus.Items.Potions;
+using Aequus.Content.Entities.PotionAffixes.Empowered;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,23 +47,15 @@ namespace Aequus.Buffs {
     public class VeinminerBuff : ModBuff {
         public override void SetStaticDefaults() {
             AequusBuff.AddPotionConflict(Type, BuffID.Mining);
+            Instance<EmpoweredDatabase>().Add(this, UpdateEmpowered);
         }
 
         public override void Update(Player player, ref int buffIndex) {
             var aequus = player.Aequus();
             aequus.veinminerAbility = Math.Max(aequus.veinminerAbility, 1);
         }
-    }
 
-    public class VeinminerBuffEmpowered : EmpoweredBuffBase {
-        public override int OriginalBuffType => ModContent.BuffType<VeinminerBuff>();
-
-        public override void SetStaticDefaults() {
-            EmpoweredPrefix.ItemToEmpoweredBuff.Add(ModContent.ItemType<VeinminerPotion>(), Type);
-        }
-
-        public override void Update(Player player, ref int buffIndex) {
-            base.Update(player, ref buffIndex);
+        void UpdateEmpowered(Player player) {
             var aequus = player.Aequus();
             aequus.extraOresChance *= 0.9f;
             aequus.veinminerAbility = Math.Max(aequus.veinminerAbility, 2);

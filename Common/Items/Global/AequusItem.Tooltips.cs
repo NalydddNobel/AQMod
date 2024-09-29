@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs.Misc.Empowered;
-using Aequus.Common.DataSets;
+﻿using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Content.ItemRarities;
 using Aequus.CrossMod;
@@ -45,7 +44,7 @@ public partial class AequusItem {
     }
 
     private void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips) {
-        int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
+        int originalBuffType = item.buffType;
         if (originalBuffType > 0 && BuffSets.BuffConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0) {
             string text = "";
             if (l.Count == 1) {

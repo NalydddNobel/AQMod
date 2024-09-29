@@ -2500,7 +2500,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1529)</summary>
+            <summary>(Total Textures: 1511)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2946,51 +2946,6 @@
         <member name="F:Aequus.AequusTextures.SnowflakeBuff">
             <summary>Full Path: Buffs/Minion/SnowflakeBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Buffs_Misc_Empowered_Buff">
-            <summary>Full Path: Buffs/Misc/Empowered/Buff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredArchery">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredArchery</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredEndurance">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredEndurance</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredFishing">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredFishing</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredIronskin">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredIronskin</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredMagicPower">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredMagicPower</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredManaRegeneration">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredManaRegeneration</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredMining">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredMining</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredRage">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredRage</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredRegeneration">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredRegeneration</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredShine">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredShine</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredSummoning">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredSummoning</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredSwiftness">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredSwiftness</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredThorns">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredThorns</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredWrath">
-            <summary>Full Path: Buffs/Misc/Empowered/EmpoweredWrath</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.FlaskBuff">
             <summary>Full Path: Buffs/Misc/FlaskBuff</summary>
         </member>
@@ -3011,9 +2966,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.VeinminerBuff">
             <summary>Full Path: Buffs/VeinminerBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.VeinminerBuffEmpowered">
-            <summary>Full Path: Buffs/VeinminerBuffEmpowered</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_0">
             <summary>Full Path: Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_0</summary>
@@ -3337,10 +3289,10 @@
             <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
+            <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixGlint</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_Entities_PotionAffixes_Mistral_MistralPollen">
-            <summary>Full Path: Content/Entities/PotionAffixes/Mistral/MistralPollen</summary>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixItem">
+            <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
             <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixGlint</summary>
@@ -3428,9 +3380,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.TatteredDemonHorn">
             <summary>Full Path: Content/Fishing/Junk/TatteredDemonHorn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredGlint">
-            <summary>Full Path: Content/ItemPrefixes/Potions/EmpoweredGlint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PlanteraBackpack">
             <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>
@@ -5462,9 +5411,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.NoonPotion">
             <summary>Full Path: Items/Potions/NoonPotion/NoonPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Items_Potions_Pollen_MistralPollen">
-            <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MercerTonic">
             <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>

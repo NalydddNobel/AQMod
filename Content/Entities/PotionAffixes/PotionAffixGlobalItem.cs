@@ -23,8 +23,8 @@ public class PotionAffixGlobalItem : GlobalItem {
     }
 
     private static bool On_Item_CanApplyPrefix(On_Item.orig_CanApplyPrefix orig, Item self, int prefix) {
-        if (PrefixLoader.GetPrefix(prefix) is UnifiedPotionAffix && ItemSets.IsPotion.Contains(self.type)) {
-            return true;
+        if (PrefixLoader.GetPrefix(prefix) is UnifiedPotionAffix potionAffix && ItemSets.IsPotion.Contains(self.type)) {
+            return potionAffix.CanRoll(self);
         }
 
         return orig(self, prefix);

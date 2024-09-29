@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.ContentTemplates;
+using Aequus.Content.Entities.PotionAffixes.Empowered;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Potions.Buff.Sentry;
@@ -8,11 +9,10 @@ public class SentryPotion() : UnifiedBuffPotion(Duration: 28800) {
     public static readonly int IncreaseMaxTurretsBy = 1;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreaseMaxTurretsBy);
-    public override LocalizedText EmpoweredTooltip => base.Tooltip.WithFormatArgs(IncreaseMaxTurretsBy * 2);
 
     public override void Load() {
         base.Load();
-        Mod.AddContent(EmpoweredBuff);
+        Instance<EmpoweredDatabase>().Add(Buff, Tooltip: this.GetLocalization("EmpoweredDescription"));
     }
 
     public override void SetStaticDefaults() {

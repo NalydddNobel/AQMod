@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1529)</summary>
+/// <summary>(Total Textures: 1511)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -303,36 +303,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScribbleNotebookBuff = new("Buffs/Minion/ScribbleNotebookBuff");
     /// <summary>Full Path: Buffs/Minion/SnowflakeBuff</summary>
     public static readonly RequestCache<Texture2D> SnowflakeBuff = new("Buffs/Minion/SnowflakeBuff");
-    /// <summary>Full Path: Buffs/Misc/Empowered/Buff</summary>
-    public static readonly RequestCache<Texture2D> Buffs_Misc_Empowered_Buff = new("Buffs/Misc/Empowered/Buff");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredArchery</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredArchery = new("Buffs/Misc/Empowered/EmpoweredArchery");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredEndurance</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredEndurance = new("Buffs/Misc/Empowered/EmpoweredEndurance");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredFishing</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredFishing = new("Buffs/Misc/Empowered/EmpoweredFishing");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredIronskin</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredIronskin = new("Buffs/Misc/Empowered/EmpoweredIronskin");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredMagicPower</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredMagicPower = new("Buffs/Misc/Empowered/EmpoweredMagicPower");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredManaRegeneration</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredManaRegeneration = new("Buffs/Misc/Empowered/EmpoweredManaRegeneration");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredMining</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredMining = new("Buffs/Misc/Empowered/EmpoweredMining");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredRage</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredRage = new("Buffs/Misc/Empowered/EmpoweredRage");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredRegeneration</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredRegeneration = new("Buffs/Misc/Empowered/EmpoweredRegeneration");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredShine</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredShine = new("Buffs/Misc/Empowered/EmpoweredShine");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredSummoning</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredSummoning = new("Buffs/Misc/Empowered/EmpoweredSummoning");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredSwiftness</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredSwiftness = new("Buffs/Misc/Empowered/EmpoweredSwiftness");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredThorns</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredThorns = new("Buffs/Misc/Empowered/EmpoweredThorns");
-    /// <summary>Full Path: Buffs/Misc/Empowered/EmpoweredWrath</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredWrath = new("Buffs/Misc/Empowered/EmpoweredWrath");
     /// <summary>Full Path: Buffs/Misc/FlaskBuff</summary>
     public static readonly RequestCache<Texture2D> FlaskBuff = new("Buffs/Misc/FlaskBuff");
     /// <summary>Full Path: Buffs/Misc/NecromancyOwnerBuff</summary>
@@ -347,8 +317,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StariteBottleBuff = new("Buffs/StariteBottleBuff");
     /// <summary>Full Path: Buffs/VeinminerBuff</summary>
     public static readonly RequestCache<Texture2D> VeinminerBuff = new("Buffs/VeinminerBuff");
-    /// <summary>Full Path: Buffs/VeinminerBuffEmpowered</summary>
-    public static readonly RequestCache<Texture2D> VeinminerBuffEmpowered = new("Buffs/VeinminerBuffEmpowered");
     /// <summary>Full Path: Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_0</summary>
     public static readonly RequestCache<Texture2D> CrabCreviceSurfaceBackground_0 = new("Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_0");
     /// <summary>Full Path: Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_1</summary>
@@ -563,10 +531,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem</summary>
     public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Mistral/MistralPollen</summary>
-    public static readonly RequestCache<Texture2D> Content_Entities_PotionAffixes_Mistral_MistralPollen = new("Content/Entities/PotionAffixes/Mistral/MistralPollen");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixItem = new("Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixItem");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixGlint</summary>
     public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Content/Entities/PotionAffixes/Splash/SplashPrefixGlint");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixItem</summary>
@@ -625,8 +593,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PlasticBottle = new("Content/Fishing/Junk/PlasticBottle");
     /// <summary>Full Path: Content/Fishing/Junk/TatteredDemonHorn</summary>
     public static readonly RequestCache<Texture2D> TatteredDemonHorn = new("Content/Fishing/Junk/TatteredDemonHorn");
-    /// <summary>Full Path: Content/ItemPrefixes/Potions/EmpoweredGlint</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredGlint = new("Content/ItemPrefixes/Potions/EmpoweredGlint");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>
     public static readonly RequestCache<Texture2D> PlanteraBackpack = new("Content/Items/Accessories/Backpacks/PlanteraBackpack");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpackBuilderToggle</summary>
@@ -1981,8 +1947,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NoonBuff = new("Items/Potions/NoonPotion/NoonBuff");
     /// <summary>Full Path: Items/Potions/NoonPotion/NoonPotion</summary>
     public static readonly RequestCache<Texture2D> NoonPotion = new("Items/Potions/NoonPotion/NoonPotion");
-    /// <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
-    public static readonly RequestCache<Texture2D> Items_Potions_Pollen_MistralPollen = new("Items/Potions/Pollen/MistralPollen");
     /// <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>
     public static readonly RequestCache<Texture2D> MercerTonic = new("Items/Potions/Unique/MercerTonic");
     /// <summary>Full Path: Items/Potions/Unique/PotionOfResurrection</summary>

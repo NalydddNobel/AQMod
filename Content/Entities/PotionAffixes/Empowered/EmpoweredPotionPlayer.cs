@@ -1,10 +1,28 @@
 ﻿using Aequus.Common.Net;
 using System.IO;
 
-namespace Aequus.Content.Entities.PotionAffixes.Mistral;
+namespace Aequus.Content.Entities.PotionAffixes.Empowered;
 
 public class EmpoweredPotionPlayer : ModPlayer {
     public int empowered;
+
+    public override void Load() {
+        On_Player.QuickBuff_ShouldBotherUsingThisBuff += On_Player_QuickBuff_ShouldBotherUsingThisBuff;
+    }
+
+    static bool On_Player_QuickBuff_ShouldBotherUsingThisBuff(On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player self, int attemptedType) {
+        if (!orig(self, attemptedType)) {
+            return false;
+        }
+
+        return !self.TryGetModPlayer(out EmpoweredPotionPlayer potionPlayer) || potionPlayer.empowered == 0 || potionPlayer.empowered == attemptedType;
+    }
+
+    public override void ResetEffects() {
+        if (empowered != 0 && !Player.HasBuff(empowered)) {
+            empowered = 0;
+        }
+    }
 }
 
 public class EmpoweredPotionPlayerPacket : PacketHandler {

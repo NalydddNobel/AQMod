@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs.Misc.Empowered;
-using Aequus.Common.DataSets;
+﻿using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
 using System;
@@ -38,9 +37,9 @@ public class AequusBuff : GlobalBuff {
     private static void Player_AddBuff(On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack) {
         var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
         onAddBuff?.PreAddBuff(player, ref timeToAdd, ref quiet, ref foodHack);
-        if (BuffSets.BuffConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null) {
+        if (BuffSets.BuffConflicts.TryGetValue(type, out var l) && l != null) {
             for (int i = 0; i < Player.MaxBuffs; i++) {
-                if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i]))) {
+                if (l.Contains(player.buffType[i])) {
                     player.DelBuff(i);
                 }
             }
@@ -60,25 +59,18 @@ public class AequusBuff : GlobalBuff {
     }
 
     private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType) {
-        if (!orig(player, attemptedType))
+        if (!orig(player, attemptedType)) {
             return false;
-        if (BuffSets.BuffConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(attemptedType), out var l) && l != null) {
+        }
+
+        if (BuffSets.BuffConflicts.TryGetValue(attemptedType, out var l) && l != null) {
             for (int i = 0; i < Player.MaxBuffs; i++) {
-                if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i]))) {
+                if (l.Contains(player.buffType[i])) {
                     return false;
                 }
             }
         }
-        for (int i = 0; i < Player.MaxBuffs; i++) {
-            if (player.buffType[i] < BuffID.Count)
-                continue;
-            var modBuff = BuffLoader.GetBuff(player.buffType[i]);
-            if (modBuff is not EmpoweredBuffBase empoweredBuff)
-                continue;
 
-            if (attemptedType == empoweredBuff.OriginalBuffType)
-                return false;
-        }
         return true;
     }
 
