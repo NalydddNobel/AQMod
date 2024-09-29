@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes.Yoyos;
 
-public abstract class YoyoPrefixBase : AequusPrefix {
+public abstract class YoyoPrefixBase : LegacyAequusPrefix {
     public override PrefixCategory Category => PrefixCategory.AnyWeapon;
 
     public override bool CanRoll(Item item) {

@@ -18,7 +18,7 @@ using Terraria.UI;
 
 namespace Aequus.Content.Items.Accessories.PotionCanteen;
 
-public abstract class UnifiedCanteen(UnifiedCanteen.CanteenInfo info) : ModItem, IShimmerOverride, IHoverItemSlotOverride {
+public abstract class UnifiedCanteen(UnifiedCanteen.CanteenInfo info) : ModItem, IShimmerOverride, IItemSlotOverride {
     protected readonly CanteenInfo _info = info;
 
     [CloneByReference]
@@ -119,7 +119,7 @@ public abstract class UnifiedCanteen(UnifiedCanteen.CanteenInfo info) : ModItem,
         return false;
     }
 
-    bool IHoverItemSlotOverride.RightClickSlot(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus) {
+    bool IItemSlotOverride.RightClickSlot(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus) {
         int aContext = Math.Abs(context);
         if (!InventoryUI.ContextsInv.Contains(context)) {
             return false;

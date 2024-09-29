@@ -1,7 +1,7 @@
 ﻿using Terraria;
 
 namespace Aequus.Content.ItemPrefixes.Armor {
-    public abstract class MossArmorPrefixBase : AequusPrefix {
+    public abstract class MossArmorPrefixBase : LegacyAequusPrefix {
         public override bool Shimmerable => true;
 
         public abstract int MossItem { get; }

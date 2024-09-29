@@ -1,8 +1,7 @@
-﻿using Aequus.Common.Items.Dedications;
+﻿using Aequus.Common.Entities.ItemAffixes;
+using Aequus.Common.Items.Dedications;
 using Aequus.Common.Recipes;
 using Aequus.Content.Dedicated;
-using Aequus.Content.ItemPrefixes;
-using Aequus.Systems.Shimmer;
 using Terraria.GameContent;
 
 namespace Aequus;
@@ -30,20 +29,13 @@ public partial class AequusItem {
     }
 
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
-        DedicatedFaeling.SpawnFaelingsFromShimmer(item);
-
-        if (item.stack <= 0) {
+        if (PrefixLoader.GetPrefix(item.prefix) is IShimmerAffix affix && affix.OnShimmer(item)) {
             return;
         }
 
-        if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is AequusPrefix prefix && prefix.Shimmerable) {
-            int oldStack = item.stack;
-            item.SetDefaults(item.netID);
-            item.stack = oldStack;
-            item.prefix = 0;
-            item.shimmered = true;
+        DedicatedFaeling.SpawnFaelingsFromShimmer(item);
 
-            Shimmer.GetShimmered(item);
+        if (item.stack <= 0) {
             return;
         }
 

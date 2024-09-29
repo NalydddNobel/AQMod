@@ -6,8 +6,17 @@ using Terraria.GameContent.Achievements;
 namespace Aequus.Common.Entities.Players;
 
 internal class PlayerHooks : LoadedType {
+    public static bool QuickBuff { get; private set; }
+
     protected override void Load() {
+        On_Player.QuickBuff += On_Player_QuickBuff;
         IL_Player.PickTile += IL_Player_PickTile;
+    }
+
+    private static void On_Player_QuickBuff(On_Player.orig_QuickBuff orig, Player player) {
+        QuickBuff = true;
+        orig(player);
+        QuickBuff = false;
     }
 
     private static bool _player_PickTile;

@@ -559,8 +559,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NeonAttack = new("Content/Elites/Misc/NeonAttack");
     /// <summary>Full Path: Content/Elites/Misc/XenonSpore</summary>
     public static readonly RequestCache<Texture2D> XenonSpore = new("Content/Elites/Misc/XenonSpore");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Manacle/BoundedPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Content/Entities/PotionAffixes/Manacle/BoundedPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
     public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Moonflower/MoonflowerPollen</summary>
@@ -1981,8 +1983,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NoonBuff = new("Items/Potions/NoonPotion/NoonBuff");
     /// <summary>Full Path: Items/Potions/NoonPotion/NoonPotion</summary>
     public static readonly RequestCache<Texture2D> NoonPotion = new("Items/Potions/NoonPotion/NoonPotion");
-    /// <summary>Full Path: Items/Potions/Pollen/ManaclePollen</summary>
-    public static readonly RequestCache<Texture2D> ManaclePollen = new("Items/Potions/Pollen/ManaclePollen");
     /// <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
     public static readonly RequestCache<Texture2D> MistralPollen = new("Items/Potions/Pollen/MistralPollen");
     /// <summary>Full Path: Items/Potions/Pollen/MoonflowerPollen</summary>

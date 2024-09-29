@@ -20,9 +20,14 @@ public interface IPickItemSlotMovementAction {
     void OverrideItemMovementAction(ref int result, Item[] inventory, int context, int slot, Item checkItem);
 }
 
-internal interface IHoverItemSlotOverride {
+internal interface IItemSlotOverride {
     /// <returns>true to prevent vanilla right click actions.</returns>
     bool RightClickSlot(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus);
+}
+
+internal interface IItemSlotOverrideWhileHeldInMouse {
+    /// <returns>true to prevent vanilla right click actions.</returns>
+    bool RightClickSlot(ref Item heldItem, Item[] inv, int context, int slot, Player player);
 }
 
 internal class ItemSlotHooks : LoadedType {
@@ -46,16 +51,14 @@ internal class ItemSlotHooks : LoadedType {
             Player player = Main.LocalPlayer;
             AequusPlayer aequus = player.GetModPlayer<AequusPlayer>();
 
-            /*
-            if (!Main.mouseItem.IsAir && Main.mouseItem.ModItem is IRightClickOverrideWhenHeld hold && hold.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+            if (!Main.mouseItem.IsAir && Main.mouseItem.ModItem is IItemSlotOverrideWhileHeldInMouse hold && hold.RightClickSlot(ref Main.mouseItem, inv, context, slot, player)) {
                 Main.mouseRightRelease = false;
                 // Set stack split delay to 3 seconds (so you don't instantly pick up the item with rclick)
                 Main.stackSplit = 180;
                 return;
             }
-            */
 
-            if (!inv[slot].IsAir && inv[slot].ModItem is IHoverItemSlotOverride hover && hover.RightClickSlot(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+            if (!inv[slot].IsAir && inv[slot].ModItem is IItemSlotOverride slotOverride && slotOverride.RightClickSlot(ref Main.mouseItem, inv, context, slot, player, aequus)) {
                 Main.mouseRightRelease = false;
                 // Set stack split delay to 3 seconds (so you don't instantly pick up the item with rclick)
                 Main.stackSplit = 180;

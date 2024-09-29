@@ -5,7 +5,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes.Potions {
-    public abstract class PotionPrefixBase : AequusPrefix {
+    public abstract class PotionPrefixBase : LegacyAequusPrefix {
         private string shaderKey;
         public string ShaderKey => shaderKey;
 

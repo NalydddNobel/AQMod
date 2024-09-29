@@ -2,6 +2,8 @@ Prefixes: {
 	BoundedPrefix: {
 		// DisplayName: Bounded
 		// Ability: +Beyond Death
+		// ItemName: Mods.Aequus.Prefixes.BoundedPrefix.ItemName
+		// ItemTooltip: Mods.Aequus.Prefixes.BoundedPrefix.ItemTooltip
 	}
 
 	SplashPrefix: {

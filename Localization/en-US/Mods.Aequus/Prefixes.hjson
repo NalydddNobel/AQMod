@@ -1,4 +1,11 @@
 Prefixes: {
+	BoundedPrefix: {
+		DisplayName: Bounded
+		Ability: +Beyond Death
+		ItemName: Manacle Pollen
+		ItemTooltip: Grant the 'Bounded' affix when held and pressing <right> on a potion
+	}
+
 	CooldownTip: "{0}% cooldown time"
 	Overscheduled.DisplayName: Overscheduled
 	Constant.DisplayName: Constant

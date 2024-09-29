@@ -24,7 +24,6 @@ public partial class AequusItem : GlobalItem {
 
     public int defenseChange = 0;
     public bool naturallyDropped = false;
-    public bool prefixPotionsBounded = false;
 
     public override bool InstancePerEntity => true;
     protected override bool CloneNewInstances => true;
@@ -88,7 +87,6 @@ public partial class AequusItem : GlobalItem {
 
     public override void SetDefaults(Item item) {
         SetDefaults_VanillaChanges(item);
-        prefixPotionsBounded = false;
         reversedGravity = false;
         SetDefaults_UnusedItemOverride(item);
 
@@ -150,14 +148,6 @@ public partial class AequusItem : GlobalItem {
                             ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 3f);
                     }
                 }
-            }
-        }
-        if (item.buffType > 0 && item.buffTime > 0) {
-            if (prefixPotionsBounded && !Main.persistentBuff[item.buffType]) {
-                player.Aequus().BoundedPotionIDs.Add(item.buffType);
-            }
-            else {
-                player.Aequus().BoundedPotionIDs.Remove(item.buffType);
             }
         }
         return null;

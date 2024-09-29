@@ -1,9 +1,4 @@
 Prefixes: {
-	BoundedPrefix: {
-		DisplayName: Bounded
-		Ability: +Beyond Death
-	}
-
 	SplashPrefix: {
 		DisplayName: Splashable
 		Ability: +Throwable

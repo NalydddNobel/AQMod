@@ -197,7 +197,7 @@ public partial class AequusProjectile : GlobalProjectile {
         }
 
         if (source is EntitySource_ItemUse itemUse && itemUse.Item != null) {
-            if (PrefixLoader.GetPrefix(itemUse.Item.prefix) is AequusPrefix aequusPrefix) {
+            if (PrefixLoader.GetPrefix(itemUse.Item.prefix) is LegacyAequusPrefix aequusPrefix) {
                 aequusPrefix.OnShoot(itemUse.Player, itemUse.Item, projectile);
             }
         }

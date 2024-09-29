@@ -849,7 +849,10 @@
         <member name="F:Aequus.Common.Entities.Items.IPickItemSlotMovementAction.RESULT_JOURNEY_DUPE">
             <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
         </member>
-        <member name="M:Aequus.Common.Entities.Items.IHoverItemSlotOverride.RightClickSlot(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
+        <member name="M:Aequus.Common.Entities.Items.IItemSlotOverride.RightClickSlot(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
+        <member name="M:Aequus.Common.Entities.Items.IItemSlotOverrideWhileHeldInMouse.RightClickSlot(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player)">
             <returns>true to prevent vanilla right click actions.</returns>
         </member>
         <member name="P:Aequus.Common.Entities.NPCs.AI.IJellyfishAIProvider.ShockRampUpDistance">
@@ -2044,7 +2047,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 149)</summary>
+            <summary>(Total Sounds: 150)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -2246,6 +2249,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.CanteenUse">
             <summary>Full Path: Assets/Sounds/Item/PotionCanteen/CanteenUse</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PotionPrefix">
+            <summary>Full Path: Assets/Sounds/Item/PotionPrefix</summary>
         </member>
         <member name="F:Aequus.AequusSounds.raygun">
             <summary>Full Path: Assets/Sounds/Item/raygun</summary>
@@ -3325,7 +3331,10 @@
             <summary>Full Path: Content/Elites/Misc/XenonSpore</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoundedPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Manacle/BoundedPrefixGlint</summary>
+            <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoundedPrefixItem">
+            <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
             <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
@@ -5456,9 +5465,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.NoonPotion">
             <summary>Full Path: Items/Potions/NoonPotion/NoonPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ManaclePollen">
-            <summary>Full Path: Items/Potions/Pollen/ManaclePollen</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MistralPollen">
             <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>

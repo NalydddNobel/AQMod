@@ -60,5 +60,7 @@ public enum PacketType : byte {
     CrabPotUse,
     CrabPotPlace,
     CrabPotAddBait,
+    BoundedPotionPlayer,
+    EmpoweredPotionPlayer,
     Count
 }

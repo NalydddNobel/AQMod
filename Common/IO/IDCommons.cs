@@ -43,17 +43,32 @@ public static class IDCommons<T> where T : class {
 
     private static int GetStartCount() {
         Type t = typeof(T);
-        FieldInfo negativeIdField = t.GetField("NegativeIDCount", BindingFlags.Public | BindingFlags.Static);
+        FieldInfo? negativeIdField = t.GetField("NegativeIDCount", BindingFlags.Public | BindingFlags.Static);
 
         if (negativeIdField == null) {
             return 0;
         }
 
-        object value = negativeIdField.GetValue(null);
+        object? value = negativeIdField.GetValue(null);
         return value == null ? 0 : Convert.ToInt32(value);
     }
 
     public static string GetStringIdentifier(int id) {
-        return id < Count ? id.ToString() : Search.GetName(id);
+        return id < Count ? id.ToString(CultureInfo.InvariantCulture) : Search.GetName(id);
+    }
+
+    public static bool FromStringIdentifier(string name, out int id) {
+        if (int.TryParse(name, CultureInfo.InvariantCulture, out int rawId)) {
+            id = rawId;
+            return true;
+        }
+
+        if (Search.TryGetId(name, out int nameId)) {
+            id = nameId;
+            return true;
+        }
+
+        id = 0;
+        return false;
     }
 }

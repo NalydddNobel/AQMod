@@ -2,6 +2,8 @@ Prefixes: {
 	BoundedPrefix: {
 		DisplayName: 有界限的
 		Ability: +超越死亡
+		// ItemName: Mods.Aequus.Prefixes.BoundedPrefix.ItemName
+		// ItemTooltip: Mods.Aequus.Prefixes.BoundedPrefix.ItemTooltip
 	}
 
 	SplashPrefix: {

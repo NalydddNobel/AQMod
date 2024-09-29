@@ -1668,6 +1668,7 @@ public partial class AequusPlayer : ModPlayer {
         if (Main.mouseRight && Main.mouseRightRelease) {
             var player = Main.LocalPlayer;
             var aequus = player.Aequus();
+
             if (Main.mouseItem.ModItem is ItemHooks.IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
                 return;
             }

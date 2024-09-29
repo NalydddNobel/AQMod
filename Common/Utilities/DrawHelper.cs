@@ -21,7 +21,8 @@ public sealed class DrawHelper : ModSystem {
         ScissorTestEnable = true
     };
 
-    public static LegacySpriteBatchCache SpriteBatchCache { get; private set; }
+    public static readonly SpriteBatchCache SpriteBatchCache = new();
+    public static LegacySpriteBatchCache _legacySpriteBatchCache { get; private set; }
 
     public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
     public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
@@ -182,7 +183,7 @@ public sealed class DrawHelper : ModSystem {
             return;
         }
 
-        SpriteBatchCache = new();
+        _legacySpriteBatchCache = new();
         VertexStrip = new();
         On_Main.DrawNPC += On_Main_DrawNPC;
         On_Main.DrawNPCs += On_Main_DrawNPCs;
@@ -191,7 +192,7 @@ public sealed class DrawHelper : ModSystem {
     }
 
     public override void Unload() {
-        SpriteBatchCache = null;
+        _legacySpriteBatchCache = null;
         VertexStrip = null;
         Main.QueueMainThreadAction(UnloadShaders);
     }
