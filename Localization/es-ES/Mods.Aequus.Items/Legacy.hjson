@@ -2051,11 +2051,6 @@ MistralPollen: {
 	// Tooltip: Empowers potions, only 1 can be active at a time
 }
 
-MoonflowerPollen: {
-	// DisplayName: Moonflower Pollen
-	// Tooltip: Doubles the duration of potions
-}
-
 DustDevilBag: {
 	// DisplayName: Treasure Bag (Dust Devil)
 	// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"

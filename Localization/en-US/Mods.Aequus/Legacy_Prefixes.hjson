@@ -1,19 +1,4 @@
 Prefixes: {
-	SplashPrefix: {
-		DisplayName: Splashable
-		Ability: +Throwable
-	}
-
-	DoubledTimePrefix: {
-		DisplayName: Stuffed
-		Ability: "{0} duration"
-	}
-
-	EmpoweredPrefix: {
-		DisplayName: Empowered
-		Ability: "{0} buff strength"
-	}
-
 	// Armor Prefixes
 	ArgonPrefix.DisplayName: Withstanding
 	KryptonPrefix.DisplayName: Mending

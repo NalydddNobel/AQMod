@@ -1,4 +1,32 @@
 Prefixes: {
+	SplashPrefix: {
+		DisplayName: 可泼溅的
+		Ability: +可投掷
+		// ItemName: Moray Pollen
+		// ItemTooltip: Grant the 'Splashable' affix when held and pressing <right> on a potion
+	}
+
+	EmpoweredPrefix: {
+		DisplayName: 增强的
+		Ability: "{0}增益强度"
+		// ItemName: Mistral Pollen
+		// ItemTooltip: Grant the 'Empowered' affix when held and pressing <right> on a potion
+	}
+
+	StuffedPrefix: {
+		// DisplayName: Stuffed
+		// Ability: "{0} duration"
+		// ItemName: Stellar Cubes
+		// ItemTooltip: Grant the 'Stuffed' affix when held and pressing <right> on a potion
+	}
+
+	BoundedPrefix: {
+		DisplayName: 有界限的
+		Ability: +超越死亡
+		// ItemName: Manacle Pollen
+		// ItemTooltip: Grant the 'Bounded' affix when held and pressing <right> on a potion
+	}
+
 	CooldownTip: "{0}%冷却时间"
 	Overscheduled.DisplayName: 忙碌
 	Constant.DisplayName: 恒常

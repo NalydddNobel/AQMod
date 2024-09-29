@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace Aequus.Content.Entities.PotionAffixes.Bounded;
 
 public class BoundedPrefix : UnifiedPotionAffix {
+    LocalizedText? Ability;
+
     public override void Load() {
         base.Load();
 
+        Ability = this.GetLocalization("Ability");
         ModTypeLookup<ModItem>.RegisterLegacyNames(Item, "ManaclePollen");
     }
 
@@ -18,6 +22,6 @@ public class BoundedPrefix : UnifiedPotionAffix {
     }
 
     public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
-        yield return new TooltipLine(Aequus.Instance, "PrefixBounded", TextHelper.GetTextValue("Prefixes.BoundedPrefix.Ability")) { IsModifier = true, IsModifierBad = false, };
+        yield return new TooltipLine(Mod, "PrefixBounded", Ability!.Value) { IsModifier = true, IsModifierBad = false, };
     }
 }

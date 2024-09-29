@@ -2051,11 +2051,6 @@ MistralPollen: {
 	Tooltip: 强化药水, 同时只能激活一个强化药水
 }
 
-MoonflowerPollen: {
-	DisplayName: 月光花粉
-	Tooltip: 翻倍药水的持续时间
-}
-
 DustDevilBag: {
 	DisplayName: 宝藏袋 (沙尘恶魔)
 	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"

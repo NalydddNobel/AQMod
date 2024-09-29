@@ -3,7 +3,7 @@ using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
 using Aequus.Common.Structures.ID;
-using Aequus.Items.Potions.Pollen;
+using Aequus.Content.Entities.PotionAffixes.Stuffed;
 using System;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
@@ -20,7 +20,7 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
 
     public override void Load() {
         Mod.AddContent(Seeds);
-        Mod.AddContent(new InstancedHangingPot(new TypeId<MoonflowerPollen>(), "MoonflowerPot", AequusTextures.MoonflowerPot.FullPath));
+        Mod.AddContent(new InstancedHangingPot(new LazyId(() => Instance<StuffedPrefix>().Item.Type), "MoonflowerPot", AequusTextures.MoonflowerPot.FullPath));
         Mod.AddContent(new InstancedPlanterBox("MoonflowerPlanterBox", AequusTextures.MoonflowerPlanterBox.FullPath, new() {
             SellCondition = AequusConditions.DownedOmegaStarite,
             LightColor = new Vector3(0.32f, 0.16f, 0.12f),
@@ -43,7 +43,7 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
         obj.CoordinateHeights = [30];
         obj.DrawYOffset = -10;
 
-        Settings.PlantDrop = ModContent.ItemType<MoonflowerPollen>();
+        Settings.PlantDrop = Instance<StuffedPrefix>().Item.Type;
         Settings.SeedDrop = Seeds.Type;
         Settings.BloomParticleColor = new Color(150, 150, 30);
 

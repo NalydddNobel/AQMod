@@ -1,4 +1,32 @@
 Prefixes: {
+	SplashPrefix: {
+		// DisplayName: Splashable
+		// Ability: +Throwable
+		// ItemName: Moray Pollen
+		// ItemTooltip: Grant the 'Splashable' affix when held and pressing <right> on a potion
+	}
+
+	EmpoweredPrefix: {
+		// DisplayName: Empowered
+		// Ability: "{0} buff strength"
+		// ItemName: Mistral Pollen
+		// ItemTooltip: Grant the 'Empowered' affix when held and pressing <right> on a potion
+	}
+
+	StuffedPrefix: {
+		// DisplayName: Stuffed
+		// Ability: "{0} duration"
+		// ItemName: Stellar Cubes
+		// ItemTooltip: Grant the 'Stuffed' affix when held and pressing <right> on a potion
+	}
+
+	BoundedPrefix: {
+		// DisplayName: Bounded
+		// Ability: +Beyond Death
+		// ItemName: Manacle Pollen
+		// ItemTooltip: Grant the 'Bounded' affix when held and pressing <right> on a potion
+	}
+
 	CooldownTip: "{0}% tiempo de recarga"
 	Overscheduled.DisplayName: Sobreprogramado
 	Constant.DisplayName: Constante

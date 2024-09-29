@@ -1,26 +1,4 @@
 Prefixes: {
-	BoundedPrefix: {
-		DisplayName: 有界限的
-		Ability: +超越死亡
-		// ItemName: Mods.Aequus.Prefixes.BoundedPrefix.ItemName
-		// ItemTooltip: Mods.Aequus.Prefixes.BoundedPrefix.ItemTooltip
-	}
-
-	SplashPrefix: {
-		DisplayName: 可泼溅的
-		Ability: +可投掷
-	}
-
-	DoubledTimePrefix: {
-		DisplayName: 填充的
-		Ability: "{0}持续时间"
-	}
-
-	EmpoweredPrefix: {
-		DisplayName: 增强的
-		Ability: "{0}增益强度"
-	}
-
 	// Armor Prefixes
 	ArgonPrefix.DisplayName: 坚韧
 	KryptonPrefix.DisplayName: 恢复
