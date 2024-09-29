@@ -3,7 +3,7 @@ using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
 using Aequus.Common.Structures.ID;
-using Aequus.Items.Potions.Pollen;
+using Aequus.Content.Entities.PotionAffixes.Splash;
 using System.Collections.Generic;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
@@ -22,7 +22,7 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
     public override void Load() {
         Mod.AddContent(Seeds);
-        Mod.AddContent(new InstancedHangingPot(new TypeId<MorayPollen>(), "MorayPot", AequusTextures.MorayPot.FullPath));
+        Mod.AddContent(new InstancedHangingPot(new LazyId(() => Instance<SplashPrefix>().Item.Type), "MorayPot", AequusTextures.MorayPot.FullPath));
         Mod.AddContent(new InstancedPlanterBox("MorayPlanterBox", AequusTextures.MorayPlanterBox.FullPath, new() {
             SellCondition = AequusConditions.DownedCrabson,
         }));
@@ -58,7 +58,7 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
         obj.CoordinateHeights = [30];
         obj.DrawYOffset = -10;
 
-        Settings.PlantDrop = ModContent.ItemType<MorayPollen>();
+        Settings.PlantDrop = Instance<SplashPrefix>().Item.Type;
         Settings.SeedDrop = Seeds.Type;
         Settings.BloomParticleColor = new Color(30, 50, 150);
 

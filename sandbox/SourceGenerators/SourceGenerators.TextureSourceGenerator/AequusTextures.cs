@@ -565,8 +565,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
     public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Moray/SplashPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Content/Entities/PotionAffixes/Moray/SplashPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Mistral/MistralPollen</summary>
+    public static readonly RequestCache<Texture2D> Content_Entities_PotionAffixes_Mistral_MistralPollen = new("Content/Entities/PotionAffixes/Mistral/MistralPollen");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Content/Entities/PotionAffixes/Splash/SplashPrefixGlint");
+    /// <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Content/Entities/PotionAffixes/Splash/SplashPrefixItem");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixGlint</summary>
     public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Content/Entities/PotionAffixes/Stuffed/StuffedPrefixGlint");
     /// <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixItem</summary>
@@ -623,8 +627,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TatteredDemonHorn = new("Content/Fishing/Junk/TatteredDemonHorn");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/EmpoweredGlint</summary>
     public static readonly RequestCache<Texture2D> EmpoweredGlint = new("Content/ItemPrefixes/Potions/EmpoweredGlint");
-    /// <summary>Full Path: Content/ItemPrefixes/Potions/SplashGlint</summary>
-    public static readonly RequestCache<Texture2D> SplashGlint = new("Content/ItemPrefixes/Potions/SplashGlint");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>
     public static readonly RequestCache<Texture2D> PlanteraBackpack = new("Content/Items/Accessories/Backpacks/PlanteraBackpack");
     /// <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpackBuilderToggle</summary>
@@ -1980,9 +1982,7 @@ public partial class AequusTextures {
     /// <summary>Full Path: Items/Potions/NoonPotion/NoonPotion</summary>
     public static readonly RequestCache<Texture2D> NoonPotion = new("Items/Potions/NoonPotion/NoonPotion");
     /// <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
-    public static readonly RequestCache<Texture2D> MistralPollen = new("Items/Potions/Pollen/MistralPollen");
-    /// <summary>Full Path: Items/Potions/Pollen/MorayPollen</summary>
-    public static readonly RequestCache<Texture2D> MorayPollen = new("Items/Potions/Pollen/MorayPollen");
+    public static readonly RequestCache<Texture2D> Items_Potions_Pollen_MistralPollen = new("Items/Potions/Pollen/MistralPollen");
     /// <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>
     public static readonly RequestCache<Texture2D> MercerTonic = new("Items/Potions/Unique/MercerTonic");
     /// <summary>Full Path: Items/Potions/Unique/PotionOfResurrection</summary>

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.GUI;
 using Aequus.Common.UI;
+using System.Collections.Generic;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Entities.PotionAffixes;
@@ -10,6 +11,31 @@ public class PotionAffixGlobalItem : GlobalItem {
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return ItemSets.IsPotion.Contains(entity.type);
+    }
+
+    public override void Load() {
+        On_Item.CanApplyPrefix += On_Item_CanApplyPrefix;
+        On_Item.CanHavePrefixes += On_Item_CanHavePrefixes;
+    }
+
+    private bool On_Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
+        return ItemSets.IsPotion.Contains(self.type) || orig(self);
+    }
+
+    private static bool On_Item_CanApplyPrefix(On_Item.orig_CanApplyPrefix orig, Item self, int prefix) {
+        if (PrefixLoader.GetPrefix(prefix) is UnifiedPotionAffix && ItemSets.IsPotion.Contains(self.type)) {
+            return true;
+        }
+
+        return orig(self, prefix);
+    }
+
+    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+        if (PrefixLoader.GetPrefix(item.prefix) is not UnifiedPotionAffix) {
+            return;
+        }
+
+        tooltips.RemoveAll(t => t.Mod == "Terraria" && t.Name.StartsWith("Prefix"));
     }
 
     public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

@@ -3339,8 +3339,14 @@
         <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
             <summary>Full Path: Content/Entities/PotionAffixes/Mistral/EmpoweredPrefixGlint</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Content_Entities_PotionAffixes_Mistral_MistralPollen">
+            <summary>Full Path: Content/Entities/PotionAffixes/Mistral/MistralPollen</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Moray/SplashPrefixGlint</summary>
+            <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplashPrefixItem">
+            <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StuffedPrefixGlint">
             <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixGlint</summary>
@@ -3425,9 +3431,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.EmpoweredGlint">
             <summary>Full Path: Content/ItemPrefixes/Potions/EmpoweredGlint</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SplashGlint">
-            <summary>Full Path: Content/ItemPrefixes/Potions/SplashGlint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PlanteraBackpack">
             <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>
@@ -5460,11 +5463,8 @@
         <member name="F:Aequus.AequusTextures.NoonPotion">
             <summary>Full Path: Items/Potions/NoonPotion/NoonPotion</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MistralPollen">
+        <member name="F:Aequus.AequusTextures.Items_Potions_Pollen_MistralPollen">
             <summary>Full Path: Items/Potions/Pollen/MistralPollen</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MorayPollen">
-            <summary>Full Path: Items/Potions/Pollen/MorayPollen</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MercerTonic">
             <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>

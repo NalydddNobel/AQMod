@@ -15,7 +15,7 @@ Prefixes: {
 
 	StuffedPrefix: {
 		// DisplayName: Stuffed
-		// Ability: "{0} duration"
+		// Ability: +{0}% buff duration
 		// ItemName: Stellar Cubes
 		// ItemTooltip: Grant the 'Stuffed' affix when held and pressing <right> on a potion
 	}

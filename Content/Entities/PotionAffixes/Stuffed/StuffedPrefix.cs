@@ -24,7 +24,7 @@ public class StuffedPrefix : UnifiedPotionAffix {
     }
 
     public override bool CanRoll(Item item) {
-        return AequusItem.IsPotion(item) && !Main.persistentBuff[item.buffType];
+        return AequusItem.IsPotion(item);
     }
 
     public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {

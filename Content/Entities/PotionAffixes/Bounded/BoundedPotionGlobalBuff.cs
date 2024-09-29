@@ -4,12 +4,18 @@ using Terraria.DataStructures;
 namespace Aequus.Content.Entities.PotionAffixes.Bounded;
 
 public class BoundedPotionGlobalBuff : GlobalBuff {
-    public override bool PreDraw(SpriteBatch spriteBatch, int type, int buffIndex, ref BuffDrawParams drawParams) {
+    public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare) {
         if (!Main.LocalPlayer.TryGetModPlayer(out BoundedPotionPlayer potionPlayer)) {
-            return true;
+            return;
         }
 
-        if (!potionPlayer.bounded.Contains(type)) {
+        if (potionPlayer.bounded.Contains(type)) {
+            buffName = $"{Instance<BoundedPrefix>().DisplayName} {buffName}";
+        }
+    }
+
+    public override bool PreDraw(SpriteBatch spriteBatch, int type, int buffIndex, ref BuffDrawParams drawParams) {
+        if (!Main.LocalPlayer.TryGetModPlayer(out BoundedPotionPlayer potionPlayer) || !potionPlayer.bounded.Contains(type)) {
             return true;
         }
 

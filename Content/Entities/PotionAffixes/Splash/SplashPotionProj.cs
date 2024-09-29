@@ -1,17 +1,20 @@
-﻿using Aequus.Common.Utilities.Helpers;
+﻿using Aequus;
+using Aequus.Common.Utilities.Helpers;
 using Aequus.Particles.Dusts;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Aequus.Projectiles.Misc;
+namespace Aequus.Content.Entities.PotionAffixes.Splash;
+
 public class SplashPotionProj : ModProjectile {
-    public override string Texture => Aequus.BlankTexture;
+    const int AreaOfEffect = 120;
+
+    public override string Texture => AequusTextures.None.FullPath;
 
     public int ItemType { get => Math.Abs((int)Projectile.ai[0]); set => Projectile.ai[0] = value; }
     public int BuffTime { get => (int)Projectile.ai[1]; set => Projectile.ai[1] = value; }
-    public int AreaOfEffect => 120;
 
     public override void SetDefaults() {
         Projectile.width = 32;
@@ -76,7 +79,7 @@ public class SplashPotionProj : ModProjectile {
                             if (Main.rand.NextBool(2)) {
                                 var d = Dust.NewDustPerfect(new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f + Main.rand.NextFloat(-2f, 2f)), ModContent.DustType<MonoSparkleDust>(), Vector2.Zero, newColor: Main.rand.Next(color) with { A = (byte)Main.rand.Next(200) } * Math.Min(x / 4f, 1f), Scale: Main.rand.NextFloat(0.75f, 1.5f));
                                 d.velocity.X = Math.Sign(d.position.X - Projectile.Center.X) * Main.rand.NextFloat(3f) * x / 3f;
-                                d.velocity.Y -= (16f / Math.Max(x, 1f) / 2f) * Main.rand.NextFloat(1f);
+                                d.velocity.Y -= 16f / Math.Max(x, 1f) / 2f * Main.rand.NextFloat(1f);
                                 if (d.velocity.Length() > 4f) {
                                     d.velocity.Normalize();
                                     d.velocity *= 4f;
