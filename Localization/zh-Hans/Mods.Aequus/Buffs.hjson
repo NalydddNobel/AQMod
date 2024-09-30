@@ -493,7 +493,7 @@ Buffs: {
 	VeinminerBuff: {
 		DisplayName: 地脉爆破
 		Description: 矿石会神奇的被自动挖掘
-		// EmpoweredDescription: Increased ore droprate and veinmine speed
+		EmpoweredDescription: 增加矿石掉落率和地脉爆破速度
 	}
 
 	VeinminerBuffEmpowered: {
