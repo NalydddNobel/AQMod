@@ -62,7 +62,7 @@ public class EOCOresGenerator : Generator {
 
     [Gen.AequusSystem_PostUpdateWorld]
     internal static void CheckEoCOres() {
-        if (!NPC.downedBoss1 || Generated) {
+        if (!NPC.downedBoss1 || Generated || !GameplayConfig.Instance.EyeOfCthulhuOres) {
             return;
         }
 
