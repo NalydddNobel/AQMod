@@ -17,4 +17,10 @@ public class ScavengerBag : BackpackModItem {
         base.SetDefaults();
         Item.CloneShopValues(ItemID.Flipper);
     }
+
+#if !DEBUG
+    public override bool IsLoadingEnabled(Mod mod) {
+        return false;
+    }
+#endif
 }

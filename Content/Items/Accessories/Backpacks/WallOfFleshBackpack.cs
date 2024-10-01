@@ -19,9 +19,18 @@ internal class WallOfFleshBackpack : BackpackModItem {
 
     [Gen.AequusNPC_ModifyNPCLoot]
     internal static void ModifyNPCDrops(NPC npc, NPCLoot loot) {
+#if !DEBUG
+        return;
+#endif
         if (npc.type == NPCID.WallofFlesh) {
             LootBuilder.AddToGrabBag(ItemID.WallOfFleshBossBag, ItemDropRule.Common(ModContent.ItemType<WallOfFleshBackpack>(), chanceDenominator: 2));
             loot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<WallOfFleshBackpack>(), chanceDenominator: 4));
         }
     }
+
+#if !DEBUG
+    public override bool IsLoadingEnabled(Mod mod) {
+        return false;
+    }
+#endif
 }
