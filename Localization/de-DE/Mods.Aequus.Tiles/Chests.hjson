@@ -1,0 +1,36 @@
+Chests: {
+	AdamantiteChest: {
+		// DisplayName: Adamantite Chest
+		// DisplayName_Trapped: Trapped Adamantite Chest
+	}
+
+	FrostChest: {
+		// DisplayName: Frost Chest
+		// DisplayName_Trapped: Trapped Frost Chest
+	}
+
+	TortoiseChest: {
+		// DisplayName: Tortoise Case
+		// DisplayName_Trapped: Trapped Tortoise Case
+	}
+
+	GraniteChest: {
+		// DisplayName: Living Granite Chest
+		// DisplayName_Trapped: Trapped Living Granite Chest
+	}
+
+	MarbleChest: {
+		// DisplayName: Marble Trove
+		// DisplayName_Trapped: Trapped Marble Trove
+	}
+
+	ShroomiteChest: {
+		// DisplayName: Shroomite Chest
+		// DisplayName_Trapped: Trapped Shroomite Chest
+	}
+
+	ForbiddenChest: {
+		// DisplayName: Forbidden Chest
+		// DisplayName_Trapped: Trapped Forbidden Chest
+	}
+}

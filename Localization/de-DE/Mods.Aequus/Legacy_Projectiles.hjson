@@ -1,0 +1,185 @@
+Projectiles: {
+	// SoldierCrabProj.DisplayName: Soldier Crab
+	// MagmabubbleBullet.DisplayName: Magmabubble
+	// CrabsonBubble.DisplayName: Bubble
+	// CrabsonPearlShard.DisplayName: Pearl Shard
+	// CrabsonPearl.DisplayName: Pearl
+	// UltraStariteInnerArms.DisplayName: Ultra Starite
+	// TrapperExplosion.DisplayName: Trapper Blast
+	// TrapperProj.DisplayName: Trapper Blast
+	// RockManProj.DisplayName: Rock Man
+	// MalletProj.DisplayName: Mallet
+	// BattleAxeProj.DisplayName: Battle Axe
+	// ThunderClapExplosion.DisplayName: Thunderclap
+	// ThunderClapProj.DisplayName: Thunderclap
+	// Sliceflake.DisplayName: Sliceflake
+	// MirrorsCallExplosion.DisplayName: Mirror's Call
+	// MirrorsCallBullet.DisplayName: Mirror's Call
+	// CrystalDaggerProj.DisplayName: Crystal Dagger
+	// SlingsaberProj.DisplayName: Mechanically Enhanced Upset Avian
+	// SlingshotProj.DisplayName: Upset Avian
+	// FlameblasterProj.DisplayName: Flameblaster
+	// CrusadersCrossbowBolt.DisplayName: Crusader's Crossbow Bolt
+	// SnowflakeCannonProj.DisplayName: Snowflake Cannon
+	// BaozhuProj.DisplayName: Baozhu
+	// GhastlyBlasterProj.DisplayName: Ghastly Blaster
+	// TouhouBullet.DisplayName: Touhou
+	// PentalScytheProj.DisplayName: Pental Scythe
+	// UmystickBullet.DisplayName: Menacing Moon
+	// SurgeRodHitbox.DisplayName: Surge
+	// SnowgraveProj.DisplayName: Snowgrave
+	// NarrizuulProj.DisplayName: Narrizuul
+	// FlowerCrownProj.DisplayName: Flower Crown
+	// MoonlunaHatProj.DisplayName: Moonluna Hat
+	// StariteMinion.DisplayName: Starite
+	// ZombieBolt.DisplayName: Zombie Bolt
+	// RevenantBolt.DisplayName: Revenant
+	// OsirisBolt.DisplayName: Osiris
+	// InsurgentSkull.DisplayName: Insurgency
+	// WormScarfLaser.DisplayName: Worm Scarf
+	// ThermiteGel.DisplayName: Thermite Gel
+	// ShieldOfCthulhuBoost.DisplayName: Shield of Cthulhu
+	// NaniteSpore.DisplayName: Blood Spore
+	// CelesteTorusProj.DisplayName: Celeste Torus
+	// Bonesaw.DisplayName: Bonesaw
+	// DreadsoulAttack.DisplayName: Hellish Spirit
+	// BreadsoulHealing.DisplayName: Dream Spirit
+	// FriendMinion.DisplayName: Friend
+	// KelBall.DisplayName: Kel's Ball
+	// FlameblasterFire.DisplayName: Flameblaster
+	// FlameblasterWind.DisplayName: Flameblaster Wind
+	// HealingBolt.DisplayName: Healing Bolt
+	// DoubleShotProj.DisplayName: Bullet
+	// SnowsawMinion.DisplayName: Snowflake
+	// JerryClawFlail.DisplayName: Jerry Claw
+	// HellsBoonSpike.DisplayName: Hell's Boon
+	// RedSpriteStaff.DisplayName: Surge Rod
+	// RedSpriteStaffLightning.DisplayName: Surge Rod
+	// ThunderClap.DisplayName: Thunder Clap
+	// Narrizuul.DisplayName: Narrizuul
+	// TouhouOrbiter.DisplayName: Touhou
+	// OmegaStaritePet.DisplayName: Omega Starite
+	// Chomper.DisplayName: Chomper
+	// Lotus.DisplayName: Lotus
+	// LotusShot.DisplayName: Lotus
+	// CrimsonHand.DisplayName: Crimson Hand
+	// FertilePowder.DisplayName: Fertile Powder
+	// FriendlyWind.DisplayName: Friendly Wind
+	// GoldPowder.DisplayName: Gold Powder
+	// ATM.DisplayName: ATM
+	// BeeRod.DisplayName: Bee Bobber
+	// CrabRod.DisplayName: Crab Bobber
+	// Trapper.DisplayName: Trapper
+	// CrabsonSlamProj.DisplayName: Crabson's horrible slam
+	// CrabsonTreasureChest.DisplayName: Treasure Chest
+	// NeonAttack.DisplayName: Neon Blast
+	// XenonSpore.DisplayName: Xenon Spore
+	// CarpenterProj.DisplayName: Carpenter Block
+	// PhysicistProj.DisplayName: Physicist Moon
+	// NecromancerHoodSpawnerProj.DisplayName: Necromancer
+	// SeraphimHoodSpawnerProj.DisplayName: Seraphim
+	// ModIconAnimation.DisplayName: Mod Icon Animation
+	// PentalScytheExplosion.DisplayName: Pental Scythe
+	// SavingGraceProj.DisplayName: Saving Grace
+	// SnowgraveProjSpawner.DisplayName: Snowgrave
+	// SurgeRodProj.DisplayName: Surge Rod
+	// UmystickDoubleJumpProj.DisplayName: Umystick Double Jump
+	// UmystickProj.DisplayName: Umystick
+	// WabbajackEffect.DisplayName: Wabbajack
+	// WabbajackProj.DisplayName: Wabbajack
+	// WindFanProj.DisplayName: Wind Fan
+	// PhaseDiscProj.DisplayName: Phase Disc
+	// NettlebaneProj.DisplayName: Nettlebane
+	// BeeBobber.DisplayName: Bee Bobber
+	// CrabBobber.DisplayName: Crab Bobber
+	// NeonFishLaser.DisplayName: Neon Genesis Laser
+	// NimrodBobber.DisplayName: Nimrod Bobber
+	// NimrodCloudBobber.DisplayName: Nimrod Cloud Bobber
+	// RamishroomBobber.DisplayName: Ramishroom Bobber
+	// StarcatcherBobber.DisplayName: Starcatcher Bobber
+	// ChlorophytePowderProj.DisplayName: Chlorophyte Powder
+	// FertilePowderProj.DisplayName: Fertile Powder
+	// DavyJonesAnchorExplosionProj.DisplayName: Davy Jones's Anchor
+	// DavyJonesAnchorProj.DisplayName: Davy Jones's Anchor
+	// FriendshipMagickProj.DisplayName: Friendship Magick
+	// NaniteExplosion.DisplayName: Nanite
+	// StormcloakExplosionProj.DisplayName: Stormcloak Explosion
+	// ThermiteGelExplosion.DisplayName: Thermite Gel
+	// MendshroomProj.DisplayName: Mendshroom Proj
+	// DronePet.DisplayName: Drone Pet
+	// FamiliarPet.DisplayName: Familiar Pet
+	// MiningPet.DisplayName: Mining Pet
+	// RedSpritePet.DisplayName: Red Sprite Pet
+	// SpaceSquidPet.DisplayName: Space Squid Pet
+	// TorraPet.DisplayName: Torra Pet
+	// PixelCameraProj.DisplayName: Pixel Camera
+	// ProtectiveProbe.DisplayName: Protective Probe
+	// ShutterstockerProj.DisplayName: Shutterstocker
+	// SuperPhysicsGunProj.DisplayName: Super Physics Gun
+	// AshCrossGraveMarkerProj.DisplayName: Ash Cross Grave Marker
+	// AshGraveMarkerProj.DisplayName: Ash Grave Marker
+	// AshGravestoneProj.DisplayName: Ash Gravestone
+	// AshHeadstoneProj.DisplayName: Ash Headstone
+	// AshObeliskProj.DisplayName: Ash Obelisk
+	// AshTombstoneProj.DisplayName: Ash Tombstone
+	// HardwoodProj.DisplayName: Hardwood
+	// MeteorRubble.DisplayName: Meteor Rubble
+	// TrapperBullet.DisplayName: Trapper Bullet
+	// BasicBirdPredictionLine.DisplayName: Prediction Line
+	// BoundBowProj.DisplayName: Bound Bow
+	// CarpenterWeaponProj.DisplayName: Carpenter Weapon
+	// RaygunTrailProj.DisplayName: Raygun Trail Proj
+	// BrainCauliflowerBlast.DisplayName: Brain Cauliflower Blast
+	// BrainCauliflowerMinion.DisplayName: Brain Cauliflower
+	// BloodMoonCandleProj.DisplayName: Blood Moon Candle
+	// DragonsBreathProj.DisplayName: Dragons Breath
+	// FallenAngelProj.DisplayName: Fallen Angel
+	// FleshLighterProj.DisplayName: Flesh Lighter
+	// LightEaterProj.DisplayName: Light Eater
+	// PurgatoryProj.DisplayName: Purgatory
+	// WretchednessProj.DisplayName: Wretchedness
+	// CorruptPlantCounter.DisplayName: Corrupt Plant
+	// CorruptPlantMinion.DisplayName: Corrupt Plant
+	// MindfungusMinion.DisplayName: Mindfungus
+	// EnthrallingBolt.DisplayName: Enthralling Bolt
+	// SkeletronHandProj.DisplayName: Skeletron Hand
+	// SoulAbsorbProj.DisplayName: Soul Absorb
+	// PiranhaPlantFireball.DisplayName: Piranha Plant
+	// PiranhaPlantMinion.DisplayName: Piranha Plant
+	// RedSpriteMinion.DisplayName: Red Sprite
+	// RedSpriteMinionExplosion.DisplayName: Red Sprite
+	// ScribbleNotebookMinion.DisplayName: Scribble Notebook
+	// SnowflakeMinion.DisplayName: Snowflake
+	// TornadoWhipProj.DisplayName: Tornado Whip Proj
+	// StormcloakProj.DisplayName: "{$Items.Stormcloak.DisplayName}"
+	// RecordBreakerProj.DisplayName: Record Breaker Proj
+	// LanternCatPet.DisplayName: Lantern Cat Pet
+	// LihzahrdKusariyariProj.DisplayName: Lihzahrd Chain Spear Proj
+	// LihzahrdKusariyariProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
+	// CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
+	// WormScarfHit.DisplayName: Worm Scarf Hit
+	// HivePackMinion.DisplayName: Hive Pack Minion
+	// BoneHelmMinion.DisplayName: Shadow Creature
+	// NecromancyHitbox.DisplayName: Necromancy Hitbox
+	// LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
+	// ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
+	// ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
+	// NettlebaneOnHitProj.DisplayName: "{$Items.Nettlebane.DisplayName}"
+	// DemonSwordProj.DisplayName: "{$Items.DemonSword.DisplayName}"
+	// ShinyStoneHealingAura.DisplayName: "{$ItemName.ShinyStone}"
+	// SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
+	// SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
+	// FlashlightExperiment.DisplayName: FlashlightExperiment.DisplayName
+	// ZombieSceptreProj.DisplayName: "{$Items.ZombieSceptre.DisplayName}"
+	// ZombieSceptreProjOnHit.DisplayName: "{$Items.ZombieSceptre.DisplayName}"
+	// RevenantSceptreProj.DisplayName: "{$Items.Revenant.DisplayName}"
+	// RevenantSceptreProjOnHit.DisplayName: "{$Items.Revenant.DisplayName}"
+	// ScepterProcProj.DisplayName: ScepterProcProj.DisplayName
+	// CrimsonSceptreProjOnHit.DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
+	// SceptreProcProj.DisplayName: Sceptre Proc Proj
+	// PixelCameraHeldProj.DisplayName: Pixel Camera Held Proj
+	// UpriserNecromancyAttack.DisplayName: Upriser Necromancy Attack
+	// SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"
+	// ScarabDynamiteProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
+	// ScarabDynamiteTunnelExtenderProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
+}

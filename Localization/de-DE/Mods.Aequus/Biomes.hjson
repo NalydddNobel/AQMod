@@ -1,0 +1,66 @@
+Biomes: {
+	OblivionAltarBiome: {
+		// DisplayName: Oblivion Altar
+		// TownNPCDialogueName: an Oblivion Altar
+	}
+
+	DemonSiegeZone: {
+		// DisplayName: Oblivion Altar
+		// EventName: Demon Siege
+		// TownNPCDialogueName: an Oblivion Altar
+	}
+
+	PollutedOceanSurface: {
+		// DisplayName: Polluted Ocean
+		// TownNPCDialogueName: the Polluted Ocean
+	}
+
+	PollutedOceanUnderground: {
+		// DisplayName: Polluted Underground
+		// TownNPCDialogueName: the Polluted Underground
+	}
+
+	PeacefulGlimmerZone: {
+		// DisplayName: Peaceful Glimmer
+		// TownNPCDialogueName: the Peaceful Glimmer
+	}
+
+	GlimmerZone: {
+		// DisplayName: Glimmer
+		// TownNPCDialogueName: the Glimmer
+	}
+
+	CrabCreviceBiome: {
+		// DisplayName: "{$Biomes.PollutedOceanSurface.DisplayName}"
+		// TownNPCDialogueName: "{$Biomes.PollutedOceanSurface.TownNPCDialogueName}"
+	}
+
+	GaleStreamsZone: {
+		// DisplayName: Gale Streams
+		// TownNPCDialogueName: the Gale Streams
+	}
+
+	// Forest.DisplayName: Forest
+	// Snow_Tundra.DisplayName: Tundra
+	// GemCave.DisplayName: Gem Cave
+
+	FakeUnderworldBiome: {
+		// DisplayName: Underworld
+		// TownNPCDialogueName: the Underworld
+	}
+
+	RadonMossBiome: {
+		// DisplayName: Radon Moss Biome
+		// TownNPCDialogueName: the Radon Moss Biome
+	}
+
+	OrganicEnergyBiomeManager: {
+		// DisplayName: Organic Energy Biome Manager
+		// TownNPCDialogueName: the Organic Energy Biome Manager
+	}
+
+	MeadowsBiome: {
+		// DisplayName: Meadows
+		// TownNPCDialogueName: the Meadows
+	}
+}

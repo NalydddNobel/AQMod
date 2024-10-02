@@ -1,0 +1,53 @@
+Paintings: {
+	Signature: {
+		// Nalyddd: T. Nalyd
+		// Niker: N. Ker
+		// Torra: T. Torra
+	}
+
+	YinYangDuoPainting: {
+		// MapEntry: The Polarity
+		/* Tooltip:
+			'''
+			'Equality has parted its ways'
+			{$Signature.Niker}
+			''' */
+	}
+
+	// RockmanLemonsPainting.ItemDisplayName: Life & Lemons
+	// YinPainting.ItemDisplayName: Yet Darker
+	// YangPainting.ItemDisplayName: Feel the Sunshine
+	// NarryPainting.ItemDisplayName: A Spirit's Rambling
+	// BongBongPainting.ItemDisplayName: BongBong
+
+	RockForcePainting: {
+		// ItemDisplayName: Stone Tablet - Force
+		/* ItemTooltip:
+			'''
+			Rumors say if you learn all three words, you will gain immense power
+			...Sadly it's only a myth
+			''' */
+	}
+
+	RockBalancePainting: {
+		// ItemDisplayName: Stone Tablet - Balance
+		// ItemTooltip: "{$RockForcePainting.ItemTooltip}"
+	}
+
+	RockPushPainting: {
+		// ItemDisplayName: Stone Tablet - Push
+		// ItemTooltip: "{$RockForcePainting.ItemTooltip}"
+	}
+
+	// OliverPainting.ItemDisplayName: THIRTY
+	// OriginPainting.ItemDisplayName: Origin of Aequus
+	// CatalystPainting.ItemDisplayName: Catalyst's Beginnings
+	// OmegaStarite2Painting.ItemDisplayName: Star System
+	// GoreNestPainting.ItemDisplayName: Hill of Their Remains
+	// SpacePainting.ItemDisplayName: Space - ExLyd
+	// GoreNest2Painting.ItemDisplayName: Sequenced into Oblivion
+	// InsurgentPainting.ItemDisplayName: Those Who Wrong
+	// HomeworldPainting.ItemDisplayName: Star's Conscious
+	// BreadRoachPainting.ItemDisplayName: Bread & Bugger
+	// OmegaStaritePainting.ItemDisplayName: The Star's Construction
+}

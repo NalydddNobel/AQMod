@@ -1,0 +1,21 @@
+MeadowStaff: {
+	// DisplayName: Wyvernwood Staff
+	// Tooltip: ""
+}
+
+TrashStaff: {
+	// DisplayName: Spam Mail
+	// Tooltip: Critical strikes send virus mail to nearby enemies
+}
+
+Furystar: {
+	// DisplayName: Furystar
+	/* Tooltip:
+		'''
+		Causes stars to rain from the sky
+		Attacks restores mana
+		''' */
+}
+
+StudiesOfTheInkblot: {
+}

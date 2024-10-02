@@ -1,0 +1,24 @@
+ElectricEelWhip: {
+	// DisplayName: Stimulant
+	/* Tooltip:
+		'''
+		{$CommonItemTooltip.SummonTagDamage}
+		{$CommonItemTooltip.Whips}
+		'The Eel - Eek!'
+		''' */
+}
+
+DemonSoulscourge: {
+	// DisplayName: Serpent's Blight
+	// Tooltip: "{$CommonItemTooltip.Whips}"
+}
+
+DemonVasculash: {
+	// DisplayName: Flagellum
+	/* Tooltip:
+		'''
+		{$CommonItemTooltip.Whips}
+		Defensive hungries are unleashed from enemies hit by summons
+		<right> or take damage to release all of the hungries as an attack
+		''' */
+}

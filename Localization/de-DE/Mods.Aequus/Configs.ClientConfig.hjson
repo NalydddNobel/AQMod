@@ -1,0 +1,24 @@
+Configs: {
+	ClientConfig: {
+		ShowDeathTips: {
+		}
+
+		FlashIntensity: {
+		}
+
+		FlashLoops: {
+			// Label: "[i:CosmicMonolith] Flash Loops"
+			// Tooltip: ""
+		}
+
+		ShowNecromancyOutlines: {
+			// Label: Show Necromancy Outlines
+			// Tooltip: ""
+		}
+
+		CustomResourceBars: {
+			// Label: "[i:DD2EnergyCrystal] Custom Resource Bars"
+			// Tooltip: Allows for custom resource bars to replace the mana bar when holding a minion or sentry staff.
+		}
+	}
+}

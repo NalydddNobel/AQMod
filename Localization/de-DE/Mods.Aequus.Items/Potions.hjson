@@ -1,0 +1,59 @@
+MeadowMushroom: {
+	// DisplayName: Meadow Mushroom
+	// Tooltip: ""
+}
+
+SentryPotion: {
+	// DisplayName: Sentry Potion
+	// Tooltip: "{$CommonItemTooltip.IncreasesMaxSentriesBy}"
+	// BuffDisplayName: Sentry
+	// EmpoweredDescription: Further increased sentry slots
+}
+
+TaintedSeafood: {
+	// DisplayName: Tainted Seafood
+	/* Tooltip:
+		'''
+		May grant minor, medium, or major improvments to all stats
+		Has a small chance to instead grant food poisoning
+		''' */
+}
+
+DeathsEmbrace: {
+}
+
+// Foods
+
+Baguette: {
+}
+
+// Healing
+
+GreaterHoneyPotion: {
+	// DisplayName: Greater Honey Potion
+	// Tooltip: Improves natural healing
+}
+
+GreaterHoney: {
+	// DisplayName: Greater Honey
+	// Tooltip: ""
+}
+
+SuperHoneyPotion: {
+	// DisplayName: Super Honey Potion
+	// Tooltip: Improves natural healing for a long time
+}
+
+SuperHoney: {
+	// DisplayName: Super Honey
+	// Tooltip: ""
+}
+
+LesserRestorationPotion: {
+}
+
+GreaterRestorationPotion: {
+}
+
+SuperRestorationPotion: {
+}

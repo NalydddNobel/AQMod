@@ -1,0 +1,102 @@
+Configs: {
+	GameplayConfig: {
+		// NoteExploit: "[{$ColorNote}:Disable this config for personal preference, or to prevent unintended exploits.]"
+
+		MoveTreasureMagnet: {
+			// Label: "[i:TreasureMagnet] Move Treasure Magnet"
+			/* Tooltip:
+				'''
+				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
+				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+
+				{$NoteExploit}
+				''' */
+		}
+
+		PollutedOceanSide: {
+			// Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
+			/* Tooltip:
+				'''
+				Determines which side of the world the Polluted Ocean should generate.
+				{$PollutedOceanGenerationSideConfig.Tooltip}
+
+				[{$ColorNote}:Utilize this config for personal preference, or to fix an issue with overlapping biomes.]
+				''' */
+		}
+
+		CaveVariety: {
+		}
+
+		TownNPCSettleDownMessage: {
+			// Label: "[i:MusicBoxTownNight] Villagers Settle Down Message"
+			/* Tooltip:
+				'''
+				During the beginning of a day, a message may appear saying a specific town NPC would like to settle down.
+				Census or other mod features may make this Obsolete.
+
+				[{$ColorNote}:Utilize this config for personal preference.]
+				''' */
+		}
+
+		HardmodeChests: {
+		}
+
+		PreHardmodeMimics: {
+			// Label: "[i:GoldChest] Pre Hardmode Mimics"
+			// Tooltip: Whether Mimics should appear in Pre-Hardmode. (and drop Pre-Hardmode loot.)
+		}
+
+		DungeonMimics: {
+			// Label: "[i:GoldChest] [i:GoldenKey] Dungeon Mimics"
+			// Tooltip: Whether Dungeon Mimics should in the Dungeon. (And drop Lock Boxes.)
+		}
+
+		ShadowMimics: {
+			// Label: "[i:ShadowChest] [i:ShadowKey] Shadow Mimics"
+			// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Obsidian Lock Boxes.)
+		}
+
+		HardmodeMimics: {
+			// Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
+			// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
+		}
+
+		PDAGetsAequusItems: {
+			// Label: "[i:PDA] Aequus PDA"
+			/* Tooltip:
+				'''
+				Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
+				Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
+				''' */
+		}
+
+		EarlyHardmodeMonsters: {
+			// Label: "[i:MedusaHead] Early Hardmode Monsters"
+			// Tooltip: Whether certain hardmode monsters should appear after Omega Starite has been defeated.
+		}
+
+		EarlyHardmodeVillagers: {
+			// Label: "[i:WizardsHat] Early Hardmode Villagers"
+			// Tooltip: Whether hardmode villagers should appear after Omega Starite has been defeated.
+		}
+
+		EarlyHardmodeShops: {
+			// Label: "[i:GoldDust] Early Hardmode Shops"
+			// Tooltip: Whether villager shops should also get their hardmode exclusive items after Omega Starite has been defeated.
+		}
+
+		ShowNPCSettleDownMessage: {
+			// Label: "[i:WoodenTable] Villager Settle Down Message"
+			// Tooltip: Ocassionally in the morning a message will appear exclaiming that a villager which has not moved in yet would like to settle down.
+		}
+
+		MoveMagicConch: {
+			// Label: "[i:MagicConch] Move Magic Conch"
+			/* Tooltip:
+				'''
+				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
+				and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
+				''' */
+		}
+	}
+}

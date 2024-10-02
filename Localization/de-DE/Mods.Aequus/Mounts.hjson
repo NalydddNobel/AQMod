@@ -1,0 +1,12 @@
+Mounts: {
+	HotAirBalloonMount: {
+		// ItemDisplayName: Balloon Kit
+		/* ItemTooltip:
+			'''
+			Allows you to ride a hot air balloon
+			'Skillfully crafted at Modzilla Corp Factories'
+			''' */
+		// BuffDisplayName: Hot Air Balloon
+		// BuffDescription: Up, up, and away!!!
+	}
+}

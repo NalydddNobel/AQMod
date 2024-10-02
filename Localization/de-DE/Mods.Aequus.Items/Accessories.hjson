@@ -1,0 +1,222 @@
+// Equipment: Accessories
+HallowCanteen: {
+	// DisplayName: Magic Canteen
+	// DisplayNameAlt: Magic Canteen ({0})
+	// Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	// DisplayName: Potion Canteen
+	// DisplayNameAlt: Potion Canteen ({0})
+	// Fancy plural syntax. "{^0:potion;potions}" This makes it use "potion" and "potions" correctly for pluralization.
+	// "duration of 1 potion"
+	// "duration of 2 potions"
+	// Translate the two words inside. Ensure to keep the format looking like this example:
+	// {^0:XXXXXX;YYYYYY}
+	// UPDATE: If the word DOES NOT change, you do not need to keep the fancy syntax. Forgot to note that earlier.
+	/* Tooltip:
+		'''
+		Allows infinite buff duration of {0} {^0:potion;potions} while equipped
+		Hover over with {1} potions and press <right> to fill the canteen
+		''' */
+}
+
+TerraBalloon: {
+	// DisplayName: Coalescence of Equestrador Balloons
+	/* Tooltip:
+		'''
+		{$ItemTooltip.HorseshoeBundle}
+		{$ItemTooltip.ObsidianSkull}
+		Hold Up to reduce fall speed
+		Hold Down to increase fall speed
+		''' */
+}
+
+QuadHorseshoeBalloon: {
+	// DisplayName: Coalescence of Horseshoe Balloons
+	/* Tooltip:
+		'''
+		{$ItemTooltip.HorseshoeBundle}
+		{$SlimyBlueBalloon.Tooltip}
+		''' */
+}
+
+QuadBalloon: {
+	// DisplayName: Coalescence of Balloons
+	/* Tooltip:
+		'''
+		{$ItemTooltip.BundleofBalloons}
+		{$SlimyBlueBalloon.Tooltip}
+		''' */
+}
+
+HorseshoeCombination: {
+	// DisplayName: Equestradors
+	/* Tooltip:
+		'''
+		{$ItemTooltip.ObsidianHorseshoe}
+		{$WeightedHorseshoe.Function}
+		''' */
+}
+
+BreathConserver: {
+	// DisplayName: Breath Conserver
+	// Tooltip: Restore breath upon breaking tiles and slaying foes
+}
+
+ValentineRing: {
+	// DisplayName: Valentine's Gift
+	// Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
+	// Tooltip2: Increased regneration and damage for yourself and the gifter
+	// GiftTooltip: From yours truly, {0}
+	// BuffName: Valentine
+	// BuffDescription: Increased life regeneration and damage
+	// BuffDescription2: You are being buffed by {0}!
+}
+
+GoldenWind: {
+	// DisplayName: Golden Wind
+	/* Tooltip:
+		'''
+		Regenerate {0} health per second
+		{$Items.GoldenFeather.Tooltip@1}
+		''' */
+	/* BuffDescription:
+		'''
+		Regenerate {0} health per second
+		{$GoldenFeather.BuffDescription@1}
+		''' */
+}
+
+GoldenFeather: {
+	// DisplayName: Gilded Phoenix
+	/* Tooltip:
+		'''
+		Reduce respawn time by {0} seconds
+		This accessory effects are granted to all nearby teammates
+		''' */
+	// BuffDescription: You respawn {0} seconds faster
+}
+
+FlashwayShield: {
+	// DisplayName: Flashway Shield
+	/* Tooltip:
+		'''
+		Allows the ability to dash
+		Double tap a direction
+		''' */
+}
+
+PurpleBalloon: {
+	// DisplayName: Matte Purple Balloon
+	/* Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
+		''' */
+}
+
+SlimyBlueBalloon: {
+	// DisplayName: Slimy Blue Balloon
+	/* Tooltip:
+		'''
+		Slows falling speed
+		Hold down to fall at regular speed
+		''' */
+}
+
+WeightedHorseshoe: {
+	// DisplayName: Weighted Horseshoe
+	/* Tooltip:
+		'''
+		{$WeightedHorseshoe.Function}
+		'You should put a verlet chain on this, it won't be buggy!'
+		''' */
+	/* Function:
+		'''
+		Doubled maximum fall speed
+		Damage and fall through enemies while at high speeds
+		''' */
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	// DisplayName: Rose Tinted Glasses
+	// Tooltip: Ignore enemy spawns of the Blood Moon
+}
+
+StellarGlasses: {
+	// DisplayName: Stellar Glasses
+	// Tooltip: Ignore enemy spawns of the Glimmer
+}
+
+EclipseGlasses: {
+	// DisplayName: Eclipse Glasses
+	// Tooltip: Ignore enemy spawns of the Eclipse
+}
+
+//# Equipment: Informational
+HoloLens: {
+	// DisplayName: Holo Lens
+	// Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+}
+
+AnglerBroadcaster: {
+	// DisplayName: Seaside Broadcaster
+	// Tooltip: Shows you the current quest fish
+}
+
+RichMansMonocle: {
+	// DisplayName: Rich Man's Monocle
+	// Tooltip: View item prices outside of shops
+}
+
+GeigerCounter: {
+	// DisplayName: Geiger Counter
+	// Tooltip: Displays the damage per second from debuffs
+}
+
+// --localization note-- this may be a pun? (shimmer + monocle)
+ShimmerMonocle: {
+	// DisplayName: Shmonocle
+	// Tooltip: Displays if an item is a Shimmer Ingredient
+}
+
+Calendar: {
+	// DisplayName: Calendar
+	// Tooltip: Displays information about the date
+}
+
+DamageOnKillClaw: {
+	// DisplayName: The Upper Hand
+	/* Tooltip:
+		'''
+		Grant a buff which increases damage by {0}% for each enemy slain
+		Attacking enemies refreshes buff duration
+		''' */
+	// BuffDescription: "{$CommonItemTooltip.PercentIncreasedDamage}"
+}
+
+// Equipment: Backpacks
+ScavengerBag: {
+	// DisplayName: Scavenger Bag
+	// Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	// BackpackEnabled: Backpack On
+	// BackpackDisabled: Backpack Off
+}
+
+PlanteraBackpack: {
+	// DisplayName: Bulb Bag
+	// Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	// BackpackEnabled: Bulb Bag On
+	// BackpackDisabled: Bulb Bag Off
+}
+
+// Do not translate yet, name is temporary.
+WallOfFleshBackpack: {
+	// DisplayName: Stomach Sack
+	// Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	// BackpackEnabled: Stomach Sack On
+	// BackpackDisabled: Stomach Sack Off
+}

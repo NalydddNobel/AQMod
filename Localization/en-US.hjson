@@ -32,8 +32,8 @@ Mods: {
 			EyeOfCthulhuDemonite: Demonite's presence grows within the caverns...
 			EyeOfCthulhuCrimtane: Crimtane festers deep within the caverns...
 			HardmodeChests: The chests of the caverns are blessed with new treasures...
-			DemonSiegeFailEat: The Gore Nest consumes your {0}...
-			DemonSiegeFail: The Gore Nest regurgitates your {0}...
+			DemonSiegeFailEat: The Oblivion Altar consumes your {0}...
+			DemonSiegeFail: The Oblivion Altar regurgitates your {0}...
 			YinYang: The ancient spirits of light and dark grow impatient...
 			DustDevilSpaceSquid: The wind start to break apart...
 			DustDevilRedSprite: The wind begins to swirl...
@@ -59,7 +59,7 @@ Mods: {
 			Description: {
 				OmegaStarite: Defeat Omega Starite, an elite starite weapon programmed to capture all sources of Ultimate Energy...
 				Crabson: Defeat Crabson, a crab-clam monstrosity hiding out in his own underground ocean caves, it searches for a rare pearl...
-				DemonSiege: Awaken the Gore Nest and upgrade your weapon!
+				DemonSiege: Awaken the Oblivion Altar and upgrade your weapon!
 				Glimmer: Discover the Glimmer!
 				GlimmerHyperStarite: Reach deeper into the glimmer!
 				GlimmerBeaten: Interact with the source of the glimmer!
@@ -229,7 +229,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: "{$Mods.Aequus.NPCs.Upriser.DisplayName}"
-					SpawnInfo: Summoned after completing Demon Siege (Tier 2) for the first time, or by using an [Aequus/VoidBand] at a Gore Nest
+					SpawnInfo: Summoned after completing Demon Siege (Tier 2) for the first time, or by using an [Aequus/VoidBand] at a Oblivion Altar
 				}
 			}
 
@@ -382,12 +382,12 @@ Mods: {
 
 			Oblivision: {
 				DisplayName: Oblivision
-				Bestiary: Strange rifts formed from the spatial disturbances caused by Gore Nest portals. They seem harmless, but their unerring, analytic gaze is quite unnerving...
+				Bestiary: Strange rifts formed from the spatial disturbances caused by Oblivion Altar portals. They seem harmless, but their unerring, analytic gaze is quite unnerving...
 			}
 
 			Magmabubble: {
 				DisplayName: Legged Lava
-				Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
+				Bestiary: Lava slimes touched by the Oblivion Altar's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
 			}
 
 			TrapperImp: {
@@ -414,7 +414,7 @@ Mods: {
 
 			Heckto: {
 				DisplayName: Heckto
-				Bestiary: When the armies of the Molten Legion pledged allegiance to the forces of Oblivion at the Gore Nests, their souls were irreversibly contaminated with hell energy, forming these strange spirits when freed.
+				Bestiary: When the armies of the Molten Legion pledged allegiance to the forces of Oblivion at the Oblivion Altars, their souls were irreversibly contaminated with hell energy, forming these strange spirits when freed.
 			}
 
 			Carpenter: {
@@ -599,7 +599,7 @@ Mods: {
 			Necromancy: Aequus: The power of Necromancy lets you make enemies fight for you!
 			LegendaryFish: Aequus: The Angler may be interested in Legendary Fish...
 			LegendaryFishBlobfish: Aequus: Try fishing during a Glimmer!
-			LegendaryFishGoreFish: Aequus: Try fishing in lava near an Underworld Gore Nest!
+			LegendaryFishGoreFish: Aequus: Try fishing in lava near an Underworld Oblivion Altar!
 			CarpenterRequirements: Aequus: Try putting extra decorations in your house... it may attract a housing master!
 			SkyMerchant: Aequus: The Sky Merchant soars across the sky on his hot air balloon! Try talking to him to get some aerial deals.
 			Vampirism: Aequus: Be careful when eating a Vampire Squid... they say the only cure is caught during a Blood Moon!
@@ -878,7 +878,7 @@ Mods: {
 			Hint: {
 				0: ... The demons... they were everywhere... didn't stand a chance...
 				1: . A mark of the slayer... leaving their weaponry left to rot.
-				2: . Left them to be consumed by the Gore Nest, their legendary blade of darkness was attracted to its dark energy.
+				2: . Left them to be consumed by the Oblivion Altar, their legendary blade of darkness was attracted to its dark energy.
 				3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
 				4: ... Body thrown into the portal, never to be seen again.
 				5: ... Their fate left unknown
@@ -947,11 +947,11 @@ Mods: {
 			InCrabCrevice: While in the Crab Crevice
 			InGlimmer: While the Glimmer is occuring
 			InDemonSiege: While the Demon Siege is occuring
-			InGoreNest: While near a Gore Nest
+			InGoreNest: While near a Oblivion Altar
 			InPeacefulGlimmer: While the Peaceful Glimmer is occuring
 			EarlyPortalGun: While the '{$Configuration.Gameplay.EarlyPortalGun}' option is enabled.
 			EarlyGravityGlobe: While the '{$Configuration.Gameplay.EarlyGravityGlobe}' option is enabled.
-			DownedDemonSiege: After upgrading a weapon at the Gore Nest
+			DownedDemonSiege: After upgrading a weapon at the Oblivion Altar
 			HasCompletedBuildChallenge: After completing the {0} Challenge
 			AllCarpenterBountiesComplete: After completing all Build Challenges at the Carpenter
 		}
@@ -1048,7 +1048,7 @@ Mods: {
 
 			DemonSiege: {
 				EntryName: Demon Siege
-				SpawnInfo: Use: ({0}) at a Gore Nest.
+				SpawnInfo: Use: ({0}) at a Oblivion Altar.
 			}
 
 			GaleStreams: {

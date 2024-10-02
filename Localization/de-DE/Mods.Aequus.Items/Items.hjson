@@ -1,0 +1,390 @@
+Keywords: {
+	Brittle: {
+		// DisplayName: Brittle
+		// Description: After receiving {0} hits, this item breaks
+	}
+}
+
+MeadowHammer: {
+	// DisplayName: Wyvernwood Hammer
+	// Tooltip: ""
+}
+
+MeadowBow: {
+	// DisplayName: Wyvernwood Bow
+	// Tooltip: ""
+}
+
+//# Equipment: Armor
+GravetenderHood: {
+	// DisplayName: Gravetender Hood
+	// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	// Setbonus: Summon a wisp which empowers your closest ghost minion
+}
+
+GravetenderRobes: {
+	// DisplayName: Gravetender Robes
+	/* Tooltip:
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots@1}
+		''' */
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	// DisplayName: Leech Hook
+	/* Tooltip:
+		'''
+		Ignores {0} points of enemy Defense
+		Latches onto enemies, healing you
+		Damage the victim to restore extra life
+		''' */
+}
+
+Meathook: {
+	// DisplayName: Meathook
+	/* Tooltip:
+		'''
+		Allows you to grapple to enemies
+		Deal {0}% increased damage to the enemy you grapple onto
+		''' */
+}
+
+//# Misc
+MagicEightBall: {
+	// DisplayName: Magic 8-Ball
+	// Tooltip: "'Ask it questions, and let it answer you'"
+
+	Result: {
+		// 0: Yes
+		// 1: My sources say no
+		// 2: It is certain
+		// 3: It is decidedly so
+		// 4: Without a doubt
+		// 5: Yes definitely
+		// 6: You may rely on it
+		// 7: As I see it yes
+		// 8: Most likely
+		// 9: Outlook good
+		// 10: Signs point to yes
+		// 11: Don't count on it
+		// 12: My reply is no
+		// 13: Outlook not so good
+		// 14: Very doubtful
+		// 15: Reply hazy try again
+		// 16: Ask again later
+		// 17: Better not tell you now
+		// 18: Cannot predict now
+		// 19: Concentrate and ask again
+	}
+}
+
+PollutedOceanCrate: {
+	// DisplayName: Shipping Container
+	// Tooltip: ""
+}
+
+PollutedOceanCrateHard: {
+	// DisplayName: Freight Container
+	// Tooltip: ""
+}
+
+BeyondPlatinumCoin: {
+	// DisplayName: Beyond Coin
+	// Tooltip: Doesn't count as a coin, but stores 100 Platinum
+}
+
+ShimmerCoin: {
+	// DisplayName: Shimmer Coin
+	/* Tooltip:
+		'''
+		Permanently grant every shimmer powerup bonus at 1/5 effectiveness
+		Increases life regneration, mana regeneration, defense,
+		mining speed, building speed, fishing skill, luck, 
+		droprates, rolling positive prefixes from reforging,
+		defense & strength of villagers, and Traveling Merchant items
+		''' */
+	// Announcement: "{0} uses a shimmer coin! ({1}/{2})"
+}
+
+TinKey: {
+	// DisplayName: Tin Key
+	// Tooltip: Opens the Generator room door
+}
+
+CopperKey: {
+	// DisplayName: Copper Key
+	// Tooltip: Opens one locked Copper Chest
+}
+
+Keychain: {
+	// DisplayName: Keychain
+	/* Tooltip:
+		'''
+		<right> while holding a key over this item to add it
+		<shift> and <right> to remove all keys
+		''' */
+}
+
+MagicKeychain: {
+	// DisplayName: Spectre Keychain
+	/* Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		Keys can be used infinitely
+		''' */
+}
+
+NoHitReward: {
+	// DisplayName: A Victor's Award
+	/* Tooltip:
+		'''
+		Permanently allows you to respawn at maximum life
+		'Granted to the ones who go the extra mile!'
+		''' */
+}
+
+TinkerersGuidebook: {
+	// DisplayName: Tinkerer's Guidebook
+	// Tooltip: Permanently increases odds of rolling positive prefixes from reforge services
+	// DisplayMessage: The Goblin Tinkerer's profits begin to dwindle!
+}
+
+CosmicChest: {
+	// DisplayName: Fortunate Souvenir
+	// Tooltip: Permanently increases item droprates from enemies
+}
+
+BeyondLifeCrystal: {
+	// DisplayName: Beyond Life Crystal
+	// Tooltip: Permanently increases maximum life by {0}
+}
+
+BeyondManaCrystal: {
+	// DisplayName: Beyond Mana Crystal
+	// Tooltip: Permanently increases maximum mana by {0}
+}
+
+NetherStar: {
+	// DisplayName: Convergent Heart
+	// Tooltip: "{$ItemTooltip.DemonHeart}"
+}
+
+GalacticStarfruit: {
+	// DisplayName: Galactic Starfruit
+	// Tooltip: Creates a strange glimmer
+}
+
+UnholyCore: {
+	// DisplayName: Unholy Core
+	/* Tooltip:
+		'''
+		Can be used at the Oblivion Altar
+		Decreases the length of the Demon Siege event
+		''' */
+}
+
+UnholyCoreSmall: {
+	// DisplayName: Dark Tearstone
+	/* Tooltip:
+		'''
+		Can be used at the Oblivion Altar
+		Dropped from mysterious entites around the Underworld
+		''' */
+}
+
+WispLantern: {
+	// DisplayName: Wisp Lantern
+	/* Tooltip:
+		'''
+		Emits light when held or in your inventory
+		Reveals loot inside of pots when held
+		Use to greatly disrupt nearby enemies
+		''' */
+}
+
+AnglerLamp: {
+	// DisplayName: Angler Lamp
+	/* Tooltip:
+		'''
+		Emits light & reveals loot inside of nearby pots
+		Use gel to disrupt nearby enemies
+		''' */
+}
+
+PhaseMirror: {
+	// DisplayName: Phase Mirror
+	/* Tooltip:
+		'''
+		Allows you to return home at will
+		Teleport to party members by clicking their head on the fullscreen map
+		''' */
+}
+
+PhasePhones: {
+	/* Tooltip:
+		'''
+		Displays everything
+		{0}
+		Teleport to party members by clicking their head on the fullscreen map
+		<right> to toggle destination
+		''' */
+
+	PhasePhone: {
+		// DisplayName: Phase Phone
+		// Tooltip: ""
+	}
+
+	PhasePhoneHome: {
+		// DisplayName: Phase Phone (Home)
+		// Tooltip: Allows you to return home at will
+	}
+
+	PhasePhoneSpawn: {
+		// DisplayName: Phase Phone (Spawn)
+		// Tooltip: Allows you to return to spawn at will
+	}
+
+	PhasePhoneOcean: {
+		// DisplayName: Phase Phone (Ocean)
+		// Tooltip: Allows you to travel to the ocean at will
+	}
+
+	PhasePhoneUnderworld: {
+		// DisplayName: Phase Phone (Underworld)
+		// Tooltip: Allows you to travel to the underworld at will
+	}
+}
+
+DedicatedFaelingItem: {
+	// DisplayName: "{$ItemName.Shimmerfly}"
+	// Tooltip: ""
+}
+
+PhysicsGun: {
+	// DisplayName: Physics Gun
+	// Tooltip: Can grab and throw blocks
+}
+
+Bellows: {
+	// DisplayName: Bellows
+	/* Tooltip:
+		'''
+		Pushes you
+		'Quite the pushover'
+		''' */
+}
+
+Pumpinator: {
+	// DisplayName: Pumpinator
+	/* Tooltip:
+		'''
+		Gradually changes the speed of the wind
+		Can push almost anything with its powerful gusts
+		''' */
+}
+
+NameTag: {
+	// DisplayName: Rename Tag
+	/* Tooltip:
+		'''
+		Rename at the Sky Merchant
+		Use on villagers, critters, or enemies to rename them
+		''' */
+}
+
+// PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
+
+CleanserDrone: {
+	// DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	/* Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Sprays solution to spread the pylon's biome
+		''' */
+}
+
+GunnerDrone: {
+	// DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	/* Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Defends the area from enemies
+		''' */
+}
+
+HealerDrone: {
+	// DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	/* Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Heals wounded villagers and critters
+		''' */
+}
+
+Toolbelt: {
+	/* Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		Can only hold tiles and walls
+		''' */
+	// BackpackEnabled: Toolbelt Pack On
+	// BackpackDisabled: Toolbelt Pack Off
+}
+
+//# Vanity
+BreadOfCthulhuMask: {
+	// DisplayName: Bread Of Cthulhu Mask
+	// Tooltip: ""
+}
+
+RedSpriteMask: {
+	// DisplayName: Red Sprite Mask
+	// Tooltip: ""
+}
+
+SpaceSquidMask: {
+	// DisplayName: Space Squid Mask
+	// Tooltip: ""
+}
+
+CosmicMonolith: {
+	// DisplayName: Cosmic Monolith
+	// Tooltip: "'Sustain a fraction of cosmic power'"
+}
+
+StariteMaterial: {
+	// DisplayName: Core Fragment
+	// Tooltip: ""
+}
+
+UnopenedChestItem: {
+	// DisplayName: Unopened Chest Item
+	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
+}
+
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
+}
+
+GasCan: {
+	// DisplayName: Jerry's Can
+	// Tooltip: ""
+}
+
+UnusedItem: {
+	// DisplayName: Unused Item
+	// Tooltip: ""
+}
+
+SteampunkerFishingPole: {
+	// DisplayName: Steampunker Fishing Pole
+	// Tooltip: ""
+}
+
+UnopenedChestTracker: {
+	// DisplayName: Unopened Chest Tracker
+	// Tooltip: ""
+}

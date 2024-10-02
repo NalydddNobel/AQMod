@@ -581,15 +581,6 @@ OblivionCraftingStationItem: {
 	Tooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
-GoreNest: {
-	DisplayName: 血巢
-	Tooltip:
-		'''
-		用于升级邪恶武器, 激活恶魔围攻
-		视作恶魔/猩红祭坛
-		'''
-}
-
 RecyclingMachine: {
 	DisplayName: 回收机
 	Tooltip: 用于制作由垃圾制成的物品

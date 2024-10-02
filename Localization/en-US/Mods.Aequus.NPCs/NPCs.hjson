@@ -67,7 +67,7 @@ CinderBat: {
 
 LeggedLava: {
 	DisplayName: Legged Lava
-	Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
+	Bestiary: Lava slimes touched by the Oblivion Altar's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
 	BannerName: Legged Lava Banner
 }
 

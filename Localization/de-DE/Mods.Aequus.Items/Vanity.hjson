@@ -1,0 +1,20 @@
+Vanity: {
+	OccultistVanity: {
+		OccultistVanityHood: {
+			// DisplayName: Occultist Hood
+			// Tooltip: ""
+		}
+
+		OccultistVanityRobes: {
+			// DisplayName: Occultist Robes
+			// Tooltip: ""
+		}
+	}
+
+	SkyMerchantVanity: {
+		SkyMerchantVanityHat: {
+			// DisplayName: Sky Merchant's Hat
+			// Tooltip: ""
+		}
+	}
+}

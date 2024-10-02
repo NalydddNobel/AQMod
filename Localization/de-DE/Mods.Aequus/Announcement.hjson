@@ -1,0 +1,24 @@
+Announcement: {
+	// MiniMeteor: A mini meteorite has landed!
+
+	Glimmer: {
+		// Start: A glimmer appears in the sky...
+		// StartEast: A glimmer appears in the eastern sky...
+		// StartWest: A glimmer appears in the western sky...
+		// End: The glimmer begins to fade away...
+	}
+
+	// --localization note-- the "giveitem" and "eventstart" lines go together, one random "giveitem" line is picked first and then follows up with a random "eventstart" line
+	DemonSiege: {
+		GiveItem: {
+		}
+
+		EventStart: {
+		}
+
+		// FailEat: The Oblivion Altar consumes your {0}...
+		// Fail: The Oblivion Altar regurgitates your {0}...
+	}
+
+	// NPCWantsToMoveIn: A {0} would like to settle down.
+}

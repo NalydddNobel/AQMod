@@ -1,0 +1,72 @@
+Furniture: {
+	// TrashBathtub.ItemDisplayName: Scrap Bathtub
+	// TrashBed.ItemDisplayName: Scrap Bed
+	// TrashBookcase.ItemDisplayName: Scrap Bookcase
+	// TrashChair.ItemDisplayName: Scrap Chair
+	// TrashCandelabra.ItemDisplayName: Scrap Candelabra
+	// TrashCandle.ItemDisplayName: Scrap Candle
+	// TrashChandelier.ItemDisplayName: Scrap Chandelier
+	// TrashTable.ItemDisplayName: Scrap Table
+	// TrashClock.ItemDisplayName: Digital Clock
+	// TrashDoor.ItemDisplayName: Scrap Door
+	// TrashLamp.ItemDisplayName: Scrap Lamp
+	// TrashLantern.ItemDisplayName: Scrap Lantern
+	// TrashPiano.ItemDisplayName: Scrap Piano
+	// TrashSink.ItemDisplayName: Scrap Sink
+	// TrashSofa.ItemDisplayName: Scrap Sofa
+	// TrashWorkBench.ItemDisplayName: Scrap Work Bench
+
+	TrashCampfire: {
+		// ItemDisplayName: Scrap Campfire
+		// ItemTooltip: "{$ItemTooltip.Campfire}"
+	}
+
+	TrashChest: {
+		// MapEntry: Dumpster
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChest.MapEntry}"
+		// ItemTooltip: Both sides of the dumpster are different chests
+	}
+
+	TrashChestSmall: {
+		// MapEntry: Scrap Chest
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
+	}
+
+	TrashChestSmallTrapped: {
+		// MapEntry: Trapped Scrap Chest
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"
+	}
+
+	TrashDresser: {
+		// MapEntry: Scrap Dresser
+		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
+	}
+}
+
+CartographyTable: {
+	// ItemDisplayName: Cartography Table
+	// ItemTooltip: <right> to share your map discoveries between your friends
+	// DownloadingMap: Downloading map...
+	// UploadingMap: Uploading map...
+}
+
+HellTombstones: {
+	MapEntry: {
+		// 0: Underworld Tombstone
+		// 1: Underworld Grave Marker
+		// 2: Underworld Resting Fern
+		// 3: Underworld Resting Shrub
+		// 4: Underworld Resting Hedge
+		// 5: Underworld Obelisk
+		// 6: Reaper Sepulcher
+		// 7: Grim Sepulcher
+		// 8: Imp Sepulcher
+		// 9: Fire Quartz Sepulcher
+		// 10: Duke Sepulcher
+	}
+}
+
+// ManaclePot.ItemDisplayName: Hanging Manacle
+// MistralPot.ItemDisplayName: Hanging Mistral
+// MoonflowerPot.ItemDisplayName: Hanging Moonflower
+// MorayPot.ItemDisplayName: Hanging Moray

@@ -3,25 +3,25 @@ Mods: {
 		Announcement: {
 			DemonSiege: {
 				GiveItem: {
-					0: "{Player} hizo un pacto con el diablo..."
-					1: "{Player} comienza a aceptar su destino..."
-					2: "{Player} no logra imaginar lo que le pasara a su {Item}..."
-					3: "{Player} no esperaba que se tragara su {Item}..."
-					4: "{item} atrae a {player} hacia la oscuridad..."
-					5: Tu {Item} está siendo corrompido aún mas...
-					6: horrores más allá de tu comprensión rodean tu {Item}...
-					7: La ocultista le sonríe a {Player}...
+					// 0: "{Player} accepted a contract with the devil..."
+					// 1: "{Player} begins to accept their fate..."
+					// 2: "{Player} fails to imagine what will happen to their {Item}..."
+					// 3: "{Player} didn't expect it to eat their {Item}..."
+					// 4: "{Player}'s beloved {Item} lured them to the darkness..."
+					// 5: Your {Item} is being corrupted even further...
+					// 6: Horrors beyond imagination surround your {Item}...
+					// 7: The Occultist grins at {Player}...
 				}
 
 				EventStart: {
-					0: ...Los demonios no están impresionados con {Player}!
-					1: ...La historia de {player} termina aquí!
-					2: ...Tu {Item} atrae atención no deseada!
-					3: ...{Player} no espera lo que se aproxima!
-					4: ...{Player} morira.
-					5: ...{Player} enfrentara las consecuencias.
-					6: ...Los horrores están aquí!
-					7: ...Perdición y oscuridad se acercan!
+					// 0: ...The demons are not impressed by {Player}!
+					// 1: ...{Player}'s story ends here!
+					// 2: ...Your {Item} attracts unwanted attention!
+					// 3: ...{Player} wont expect what's approaching!
+					// 4: ...{Player} will be slain.
+					// 5: ...{Player} will face the consequences.
+					// 6: ...The horrors are here!
+					// 7: ...Doom and darkness approaches!
 				}
 			}
 
@@ -234,7 +234,7 @@ Mods: {
 			}
 
 			DustDevil: {
-				DisplayName: Demonio de Polvo
+				// DisplayName: Dust Devil
 				// Bestiary: A powerful elemental spirit with control over both flame and frost. It uses this power to stir up violent gales, forming a constant tornado around its body for protection.
 
 				BossChecklistIntegration: {
@@ -244,7 +244,7 @@ Mods: {
 			}
 
 			OmegaStarite: {
-				DisplayName: Omega Starite
+				// DisplayName: Omega Starite
 				// Bestiary: The power of a supernova rumbles within its thick shell. An anomaly in the starite life cycle, it seeks out sources of energy to grow ever stronger, using its orbiting orbs as both offense and defense.
 
 				BossChecklistIntegration: {
@@ -254,7 +254,7 @@ Mods: {
 			}
 
 			Crabson: {
-				DisplayName: Crabson
+				// DisplayName: Crabson
 				// Bestiary: One of many strange ocean crossbreeds, this colossal crustacean is half crab and half clam. It lurks deep within the Crevice, producing strange pearls that enthrall lesser crabs to do its bidding.
 
 				BossChecklistIntegration: {
@@ -296,8 +296,8 @@ Mods: {
 			}
 
 			UltraStarite: {
-				DisplayName: Ultra Starite
-				Bestiary: En su ultima etapa de crecimiento, starites elite pueden concentrar la energia de su núcleo expuesto para formar rayos mortales. ¡es casi como si el cielo estuviera cayendo!
+				// DisplayName: Ultra Starite
+				// Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
 
 				BossChecklistIntegration: {
 					// EntryName: "{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
@@ -306,23 +306,23 @@ Mods: {
 			}
 
 			HyperStarite: {
-				DisplayName: Hiper Starite
-				Bestiary: Cuando un Starite envejece, este se vuelve mas volátil y comienza a expandirse, lo que permite utilizar sus segmentos en orbita como armas.
+				// DisplayName: Hyper Starite
+				// Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
 			}
 
 			SuperStarite: {
-				DisplayName: Super Starite
-				Bestiary: Starites que consiguen suficiente energía pueden mudar de caparazón y evolucionar a esta forma blindada.
+				// DisplayName: Super Starite
+				// Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
 			}
 
 			Starite: {
-				DisplayName: Starite
-				Bestiary: A piece of animate stardust bearing a striking resemblance to fallen stars, their exterior seems gassy but will grow to have a sturdy shell.
+				// DisplayName: Starite
+				// Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
 			}
 
 			DwarfStarite: {
-				DisplayName: Starite Enana
-				Bestiary: Si un Starite no consigue suficiente energia para evoluciónar, este se desolvera hasta quedar como una particula de luz. Apesar de tener sus poderes atrofiados, disfruta de su jubilación flotando sin rumbo.
+				// DisplayName: Dwarf Starite
+				// Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
 			}
 
 			WhiteSlime: {
@@ -346,8 +346,8 @@ Mods: {
 			}
 
 			BreadOfCthulhu: {
-				DisplayName: Pan de Cthulhu
-				Bestiary: Un bocadillo perdido que obtuvo vida despues de caer por un portal maligno, ¡Esta rebanada no tiene planeado ser tu almuerzo! Ten cuidado cuando pezcas, porque podria tomar el anzuelo de un pezcador que parece presa fácil.
+				// DisplayName: Bread of Cthulhu
+				// Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
 			}
 
 			Snobster: {
@@ -408,8 +408,8 @@ Mods: {
 			}
 
 			BloodMimic: {
-				DisplayName: Cofre falso sangriento
-				Bestiary: Cuando la luz de la luna roja aparece, los cuerpos putrefactos de saqueadores pueden llegar a unirse con los cofres que trataron de robar, corrompiendo y mutando el tesoro que contenia.
+				// DisplayName: Blood Mimic
+				// Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
 			}
 
 			Heckto: {
@@ -446,34 +446,34 @@ Mods: {
 			}
 
 			SkyMerchant: {
-				DisplayName: Mercader del cielo
-				Bestiary: Mitad repartidor y mitad aventurero, este elfo cruza el mundo en su globo aerostático. ¡Si lo alcanzas en un día ventoso estaría más que dispuesto a enseñarte su mercancía!
+				// DisplayName: Sky Merchant
+				// Bestiary: Half deliveryman and half thrillseeker, this elf crosses the world on his hot air balloon. If you can catch up with him on a windy day, he'll be happy to share some of his stock!
 			}
 
 			Occultist: {
-				DisplayName: Ocultista
-				Bestiary: Una ex-cultista que decidió apoyar al equipo ganador. Dice estar reformada, pero todavía intenta lanzar maldiciones cuando nadie está mirando.
+				// DisplayName: Occultist
+				// Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
 
 				TownNPCMood: {
-					Content: Este lugar es decente. Podria ser mas sombrío, pero cuando hay hambre no hay pan duro, ¿sabes?
-					NoHome: Mmm. por lo visto, no tengo un lugar en donde quedarme.
-					FarFromHome: Oh, ¡al parecer me has atrapado husmeando! Estaré de vuelta al anochezer, lo prometo.
+					// Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+					// NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+					// FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
 					// LoveSpace: Plenty of room to practice my spells here... hahaha...
-					DislikeCrowded: ¡No puedo ni caminar por aquí sin lanzar maldiciones accidentalmente!, no que me importe esa última parte, pero entiendes la idea.
-					HateCrowded: ¡Hay demasiada gente aquí! no puedo escabullirme cuando hay alguien mirando en cada esquina.
+					// DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+					// HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
 					// LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
 					// LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
 					// DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
 					// HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-					HateBiome_Snow: E-está demasiado helado... no si-siento mis manos, y las necesito para lanzar hechizos...
-					HateBiome_Evils: Como una "buena person" certificada, {BiomeName} no es un lugar para mi, ¡Obviamente!
-					LoveNPC: "{NPCName}... ¡Por fin hay alguien que respeta una buena maldición! oh, cómo nos vamos a divertir jajaja."
+					// HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+					// HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+					// LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
 					// LikeNPC: "[LikeNPCQuote]|{NPCName}+"
 					// LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
 					// LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
 					// DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
 					// HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
-					LikeNPC_Princess: "{NPCName} es tan... ¡crédula! se cree cada palabra que digo, me encanta."
+					// LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
 					// Princess_LovesNPC: "{NPCName} has been casting nice healing spells on me!"
 				}
 			}
@@ -509,8 +509,8 @@ Mods: {
 			}
 
 			PhysicistPet: {
-				DisplayName: Dron
-				Bestiary: Este pequeño aparato sigue a la Física a donde sea que vaya, constantemente registra cada detalle en su entorno para asegurar de que no se escape nada. Está basado en un modelo de inspección y miniaturizado para uso personal.
+				// DisplayName: Drone
+				// Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
 			}
 
 			Exporter: {
@@ -550,26 +550,26 @@ Mods: {
 			}
 
 			CleanserDrone: {
-				DisplayName: Dron Depurador
-				Bestiary: Creado por la Física en colaboración con la Steampunker para mantener tu ciudad habitable. Extrae energia de la torre de la ciudad para funcionar.
+				// DisplayName: Cleanser Drone
+				// Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
 			}
 
 			GunnerDrone: {
-				DisplayName: Dron Tirador
-				Bestiary: Creado por la Física para protejer tu ciudad, Extrae energia de la torre de la ciudad para funcionar.
+				// DisplayName: Gunner Drone
+				// Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
 			}
 
 			HealerDrone: {
-				DisplayName: Dron Medico
-				Bestiary: Creado por la Física para mantener tu ciudad saludable, Extrae energia de la torre de la ciudad para funcionar.
+				// DisplayName: Healer Drone
+				// Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
 			}
 
 			// KryptonShield.DisplayName: Krypton Shield
-			AdamantiteMimic.DisplayName: Cofre falso de Adamantita
-			FrostMimic.DisplayName: Cofre falso Congelado
-			ShadowMimic.DisplayName: Cofre falso Oscuro
+			// AdamantiteMimic.DisplayName: Adamantite Mimic
+			// FrostMimic.DisplayName: Frost Mimic
+			// ShadowMimic.DisplayName: Shadow Mimic
 			// PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
-			DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+			// DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 			// SkyMerchantBalloon.DisplayName: Hot Air Balloon
 			// DungeonChestMimic.DisplayName: Dungeon Mimic
 		}
@@ -601,12 +601,12 @@ Mods: {
 			// LegendaryFishBlobfish: Aequus: Try fishing during a Glimmer!
 			// LegendaryFishGoreFish: Aequus: Try fishing in lava near an Underworld Oblivion Altar!
 			// CarpenterRequirements: Aequus: Try putting extra decorations in your house... it may attract a housing master!
-			SkyMerchant: "{$Misc.GameTipPretense} ¡Revisa lo alto por el Mercader del Cielo! El visita las ciudades sobre las nubes, ofreciendo provisiones y equipamiento."
+			// SkyMerchant: Aequus: The Sky Merchant soars across the sky on his hot air balloon! Try talking to him to get some aerial deals.
 			// Vampirism: Aequus: Be careful when eating a Vampire Squid... they say the only cure is caught during a Blood Moon!
 			// Drones: Aequus: The Physicist lets you protect your towns with Drones! But choose your drones wisely, each one provides a completely different service!
 			// BreadofCthulhu: Aequus: Be careful when fishing trash... an evil garbage monster may trash YOU!
 			// Moonflower: Aequus: Meteorites may be able to grow exotic plants with magical properites...
-			Pumpinator: "{$Misc.GameTipPretense} ¿Deseando una suave brisa? Prueba el Pumpinador, vendido por el Mercader del Cielo."
+			// Pumpinator: Aequus: Try up some floating meteorites in space, you may find a rare, incredible tool...
 			// GhostlyGrave: Aequus: Hate tombstones? But still like griefing your friends? Try the Ghostly Grave!
 		}
 
@@ -909,7 +909,7 @@ Mods: {
 		// Honey: Honey
 		// Shimmer: Shimmer
 		// NeedsMod: Requires [{0}] to be enabled
-		KeyUnbound: Unbound
+		// KeyUnbound: Unbound Key
 		// Finished: Finished
 		// Unknown: Unknown
 		// OmegaStariteEasterEgg: "{0} has been satisfied!"
@@ -1062,7 +1062,7 @@ Mods: {
 			// JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 
-		Emotes.SkyMerchant.Command: Mercaderdelcielo
+		// Emotes.SkyMerchant.Command: skymerchant
 		// ItemDropCondition.BlockExists: If '{0}' exists in the world.
 
 		UI: {

@@ -433,30 +433,30 @@ AetherialCrown: {
 
 // Potions
 GreaterRestorationPotion: {
-	DisplayName: Poción de recuperación mayor
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
+	// DisplayName: Greater Restoration Potion
+	// Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 LesserRestorationPotion: {
-	DisplayName: Poción de recuperación menor
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
+	// DisplayName: Lesser Restoration Potion
+	// Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 SuperRestorationPotion: {
-	DisplayName: Super Poción de recuperación
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
+	// DisplayName: Super Restoration Potion
+	// Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 DeathsEmbrace: {
-	DisplayName: Abrazo de la Muerte
-	Tooltip:
+	// DisplayName: Death's Embrace
+	/* Tooltip:
 		'''
-		No se consume cuando se usa
-		Aumenta un 20% el daño y la probabilidad de ataque crítico
-		Los ataques son un poco menos precisos
-		Los ataques hacen que vuelvas a tomar la poción automáticamente
-		{{Una vez que el efecto acabe, morirás instantáneamente...}}
-		'''
+		{$Items.NotConsumable}
+		15% increased damage and critical strike chance
+		Makes attacks slightly inaccurate
+		Attacks make you redrink the potion automatically
+		{{Once the buff wears off, you instantly die...}}
+		''' */
 }
 
 // Pets
@@ -1103,8 +1103,8 @@ RockMan: {
 }
 
 MirrorsCall: {
-	DisplayName: Llamada del Espejo
-	Tooltip: Ataca al enemigo desde la comodidad de tu sillon!
+	// DisplayName: Mirror's Call
+	// Tooltip: Strike the enemy from the comfort of your couch!
 }
 
 Slice: {
@@ -1185,12 +1185,12 @@ Narrizuul: {
 }
 
 StudiesOfTheInkblot: {
-	DisplayName: Estudios de la mancha de tinta
-	Tooltip:
+	// DisplayName: Studies of the Inkblot
+	/* Tooltip:
 		'''
-		Click izquierdo para 'Rorschach en Danmaku'
-		Click derecho 'Rosa Subterránea'
-		'''
+		Left Click for 'Rorschach in Danmaku'
+		Right Click for 'Subterranean Rose'
+		''' */
 }
 
 LiquidGun: {
@@ -2362,12 +2362,12 @@ NoonPotion: {
 // OpposingPotion.DisplayName: Opposing Potion
 
 Baguette: {
-	DisplayName: Baguette
-	Tooltip:
+	// DisplayName: Baguette
+	/* Tooltip:
 		'''
-		Mejoras supremas a todas las características
-		regeneración de vida muy incrementada
-		'''
+		Supreme improvements to all stats
+		Greatly improves life regeneration
+		''' */
 }
 
 // HeartLamp.DisplayName: Heart Lamp
@@ -2449,12 +2449,12 @@ CosmicMonolith: {
 }
 
 IronLotus: {
-	DisplayName: Loto de Hierro
-	Tooltip:
+	// DisplayName: Iron Lotus
+	/* Tooltip:
 		'''
-		Sosten una lanza que esparce el fuego
-		'Quema a aquellos que le importe'
-		'''
+		Brandish a spear which inflicts spreading flames
+		'Burn those who dare to care for me'
+		''' */
 }
 
 Pumpinator: {
@@ -2915,12 +2915,12 @@ EmpoweredTooltips: {
 }
 
 Dynaknife: {
-	DisplayName: El espíritu navideño
-	Tooltip:
+	// DisplayName: The Christmas Spirit
+	/* Tooltip:
 		'''
-		Ataques aplican una bomba que explota en el enemigo
-		<right> para embestir y atacar
-		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		''' */
 }
 
 PyramidStatue: {

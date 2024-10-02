@@ -1,0 +1,113 @@
+Armor: {
+	Castaway: {
+		// DefenseDamageTip: Defense from this armor is Delicate
+		// DefenseDamageKeyword: Delicate
+		// DefenseDamageKeywordTip: Defense is reduced after receiving damage
+
+		Helmet: {
+			// DisplayName: Castaway Helmet
+			/* Tooltip:
+				'''
+				{$DefenseDamageTip}
+				'Stand tall.'
+				''' */
+		}
+
+		Chestplate: {
+			// DisplayName: Castaway Chestplate
+			/* Tooltip:
+				'''
+				{$Items.CommonTooltips.KnockbackResist@0}
+				{$DefenseDamageTip}
+				'Stand sturdy.'
+				''' */
+		}
+
+		Leggings: {
+			// DisplayName: Castaway Leggings
+			/* Tooltip:
+				'''
+				{$Items.CommonTooltips.KnockbackResist@0}
+				{$DefenseDamageTip}
+				'Stand up.'
+				''' */
+		}
+
+		// Setbonus: Release a bundle of spiked balls when attacked
+	}
+
+	ConeHelmet: {
+		// DisplayName: Traffic Cone Hat
+		// Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
+		// DisplayName_1: Bent Traffic Cone Hat
+		// Tooltip_1: "{$Armor.ConeHelmet.Tooltip}"
+		// DisplayName_2: Broken Traffic Cone Hat
+		// Tooltip_2: "{$Armor.ConeHelmet.Tooltip}"
+	}
+
+	MeadowArmor: {
+		MeadowArmorHelmet: {
+			// DisplayName: Wyvernwood Helmet
+			/* Tooltip:
+				'''
+				{$CommonItemTooltip.PercentReducedManaCost}
+				{$CommonItemTooltip.IncreasesMaxManaBy@1}
+				''' */
+		}
+
+		MeadowArmorBreastplate: {
+			// DisplayName: Wyvernwood Breastplate
+			/* Tooltip:
+				'''
+				Increases magic and summon damage by {0}
+				{$CommonItemTooltip.IncreasesMaxManaBy@1}
+				''' */
+		}
+
+		MeadowArmorGreaves: {
+			// DisplayName: Wyvernwood Greaves
+			/* Tooltip:
+				'''
+				{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+				{$CommonItemTooltip.IncreasesMaxManaBy@1}
+				''' */
+		}
+
+		/* Setbonus:
+			'''
+			{$CommonItemTooltip.IncreasesMaxMinionsBy}
+			Your summons will focus enemies struck by any magic attack
+			''' */
+	}
+
+	TrapArtistArmor: {
+		DartTrapHat: {
+			// DisplayName: Dart Trap Hat
+			/* Tooltip:
+				'''
+				Ignores {0} points of enemy Defense
+				Dropped from an immoral skeleton who loves repairing traps
+				''' */
+		}
+
+		VenomDartTrapHat: {
+			// DisplayName: Venom Dart Trap Hat
+			/* Tooltip:
+				'''
+				{1}% increased summon damage
+				Increases your max number of minions by {2}
+				Ignores {0} points of enemy Defense
+				''' */
+		}
+
+		SuperDartTrapHat: {
+			// DisplayName: Super Dart Trap Hat
+			/* Tooltip:
+				'''
+				{1}% increased summon damage
+				Increases your max number of minions by {2}
+				Ignores {0} points of enemy Defense
+				''' */
+		}
+	}
+}
