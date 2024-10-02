@@ -27,6 +27,9 @@ public partial class SkyMerchant {
             .Add<Items.Accessories.Informational.Calendar.Calendar>()
             .AddWithCustomValue(ItemID.WormholePotion, Item.buyPrice(silver: 8), Condition.Multiplayer)
             .Add<Systems.Renaming.NameTag>()
+
+            .Add(Instance<Items.Vanity.SetSkyMerchant.SkyMerchantVanity>().Hat!.Type, Condition.Halloween)
+
             .Register();
     }
 }

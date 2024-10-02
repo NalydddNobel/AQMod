@@ -10,4 +10,11 @@ Vanity: {
 			Tooltip: ""
 		}
 	}
+
+	SkyMerchantVanity: {
+		SkyMerchantVanityHat: {
+			DisplayName: Sky Merchant's Hat
+			Tooltip: ""
+		}
+	}
 }
