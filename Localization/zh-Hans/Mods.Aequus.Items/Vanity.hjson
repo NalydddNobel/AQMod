@@ -13,8 +13,8 @@ Vanity: {
 
 	SkyMerchantVanity: {
 		SkyMerchantVanityHat: {
-			// DisplayName: Sky Merchant's Hat
-			// Tooltip: ""
+			DisplayName: 天空商人帽子
+			Tooltip: ""
 		}
 	}
 }
