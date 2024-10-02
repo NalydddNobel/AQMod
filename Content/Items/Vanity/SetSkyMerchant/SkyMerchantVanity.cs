@@ -14,6 +14,6 @@ internal class SkyMerchantVanity : UnifiedVanitySet {
     }
 
     public override void SetStaticDefaults() {
-        ArmorIDs.Head.Sets.DrawHatHair[Hat!.Type] = true;
+        ArmorIDs.Head.Sets.DrawHatHair[Hat!.Item.headSlot] = true;
     }
 }
