@@ -96,13 +96,7 @@ PhysicistPet: {
 	}
 }
 
-CleanserDrone: {
-}
-
-GunnerDrone: {
-}
-
-HealerDrone: {
+Physicist: {
 }
 
 Eel: {
@@ -150,13 +144,20 @@ SpaceSquid: {
 Vraine.BannerName: Vraine Banner
 WhiteSlime.BannerName: White Slime Banner
 
-StreamingBalloon: {
-}
-
 Salamancer: {
 	DisplayName: Salamancer
 	TreasureBagDisplayName: Treasure Bag (Salamancer)
 	TrophyDisplayName: Salamancer Trophy
 	RelicDisplayName: Salamancer Relic
 	MaskDisplayName: Salamancer Mask
+}
+
+Carpenter: {
+	TownNPCMood: {
+	}
+}
+
+Exporter: {
+	TownNPCMood: {
+	}
 }

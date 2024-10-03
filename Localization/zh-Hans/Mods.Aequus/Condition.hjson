@@ -28,10 +28,29 @@ Condition: {
 	NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 	NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
 	ConfigIsTrue: 如果{1}/{0}配置选项设为True
-	SilverOre: Mods.Aequus.Condition.SilverOre
 	DownedSalamancer: Mods.Aequus.Condition.DownedSalamancer
 	UsedReforgeBook: Mods.Aequus.Condition.UsedReforgeBook
 	MetOccultist: Mods.Aequus.Condition.MetOccultist
 	InSurfacePollutedOcean: Mods.Aequus.Condition.InSurfacePollutedOcean
 	InUndergroundPollutedOcean: Mods.Aequus.Condition.InUndergroundPollutedOcean
+	DownedCrabson: 在击败巨蟹蛤后
+	DownedOmegaStarite: Mods.Aequus.Condition.DownedOmegaStarite
+	DownedDustDevil: Mods.Aequus.Condition.DownedDustDevil
+	DownedUpriser: 在击败暴乱者后
+	DownedHyperStarite: 在击败巨耀源星后
+	DownedUltraStarite: Mods.Aequus.Condition.DownedUltraStarite
+	DownedRedSprite: Mods.Aequus.Condition.DownedRedSprite
+	DownedSpaceSquid: Mods.Aequus.Condition.DownedSpaceSquid
+	DownedGlimmer: 在到达柔光的中心后
+	DownedGaleStreams: 在击败太空乌贼或红色精灵后
+	InCrabCrevice: 当处于蟹伏岩隙时
+	InGlimmer: 当柔光事件发生时
+	InDemonSiege: 当恶魔围攻事件发生时
+	InGoreNest: 当在血巢附件时
+	InPeacefulGlimmer: 当宁静柔光事件发生时
+	EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
+	EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
+	DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
+	HasCompletedBuildChallenge: 在完成{0}挑战后
+	AllCarpenterBountiesComplete: 在完成木匠所有的建筑挑战后
 }

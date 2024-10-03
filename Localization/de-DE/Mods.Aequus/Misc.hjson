@@ -9,6 +9,30 @@ InfoDisplays: {
 	AnglerBroadcasterIcon: {
 		// Unavailable: Unavailable
 		// Finished: Finished
+		// DisplayName: Quest Fish
+	}
+}
+
+Interface: {
+	PyramidStatue: {
+		Offerings: {
+			/* MoneyOffering:
+				'''
+				Offer 1 gold
+				Increased luck
+				''' */
+			/* LightShard:
+				'''
+				Offer a Light Shard
+				Increased damage against the Unholy
+				''' */
+			/* DarkShard:
+				'''
+				Offer a Dark Shard
+				Increased damage against the Holy
+				''' */
+			// FailedOffering: Unable to offer!
+		}
 	}
 }
 

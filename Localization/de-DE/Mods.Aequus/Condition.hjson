@@ -28,10 +28,29 @@ Condition: {
 	// NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 	// NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
 	// ConfigIsTrue: If the {1}/{0} config option is set to true
-	// SilverOre: Mods.Aequus.Condition.SilverOre
 	// DownedSalamancer: Mods.Aequus.Condition.DownedSalamancer
 	// UsedReforgeBook: Mods.Aequus.Condition.UsedReforgeBook
 	// MetOccultist: Mods.Aequus.Condition.MetOccultist
 	// InSurfacePollutedOcean: Mods.Aequus.Condition.InSurfacePollutedOcean
 	// InUndergroundPollutedOcean: Mods.Aequus.Condition.InUndergroundPollutedOcean
+	// DownedCrabson: After defeating Crabson
+	// DownedOmegaStarite: After defeating the Omega Starite
+	// DownedDustDevil: After defeating the Dust Devil
+	// DownedUpriser: After defeating the Upriser
+	// DownedHyperStarite: After defeating the Hyper Starite
+	// DownedUltraStarite: After defeating the Ultra Starite
+	// DownedRedSprite: After defeating the Red Sprite
+	// DownedSpaceSquid: After defeating the Space Squid
+	// DownedGlimmer: After reaching the source of the Glimmer
+	// DownedGaleStreams: After defeating Space Squid or Red Sprite
+	// InCrabCrevice: While in the Crab Crevice
+	// InGlimmer: While the Glimmer is occuring
+	// InDemonSiege: While the Demon Siege is occuring
+	// InGoreNest: While near a Oblivion Altar
+	// InPeacefulGlimmer: While the Peaceful Glimmer is occuring
+	// EarlyPortalGun: While the '{$Configuration.Gameplay.EarlyPortalGun}' option is enabled.
+	// EarlyGravityGlobe: While the '{$Configuration.Gameplay.EarlyGravityGlobe}' option is enabled.
+	// DownedDemonSiege: After upgrading a weapon at the Oblivion Altar
+	// HasCompletedBuildChallenge: After completing the {0} Challenge
+	// AllCarpenterBountiesComplete: After completing all Build Challenges at the Carpenter
 }

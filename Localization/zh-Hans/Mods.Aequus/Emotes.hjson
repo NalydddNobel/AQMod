@@ -3,4 +3,5 @@ Emotes: {
 	OccultistHostile.Command: occultist2
 	Physicist.Command: physicist
 	PhysicistPet.Command: physicistpet
+	SkyMerchant.Command: skymerchant
 }

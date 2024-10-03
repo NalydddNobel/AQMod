@@ -9,6 +9,30 @@ InfoDisplays: {
 	AnglerBroadcasterIcon: {
 		Unavailable: 不可用
 		Finished: 已完成
+		DisplayName: 钓鱼任务
+	}
+}
+
+Interface: {
+	PyramidStatue: {
+		Offerings: {
+			MoneyOffering:
+				'''
+				祭献1金
+				增加幸运度
+				'''
+			LightShard:
+				'''
+				祭献光明碎块
+				增加对不洁敌人的伤害
+				'''
+			DarkShard:
+				'''
+				祭献暗黑碎块
+				增加对神圣敌人的伤害
+				'''
+			FailedOffering: 无法祭献!
+		}
 	}
 }
 
