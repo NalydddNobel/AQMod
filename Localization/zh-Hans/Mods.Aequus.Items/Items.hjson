@@ -180,7 +180,7 @@ UnholyCore: {
 	DisplayName: 不洁核心
 	Tooltip:
 		'''
-		可在血巢处使用
+		可在遗境祭坛处使用
 		降低恶魔围攻事件的进攻时间
 		'''
 }
@@ -189,7 +189,7 @@ UnholyCoreSmall: {
 	DisplayName: 不洁裂石
 	Tooltip:
 		'''
-		可在血巢处使用
+		可在遗境祭坛处使用
 		掉落自地狱的神秘实体
 		'''
 }
