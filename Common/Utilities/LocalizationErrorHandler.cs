@@ -6,7 +6,7 @@ using Terraria.Localization;
 namespace Aequus.Common.Utilities;
 
 internal class LocalizationErrorHandler : LoadedType {
-    private static HashSet<string> _errors;
+    private static readonly HashSet<string> _errors = [];
 
     protected override void Load() {
         On_LocalizedText.Format += On_LocalizedText_Format;
