@@ -26,7 +26,7 @@ public partial class SkyMerchant {
             .Add<global::Aequus.Items.Potions.Healing.Restoration.LesserRestorationPotion>()
             .Add<Items.Accessories.Informational.Calendar.Calendar>()
             .AddWithCustomValue(ItemID.WormholePotion, Item.buyPrice(silver: 8), Condition.Multiplayer)
-            .Add<Systems.Renaming.NameTag>()
+            .Add<global::Aequus.Systems.Renaming.NameTag>()
 
             .Add(Instance<Items.Vanity.SetSkyMerchant.SkyMerchantVanity>().Hat!.Type, Condition.Halloween)
 

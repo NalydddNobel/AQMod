@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Empowered;
+namespace Aequus.Content.Systems.PotionAffixes.Empowered;
 
 public class EmpoweredDatabase : LoadedType {
     public readonly Dictionary<int, EmpoweredAffixInfo> Info = [];
@@ -38,7 +38,7 @@ public class EmpoweredDatabase : LoadedType {
     public static readonly float Wrath_Damage = 0.1f;
     public static readonly float Lucky_LuckRerolls = 1f;
 
-    protected override void PostSetupContent() {
+    public override void PostSetupContent() {
         Add(BuffID.WaterWalking, UpdateWaterWalking);
 
         void UpdateWaterWalking(Player player) {

@@ -1,12 +1,13 @@
 ﻿namespace Aequus.Common;
 
-public class LoadedType : ILoadable, IPostSetupContent, IAddRecipes {
+public class LoadedType : ILoadable, IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private Mod? _mod;
     protected Mod Mod => _mod!;
 
     protected virtual void Load() { }
-    protected virtual void PostSetupContent() { }
-    protected virtual void AddRecipes() { }
+    public virtual void PostSetupContent() { }
+    public virtual void AddRecipes() { }
+    public virtual void PostAddRecipes() { }
     protected virtual void Unload() { }
     protected virtual bool IsLoadingEnabled(Mod mod) {
         return true;
@@ -19,14 +20,6 @@ public class LoadedType : ILoadable, IPostSetupContent, IAddRecipes {
     void ILoadable.Load(Mod mod) {
         _mod = mod;
         Load();
-    }
-
-    void IPostSetupContent.PostSetupContent() {
-        PostSetupContent();
-    }
-
-    void IAddRecipes.AddRecipes() {
-        AddRecipes();
     }
 
     void ILoadable.Unload() {

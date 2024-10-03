@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Entities.ItemAffixes;
 using ReLogic.Content;
 
-namespace Aequus.Content.Entities.PotionAffixes;
+namespace Aequus.Content.Systems.PotionAffixes;
 
 public abstract class UnifiedPotionAffix : ModPrefix, IShimmerAffix {
     public readonly ModItem Item;

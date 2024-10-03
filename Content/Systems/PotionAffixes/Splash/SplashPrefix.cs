@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Splash;
+namespace Aequus.Content.Systems.PotionAffixes.Splash;
 
 public class SplashPrefix : UnifiedPotionAffix {
     LocalizedText? AbilityText;

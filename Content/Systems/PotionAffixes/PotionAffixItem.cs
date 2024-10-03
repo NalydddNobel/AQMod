@@ -4,7 +4,7 @@ using Aequus.Common.Entities.Items;
 using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes;
+namespace Aequus.Content.Systems.PotionAffixes;
 
 internal class PotionAffixItem(UnifiedPotionAffix Parent) : InstancedModItem(Parent.Name, $"{Parent.NamespacePath()}/{Parent.Name}Item"), IItemSlotOverrideWhileHeldInMouse {
     public override LocalizedText DisplayName => Parent.GetLocalization("ItemName");

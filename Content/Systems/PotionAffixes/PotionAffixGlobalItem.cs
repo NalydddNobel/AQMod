@@ -4,7 +4,7 @@ using Aequus.Common.UI;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Entities.PotionAffixes;
+namespace Aequus.Content.Systems.PotionAffixes;
 
 public class PotionAffixGlobalItem : GlobalItem {
     public override bool InstancePerEntity => true;

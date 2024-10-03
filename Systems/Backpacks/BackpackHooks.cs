@@ -62,14 +62,6 @@ public class BackpackHooks : LoadedType {
             }
         }
 
-#if KEYCHAIN
-        // Check Keychain for consuming an item.
-        if (player.TryGetModPlayer(out KeychainPlayer keychain) && keychain.ConsumeKey(player, type) == true) {
-            keychain.RefreshKeys();
-            return true;
-        }
-#endif
-
         return false;
     }
 

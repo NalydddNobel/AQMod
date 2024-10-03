@@ -2,7 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Buffs;
 using Aequus.Common.ModPlayers;
-using Aequus.Content.Entities.PotionAffixes.Empowered;
+using Aequus.Content.Systems.PotionAffixes.Empowered;
 using System;
 using System.Collections.Generic;
 using System.Linq;

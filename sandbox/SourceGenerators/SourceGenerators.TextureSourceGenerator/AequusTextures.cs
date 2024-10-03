@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1511)</summary>
+/// <summary>(Total Textures: 1515)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -161,36 +161,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FriendshipParticle = new("Assets/Textures/FriendshipParticle");
     /// <summary>Full Path: Assets/Textures/ItemCooldown</summary>
     public static readonly RequestCache<Texture2D> ItemCooldown = new("Assets/Textures/ItemCooldown");
-    /// <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> CopperKeyPalette = new("Assets/Textures/Keychain/CopperKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> CorruptionKeyPalette = new("Assets/Textures/Keychain/CorruptionKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> CrimsonKeyPalette = new("Assets/Textures/Keychain/CrimsonKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> DungeonDesertKeyPalette = new("Assets/Textures/Keychain/DungeonDesertKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> FrozenKeyPalette = new("Assets/Textures/Keychain/FrozenKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> GoldenKeyPalette = new("Assets/Textures/Keychain/GoldenKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> HallowedKeyPalette = new("Assets/Textures/Keychain/HallowedKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> JungleKeyPalette = new("Assets/Textures/Keychain/JungleKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
-    public static readonly RequestCache<Texture2D> KeychainKeys = new("Assets/Textures/Keychain/KeychainKeys");
-    /// <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
-    public static readonly RequestCache<Texture2D> KeychainKeysTemplate = new("Assets/Textures/Keychain/KeychainKeysTemplate");
-    /// <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
-    public static readonly RequestCache<Texture2D> PaletteKey = new("Assets/Textures/Keychain/PaletteKey");
-    /// <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> ShadowKeyPalette = new("Assets/Textures/Keychain/ShadowKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> SilverKeyPalette = new("Assets/Textures/Keychain/SilverKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> TempleKeyPalette = new("Assets/Textures/Keychain/TempleKeyPalette");
-    /// <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
-    public static readonly RequestCache<Texture2D> TinKeyPalette = new("Assets/Textures/Keychain/TinKeyPalette");
     /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
     public static readonly RequestCache<Texture2D> FlareSprite0 = new("Assets/Textures/LensFlare/FlareSprite0");
     /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite1</summary>
@@ -527,22 +497,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NeonAttack = new("Content/Elites/Misc/NeonAttack");
     /// <summary>Full Path: Content/Elites/Misc/XenonSpore</summary>
     public static readonly RequestCache<Texture2D> XenonSpore = new("Content/Elites/Misc/XenonSpore");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixGlint");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredPrefixItem = new("Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixItem");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Content/Entities/PotionAffixes/Splash/SplashPrefixGlint");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Content/Entities/PotionAffixes/Splash/SplashPrefixItem");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Content/Entities/PotionAffixes/Stuffed/StuffedPrefixGlint");
-    /// <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> StuffedPrefixItem = new("Content/Entities/PotionAffixes/Stuffed/StuffedPrefixItem");
     /// <summary>Full Path: Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
     public static readonly RequestCache<Texture2D> DemonSiegeBestiaryIcon = new("Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon");
     /// <summary>Full Path: Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
@@ -839,6 +793,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OccultistRobes_Body = new("Content/Items/Vanity/SetOccultist/OccultistRobes_Body");
     /// <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes_Legs</summary>
     public static readonly RequestCache<Texture2D> OccultistRobes_Legs = new("Content/Items/Vanity/SetOccultist/OccultistRobes_Legs");
+    /// <summary>Full Path: Content/Items/Vanity/SetSkyMerchant/SkyMerchantHat</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchantHat = new("Content/Items/Vanity/SetSkyMerchant/SkyMerchantHat");
+    /// <summary>Full Path: Content/Items/Vanity/SetSkyMerchant/SkyMerchantHat_Head</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchantHat_Head = new("Content/Items/Vanity/SetSkyMerchant/SkyMerchantHat_Head");
     /// <summary>Full Path: Content/Items/Weapons/Classless/MeteorFist/MeteorFist</summary>
     public static readonly RequestCache<Texture2D> MeteorFist = new("Content/Items/Weapons/Classless/MeteorFist/MeteorFist");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
@@ -1059,6 +1017,56 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Osiris = new("Content/Necromancy/Sceptres/Forbidden/Osiris");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
     public static readonly RequestCache<Texture2D> Osiris_Glow = new("Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Keychain</summary>
+    public static readonly RequestCache<Texture2D> Keychain = new("Content/Systems/Keys/Keychains/Keychain");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/MagicKeychain</summary>
+    public static readonly RequestCache<Texture2D> MagicKeychain = new("Content/Systems/Keys/Keychains/MagicKeychain");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/CopperKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CopperKeyPalette = new("Content/Systems/Keys/Keychains/Textures/CopperKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/CorruptionKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CorruptionKeyPalette = new("Content/Systems/Keys/Keychains/Textures/CorruptionKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/CrimsonKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CrimsonKeyPalette = new("Content/Systems/Keys/Keychains/Textures/CrimsonKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/DungeonDesertKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> DungeonDesertKeyPalette = new("Content/Systems/Keys/Keychains/Textures/DungeonDesertKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/FrozenKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> FrozenKeyPalette = new("Content/Systems/Keys/Keychains/Textures/FrozenKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/GoldenKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> GoldenKeyPalette = new("Content/Systems/Keys/Keychains/Textures/GoldenKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/HallowedKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> HallowedKeyPalette = new("Content/Systems/Keys/Keychains/Textures/HallowedKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/JungleKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> JungleKeyPalette = new("Content/Systems/Keys/Keychains/Textures/JungleKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/KeychainKeys</summary>
+    public static readonly RequestCache<Texture2D> KeychainKeys = new("Content/Systems/Keys/Keychains/Textures/KeychainKeys");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/KeychainKeysTemplate</summary>
+    public static readonly RequestCache<Texture2D> KeychainKeysTemplate = new("Content/Systems/Keys/Keychains/Textures/KeychainKeysTemplate");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/PaletteKey</summary>
+    public static readonly RequestCache<Texture2D> PaletteKey = new("Content/Systems/Keys/Keychains/Textures/PaletteKey");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/ShadowKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> ShadowKeyPalette = new("Content/Systems/Keys/Keychains/Textures/ShadowKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/SilverKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> SilverKeyPalette = new("Content/Systems/Keys/Keychains/Textures/SilverKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/TempleKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> TempleKeyPalette = new("Content/Systems/Keys/Keychains/Textures/TempleKeyPalette");
+    /// <summary>Full Path: Content/Systems/Keys/Keychains/Textures/TinKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> TinKeyPalette = new("Content/Systems/Keys/Keychains/Textures/TinKeyPalette");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Bounded/BoundedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Content/Systems/PotionAffixes/Bounded/BoundedPrefixGlint");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Bounded/BoundedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Content/Systems/PotionAffixes/Bounded/BoundedPrefixItem");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Empowered/EmpoweredPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Content/Systems/PotionAffixes/Empowered/EmpoweredPrefixGlint");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Empowered/EmpoweredPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixItem = new("Content/Systems/PotionAffixes/Empowered/EmpoweredPrefixItem");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Splash/SplashPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Content/Systems/PotionAffixes/Splash/SplashPrefixGlint");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Splash/SplashPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Content/Systems/PotionAffixes/Splash/SplashPrefixItem");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Stuffed/StuffedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Content/Systems/PotionAffixes/Stuffed/StuffedPrefixGlint");
+    /// <summary>Full Path: Content/Systems/PotionAffixes/Stuffed/StuffedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixItem = new("Content/Systems/PotionAffixes/Stuffed/StuffedPrefixItem");
     /// <summary>Full Path: Content/Tiles/Herbs/Manacle</summary>
     public static readonly RequestCache<Texture2D> Manacle = new("Content/Tiles/Herbs/Manacle");
     /// <summary>Full Path: Content/Tiles/Herbs/ManacleItem</summary>

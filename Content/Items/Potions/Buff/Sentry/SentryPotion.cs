@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.ContentTemplates;
-using Aequus.Content.Entities.PotionAffixes.Empowered;
+using Aequus.Content.Systems.PotionAffixes.Empowered;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Potions.Buff.Sentry;
@@ -12,7 +12,6 @@ public class SentryPotion() : UnifiedBuffPotion(Duration: 28800) {
 
     public override void Load() {
         base.Load();
-        Instance<EmpoweredDatabase>().Add(Buff, Tooltip: this.GetLocalization("EmpoweredDescription"));
     }
 
     public override void SetStaticDefaults() {
@@ -23,6 +22,7 @@ public class SentryPotion() : UnifiedBuffPotion(Duration: 28800) {
             new Color(138, 76, 31, 0),
         ];
 
+        Instance<EmpoweredDatabase>().Add(Buff, Tooltip: this.GetLocalization("EmpoweredDescription"));
         AequusBuff.AddPotionConflict(Item.buffType, BuffID.Summoning);
     }
 

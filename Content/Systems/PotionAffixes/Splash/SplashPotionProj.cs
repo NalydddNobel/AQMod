@@ -6,7 +6,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Entities.PotionAffixes.Splash;
+namespace Aequus.Content.Systems.PotionAffixes.Splash;
 
 public class SplashPotionProj : ModProjectile {
     const int AreaOfEffect = 120;

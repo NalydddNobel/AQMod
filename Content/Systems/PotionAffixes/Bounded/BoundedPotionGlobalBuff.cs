@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Entities.PotionAffixes.Bounded;
+namespace Aequus.Content.Systems.PotionAffixes.Bounded;
 
 public class BoundedPotionGlobalBuff : GlobalBuff {
     public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare) {

@@ -14,6 +14,8 @@ namespace Aequus;
 public class Aequus : Mod {
     public const char MOD_NAME_SEPERATOR = '/';
 
+    public static readonly string ModSources = Path.Join(Main.SavePath, "ModSources", nameof(Aequus));
+
     internal delegate void LegacyDrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
 #if DEBUG

@@ -12,7 +12,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanLoot : LoadedType {
-    protected override void PostSetupContent() {
+    public override void PostSetupContent() {
         #region Crate Drops
         List<IItemDropRule> crateDrops = [];
         if (GameplayConfig.Instance.MoveMagicConch) {

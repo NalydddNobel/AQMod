@@ -673,6 +673,42 @@
             Set for compatibility with Thorium.
             </summary>
         </member>
+        <member name="T:Aequus.Common.DataSets.IDEntry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Aequus.Common.DataSets.IDEntry`1.Name">
+            <summary><inheritdoc cref="P:Aequus.Common.DataSets.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.Common.DataSets.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:Aequus.Common.DataSets.IDEntry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:Aequus.Common.DataSets.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.Common.DataSets.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="P:Aequus.Common.DataSets.IIDEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:Aequus.Common.DataSets.IIDEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:Aequus.Common.DataSets.IIDEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:Aequus.Common.DataSets.IIDEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:Aequus.Common.DataSets.IIDEntry.SetName(System.String)">
+            <summary>Set <see cref="P:Aequus.Common.DataSets.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:Aequus.Common.DataSets.IIDEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:Aequus.Common.DataSets.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
+        </member>
         <member name="F:Aequus.Common.DataSets.ItemSets.ImportantItem">
             <summary>
             Items marked as important will have special properties:
@@ -2500,7 +2536,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1511)</summary>
+            <summary>(Total Textures: 1515)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2732,51 +2768,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ItemCooldown">
             <summary>Full Path: Assets/Textures/ItemCooldown</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CopperKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CorruptionKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DungeonDesertKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrozenKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HallowedKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JungleKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.KeychainKeys">
-            <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.KeychainKeysTemplate">
-            <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PaletteKey">
-            <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShadowKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SilverKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TempleKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TinKeyPalette">
-            <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlareSprite0">
             <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
@@ -3282,30 +3273,6 @@
         <member name="F:Aequus.AequusTextures.XenonSpore">
             <summary>Full Path: Content/Elites/Misc/XenonSpore</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BoundedPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixGlint</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BoundedPrefixItem">
-            <summary>Full Path: Content/Entities/PotionAffixes/Bounded/BoundedPrefixItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixGlint</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredPrefixItem">
-            <summary>Full Path: Content/Entities/PotionAffixes/Empowered/EmpoweredPrefixItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixGlint</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SplashPrefixItem">
-            <summary>Full Path: Content/Entities/PotionAffixes/Splash/SplashPrefixItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StuffedPrefixGlint">
-            <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixGlint</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StuffedPrefixItem">
-            <summary>Full Path: Content/Entities/PotionAffixes/Stuffed/StuffedPrefixItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DemonSiegeBestiaryIcon">
             <summary>Full Path: Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
         </member>
@@ -3750,6 +3717,12 @@
         <member name="F:Aequus.AequusTextures.OccultistRobes_Legs">
             <summary>Full Path: Content/Items/Vanity/SetOccultist/OccultistRobes_Legs</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchantHat">
+            <summary>Full Path: Content/Items/Vanity/SetSkyMerchant/SkyMerchantHat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchantHat_Head">
+            <summary>Full Path: Content/Items/Vanity/SetSkyMerchant/SkyMerchantHat_Head</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeteorFist">
             <summary>Full Path: Content/Items/Weapons/Classless/MeteorFist/MeteorFist</summary>
         </member>
@@ -4079,6 +4052,81 @@
         </member>
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Keychain">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Keychain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MagicKeychain">
+            <summary>Full Path: Content/Systems/Keys/Keychains/MagicKeychain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/CopperKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/CorruptionKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/CrimsonKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DungeonDesertKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/DungeonDesertKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrozenKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/FrozenKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/GoldenKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowedKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/HallowedKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JungleKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/JungleKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeychainKeys">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/KeychainKeys</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeychainKeysTemplate">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/KeychainKeysTemplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PaletteKey">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/PaletteKey</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/ShadowKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SilverKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/SilverKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TempleKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/TempleKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TinKeyPalette">
+            <summary>Full Path: Content/Systems/Keys/Keychains/Textures/TinKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoundedPrefixGlint">
+            <summary>Full Path: Content/Systems/PotionAffixes/Bounded/BoundedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoundedPrefixItem">
+            <summary>Full Path: Content/Systems/PotionAffixes/Bounded/BoundedPrefixItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
+            <summary>Full Path: Content/Systems/PotionAffixes/Empowered/EmpoweredPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixItem">
+            <summary>Full Path: Content/Systems/PotionAffixes/Empowered/EmpoweredPrefixItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
+            <summary>Full Path: Content/Systems/PotionAffixes/Splash/SplashPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplashPrefixItem">
+            <summary>Full Path: Content/Systems/PotionAffixes/Splash/SplashPrefixItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StuffedPrefixGlint">
+            <summary>Full Path: Content/Systems/PotionAffixes/Stuffed/StuffedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StuffedPrefixItem">
+            <summary>Full Path: Content/Systems/PotionAffixes/Stuffed/StuffedPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Manacle">
             <summary>Full Path: Content/Tiles/Herbs/Manacle</summary>
@@ -7489,29 +7537,15 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestPrimaryLoot">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
             <summary>
-            The primary loot pool for Crab Crevice chests
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestSecondaryLoot">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
             <summary>
-            The secondary loot pool for Crab Crevice chests
+            Lookup for tile Ids which are safe to generate over.
             </summary>
-        </member>
-        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestTertiaryLoot">
-            <summary>
-            The tertiary (3rd) loot pool for Crab Crevice chests
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator.SetLocationParams(System.Int32@,System.Int32@,Microsoft.Xna.Framework.Point@,Microsoft.Xna.Framework.Point@)">
-            <summary>
-            
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="location"></param>
-            <param name="genLocation"></param>
         </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>

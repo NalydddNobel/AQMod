@@ -10,7 +10,7 @@ public class ChestSets : LoadedType {
     public readonly Dictionary<TileKey, HardmodeChestInfo> HardmodeConvert = [];
     public readonly List<ChestEnvironmentInfo> ChestEnvironment = [];
 
-    protected override void PostSetupContent() {
+    public override void PostSetupContent() {
         ChestEnvironment.Add(new ChestEnvironmentInfo((i, j) => TileID.Sets.JungleBiome[Main.tile[i, j].TileType] > 0, ChestID.Ivy));
         ChestEnvironment.Add(new ChestEnvironmentInfo((i, j) => TileID.Sets.SnowBiome[Main.tile[i, j].TileType] > 0, ChestID.Frozen));
         ChestEnvironment.Add(new ChestEnvironmentInfo((i, j) => TileID.Sets.SandBiome[Main.tile[i, j].TileType] > 0, ChestID.Sandstone));

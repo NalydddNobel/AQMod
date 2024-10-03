@@ -4,7 +4,7 @@ using Aequus.Common.Items;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Entities.PotionAffixes.Empowered;
+namespace Aequus.Content.Systems.PotionAffixes.Empowered;
 
 public class EmpoweredPotionGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

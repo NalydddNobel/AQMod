@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Bounded;
+namespace Aequus.Content.Systems.PotionAffixes.Bounded;
 
 public class BoundedPrefix : UnifiedPotionAffix {
     LocalizedText? Ability;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Net;
 using System.IO;
 
-namespace Aequus.Content.Entities.PotionAffixes.Empowered;
+namespace Aequus.Content.Systems.PotionAffixes.Empowered;
 
 public class EmpoweredPotionPlayer : ModPlayer {
     public int empowered;

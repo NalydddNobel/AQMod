@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Empowered;
+namespace Aequus.Content.Systems.PotionAffixes.Empowered;
 
 public class EmpoweredPotionGlobalBuff : GlobalBuff {
     public Dictionary<int, Action<Player>> CustomAction = [];

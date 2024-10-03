@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Entities.Players;
 
-namespace Aequus.Content.Entities.PotionAffixes.Splash;
+namespace Aequus.Content.Systems.PotionAffixes.Splash;
 
 public class SplashPotionGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

@@ -3,7 +3,7 @@ using Aequus.Common.Utilities;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Stuffed;
+namespace Aequus.Content.Systems.PotionAffixes.Stuffed;
 
 [LegacyName("DoubledTimePrefix")]
 public class StuffedPrefix : UnifiedPotionAffix {

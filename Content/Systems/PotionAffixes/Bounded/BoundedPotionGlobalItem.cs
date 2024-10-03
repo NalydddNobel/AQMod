@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.DataSets;
 using System;
 
-namespace Aequus.Content.Entities.PotionAffixes.Bounded;
+namespace Aequus.Content.Systems.PotionAffixes.Bounded;
 
 internal class BoundedPotionGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

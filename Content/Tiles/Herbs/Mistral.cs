@@ -3,7 +3,7 @@ using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Drawing.TileAnimations;
 using Aequus.Common.Entities.Tiles;
 using Aequus.Common.Structures.ID;
-using Aequus.Content.Entities.PotionAffixes.Empowered;
+using Aequus.Content.Systems.PotionAffixes.Empowered;
 using System;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Entities.PotionAffixes.Bounded;
+namespace Aequus.Content.Systems.PotionAffixes.Bounded;
 
 public class BoundedPotionPlayer : ModPlayer {
     public readonly List<int> bounded = [];

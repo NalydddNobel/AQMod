@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Entities.PotionAffixes.Empowered;
+namespace Aequus.Content.Systems.PotionAffixes.Empowered;
 
 public class EmpoweredPrefix : UnifiedPotionAffix {
     LocalizedText? AbilityText;

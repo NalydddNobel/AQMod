@@ -1,4 +1,5 @@
-﻿using Aequus.Systems.Backpacks;
+﻿using Aequus.Content.Systems.Keys.Keychains;
+using Aequus.Systems.Backpacks;
 using Aequus.Systems.Chests;
 
 namespace Aequus.Common.Entities.Tiles;
@@ -71,12 +72,10 @@ public class LockedTiles : GlobalTile {
             }
         }
 
-#if KEYCHAIN
         if (player.TryGetModPlayer(out KeychainPlayer keychain) && keychain.ConsumeKey(player, key) == true) {
             keychain.RefreshKeys();
             return true;
         }
-#endif
 
         return false;
     }

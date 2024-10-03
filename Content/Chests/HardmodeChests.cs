@@ -41,7 +41,7 @@ public class HardmodeChests : LoadedType {
         ModTypeLookup<ModTile>.RegisterLegacyNames(Forbidden, "HardSandstoneChestTile");
     }
 
-    protected override void PostSetupContent() {
+    public override void PostSetupContent() {
         ItemID.Sets.ShimmerTransformToItem[Adamantite.Item.Type] = ItemID.GoldChest;
         ItemID.Sets.ShimmerTransformToItem[Frost.Item.Type] = ItemID.IceChest;
         ItemID.Sets.ShimmerTransformToItem[Granite.Item.Type] = ItemID.GraniteChest;
@@ -62,7 +62,7 @@ public class HardmodeChests : LoadedType {
         convert[ChestID.Sandstone] = new((TileKey)Forbidden.Type, ChestPool.DesertHard);
     }
 
-    protected override void AddRecipes() {
+    public override void AddRecipes() {
         Adamantite.Item.CreateRecipe(5)
             .AddIngredient(ItemID.GoldChest, 5)
             .AddIngredient(ItemID.AdamantiteBar, 2)
