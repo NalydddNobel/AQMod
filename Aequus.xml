@@ -2536,7 +2536,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1515)</summary>
+            <summary>(Total Textures: 1516)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3347,6 +3347,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.TatteredDemonHorn">
             <summary>Full Path: Content/Fishing/Junk/TatteredDemonHorn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AccessoryDamageEarring">
+            <summary>Full Path: Content/Items/Accessories/AccessoryDamageEarring/AccessoryDamageEarring</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PlanteraBackpack">
             <summary>Full Path: Content/Items/Accessories/Backpacks/PlanteraBackpack</summary>

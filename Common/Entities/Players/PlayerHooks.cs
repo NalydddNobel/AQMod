@@ -10,17 +10,53 @@ internal class PlayerHooks : LoadedType {
 
     protected override void Load() {
         On_Player.QuickBuff += On_Player_QuickBuff;
+        IL_Player.DashMovement += IL_Player_DashMovement;
         IL_Player.PickTile += IL_Player_PickTile;
     }
 
-    private static void On_Player_QuickBuff(On_Player.orig_QuickBuff orig, Player player) {
+    void IL_Player_DashMovement(ILContext il) {
+        ILCursor c = new ILCursor(il);
+
+        if (!c.TryGotoNext(MoveType.Before, i => i.MatchLdfld(typeof(Player), nameof(Player.eocHit)))) {
+            Mod.Logger.Error("Could not find ldfld of Player.eocHit."); return;
+        }
+
+        if (!c.TryGotoNext(MoveType.Before, i => i.MatchCall(typeof(Player), nameof(Player.GetTotalDamage)))) {
+            Mod.Logger.Error("Could not find call for Player.GetTotalDamage."); return;
+        }
+
+        if (!c.TryGotoNext(MoveType.Before, i => i.MatchStloc(out _))) {
+            Mod.Logger.Error("Could not find stloc for eoc shield's damage stat modifier."); return;
+        }
+
+        // StatModifier for the Shield of Cthulhu is already on the stack.
+
+        // Push player onto stack to be used in the method call.
+        c.Emit(OpCodes.Ldarg_0);
+
+        // Modify the Shield of Cthulhu's damage StatModifier by calling this method and returning a modified StatModifier.
+        c.EmitDelegate(ModifyEocShieldDamage);
+
+        // Afterward this method call, the code will continue by storing the StatModifier into a local variable and utilizing it.
+        MonoModHooks.DumpIL(Mod, il);
+    }
+
+    static StatModifier ModifyEocShieldDamage(StatModifier modifier, Player player) {
+        if (player.TryGetModPlayer(out AequusPlayer aequus)) {
+            modifier = modifier.CombineWith(aequus.accessoryDamage);
+        }
+
+        return modifier;
+    }
+
+    static void On_Player_QuickBuff(On_Player.orig_QuickBuff orig, Player player) {
         QuickBuff = true;
         orig(player);
         QuickBuff = false;
     }
 
-    private static bool _player_PickTile;
-    private void IL_Player_PickTile(ILContext il) {
+    static bool _player_PickTile;
+    void IL_Player_PickTile(ILContext il) {
         ILCursor c = new ILCursor(il);
 
         if (!c.TryGotoNext(MoveType.After, i => i.MatchPropertySetter(typeof(AchievementsHelper), nameof(AchievementsHelper.CurrentlyMining)))) {

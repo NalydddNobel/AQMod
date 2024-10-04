@@ -9,6 +9,8 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [CompilerGenerated]
+    public StatModifier accessoryDamage;
+    [CompilerGenerated]
     public Item accBreathRestore;
     [CompilerGenerated]
     public int accBreathRestoreStacks;
@@ -57,6 +59,7 @@ public partial class AequusPlayer {
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
+        SourceGeneratorTools.ResetObj(ref accessoryDamage);
         SourceGeneratorTools.ResetObj(ref accBreathRestore);
         SourceGeneratorTools.ResetObj(ref accBreathRestoreStacks);
         SourceGeneratorTools.ResetObj(ref accStariteExpert);

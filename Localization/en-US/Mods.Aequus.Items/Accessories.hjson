@@ -1,4 +1,9 @@
 // Equipment: Accessories
+AccessoryDamageEarring: {
+	DisplayName: Flashy Earring
+	Tooltip: Increases accessory damage by {0}%
+}
+
 HallowCanteen: {
 	DisplayName: Magic Canteen
 	DisplayNameAlt: Magic Canteen ({0})

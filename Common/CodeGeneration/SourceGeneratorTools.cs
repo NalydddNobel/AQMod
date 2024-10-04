@@ -45,6 +45,10 @@ internal static class SourceGeneratorTools {
     }
     #endregion
 
+    public static void ResetObj(ref StatModifier statModifier) {
+        statModifier = StatModifier.Default;
+    }
+
     public static void ResetObj<T>(ref T obj) {
         obj = default(T);
     }
