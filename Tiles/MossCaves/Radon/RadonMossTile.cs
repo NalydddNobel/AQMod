@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.Drawing;
+using Aequus.Common.Entities.Tiles;
 using Aequus.Common.Rendering;
-using Aequus.Common.Tiles;
 using System;
 using Terraria.Audio;
 using Terraria.Utilities;
 
 namespace Aequus.Tiles.MossCaves.Radon;
-public class RadonMossTile : ModTile, ITileDrawSystem, TileHooks.IOnPlaceTile {
+public class RadonMossTile : ModTile, ITileDrawSystem, IPlaceTile {
     int ITileDrawSystem.Type => Type;
 
     public override void SetStaticDefaults() {
@@ -85,15 +85,20 @@ public class RadonMossTile : ModTile, ITileDrawSystem, TileHooks.IOnPlaceTile {
         }
     }
 
-    public virtual bool? OnPlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
-        if (Main.tile[i, j].TileType == TileID.GrayBrick) {
-            Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
-            WorldGen.SquareTileFrame(i, j, resetFrame: true);
-            if (!mute) {
-                SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
+    public virtual bool? ModifyPlaceTile(ref PlaceTileInfo info) {
+        Tile tile = info.Tile;
+
+        if (tile.TileType == TileID.GrayBrick) {
+            tile.TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
+            WorldGen.SquareTileFrame(info.X, info.Y, resetFrame: true);
+
+            if (!info.Mute) {
+                SoundEngine.PlaySound(SoundID.Dig, new Vector2(info.X * 16f + 8f, info.Y * 16f + 8f));
             }
+
             return true;
         }
+
         return null;
     }
 

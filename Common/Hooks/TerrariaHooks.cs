@@ -6,9 +6,7 @@ public partial class TerrariaHooks : ILoadable {
     public void Load(Mod mod) {
         Mod = mod;
 
-        On_Player.FigureOutWhatToPlace += On_Player_FigureOutWhatToPlace; ;
-
-        On_WorldGen.PlaceTile += On_WorldGen_PlaceTile;
+        On_Player.FigureOutWhatToPlace += On_Player_FigureOutWhatToPlace;
     }
 
     public void Unload() { }

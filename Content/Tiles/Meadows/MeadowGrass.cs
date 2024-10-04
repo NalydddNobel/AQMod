@@ -1,11 +1,12 @@
 ﻿using Aequus.Common.ContentTemplates.Generic;
+using Aequus.Common.Entities.Tiles;
 using Aequus.Common.Tiles;
 using Terraria.Audio;
 using Terraria.GameContent.Metadata;
 
 namespace Aequus.Content.Tiles.Meadows;
 
-public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
+public class MeadowGrass : ModTile, IOverridePlacement, IPlaceTile {
     public readonly ModItem MeadowGrassSeeds;
     public MeadowGrass() {
         MeadowGrassSeeds = new InstancedTileItem(this, Settings: new TileItemSettings() {
@@ -58,14 +59,14 @@ public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
         }
     }
 
-    public bool? PlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
-        Tile tile = Main.tile[i, j];
+    bool? IPlaceTile.ModifyPlaceTile(ref PlaceTileInfo info) {
+        Tile tile = info.Tile;
         if (!tile.HasTile || tile.TileType != TileID.Dirt) {
             return false;
         }
 
         tile.TileType = Type;
-        SoundEngine.PlaySound(SoundID.Dig, new Vector2(i, j).ToWorldCoordinates());
+        SoundEngine.PlaySound(SoundID.Dig, new Vector2(info.X, info.Y).ToWorldCoordinates());
         return null;
     }
 
