@@ -30,8 +30,8 @@ Announcement: {
 	EyeOfCthulhuDemonite: 魔矿的存在在洞穴中生长...
 	EyeOfCthulhuCrimtane: 猩红矿溃烂在洞穴的深处...
 	HardmodeChests: 洞穴的宝箱中出现了新的宝藏...
-	DemonSiegeFailEat: 血巢吞噬了你的{0}...
-	DemonSiegeFail: 血巢反刍出了你的{0}...
+	DemonSiegeFailEat: 遗境祭坛吞噬了你的{0}...
+	DemonSiegeFail: 遗境祭坛反刍出了你的{0}...
 	YinYang: 光与暗的远古魂灵变的不耐烦了...
 	DustDevilSpaceSquid: 风开始分离...
 	DustDevilRedSprite: 风开始旋转...
@@ -57,7 +57,7 @@ Achievement: {
 	Description: {
 		OmegaStarite: 击败终末之星, 一种可捕获所有终极能量源头的精锐星源武器...
 		Crabson: 击败巨蟹蛤, 一只蟹蛤怪物躲在自己的地下海洞里, 它在搜寻着稀有的珍珠...
-		DemonSiege: 唤醒血巢, 升级武器!
+		DemonSiege: 唤醒遗境祭坛, 升级武器!
 		Glimmer: 发现柔光!
 		GlimmerHyperStarite: 深入柔光!
 		GlimmerBeaten: 与柔光之源互动!
@@ -228,7 +228,7 @@ NPCs: {
 
 		BossChecklistIntegration: {
 			EntryName: "{$Mods.Aequus.NPCs.Upriser.DisplayName}"
-			SpawnInfo: 在第一次完成恶魔围攻 (T2) 后召唤, 或者在血巢处使用 [Aequus/VoidBand]
+			SpawnInfo: 在第一次完成恶魔围攻 (T2) 后召唤, 或者在遗境祭坛处使用 [Aequus/VoidBand]
 		}
 	}
 
@@ -381,12 +381,12 @@ NPCs: {
 
 	Oblivision: {
 		DisplayName: 遗忘者
-		Bestiary: 血巢入口造成的空间扰动形成了一个奇怪的裂缝. 它们看起来无害, 但它们无误的、分析性的凝视让人很不安...
+		Bestiary: 遗境祭坛入口造成的空间扰动形成了一个奇怪的裂缝. 它们看起来无害, 但它们无误的、分析性的凝视让人很不安...
 	}
 
 	Magmabubble: {
 		DisplayName: 有腿的岩浆
-		Bestiary: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
+		Bestiary: 被遗境祭坛的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
 	}
 
 	TrapperImp: {
@@ -413,7 +413,7 @@ NPCs: {
 
 	Heckto: {
 		DisplayName: 冥狱之魂
-		Bestiary: 当熔火军团的军队在血巢宣誓效忠于遗境的力量时, 他们的灵魂不可逆转地被地狱能量污染了, 在解脱后形成了这些奇怪的灵体.
+		Bestiary: 当熔火军团的军队在遗境祭坛宣誓效忠于遗境的力量时, 他们的灵魂不可逆转地被地狱能量污染了, 在解脱后形成了这些奇怪的灵体.
 	}
 
 	Carpenter: {
@@ -598,7 +598,7 @@ GameTips: {
 	Necromancy: Aequus: 亡灵法术的力量可以让任何敌人为你而战!
 	LegendaryFish: Aequus: 渔夫可能会对传奇鱼类感兴趣...
 	LegendaryFishBlobfish: Aequus: 试试在柔光持续期间钓鱼!
-	LegendaryFishGoreFish: Aequus: 试试在血巢附近的熔岩中钓鱼!
+	LegendaryFishGoreFish: Aequus: 试试在遗境祭坛附近的熔岩中钓鱼!
 	CarpenterRequirements: Aequus: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
 	SkyMerchant: "{$Misc.GameTipPretense} 留意天空商人! 他访问了云层之上的城镇, 并出售奇异的商品和装备."
 	Vampirism: Aequus: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
@@ -877,7 +877,7 @@ GoreNestTombstones: {
 	Hint: {
 		0: ...恶魔...它们到处都是...根本就没有机会...
 		1: .屠戮者的印记...留下武器, 任由其腐烂.
-		2: .让他们被血巢吞噬, 他们的传说黑暗剑会被它的黑暗能量吸引.
+		2: .让他们被遗境祭坛吞噬, 他们的传说黑暗剑会被它的黑暗能量吸引.
 		3: .夜之圣刃的预言之力在这次并未被填满...
 		4: ...尸体被扔进入口后, 就再也看不到了.
 		5: ...他们的命运不得而知.
@@ -1000,7 +1000,7 @@ BossChecklistIntegration: {
 
 	DemonSiege: {
 		EntryName: 恶魔围攻
-		SpawnInfo: 在血巢处使用: ({0}) .
+		SpawnInfo: 在遗境祭坛处使用: ({0}) .
 	}
 
 	GaleStreams: {
