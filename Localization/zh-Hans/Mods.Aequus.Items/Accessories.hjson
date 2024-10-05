@@ -1,7 +1,7 @@
 // Equipment: Accessories
 AccessoryDamageEarring: {
-	// DisplayName: Flashy Earring
-	// Tooltip: Increases accessory damage by {0}%
+	DisplayName: 闪耀耳坠
+	Tooltip: 增加{0}%饰品伤害
 }
 
 HallowCanteen: {
