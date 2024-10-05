@@ -48,7 +48,7 @@ Misc: {
 	NeedsMod: 需要[{0}]以启用
 	GameTipPretense: Aequus:
 	PriceFree: 免费!
-	Unknown: 位置
+	Unknown: 未知
 
 	DayOfTheWeek: {
 		Monday: 星期一
@@ -136,10 +136,10 @@ Misc: {
 	TimeLeft: 剩余时间: {0}
 
 	Season: {
-		// Spring: Mods.Aequus.Misc.Season.Spring
-		// Summer: Mods.Aequus.Misc.Season.Summer
-		// Autumn: Mods.Aequus.Misc.Season.Autumn
-		// Winter: Mods.Aequus.Misc.Season.Winter
+		Spring: 春
+		Summer: 夏
+		Autumn: 秋
+		Winter: 冬
 	}
 }
 
