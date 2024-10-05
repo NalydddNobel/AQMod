@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities.Helpers;
+﻿using Aequus.Common.Structures;
+using Aequus.Common.Utilities.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +12,8 @@ namespace Aequus.Common.Utilities;
 
 public static class ALanguage {
     private record struct ColoredText(string Text, Color Color);
+
+    public static ImplicitLazy<LocalizedText> UnknownText => new ImplicitLazy<LocalizedText>(() => GetText("Misc.Unknown"));
 
     #region Lazy Initalized Text
     public static Lazy<LocalizedText> L_GetNPCName<T>() where T : ModNPC {

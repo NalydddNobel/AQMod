@@ -48,6 +48,7 @@ Misc: {
 	NeedsMod: Requiere activar [{0}]
 	GameTipPretense: Aequus:
 	PriceFree: Gratis!
+	// Unknown: Unknown
 
 	DayOfTheWeek: {
 		Monday: Lunes
@@ -133,6 +134,13 @@ Misc: {
 	BagWarningQuickBuff: ¡La mochila no soporta el Potenciar Rapido!
 	BagWarningAmmo: ¡La mochila no soporta Munición    !
 	TimeLeft: Time Restante: {0}
+
+	Season: {
+		// Spring: Mods.Aequus.Misc.Season.Spring
+		// Summer: Mods.Aequus.Misc.Season.Summer
+		// Autumn: Mods.Aequus.Misc.Season.Autumn
+		// Winter: Mods.Aequus.Misc.Season.Winter
+	}
 }
 
 // Used as shorthand under buffs to represent how many stacks they have.

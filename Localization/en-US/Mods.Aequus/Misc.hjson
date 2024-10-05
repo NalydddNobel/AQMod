@@ -48,6 +48,7 @@ Misc: {
 	NeedsMod: Requires [{0}] to be enabled
 	GameTipPretense: Aequus:
 	PriceFree: Free!
+	Unknown: Unknown
 
 	DayOfTheWeek: {
 		Monday: Monday
@@ -57,6 +58,13 @@ Misc: {
 		Friday: Friday
 		Saturday: Saturday
 		Sunday: Sunday
+	}
+
+	Season: {
+		Spring: Spring
+		Summer: Summer
+		Autumn: Autumn
+		Winter: Winter
 	}
 
 	Dyes: {

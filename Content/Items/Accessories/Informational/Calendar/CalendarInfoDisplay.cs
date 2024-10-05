@@ -1,4 +1,5 @@
-﻿using Aequus.Systems;
+﻿using Aequus.Common.Utilities;
+using Aequus.Content.Systems.Seasons;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Accessories.Informational.Calendar;
@@ -15,6 +16,14 @@ public class CalendarInfoDisplay : InfoDisplay {
     }
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
-        return string.Format(Tooltip.Value, TimeSystem.GetWeekText(TimeSystem.DayOfTheWeek).Value, TimeSystem.DaysPassed);
+        TimeSystem time = Instance<TimeSystem>();
+#if SEASONS
+        if (Main.GameUpdateCount % 220 > 120) {
+            return time.SeasonText.GetOrDefault(time.Season, ALanguage.UnknownText).Value;
+        }
+#endif
+
+        LocalizedText weekText = time.WeekText.GetOrDefault(time.DayOfTheWeek, ALanguage.UnknownText);
+        return string.Format(Tooltip.Value, weekText.Value, time.DaysPassed + 1);
     }
 }

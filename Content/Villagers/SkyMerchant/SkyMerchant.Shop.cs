@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Preferences;
-using Aequus.Systems;
+using Aequus.Content.Systems.Seasons;
 using System;
 
 namespace Aequus.Content.Villagers.SkyMerchant;
@@ -10,13 +10,13 @@ public partial class SkyMerchant {
         int celestialMagnetAltId = GameplayConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
 
         new NPCShop(Type, "Shop")
-            .AddWithCustomValue<Items.Accessories.Balloons.SlimyBlueBalloon>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Sunday, DayOfWeek.Monday))
-            .AddWithCustomValue<Items.Accessories.RespawnFeather.GoldenFeather>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Monday, DayOfWeek.Tuesday))
-            .AddWithCustomValue(celestialMagnetAltId, ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
-            .AddWithCustomValue<Items.Weapons.Classless.StunGun.StunGun>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Wednesday, DayOfWeek.Thursday))
-            .AddWithCustomValue<Items.Accessories.FallSpeedHorseshoe.WeightedHorseshoe>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Thursday, DayOfWeek.Friday))
-            .AddWithCustomValue<Items.Weapons.MagicStaffs.Furystar.Furystar>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Friday, DayOfWeek.Saturday))
-            .AddWithCustomValue<Items.Accessories.FlashwayShield.FlashwayShield>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeSystem.ConditionByDayOfWeek(DayOfWeek.Saturday))
+            .AddWithCustomValue<Items.Accessories.Balloons.SlimyBlueBalloon>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.BetweenWeekdays(DayOfWeek.Sunday, DayOfWeek.Monday))
+            .AddWithCustomValue<Items.Accessories.RespawnFeather.GoldenFeather>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.BetweenWeekdays(DayOfWeek.Monday, DayOfWeek.Tuesday))
+            .AddWithCustomValue(celestialMagnetAltId, ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.BetweenWeekdays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
+            .AddWithCustomValue<Items.Weapons.Classless.StunGun.StunGun>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.BetweenWeekdays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
+            .AddWithCustomValue<Items.Accessories.FallSpeedHorseshoe.WeightedHorseshoe>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.BetweenWeekdays(DayOfWeek.Thursday, DayOfWeek.Friday))
+            .AddWithCustomValue<Items.Weapons.MagicStaffs.Furystar.Furystar>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.BetweenWeekdays(DayOfWeek.Friday, DayOfWeek.Saturday))
+            .AddWithCustomValue<Items.Accessories.FlashwayShield.FlashwayShield>(ItemDefaults.NPCSkyMerchantCustomPrice, TimeCondition.Weekday(DayOfWeek.Saturday))
             .AddWithCustomValue(ModContent.GetInstance<Mounts.HotAirBalloon.HotAirBalloonMount>().MountItem.Type, ItemDefaults.NPCSkyMerchantCustomPrice * 7)
             .AddWithCustomValue<Items.Weapons.RangedBows.SkyHunterCrossbow.SkyHunterCrossbow>((int)(ItemDefaults.NPCSkyMerchantCustomPrice * 1.5))
             .AddWithCustomValue<global::Aequus.Items.Tools.Pumpinator>(ItemDefaults.NPCSkyMerchantCustomPrice)

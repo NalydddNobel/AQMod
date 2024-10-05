@@ -909,7 +909,7 @@ Shimmer: 微光
 NeedsMod: 需要[{0}]以启用
 KeyUnbound: 按键未绑定
 Finished: 完成的
-Unknown: 位置
+Unknown: "{$Misc.Unknown}"
 OmegaStariteEasterEgg: "{0}已满足!"
 OccultistEasterEgg: <秘术师, {Name}> 看到你像其他人一样倒下, 我很难过...一位没有完成'预言'的英雄. 一切都很好, {PlayerName}, 黑暗领主会喜欢收割你的灵魂的.
 OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.

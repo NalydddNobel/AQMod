@@ -48,6 +48,7 @@ Misc: {
 	// NeedsMod: Requires [{0}] to be enabled
 	// GameTipPretense: Aequus:
 	// PriceFree: Free!
+	// Unknown: Unknown
 
 	DayOfTheWeek: {
 		// Monday: Monday
@@ -133,6 +134,13 @@ Misc: {
 	// BagWarningQuickBuff: The backpack does not support Quick Buff!
 	// BagWarningAmmo: The backpack does not support Ammo!
 	// TimeLeft: Time left: {0}
+
+	Season: {
+		// Spring: Mods.Aequus.Misc.Season.Spring
+		// Summer: Mods.Aequus.Misc.Season.Summer
+		// Autumn: Mods.Aequus.Misc.Season.Autumn
+		// Winter: Mods.Aequus.Misc.Season.Winter
+	}
 }
 
 // Used as shorthand under buffs to represent how many stacks they have.
