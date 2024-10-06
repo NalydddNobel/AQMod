@@ -94,26 +94,26 @@ MoonflowerPlanterBox.ItemDisplayName: 月光花种植箱
 MorayPlanterBox.ItemDisplayName: 海鳝花种植箱
 
 Moray: {
-	MapEntry: 海鳝花
-	ItemDisplayName: 海鳝花种
+	MapEntry: 盐荆
+	ItemDisplayName: 盐荆种子
 	ItemTooltip: 会在雨夜开花并产生花粉
 }
 
 Moonflower: {
 	MapEntry: 月光花
-	ItemDisplayName: 月光花种
+	ItemDisplayName: 月光花种子
 	ItemTooltip: 会在午夜附近开花并产生花粉
 }
 
 Mistral: {
-	MapEntry: 寒风花
-	ItemDisplayName: 寒风花种
+	MapEntry: 风莓
+	ItemDisplayName: 风莓种子
 	ItemTooltip: 会在大风天开花并产生花粉
 }
 
 Manacle: {
-	MapEntry: 镣铐花
-	ItemDisplayName: 镣铐花种
+	MapEntry: 烬铃
+	ItemDisplayName: 烬铃种子
 	ItemTooltip: 会在早晨开花并产生花粉
 }
 

@@ -391,6 +391,6 @@ UnopenedChestTracker: {
 
 // Do not translate. Temporary name.
 DanglingWirePlacer: {
-	// DisplayName: Dangling Wire Placer
-	// Tooltip: ""
+	DisplayName: Dangling Wire Placer
+	Tooltip: ""
 }
