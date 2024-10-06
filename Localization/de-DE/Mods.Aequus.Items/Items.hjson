@@ -388,3 +388,9 @@ UnopenedChestTracker: {
 	// DisplayName: Unopened Chest Tracker
 	// Tooltip: ""
 }
+
+// Do not translate. Temporary name.
+DanglingWirePlacer: {
+	// DisplayName: Dangling Wire Placer
+	// Tooltip: ""
+}

@@ -222,8 +222,3 @@ WallOfFleshBackpack: {
 	// BackpackEnabled: Stomach Sack On
 	// BackpackDisabled: Stomach Sack Off
 }
-
-DanglingWirePlacer: {
-	// DisplayName: Dangling Wire Placer
-	// Tooltip: ""
-}

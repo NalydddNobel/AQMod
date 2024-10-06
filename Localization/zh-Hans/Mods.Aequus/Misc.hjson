@@ -61,10 +61,10 @@ Misc: {
 	}
 
 	Season: {
-		// Spring: Spring
-		// Summer: Summer
-		// Autumn: Autumn
-		// Winter: Winter
+		Spring: 春
+		Summer: 夏
+		Autumn: 秋
+		Winter: 冬
 	}
 
 	Dyes: {
@@ -141,13 +141,6 @@ Misc: {
 	BagWarningQuickBuff: 背包不支持快捷增益!
 	BagWarningAmmo: 背包不支持弹药!
 	TimeLeft: 剩余时间: {0}
-
-	Season: {
-		Spring: 春
-		Summer: 夏
-		Autumn: 秋
-		Winter: 冬
-	}
 }
 
 // Used as shorthand under buffs to represent how many stacks they have.
