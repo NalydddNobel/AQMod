@@ -39,8 +39,8 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
             TileID.HallowedGrass,
             ModContent.TileType<Meadows.MeadowGrass>(),
         ];
-        obj.CoordinateWidth = 26;
-        obj.CoordinateHeights = [30];
+        obj.CoordinateWidth = 18;
+        obj.CoordinateHeights = [28];
         obj.DrawYOffset = -10;
 
         Settings.PlantDrop = Instance<StuffedPrefix>().Item.Type;
@@ -71,7 +71,6 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
         if (Main.netMode != NetmodeID.SinglePlayer) {
             NetMessage.SendTileSquare(-1, i, j - 1, 3, 3);
         }
-
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
@@ -109,7 +108,8 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
             return true;
         }
 
-        Vector2 rayPosition = drawInfo.Position - new Vector2(0f, drawInfo.Origin.Y - 8f).RotatedBy(drawInfo.Rotation);
+        Vector2 rayPosition = drawInfo.Position - new Vector2(drawInfo.SpriteEffects == SpriteEffects.FlipHorizontally ? -4f : 4f, drawInfo.Origin.Y - 11f).RotatedBy(drawInfo.Rotation);
+        drawInfo.SpriteBatch.Draw(AequusTextures.Bloom, rayPosition, null, Color.Yellow with { A = 0 } * 0.1f, 0f, AequusTextures.Bloom.Size() / 2f, 0.5f, SpriteEffects.None, 0f);
         drawInfo.DrawSelf();
         DrawLightFlare(drawInfo.X, drawInfo.Y, drawInfo.SpriteBatch, rayPosition);
 
@@ -119,23 +119,24 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
     void DrawLightFlare(int i, int j, SpriteBatch spriteBatch, Vector2 position) {
         Texture2D bloom = AequusTextures.BloomStrong;
         Texture2D ray = AequusTextures.MoonflowerEffect;
-        float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 2f, 1f, 1.25f);
-        float hueWave = MathF.Sin(Main.GlobalTimeWrappedHourly * 7.1f + i);
-        Color rayColor = new Color(120, 100, 25).HueAdd(hueWave * 0.04f - 0.02f) with { A = 0 } * wave;
+        float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 0.33f, 1f, 1.25f);
+        float hueWave = MathF.Sin(Main.GlobalTimeWrappedHourly * 1.1f + i);
+        Color rayColor = new Color(120, 100, 55).HueAdd(hueWave * 0.04f - 0.02f) with { A = 0 } * wave;
         Vector2 rayScale = new Vector2(1f, 0.5f) * wave;
+        spriteBatch.Draw(ray, position, null, rayColor, 0f, ray.Size() / 2f, rayScale, SpriteEffects.None, 0f);
         spriteBatch.Draw(bloom, position, null, rayColor * 0.1f, 0f, bloom.Size() / 2f, 0.2f, SpriteEffects.None, 0f);
         spriteBatch.Draw(bloom, position, null, rayColor * 0.2f, 0f, bloom.Size() / 2f, 0.7f, SpriteEffects.None, 0f);
-        spriteBatch.Draw(ray, position, null, rayColor, 0f, ray.Size() / 2f, rayScale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(AequusTextures.LensFlare, position, null, rayColor * 0.4f, 0.3f, AequusTextures.LensFlare.Size() / 2f, 0.5f, SpriteEffects.None, 0f);
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-        if (Main.tile[i, j].TileFrameX <= FullFrameWidth) {
+        if (Main.tile[i, j].TileFrameX < FullFrameWidth || !BloomConditionsMet(i, j)) {
             return;
         }
 
-        r = 0.45f;
-        g = 0.05f;
-        b = 1f;
+        r = 0.6f;
+        g = 0.45f;
+        b = 0.1f;
     }
 
     protected override bool BloomConditionsMet(int i, int j) {

@@ -2548,7 +2548,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1516)</summary>
+            <summary>(Total Textures: 1518)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -4067,6 +4067,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GrimeCoating">
+            <summary>Full Path: Content/Systems/Coatings/GrimeCoating</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NoCutCoating">
+            <summary>Full Path: Content/Systems/Coatings/NoCutCoating</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Keychain">
             <summary>Full Path: Content/Systems/Keys/Keychains/Keychain</summary>
