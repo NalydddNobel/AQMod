@@ -38,8 +38,8 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
             TileID.HallowedGrass,
             ModContent.TileType<Meadows.MeadowGrass>(),
         ];
-        obj.CoordinateWidth = 26;
-        obj.CoordinateHeights = [30];
+        obj.CoordinateWidth = 16;
+        obj.CoordinateHeights = [28];
         obj.DrawYOffset = -10;
 
         Settings.PlantDrop = Instance<EmpoweredPrefix>().Item.Type;
