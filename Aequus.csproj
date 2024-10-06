@@ -46,10 +46,6 @@
   </ItemGroup>
 			
   <ItemGroup>
-    <None Remove="Content\Items\Accessories\AccessoryDamageEarring\AccessoryDamageEarring.png" />
-  </ItemGroup>
-			
-  <ItemGroup>
     <Folder Include="Assets\Metadata\" />
   </ItemGroup>
 																
