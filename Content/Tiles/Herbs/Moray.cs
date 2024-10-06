@@ -54,8 +54,8 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
         Growable.AddRange(obj.AnchorValidTiles[3..]);
 
-        obj.CoordinateWidth = 26;
-        obj.CoordinateHeights = [30];
+        obj.CoordinateWidth = 20;
+        obj.CoordinateHeights = [18];
         obj.DrawYOffset = -10;
 
         Settings.PlantDrop = Instance<SplashPrefix>().Item.Type;
