@@ -56,6 +56,7 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
         obj.CoordinateWidth = 20;
         obj.CoordinateHeights = [18];
+        obj.DrawYOffset = -1;
 
         Settings.PlantDrop = Instance<SplashPrefix>().Item.Type;
         Settings.SeedDrop = Seeds.Type;
@@ -104,7 +105,7 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
         SpriteEffects effects = SpriteEffects.None;
         SetSpriteEffects(i, j, ref effects);
-        Rectangle frame = new Rectangle(tile.TileFrameX + FrameWidth - 1, tile.TileFrameY, FrameWidth, 30);
+        Rectangle frame = new Rectangle(tile.TileFrameX + FullFrameWidth, tile.TileFrameY, FrameWidth, FullFrameHeight);
         Vector2 drawCoordinates = groundPosition + offset;
         Vector2 origin = new Vector2(FrameWidth / 2f, frame.Height - 2f);
         spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
@@ -118,7 +119,6 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
             return true;
         }
 
-        Vector2 rayPosition = drawInfo.Position - new Vector2(0f, drawInfo.Origin.Y - 8f).RotatedBy(drawInfo.Rotation);
         drawInfo.DrawSelf();
         (drawInfo with { Frame = drawInfo.Frame with { Y = FullFrameHeight }, Color = Color.White }).DrawSelf();
 

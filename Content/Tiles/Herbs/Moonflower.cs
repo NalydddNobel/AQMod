@@ -90,7 +90,7 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
 
         SpriteEffects effects = SpriteEffects.None;
         SetSpriteEffects(i, j, ref effects);
-        Rectangle frame = new Rectangle(tile.TileFrameX + FrameWidth - 1, tile.TileFrameY, FrameWidth, 30);
+        Rectangle frame = new Rectangle(tile.TileFrameX + FullFrameWidth, tile.TileFrameY, FrameWidth, FullFrameHeight);
         Vector2 drawCoordinates = groundPosition + offset;
         Vector2 origin = new Vector2(FrameWidth / 2f, frame.Height - 2f);
         if (TileDrawing.IsVisible(tile)) {

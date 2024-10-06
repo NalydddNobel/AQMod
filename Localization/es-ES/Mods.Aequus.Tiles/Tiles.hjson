@@ -98,8 +98,8 @@ OblivionCraftingStation: {
 // MorayPlanterBox.ItemDisplayName: Moray Planter Box
 
 Moray: {
-	// MapEntry: Moray
-	// ItemDisplayName: Moray Seeds
+	// MapEntry: Brinethorn
+	// ItemDisplayName: Brinethorn Seeds
 	// ItemTooltip: Blooms and produces pollen during rainy nights
 }
 
@@ -110,14 +110,14 @@ Moonflower: {
 }
 
 Mistral: {
-	// MapEntry: Mistral
-	// ItemDisplayName: Mistral Seeds
+	// MapEntry: Windberry
+	// ItemDisplayName: Windberry Seeds
 	// ItemTooltip: Blooms and produces pollen while the wind is strong
 }
 
 Manacle: {
-	// MapEntry: Manacle
-	// ItemDisplayName: Manacle Seeds
+	// MapEntry: Ashbell
+	// ItemDisplayName: Ashbell Seeds
 	// ItemTooltip: Blooms and produces pollen in the morning
 }
 

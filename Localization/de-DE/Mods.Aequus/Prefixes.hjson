@@ -2,7 +2,7 @@ Prefixes: {
 	SplashPrefix: {
 		// DisplayName: Splashable
 		// Ability: +100% throwability
-		// ItemName: Moray Pollen
+		// ItemName: Brinethorn
 		// ItemTooltip: Grant the 'Splashable' affix when held and pressing <right> on a potion
 	}
 
@@ -10,7 +10,7 @@ Prefixes: {
 		// DisplayName: Empowered
 		// Ability: +{0}% buff strength
 		// Downside: -{0}% buff duration
-		// ItemName: Mistral Pollen
+		// ItemName: Windberries
 		// ItemTooltip: Grant the 'Empowered' affix when held and pressing <right> on a potion
 
 		Description: {
@@ -46,14 +46,14 @@ Prefixes: {
 	StuffedPrefix: {
 		// DisplayName: Stuffed
 		// Ability: +{0}% buff duration
-		// ItemName: Stellar Cubes
+		// ItemName: Stellar Cube
 		// ItemTooltip: Grant the 'Stuffed' affix when held and pressing <right> on a potion
 	}
 
 	BoundedPrefix: {
 		// DisplayName: Bounded
 		// Ability: +100% afterlife chance
-		// ItemName: Manacle Pollen
+		// ItemName: Ashbell
 		// ItemTooltip: Grant the 'Bounded' affix when held and pressing <right> on a potion
 	}
 
