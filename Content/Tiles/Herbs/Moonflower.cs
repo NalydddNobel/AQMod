@@ -97,7 +97,7 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
             spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
         }
 
-        Vector2 rayPosition = groundPosition + offset + new Vector2(0f, -20f);
+        Vector2 rayPosition = groundPosition + offset + new Vector2(effects == SpriteEffects.FlipHorizontally ? 2f : -2f, -17f);
         DrawLightFlare(i, j, spriteBatch, rayPosition);
 
         return false;
@@ -130,7 +130,7 @@ public class Moonflower : UnifiedHerb, IDrawWindyGrass {
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-        if (Main.tile[i, j].TileFrameX < FullFrameWidth || !BloomConditionsMet(i, j)) {
+        if (GetState(i, j) != HerbState.Bloom) {
             return;
         }
 

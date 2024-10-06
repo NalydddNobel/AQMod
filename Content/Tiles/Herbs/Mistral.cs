@@ -82,7 +82,7 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         Tile tile = Main.tile[i, j];
 
-        if (Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom) {
+        if (!TileDrawing.IsVisible(tile) || Main.instance.TilesRenderer.ShouldSwayInWind(i, j, tile) || GetState(i, j) != HerbState.Bloom) {
             return true;
         }
 
@@ -99,13 +99,8 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
         Rectangle frame = new Rectangle(tile.TileFrameX + FrameWidth - 1, tile.TileFrameY, FrameWidth, 30);
         Vector2 drawCoordinates = groundPosition + offset;
         Vector2 origin = new Vector2(FrameWidth / 2f, frame.Height - 2f);
-        if (TileDrawing.IsVisible(tile)) {
-            spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
-        }
-
-        Vector2 rayPosition = groundPosition + offset + new Vector2(0f, -20f);
-        DrawPinwheel(i, j, spriteBatch, texture, rayPosition);
-
+        spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frame with { Y = FullFrameHeight }, Color.White, 0f, origin, 1f, effects, 0f);
         return false;
     }
 
@@ -116,15 +111,9 @@ public class Mistral : UnifiedHerb, IDrawWindyGrass {
 
         Vector2 rayPosition = drawInfo.Position - new Vector2(0f, drawInfo.Origin.Y - 8f).RotatedBy(drawInfo.Rotation);
         drawInfo.DrawSelf();
-        DrawPinwheel(drawInfo.X, drawInfo.Y, drawInfo.SpriteBatch, drawInfo.Texture, rayPosition);
+        (drawInfo with { Frame = drawInfo.Frame with { Y = FullFrameHeight }, Color = Color.White }).DrawSelf();
 
         return false;
-    }
-
-    void DrawPinwheel(int i, int j, SpriteBatch spriteBatch, Texture2D texture, Vector2 position) {
-        int rotation = Main.tileFrame[Type];
-        Rectangle frame = new Rectangle(54, 34, 28, 28);
-        spriteBatch.DrawAlign(texture, position, frame, Lighting.GetColor(i, j), rotation / 16f * MathHelper.TwoPi, 1f, SpriteEffects.None);
     }
 
     public override void AnimateTile(ref int frame, ref int frameCounter) {

@@ -46,9 +46,9 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
             TileID.HellstoneBrick,
             TileID.AncientHellstoneBrick,
         ];
-        obj.CoordinateWidth = 26;
-        obj.CoordinateHeights = [30];
-        obj.DrawYOffset = -10;
+        obj.CoordinateWidth = 20;
+        obj.CoordinateHeights = [24];
+        obj.DrawYOffset = -6;
 
         Settings.PlantDrop = Instance<BoundedPrefix>().Item.Type;
         Settings.SeedDrop = Seeds.Type;
@@ -134,8 +134,8 @@ public class Manacle : UnifiedHerb, IDrawWindyGrass {
         return false;
     }
 
-    void DrawGlowmask(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawCoordinates, Rectangle? frame, float rotation, Vector2 origin, SpriteEffects effects) {
-        frame = new Rectangle(frame.Value.X, frame.Value.Y + 32, frame.Value.Width, frame.Value.Height);
+    void DrawGlowmask(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawCoordinates, Rectangle frame, float rotation, Vector2 origin, SpriteEffects effects) {
+        frame = frame with { Y = frame.Y + FullFrameHeight };
         for (int k = 0; k < 4; k++) {
             spriteBatch.Draw(texture, drawCoordinates + (k * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 2.5f).ToRotationVector2() * MathF.Sin(Main.GlobalTimeWrappedHourly * 0.61f) * 2f, frame, GlowColor, rotation, origin, 1f, effects, 0f);
         }

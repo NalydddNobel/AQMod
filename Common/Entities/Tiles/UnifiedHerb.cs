@@ -11,6 +11,7 @@ public abstract class UnifiedHerb : ModTile {
 
     protected int FrameWidth { get; private set; }
     protected int FullFrameWidth { get; private set; }
+    protected int FullFrameHeight { get; private set; }
 
     protected HerbSettings Settings;
 
@@ -59,6 +60,8 @@ public abstract class UnifiedHerb : ModTile {
 
         FrameWidth = TileObjectData.newTile.CoordinateWidth;
         FullFrameWidth = TileObjectData.newTile.CoordinateFullWidth;
+        FullFrameHeight = TileObjectData.newTile.CoordinateFullHeight;
+
         TileObjectData.addTile(Type);
     }
 
@@ -98,24 +101,26 @@ public abstract class UnifiedHerb : ModTile {
 
     public override void RandomUpdate(int i, int j) {
         Tile tile = Main.tile[i, j];
-        HerbState state = GetState(i, j);
 
-        if (state == HerbState.Baby && Main.rand.NextBool(GrowChance)) {
-            tile.TileFrameX = (short)(tile.TileFrameX + FullFrameWidth);
+        // Grow plants, and also fix plants which have broken frames.
+        short wantedFrame = (short)FullFrameWidth;
+        if (tile.TileFrameX != wantedFrame && Main.rand.NextBool(GrowChance)) {
+            tile.TileFrameX = wantedFrame;
 
             if (Main.netMode != NetmodeID.SinglePlayer) {
                 NetMessage.SendTileSquare(-1, i, j, 1);
             }
-
-            return;
         }
     }
 
     public override bool IsTileSpelunkable(int i, int j) {
-        return BloomConditionsMet(i, j);
+        return Main.tile[i, j].TileFrameX > 0 && BloomConditionsMet(i, j);
     }
 
     public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+        // Bandage patch for broken tile frames.
+        tileFrameX = (short)(tileFrameX / FullFrameWidth * FullFrameWidth);
+
         if (GetState(i, j) == HerbState.Bloom) {
             tileFrameX = (short)(FullFrameWidth * 2);
         }

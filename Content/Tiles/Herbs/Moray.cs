@@ -56,7 +56,6 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
         obj.CoordinateWidth = 20;
         obj.CoordinateHeights = [18];
-        obj.DrawYOffset = -10;
 
         Settings.PlantDrop = Instance<SplashPrefix>().Item.Type;
         Settings.SeedDrop = Seeds.Type;
@@ -109,7 +108,7 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
         Vector2 drawCoordinates = groundPosition + offset;
         Vector2 origin = new Vector2(FrameWidth / 2f, frame.Height - 2f);
         spriteBatch.Draw(texture, drawCoordinates, frame, Lighting.GetColor(i, j), 0f, origin, 1f, effects, 0f);
-        spriteBatch.Draw(texture, drawCoordinates, frame with { Y = 32 }, Color.White, 0f, origin, 1f, effects, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frame with { Y = FullFrameHeight }, Color.White, 0f, origin, 1f, effects, 0f);
 
         return false;
     }
@@ -121,13 +120,13 @@ public class Moray : UnifiedHerb, IDrawWindyGrass {
 
         Vector2 rayPosition = drawInfo.Position - new Vector2(0f, drawInfo.Origin.Y - 8f).RotatedBy(drawInfo.Rotation);
         drawInfo.DrawSelf();
-        (drawInfo with { Frame = drawInfo.Frame with { Y = 32 }, Color = Color.White }).DrawSelf();
+        (drawInfo with { Frame = drawInfo.Frame with { Y = FullFrameHeight }, Color = Color.White }).DrawSelf();
 
         return false;
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-        if (Main.tile[i, j].TileFrameX <= FullFrameWidth) {
+        if (GetState(i, j) != HerbState.Bloom) {
             return;
         }
 
