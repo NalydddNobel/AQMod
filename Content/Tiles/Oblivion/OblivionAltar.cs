@@ -261,7 +261,7 @@ public class OblivionAltar : ModTile, ITileDrawSystem {
         Main.spriteBatch.BeginCached(SpriteSortMode.Deferred, Main.Transform);
     }
 
-    bool ITileDrawSystem.Accept(Point p) {
+    bool IGridDrawSystem.Accept(Point p) {
         return Main.tile[p].TileFrameX % 48 == 0 & Main.tile[p].TileFrameY % 48 == 0;
     }
 

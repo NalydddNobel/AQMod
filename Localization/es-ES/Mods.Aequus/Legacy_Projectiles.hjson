@@ -182,4 +182,5 @@ Projectiles: {
 	// SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"
 	// ScarabDynamiteProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
 	// ScarabDynamiteTunnelExtenderProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
+	// DanglingWirePreviewProj.DisplayName: Dangling Wire Preview Proj
 }

@@ -63,5 +63,6 @@ public enum PacketType : byte {
     BoundedPotionPlayer,
     EmpoweredPotionPlayer,
     Keychain,
+    GridActors,
     Count
 }

@@ -1,15 +1,26 @@
-﻿using System;
+﻿using Aequus.Common.Entities.TileActors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Aequus.Common.Drawing;
 
+[Autoload(Side = ModSide.Client)]
 public class TileDrawSystem : ModSystem {
-    private static readonly Dictionary<ITileDrawSystem, List<Point>> _systems = [];
-    private static Rectangle _bounds;
+    readonly Dictionary<ITileDrawSystem, List<Point>> _systems = [];
+    readonly Dictionary<GridActor, List<GridActor>> _gridActors = [];
+    Rectangle _bounds;
 
     public override void ClearWorld() {
         _bounds = Rectangle.Empty;
+
+        foreach (var p in _systems.Values) {
+            p.Clear();
+        }
+        foreach (var a in _gridActors.Values) {
+            a.Clear();
+        }
     }
 
     public override void PostDrawTiles() {
@@ -24,7 +35,7 @@ public class TileDrawSystem : ModSystem {
         _bounds = bounds;
     }
 
-    static void ClearCaches(Rectangle bounds) {
+    void ClearCaches(Rectangle bounds) {
         foreach (var pairs in _systems.Where(p => p.Value.Count > 0)) {
             pairs.Value.RemoveAll((p) => !Main.tile[p].HasTile || Main.tile[p].TileType != pairs.Key.Type || !pairs.Key.InBounds(p, bounds));
 
@@ -32,9 +43,21 @@ public class TileDrawSystem : ModSystem {
                 pairs.Key.Deactivate();
             }
         }
+
+        foreach (var pairs in _gridActors.Where(a => a.Value.Count > 0)) {
+            pairs.Value.RemoveAll(a => {
+                IGridDrawSystem draw = (a as IGridDrawSystem)!;
+
+                return !draw.InBounds(a.Location, bounds) || !draw.Accept(a.Location);
+            });
+
+            if (pairs.Value.Count == 0) {
+                (pairs.Key as IGridDrawSystem)!.Deactivate();
+            }
+        }
     }
 
-    static void UpdateTileCaches(Rectangle bounds) {
+    void UpdateTileCaches(Rectangle bounds) {
         int right = bounds.X + bounds.Width;
         int bottom = bounds.Y + bounds.Height;
         for (int i = bounds.X; i < right; i++) {
@@ -47,9 +70,28 @@ public class TileDrawSystem : ModSystem {
                 }
             }
         }
+
+        GridActorSystem actors = Instance<GridActorSystem>();
+        int sectionX = GridActorSystem.SectionX;
+        int sectionY = GridActorSystem.SectionY;
+        for (int i = bounds.X / sectionX * sectionX; i < right; i += sectionX) {
+            for (int j = bounds.Y / sectionY * sectionY; j < bottom; j += sectionY) {
+                if (!actors.TryGetActorsInSection(i, j, out List<GridActor> list)) {
+                    continue;
+                }
+
+                foreach (GridActor info in list) {
+                    if (!bounds.Contains(info.Location)) {
+                        continue;
+                    }
+
+                    AddGridActor(info);
+                }
+            }
+        }
     }
 
-    internal static void Add(ITileDrawSystem system, Point point) {
+    internal void Add(ITileDrawSystem system, Point point) {
         if (!_systems.TryGetValue(system, out List<Point>? points)) {
             points = _systems[system] = new(64);
         }
@@ -63,7 +105,7 @@ public class TileDrawSystem : ModSystem {
         }
     }
 
-    internal static void Remove(ITileDrawSystem system, Point point) {
+    internal void Remove(ITileDrawSystem system, Point point) {
         if (!_systems.TryGetValue(system, out List<Point>? points)) {
             return;
         }
@@ -75,8 +117,32 @@ public class TileDrawSystem : ModSystem {
         }
     }
 
-    internal static IEnumerable<Point> GetDrawPoints(ITileDrawSystem system) {
+    internal void AddGridActor(GridActor instance) {
+        GridActor key = GridActorSystem.Registered[instance.Type];
+        List<GridActor> drawList = (CollectionsMarshal.GetValueRefOrAddDefault(_gridActors, key, out _) ??= new());
+
+        if (drawList.Contains(instance)) {
+            return;
+        }
+
+        if (drawList.Count == 0) {
+            (key as IGridDrawSystem)!.Activate();
+        }
+
+        drawList.Add(instance);
+    }
+
+    internal void RemoveGridActor(GridActor instance) {
+        var key = GridActorSystem.Registered[instance.Type];
+        _gridActors[key].Remove(instance);
+    }
+
+    internal IEnumerable<Point> GetDrawPoints(ITileDrawSystem system) {
         return !_systems.TryGetValue(system, out List<Point>? points) ? Array.Empty<Point>() : points!;
+    }
+
+    internal IEnumerable<T> GetDrawableActors<T>(GridActor system) where T : GridActor, IGridDrawSystem {
+        return !_gridActors.TryGetValue(system, out List<GridActor>? points) ? Array.Empty<T>() : points!.Cast<T>();
     }
 }
 
@@ -86,7 +152,7 @@ public class TileDrawSystemGlobalTile : GlobalTile {
         if (Main.netMode != NetmodeID.Server && TileLoader.GetTile(type) is ITileDrawSystem system) {
             Point nextPoint = new Point(i, j);
             if (system.Accept(nextPoint)) {
-                TileDrawSystem.Add(system, nextPoint);
+                Instance<TileDrawSystem>().Add(system, nextPoint);
             }
         }
         return true;
@@ -99,7 +165,7 @@ public class TileDrawSystemGlobalTile : GlobalTile {
 
             Point nextPoint = new Point(left, top);
             if (system.Accept(nextPoint)) {
-                TileDrawSystem.Add(system, nextPoint);
+                Instance<TileDrawSystem>().Add(system, nextPoint);
             }
         }
     }
@@ -108,7 +174,7 @@ public class TileDrawSystemGlobalTile : GlobalTile {
         if (Main.netMode != NetmodeID.Server && TileLoader.GetTile(type) is ITileDrawSystem system) {
             Point nextPoint = new Point(i, j);
             if (system.Accept(nextPoint)) {
-                TileDrawSystem.Remove(system, nextPoint);
+                Instance<TileDrawSystem>().Remove(system, nextPoint);
             }
         }
     }

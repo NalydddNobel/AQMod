@@ -60,6 +60,13 @@ Misc: {
 		Sunday: 星期天
 	}
 
+	Season: {
+		// Spring: Spring
+		// Summer: Summer
+		// Autumn: Autumn
+		// Winter: Winter
+	}
+
 	Dyes: {
 		HueshiftDye: {
 			DisplayName: 色彩偏移染料
@@ -134,13 +141,6 @@ Misc: {
 	BagWarningQuickBuff: 背包不支持快捷增益!
 	BagWarningAmmo: 背包不支持弹药!
 	TimeLeft: 剩余时间: {0}
-
-	Season: {
-		// Spring: Mods.Aequus.Misc.Season.Spring
-		// Summer: Mods.Aequus.Misc.Season.Summer
-		// Autumn: Mods.Aequus.Misc.Season.Autumn
-		// Winter: Mods.Aequus.Misc.Season.Winter
-	}
 }
 
 // Used as shorthand under buffs to represent how many stacks they have.

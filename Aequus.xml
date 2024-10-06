@@ -925,6 +925,15 @@
         <member name="F:Aequus.Common.Entities.Players.SprintPlayer.GroundedSprintSpeed">
             <summary>Effects the player's sprint speed from boot accessories. Only if they are on the ground, however.</summary>
         </member>
+        <member name="T:Aequus.Common.Entities.TileActors.GridActorSystem">
+            <summary>The system which manages the custom Tile-Entity-like "Grid Actors".</summary>
+        </member>
+        <member name="M:Aequus.Common.Entities.TileActors.GridActorSystem.TryGetActorsInSection(System.Int32,System.Int32,System.Collections.Generic.List{Aequus.Common.Entities.TileActors.GridActor}@)">
+            <returns>All actors found within the section that contains <paramref name="tileX"/> and <paramref name="tileY"/>. Returns null if out of bounds.</returns>
+        </member>
+        <member name="M:Aequus.Common.Entities.TileActors.GridActorSystem.GetActorsInSection(System.Int32,System.Int32)">
+            <returns>All actors found within the section that contains <paramref name="tileX"/> and <paramref name="tileY"/>. Returns null if out of bounds.</returns>
+        </member>
         <member name="T:Aequus.Common.Entities.Tiles.IWaterVisibleWall">
             <summary>
             Allows modded walls to be seen behind water.
@@ -2018,6 +2027,9 @@
             <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.MathTools.DivCeiling(System.Int32,System.Int32)">
+            <returns><paramref name="numerator"/> divided by <paramref name="denominator"/>. If anything is leftover, the value is increased by 1.</returns>
         </member>
         <member name="M:Aequus.Common.Utilities.Helpers.NPCTools.ManuallyDrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
             <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>

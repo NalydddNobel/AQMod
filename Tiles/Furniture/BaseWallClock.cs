@@ -56,7 +56,7 @@ public abstract class BaseWallClock : ModTile, ITileDrawSystem {
         }
     }
 
-    bool ITileDrawSystem.Accept(Point p) {
+    bool IGridDrawSystem.Accept(Point p) {
         return Main.tile[p].TileFrameY == 18 && Main.tile[p].TileFrameX % 36 == 18;
     }
 

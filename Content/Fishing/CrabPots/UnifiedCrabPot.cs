@@ -341,7 +341,7 @@ public abstract class UnifiedCrabPot : ModTile, ITileDrawSystem {
         }
     }
 
-    bool ITileDrawSystem.Accept(Point p) {
+    bool IGridDrawSystem.Accept(Point p) {
         return Main.tile[p].TileFrameX % 36 == 0 && Main.tile[p].TileFrameY % 36 == 0;
     }
 

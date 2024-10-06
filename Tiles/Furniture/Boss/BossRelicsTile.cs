@@ -122,7 +122,7 @@ public class BossRelicsTile : ModTile, ITileDrawSystem {
         }
     }
 
-    bool ITileDrawSystem.Accept(Point p) {
+    bool IGridDrawSystem.Accept(Point p) {
         return Main.tile[p].TileFrameX % FrameWidth == 0 && Main.tile[p].TileFrameY % FrameHeight == 0;
     }
 

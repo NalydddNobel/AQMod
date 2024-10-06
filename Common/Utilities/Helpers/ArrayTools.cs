@@ -22,6 +22,18 @@ public sealed class ArrayTools {
         return newArray;
     }
 
+    public static T[,] New2D<T>(int length1D, int length2D, Func<int, int, T> Factory) {
+        T[,] newArray = new T[length1D, length2D];
+
+        for (int x = 0; x < length1D; x++) {
+            for (int y = 0; y < length2D; y++) {
+                newArray[x, y] = Factory(x, y);
+            }
+        }
+
+        return newArray;
+    }
+
     public static void Populate<T>(T[] array, Func<int, T> Factory) {
         for (int i = 0; i < array.Length; i++) {
             array[i] = Factory(i);
