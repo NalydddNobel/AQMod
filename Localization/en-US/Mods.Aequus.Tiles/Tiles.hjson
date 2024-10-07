@@ -88,10 +88,10 @@ OblivionCraftingStation: {
 	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
-ManaclePlanterBox.ItemDisplayName: Manacle Planter Box
-MistralPlanterBox.ItemDisplayName: Mistral Planter Box
+ManaclePlanterBox.ItemDisplayName: Ashbell Planter Box
+MistralPlanterBox.ItemDisplayName: Windberry Planter Box
 MoonflowerPlanterBox.ItemDisplayName: Moonflower Planter Box
-MorayPlanterBox.ItemDisplayName: Moray Planter Box
+MorayPlanterBox.ItemDisplayName: Brinethorn Planter Box
 
 Moray: {
 	MapEntry: Brinethorn
