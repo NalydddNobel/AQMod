@@ -11,7 +11,7 @@ public class BeyondPlatinumCoin : ModItem {
         Item.width = 8;
         Item.height = 8;
         Item.maxStack = Item.CommonMaxStack;
-        Item.value = Item.sellPrice(platinum: 100);
+        Item.value = Item.sellPrice(copper: 1);
     }
 
     public override void Load() {
