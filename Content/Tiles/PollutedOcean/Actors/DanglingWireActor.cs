@@ -84,6 +84,7 @@ public class DanglingWireActor : GridActor, IGridDrawSystem {
     }
 }
 
+#if POLLUTED_OCEAN
 public class DanglingWirePreviewProj : ModProjectile {
     public override string Texture => AequusTextures.Item(ItemID.CombatWrench);
 
@@ -219,7 +220,6 @@ public class DanglingWirePreviewProj : ModProjectile {
     }
 }
 
-#if POLLUTED_OCEAN
 public class DanglingWirePlacer : ModItem {
     public override string Texture => AequusTextures.Item(ItemID.CombatWrench);
 

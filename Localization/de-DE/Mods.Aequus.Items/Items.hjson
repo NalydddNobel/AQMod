@@ -52,6 +52,11 @@ Meathook: {
 }
 
 //# Misc
+MeadowPowder: {
+	// DisplayName: Meadow Powder
+	// Tooltip: Spreads the meadows
+}
+
 MagicEightBall: {
 	// DisplayName: Magic 8-Ball
 	// Tooltip: "'Ask it questions, and let it answer you'"

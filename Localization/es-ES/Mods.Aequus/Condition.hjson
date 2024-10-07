@@ -53,4 +53,8 @@ Condition: {
 	// DownedDemonSiege: After upgrading a weapon at the Oblivion Altar
 	// HasCompletedBuildChallenge: After completing the {0} Challenge
 	// AllCarpenterBountiesComplete: After completing all Build Challenges at the Carpenter
+	// InGaleStreams: Mods.Aequus.Condition.InGaleStreams
+	// InMeadows: Mods.Aequus.Condition.InMeadows
+	// InPollutedOceanSurface: Mods.Aequus.Condition.InPollutedOceanSurface
+	// InPollutedOceanUnderground: Mods.Aequus.Condition.InPollutedOceanUnderground
 }
