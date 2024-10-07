@@ -491,6 +491,9 @@
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_ModifyNPCLoot">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.ModifyNPCLoot(Terraria.NPC,Terraria.ModLoader.NPCLoot)"/> (<see cref="M:Aequus.AequusNPC.ModifyNPCLootInner(Terraria.NPC,Terraria.ModLoader.NPCLoot)"/>).</summary>
         </member>
+        <member name="T:Aequus.Common.CodeGeneration.Gen.AequusNPC_ModifyShop">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusNPC.ModifyShop(Terraria.ModLoader.NPCShop)"/> (<see cref="M:Aequus.AequusNPC.ModifyShopInner(Terraria.ModLoader.NPCShop)"/>).</summary>
+        </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusPlayer"/>.</summary>
         </member>
@@ -2548,7 +2551,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1518)</summary>
+            <summary>(Total Textures: 1519)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3618,6 +3621,9 @@
         <member name="F:Aequus.AequusTextures.TaintedSeafood">
             <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MeadowMushroom">
+            <summary>Full Path: Content/Items/Consumable/RestoreMana/MeadowMushroom</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
         </member>
@@ -3626,6 +3632,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
             <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/TinkerersGuidebook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowPowder">
+            <summary>Full Path: Content/Items/Consumable/ThrowPowders/MeadowPowder</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Meathook">
             <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
@@ -5465,9 +5474,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ManathirstPotion">
             <summary>Full Path: Items/Potions/ManathirstPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowMushroom">
-            <summary>Full Path: Items/Potions/MeadowMushroom</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurt">
             <summary>Full Path: Items/Potions/NeutronYogurt/NeutronYogurt</summary>

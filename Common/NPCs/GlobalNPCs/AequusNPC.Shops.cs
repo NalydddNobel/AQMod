@@ -12,6 +12,7 @@ namespace Aequus;
 
 public partial class AequusNPC {
     public override void ModifyShop(NPCShop shop) {
+        ModifyShopInner(shop);
         switch (shop.NpcType) {
             case NPCID.Steampunker: {
                     shop.Add(ModContent.ItemType<SteampunkerFishingPole>(), Condition.MoonPhasesEven, Condition.NpcIsPresent(NPCID.Angler));

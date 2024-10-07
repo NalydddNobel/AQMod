@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Net;
-using Aequus.Common.Utilities;
+using Aequus.Common.Structures.Conditions;
 using Aequus.Content.Tiles.Oblivion;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ public class DemonSiegeSystem : ModSystem {
 
     public static int DemonSiegePause;
 
-    public readonly Condition DemonSiegeRecipeCondition = new Condition(ALanguage.GetCondition("DemonSiegeRecipe"), () => false);
+    public readonly Condition DemonSiegeRecipeCondition = new Condition(ACondition.GetText("DemonSiegeRecipe"), () => false);
 
     public override void AddRecipes() {
         foreach (var sacrifice in RegisteredSacrifices.Values) {

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Potions;
+﻿using Aequus.Content.Items.Consumable.RestoreMana;
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 

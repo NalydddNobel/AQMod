@@ -10,4 +10,8 @@ internal partial class Gen {
     /// <summary>Adds a reference to the target method in <see cref="AequusNPC.ModifyNPCLoot(NPC, NPCLoot)"/> (<see cref="AequusNPC.ModifyNPCLootInner(NPC, NPCLoot)"/>).</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusNPC_ModifyNPCLoot : Attribute { }
+
+    /// <summary>Adds a reference to the target method in <see cref="AequusNPC.ModifyShop(NPCShop)"/> (<see cref="AequusNPC.ModifyShopInner(NPCShop)"/>).</summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    internal class AequusNPC_ModifyShop : Attribute { }
 }

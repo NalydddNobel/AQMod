@@ -20,6 +20,11 @@ public partial class AequusNPC {
     }
     
     [CompilerGenerated]
+    private void ModifyShopInner(NPCShop shop) {
+        Content.Items.Consumable.ThrowPowders.MeadowPowder.ModifyShop(shop);
+    }
+    
+    [CompilerGenerated]
     private void OnSpawnInner(NPC npc, IEntitySource source) {
         Content.Villagers.NPCSettleDownMessage.OnSpawn(npc, source);
     }

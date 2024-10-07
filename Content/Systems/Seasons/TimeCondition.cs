@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Structures.Conditions;
+using Aequus.Common.Utilities;
 using System;
 using Terraria.Localization;
 
@@ -14,7 +15,7 @@ public class TimeCondition {
         LocalizedText firstDayText = time.WeekText.GetOrDefault(firstDay, ALanguage.UnknownText);
         LocalizedText lastDayText = time.WeekText.GetOrDefault(lastDay, ALanguage.UnknownText);
 
-        LocalizedText text = ALanguage.GetCondition("BetweenDays").WithFormatArgs(firstDayText, lastDayText);
+        LocalizedText text = ACondition.GetText("BetweenDays").WithFormatArgs(firstDayText, lastDayText);
 
         if (firstDay > lastDay) {
             // For example, if something were to be sold between Friday (5) and Monday (1)
@@ -34,6 +35,6 @@ public class TimeCondition {
         TimeSystem time = Instance<TimeSystem>();
         LocalizedText text = time.WeekText.GetOrDefault(weekDay, ALanguage.UnknownText);
 
-        return new Condition(ALanguage.GetCondition("DayOfTheWeek").WithFormatArgs(text), () => Instance<TimeSystem>().DayOfTheWeek == weekDay);
+        return new Condition(ACondition.GetText("DayOfTheWeek").WithFormatArgs(text), () => Instance<TimeSystem>().DayOfTheWeek == weekDay);
     }
 }

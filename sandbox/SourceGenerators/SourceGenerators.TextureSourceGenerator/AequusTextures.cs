@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1518)</summary>
+/// <summary>(Total Textures: 1519)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -719,12 +719,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FoodPoisoningDebuff = new("Content/Items/Consumable/Food/TaintedSeafood/FoodPoisoningDebuff");
     /// <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood</summary>
     public static readonly RequestCache<Texture2D> TaintedSeafood = new("Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood");
+    /// <summary>Full Path: Content/Items/Consumable/RestoreMana/MeadowMushroom</summary>
+    public static readonly RequestCache<Texture2D> MeadowMushroom = new("Content/Items/Consumable/RestoreMana/MeadowMushroom");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>
     public static readonly RequestCache<Texture2D> CosmicChest = new("Content/Items/Consumable/ShimmerPowerups/CosmicChest");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/ShimmerCoin</summary>
     public static readonly RequestCache<Texture2D> ShimmerCoin = new("Content/Items/Consumable/ShimmerPowerups/ShimmerCoin");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/TinkerersGuidebook</summary>
     public static readonly RequestCache<Texture2D> TinkerersGuidebook = new("Content/Items/Consumable/ShimmerPowerups/TinkerersGuidebook");
+    /// <summary>Full Path: Content/Items/Consumable/ThrowPowders/MeadowPowder</summary>
+    public static readonly RequestCache<Texture2D> MeadowPowder = new("Content/Items/Consumable/ThrowPowders/MeadowPowder");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/Meathook</summary>
     public static readonly RequestCache<Texture2D> Meathook = new("Content/Items/GrapplingHooks/Meathook/Meathook");
     /// <summary>Full Path: Content/Items/GrapplingHooks/Meathook/MeathookProj</summary>
@@ -1951,8 +1955,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SuperRestorationPotion = new("Items/Potions/Healing/Restoration/SuperRestorationPotion");
     /// <summary>Full Path: Items/Potions/ManathirstPotion</summary>
     public static readonly RequestCache<Texture2D> ManathirstPotion = new("Items/Potions/ManathirstPotion");
-    /// <summary>Full Path: Items/Potions/MeadowMushroom</summary>
-    public static readonly RequestCache<Texture2D> MeadowMushroom = new("Items/Potions/MeadowMushroom");
     /// <summary>Full Path: Items/Potions/NeutronYogurt/NeutronYogurt</summary>
     public static readonly RequestCache<Texture2D> NeutronYogurt = new("Items/Potions/NeutronYogurt/NeutronYogurt");
     /// <summary>Full Path: Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>

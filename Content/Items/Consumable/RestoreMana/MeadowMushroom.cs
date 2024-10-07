@@ -1,8 +1,8 @@
-﻿namespace Aequus.Items.Potions;
+﻿namespace Aequus.Content.Items.Consumable.RestoreMana;
 
 public class MeadowMushroom : ModItem {
     public override void SetStaticDefaults() {
-        Item.ResearchUnlockCount = 25;
+        Item.CloneResearchUnlockCount(ItemID.Mushroom);
     }
 
     public override void SetDefaults() {
