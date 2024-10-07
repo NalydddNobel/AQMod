@@ -88,14 +88,23 @@ public class KeychainPlayer : ModPlayer {
     }
 
     public void RefreshKeys() {
-        lock (keys) {
-            keys.RemoveAll((i) => i == null || i.IsAir);
-        }
+        TrimKeys();
 
         lock (sortedKeysForIcons) {
             sortedKeysForIcons = new List<Item>(keys.Select(GetKeyIconItem));
             sortedKeysForIcons.Sort((item1, item2) => item1.Name.CompareTo(item2.Name));
         }
+    }
+
+    public void TrimKeys() {
+        lock (keys) {
+            keys.RemoveAll(k => k == null || k.IsAir);
+        }
+    }
+
+    public List<Item> GetFreshKeys() {
+        RefreshKeys();
+        return keys;
     }
 
     private Item GetKeyIconItem(Item key) {

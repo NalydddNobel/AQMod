@@ -127,8 +127,8 @@ Keychain: {
 	// DisplayName: Keychain
 	/* Tooltip:
 		'''
-		<right> while holding a key over this item to add it
-		<shift> and <right> to remove all keys
+		Opens the keychain storage to hold your keys
+		Keys are still usable while held on the keychain
 		''' */
 }
 

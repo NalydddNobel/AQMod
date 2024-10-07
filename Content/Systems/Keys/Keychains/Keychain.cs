@@ -1,10 +1,12 @@
 ﻿using Aequus.Common.Drawing.Generative;
+using Aequus.Common.Entities.Containers;
 using Aequus.Common.Entities.Items;
+using System.Collections.Generic;
 using Terraria.Audio;
 
 namespace Aequus.Content.Systems.Keys.Keychains;
 
-public partial class Keychain : ModItem, IItemSlotOverride {
+public partial class Keychain : ModItem, IItemSlotOverride, IStorageItem {
     public const int KEYS_FRAME_COUNT = 5;
 
 #if !DEBUG
@@ -33,6 +35,14 @@ public partial class Keychain : ModItem, IItemSlotOverride {
         Item.height = 16;
         Item.rare = ItemRarityID.Blue;
         Item.value = Item.sellPrice(gold: 1);
+        Item.useAnimation = 30;
+        Item.useTime = 30;
+        Item.useStyle = ItemUseStyleID.Swing;
+    }
+
+    public override bool? UseItem(Player player) {
+        player.GetModPlayer<StorageItemPlayer>().SetStorage(this);
+        return true;
     }
 
     public override void UpdateInfoAccessory(Player player) {
@@ -45,8 +55,7 @@ public partial class Keychain : ModItem, IItemSlotOverride {
             return true;
         }
 
-        var values = Instance<KeychainDatabase>().Values;
-        if (heldItem == null || heldItem.IsAir || !values.TryGetValue(heldItem.type, out var value)) {
+        if (heldItem == null || heldItem.IsAir || !Instance<KeychainDatabase>().Values.TryGetValue(heldItem.type, out var value)) {
             return false;
         }
 
@@ -58,5 +67,27 @@ public partial class Keychain : ModItem, IItemSlotOverride {
         }
 
         return false;
+    }
+
+    IEnumerable<Item> ICustomStorage.Items {
+        get {
+            List<Item> keys = Main.LocalPlayer.GetModPlayer<KeychainPlayer>().GetFreshKeys();
+            foreach (Item item in keys) {
+                yield return item;
+            }
+
+            // Add a visual empty slot.
+            if (keys.Count <= KeychainPlayer.MAX_KEYS_ALLOWED - 1) {
+                yield return null!;
+            }
+        }
+    }
+
+    bool ICustomStorage.CanTransferItems(Player player, Item itemToAccept, Item? itemInSlot, int slot) {
+        return Instance<KeychainDatabase>().Values.ContainsKey(itemToAccept.type);
+    }
+
+    void ICustomStorage.TransferItems(Player player, Item acceptedItem, Item itemInSlot, int slot) {
+        player.GetModPlayer<KeychainPlayer>().AcceptItem(acceptedItem);
     }
 }

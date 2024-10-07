@@ -4,7 +4,8 @@ internal class MagicKeychain : Keychain {
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 16;
-        Item.CloneShopValues(ItemID.SpectrePaintbrush);
+        Item.rare = ItemRarityID.Yellow;
+        Item.value = Item.sellPrice(gold: 6);
     }
 
     public override Color? GetAlpha(Color lightColor) {

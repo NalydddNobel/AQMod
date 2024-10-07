@@ -21,7 +21,7 @@ public partial class Keychain {
             return;
         }
 
-        DrawKeys(keychain, spriteBatch, position, drawColor, 0f, scale);
+        DrawKeys(keychain, spriteBatch, position + new Vector2(0f, 2f) * scale, drawColor, 0f, scale);
     }
 
     public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) {
@@ -33,13 +33,12 @@ public partial class Keychain {
         Main.GetItemDrawFrame(Type, out _, out Rectangle frame);
         Vector2 drawCoordinates = Helper.WorldDrawPos(Item, frame);
 
-        DrawKeys(keychain, spriteBatch, drawCoordinates, lightColor, rotation, scale);
+        DrawKeys(keychain, spriteBatch, drawCoordinates + new Vector2(0f, -1f) * scale, lightColor, rotation, scale);
     }
 
     protected void DrawKeys(KeychainPlayer keychain, SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, float rotation, float scale) {
         int count = Math.Min(keychain.sortedKeysForIcons.Count, KEYS_FRAME_COUNT);
 
-        drawCoordinates.Y -= 2f * scale;
         int keyIndex = 0;
         int frameIndex = 0;
         int stackLeft = KEYS_FRAME_COUNT - count;
