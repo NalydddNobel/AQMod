@@ -95,9 +95,12 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     }
 
     static void AdjustDamage(Player player, ref MiscHitInfo hitInfo) {
-        if (player.mount.IsConsideredASlimeMount) {
+        if (CanMountPogoOffEnemies(player.mount)) {
             if (player.velocity.Y >= DamagingFallSpeedThreshold) {
                 hitInfo.Damage *= SlimeMountFallDamageMultiplier;
+            }
+            else {
+                hitInfo.Damage = 40;
             }
             hitInfo.Hurtbox.Inflate(6, 0);
             //hitInfo.DamagingHitbox.Height *= 2;
@@ -109,7 +112,7 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         if (amountHit == 0) {
             return;
         }
-        if (player.mount.IsConsideredASlimeMount) {
+        if (CanMountPogoOffEnemies(player.mount)) {
             player.velocity.Y = -10f;
         }
     }
@@ -121,7 +124,12 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
             Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, player.velocity * 0.5f, visualProj, 0, 0f, player.whoAmI);
         }
 
-        if (aequus.accWeightedHorseshoe == null || player.velocity.Y < DamagingFallSpeedThreshold) {
+        float fallSpeedThreshold = DamagingFallSpeedThreshold;
+        if (player.mount.Type == MountID.PogoStick) {
+            fallSpeedThreshold /= 2f;
+        }
+
+        if (aequus.accWeightedHorseshoe == null || player.velocity.Y < fallSpeedThreshold) {
             return;
         }
 
@@ -136,5 +144,9 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
 
         int amountDamaged = player.CollideWithNPCs(hitInfo.Hurtbox, player.GetTotalDamage(hitInfo.DamageClass).ApplyTo((float)hitInfo.Damage), player.GetTotalKnockback(hitInfo.DamageClass).ApplyTo(hitInfo.Knockback), 10, 4, hitInfo.DamageClass);
         OnHitNPCWithHorseshoe(player, amountDamaged, hitInfo);
+    }
+
+    static bool CanMountPogoOffEnemies(Mount mount) {
+        return mount.IsConsideredASlimeMount || mount.Type == MountID.PogoStick;
     }
 }
