@@ -37,8 +37,8 @@ Buffs: {
 	}
 
 	WarHornCooldown: {
-		// DisplayName: War Horn Cooldown
-		// Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+		// DisplayName: War Horn
+		// Description: The War Horn is on cooldown!
 	}
 
 	FoodPoisoningDebuff: {

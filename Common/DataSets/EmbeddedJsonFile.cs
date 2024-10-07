@@ -1,7 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Aequus.Common.DataSets;
@@ -29,12 +32,50 @@ public sealed class EmbeddedJsonFile {
 
     public void Apply() {
         try {
-            if (!string.IsNullOrEmpty(FileData)) {
-                JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
+            if (string.IsNullOrEmpty(FileData)) {
+                return;
             }
+
+            DeserializeTo(FileData, _dataSet);
         }
         catch (Exception ex) {
             Aequus.Instance.Logger.Error(ex);
+        }
+    }
+
+    static void DeserializeTo(string data, object instance) {
+        Type myType = instance.GetType();
+
+        object? obj = JsonConvert.DeserializeObject(data, myType);
+        Type? objType = obj?.GetType();
+
+        if (obj == null || objType == null || !objType.Equals(myType)) {
+            return;
+        }
+
+        foreach (FieldInfo f in objType.GetFields(BindingFlags.Public | BindingFlags.Instance).Where(f => f.GetCustomAttribute<JsonPropertyAttribute>() != null)) {
+            object? to = f.GetValue(instance);
+            object? from = f.GetValue(obj);
+
+            if (from == null) {
+                return;
+            }
+
+            if (to == null) {
+                f.SetValue(obj, from);
+            }
+            else if (to is IList toList && from is IList fromList) {
+                foreach (object fromItem in fromList) {
+                    toList.Add(fromItem);
+                }
+            }
+            else if (to is IDictionary toDict && from is IDictionary fromDict) {
+                var enumerator = fromDict.GetEnumerator();
+
+                while (enumerator.MoveNext()) {
+                    toDict.Add(enumerator.Key, enumerator.Value);
+                }
+            }
         }
     }
 

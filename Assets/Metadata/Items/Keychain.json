@@ -1,3 +1,40 @@
 {
-  "Values": {}
+  "Values": {
+    "Aequus/SkeletonKey": {
+      "NonConsumable": true
+    },
+    "Aequus/CopperKey": {
+      "NonConsumable": false
+    },
+    "Aequus/TinKey": {
+      "NonConsumable": false
+    },
+    "CorruptionKey": {
+      "NonConsumable": false
+    },
+    "CrimsonKey": {
+      "NonConsumable": false
+    },
+    "DungeonDesertKey": {
+      "NonConsumable": false
+    },
+    "FrozenKey": {
+      "NonConsumable": false
+    },
+    "GoldenKey": {
+      "NonConsumable": false
+    },
+    "HallowedKey": {
+      "NonConsumable": false
+    },
+    "JungleKey": {
+      "NonConsumable": false
+    },
+    "ShadowKey": {
+      "NonConsumable": true
+    },
+    "TempleKey": {
+      "NonConsumable": false
+    }
+  }
 }

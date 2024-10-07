@@ -10,9 +10,7 @@ public class KeychainDatabase : MetaDatabase {
     public static string TextureDir => $"{typeof(KeychainDatabase).NamespacePath()}/Textures";
 
     [JsonProperty]
-    public Dictionary<IDEntry<ItemID>, KeychainInfo> Values { get; private set; } = [
-        //new(ItemID.GoldenKey, new() {NonConsumable=false})
-    ];
+    public readonly Dictionary<IDEntry<ItemID>, KeychainInfo> Values = [];
 }
 
 public record struct KeychainInfo([JsonProperty] bool NonConsumable);
