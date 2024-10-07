@@ -2,7 +2,7 @@ Prefixes: {
 	SplashPrefix: {
 		DisplayName: 可泼溅的
 		Ability: +100%投掷能力
-		ItemName: 海鳝花粉
+		ItemName: 盐荆
 		ItemTooltip: 手持此物并右键药水可使其获得'可泼溅的'词缀
 	}
 
@@ -10,7 +10,7 @@ Prefixes: {
 		DisplayName: 增强的
 		Ability: +{0}增益强度
 		Downside: -{0}%增益持续时间
-		ItemName: 寒风花粉
+		ItemName: 风莓
 		ItemTooltip: 手持此物并右键药水可使其获得'增强的'词缀
 
 		Description: {
@@ -53,7 +53,7 @@ Prefixes: {
 	BoundedPrefix: {
 		DisplayName: 界缚的
 		Ability: +100%来世机会
-		ItemName: 镣铐花粉
+		ItemName: 烬铃
 		ItemTooltip: 手持此物并右键药水可使其获得'界缚的'词缀
 	}
 
