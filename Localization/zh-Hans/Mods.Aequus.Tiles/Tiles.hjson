@@ -88,10 +88,10 @@ OblivionCraftingStation: {
 	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
-ManaclePlanterBox.ItemDisplayName: 镣铐花种植箱
-MistralPlanterBox.ItemDisplayName: 寒风花种植箱
+ManaclePlanterBox.ItemDisplayName: 烬铃种植箱
+MistralPlanterBox.ItemDisplayName: 风莓种植箱
 MoonflowerPlanterBox.ItemDisplayName: 月光花种植箱
-MorayPlanterBox.ItemDisplayName: 海鳝花种植箱
+MorayPlanterBox.ItemDisplayName: 盐荆种植箱
 
 Moray: {
 	MapEntry: 盐荆

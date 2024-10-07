@@ -37,8 +37,8 @@ Buffs: {
 	}
 
 	WarHornCooldown: {
-		DisplayName: 战争号角冷却
-		Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+		DisplayName: 战争号角
+		Description: 战争号角正在冷却!
 	}
 
 	FoodPoisoningDebuff: {

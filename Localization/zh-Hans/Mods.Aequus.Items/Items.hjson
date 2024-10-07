@@ -53,8 +53,8 @@ Meathook: {
 
 //# Misc
 MeadowPowder: {
-	// DisplayName: Meadow Powder
-	// Tooltip: Spreads the meadows
+	DisplayName: 草地尘
+	Tooltip: 散播草地
 }
 
 MagicEightBall: {

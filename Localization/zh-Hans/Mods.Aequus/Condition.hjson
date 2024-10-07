@@ -53,8 +53,8 @@ Condition: {
 	DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 	HasCompletedBuildChallenge: 在完成{0}挑战后
 	AllCarpenterBountiesComplete: 在完成木匠所有的建筑挑战后
-	// InGaleStreams: Mods.Aequus.Condition.InGaleStreams
-	// InMeadows: Mods.Aequus.Condition.InMeadows
-	// InPollutedOceanSurface: Mods.Aequus.Condition.InPollutedOceanSurface
-	// InPollutedOceanUnderground: Mods.Aequus.Condition.InPollutedOceanUnderground
+	InGaleStreams: Mods.Aequus.Condition.InGaleStreams
+	InMeadows: Mods.Aequus.Condition.InMeadows
+	InPollutedOceanSurface: Mods.Aequus.Condition.InPollutedOceanSurface
+	InPollutedOceanUnderground: Mods.Aequus.Condition.InPollutedOceanUnderground
 }
