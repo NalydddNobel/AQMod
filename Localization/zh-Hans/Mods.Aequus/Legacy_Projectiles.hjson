@@ -183,5 +183,5 @@ Projectiles: {
 	ScarabDynamiteProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
 	ScarabDynamiteTunnelExtenderProj.DisplayName: "{$Items.ScarabDynamite.DisplayName}"
 	DanglingWirePreviewProj.DisplayName: "{$Items.DanglingWirePlacer.DisplayName}"
-	// MeadowPowderProj.DisplayName: "{$Items.MeadowPowder.DisplayName}"
+	MeadowPowderProj.DisplayName: "{$Items.MeadowPowder.DisplayName}"
 }
