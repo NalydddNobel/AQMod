@@ -2554,7 +2554,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1522)</summary>
+            <summary>(Total Textures: 1525)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3623,6 +3623,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.TaintedSeafood">
             <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreathCrystal">
+            <summary>Full Path: Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystal</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreathCrystalTile">
+            <summary>Full Path: Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystalTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreathCrystalTileItem">
+            <summary>Full Path: Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystalTileItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowMushroom">
             <summary>Full Path: Content/Items/Consumable/RestoreMana/MeadowMushroom</summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1522)</summary>
+/// <summary>(Total Textures: 1525)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -719,6 +719,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FoodPoisoningDebuff = new("Content/Items/Consumable/Food/TaintedSeafood/FoodPoisoningDebuff");
     /// <summary>Full Path: Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood</summary>
     public static readonly RequestCache<Texture2D> TaintedSeafood = new("Content/Items/Consumable/Food/TaintedSeafood/TaintedSeafood");
+    /// <summary>Full Path: Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystal</summary>
+    public static readonly RequestCache<Texture2D> BreathCrystal = new("Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystal");
+    /// <summary>Full Path: Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystalTile</summary>
+    public static readonly RequestCache<Texture2D> BreathCrystalTile = new("Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystalTile");
+    /// <summary>Full Path: Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystalTileItem</summary>
+    public static readonly RequestCache<Texture2D> BreathCrystalTileItem = new("Content/Items/Consumable/PermaPowerups/BreathCrystal/BreathCrystalTileItem");
     /// <summary>Full Path: Content/Items/Consumable/RestoreMana/MeadowMushroom</summary>
     public static readonly RequestCache<Texture2D> MeadowMushroom = new("Content/Items/Consumable/RestoreMana/MeadowMushroom");
     /// <summary>Full Path: Content/Items/Consumable/ShimmerPowerups/CosmicChest</summary>

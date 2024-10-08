@@ -15,6 +15,8 @@ internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuff
 
     public override string LocalizationCategory => "Tiles";
 
+    public TileItemSettings? Settings = Settings;
+
     private string KeyPrefix => Name != _modTile.Name ? $"{Name.Replace(_modTile.Name, "")}." : "";
     public override LocalizedText DisplayName => (Settings?.DisplayName?.Value) ?? Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
     public override LocalizedText Tooltip => ALanguage.GetOrEmpty(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"));

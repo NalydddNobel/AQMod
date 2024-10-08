@@ -113,7 +113,7 @@ public class StorageInterface : NewUILayer, ILoadable {
         if (Main.mouseLeftRelease && Main.mouseLeft) {
             bool anyTransfer = false;
 
-            if (shift) {
+            if (shift && item != null && !item.IsAir) {
                 player.GetItem(Main.myPlayer, item.Clone(), GetItemSettings.InventoryEntityToPlayerInventorySettings);
                 item.TurnToAir();
                 anyTransfer = true;

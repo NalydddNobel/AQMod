@@ -11,8 +11,6 @@ namespace Aequus.Content.World.Generation;
 public class MiscDecorStep : AGenStep {
     public override string InsertAfter => "Pots";
 
-    public static MiscDecorStep Instance => ModContent.GetInstance<MiscDecorStep>();
-
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         GenTools.Random(Main.maxTilesX * Main.maxTilesY / 200, TryPlaceAPainting);
     }

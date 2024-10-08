@@ -52,6 +52,12 @@ Meathook: {
 }
 
 //# Misc
+BreathCrystal: {
+	// DisplayName: Aqua Crystal
+	// Tooltip: Permanently increases your breath by 1 bubble
+	// PlaceableDisplayName: Repaired Aqua Crystal
+}
+
 MeadowPowder: {
 	DisplayName: 草地尘
 	Tooltip: 散播草地

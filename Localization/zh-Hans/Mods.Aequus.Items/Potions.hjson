@@ -1,6 +1,7 @@
 SpawnpointPotion: {
 	// DisplayName: Beacon Potion
-	// Tooltip: Charges a beacon which acts as a spawnpoint
+	// Tooltip: Sets your spawnpoint to your location when charged
+	// MapIcon: Respawn Beacon
 }
 
 MeadowMushroom: {

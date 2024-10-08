@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Content.Systems.Keys.Keychains;
 
 public class KeychainPlayer : ModPlayer {
-    public const sbyte MAX_KEYS_ALLOWED = 32;
+    public const sbyte MAX_KEYS_ALLOWED = 20;
     public const string TAG_KEY = "Keychain";
 
     public bool hasKeyChain;
