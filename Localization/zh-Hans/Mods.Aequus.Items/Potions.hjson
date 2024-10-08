@@ -1,3 +1,8 @@
+SpawnpointPotion: {
+	// DisplayName: Beacon Potion
+	// Tooltip: Charges a beacon which acts as a spawnpoint
+}
+
 MeadowMushroom: {
 	DisplayName: 草地菇
 	Tooltip: ""

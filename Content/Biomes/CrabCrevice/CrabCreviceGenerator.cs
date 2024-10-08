@@ -373,7 +373,7 @@ public class CrabCreviceGenerator : Generator {
                 break;
         }
 
-        switch (rand.Next(8)) {
+        switch (rand.Next(10)) {
             case 0:
                 arr[index].SetDefaults(ItemID.HealingPotion);
                 arr[index++].stack = rand.Next(5) + 1;
@@ -409,6 +409,11 @@ public class CrabCreviceGenerator : Generator {
             case 7:
                 arr[index].SetDefaults(ItemID.WaterWalkingPotion);
                 arr[index++].stack = rand.Next(3) + 1;
+                break;
+            case 8:
+            case 9:
+                arr[index].SetDefaults(ModContent.ItemType<Items.Potions.SpawnpointPotion.SpawnpointPotion>());
+                arr[index++].stack = rand.Next(5) + 1;
                 break;
         }
 

@@ -773,6 +773,9 @@
         <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawLiquids">
             <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
+        <member name="F:Aequus.Common.Drawing.DrawLayers.PreDrawPlayer">
+            <summary></summary>
+        </member>
         <member name="M:Aequus.Common.Drawing.TileAnimations.IDrawWindyGrass.Draw(Aequus.Common.Drawing.TileAnimations.TileDrawCall)">
             <param name="drawInfo"></param>
             <returns>Whether to run vanilla rendering. Return false to prevent vanilla rendering.</returns>
@@ -2551,7 +2554,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1519)</summary>
+            <summary>(Total Textures: 1521)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3692,6 +3695,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SentryPotionBuff">
             <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpawnpointPotion">
+            <summary>Full Path: Content/Items/Potions/SpawnpointPotion/SpawnpointPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpawnpointPotionPortal">
+            <summary>Full Path: Content/Items/Potions/SpawnpointPotion/SpawnpointPotionPortal</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmniPaint">
             <summary>Full Path: Content/Items/Tools/Consumable/OmniPaint/OmniPaint</summary>
@@ -7564,15 +7573,29 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
+        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestPrimaryLoot">
             <summary>
-            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            The primary loot pool for Crab Crevice chests
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
+        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestSecondaryLoot">
             <summary>
-            Lookup for tile Ids which are safe to generate over.
+            The secondary loot pool for Crab Crevice chests
             </summary>
+        </member>
+        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestTertiaryLoot">
+            <summary>
+            The tertiary (3rd) loot pool for Crab Crevice chests
+            </summary>
+        </member>
+        <member name="M:Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator.SetLocationParams(System.Int32@,System.Int32@,Microsoft.Xna.Framework.Point@,Microsoft.Xna.Framework.Point@)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="location"></param>
+            <param name="genLocation"></param>
         </member>
         <member name="F:Aequus.Content.Chests.ChestID.Frozen">
             <summary>Chest type which appears in the Snow Biome.</summary>
