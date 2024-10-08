@@ -7,6 +7,10 @@ namespace Aequus.Content.Systems.Keys.Keychains;
 public partial class Keychain {
     internal static Paletter? KeyTextures;
     internal static readonly ConvertPool<int, string> KeyTextureNames = new((i) => {
+        if (Instance<KeychainDatabase>().TexturePaths.TryGetValue(i, out string? customTexturePath)) {
+            return customTexturePath!;
+        }
+
         if (!ItemID.Search.TryGetName(i, out var name)) {
             return "Unknown";
         }

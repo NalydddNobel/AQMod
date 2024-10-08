@@ -3,11 +3,9 @@ using Aequus.Common.Preferences;
 using Aequus.Content.DamageClasses;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Terraria.Audio;
 using Terraria.UI;
 
 namespace Aequus;
@@ -97,38 +95,18 @@ public class Aequus : Mod {
         if (Main.netMode != NetmodeID.Server) {
             UserInterface = new UserInterface();
         }
-
-        //On.Terraria.WorldGen.TileFrame += WorldGen_TileFrame;
     }
-
-    //private static void WorldGen_TileFrame(On.Terraria.WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
-
-    //    if (Helper.iterations < 100 && Main.fpsTimer.ElapsedMilliseconds > 1000) {
-    //        Instance.Logger.Info(Environment.StackTrace);
-    //        Helper.iterations++;
-    //    }
-    //    orig(i, j, resetFrame, noBreak);
-    //}
 
     public override void Unload() {
         UserInterface = null;
     }
 
-    public override object Call(params object[] args) {
-        return ModCallHandler.Instance.Call(args)!; // Lying to the compiler.
+    public override object? Call(params object[] args) {
+        return ModCallHandler.Instance.Call(args);
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI) {
         PacketSystem.HandlePacket(reader, whoAmI);
-    }
-
-    [Obsolete("Use Common.ContentArrayFile instead.")]
-    public static Dictionary<string, List<string>> GetContentArrayFile(string name) {
-        using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true)) {
-            using (var streamReader = new StreamReader(stream)) {
-                return JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(streamReader.ReadToEnd());
-            }
-        }
     }
 
     public static Dictionary<string, Dictionary<string, string>> GetContentFile(string name) {
@@ -141,11 +119,6 @@ public class Aequus : Mod {
 
     public static bool CloseToEffect(Vector2 where) {
         return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 1500f;
-    }
-
-    [Obsolete("Replaced with AequusSounds")]
-    internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f) {
-        return new SoundStyle(SoundsPath + name, 0, num) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
     }
 
     public static string TileTexture(int id) {
