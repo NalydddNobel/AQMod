@@ -14,6 +14,7 @@ public abstract class PacketHandler : ModType {
             // Require all inherited Packet Handlers to have a "Send" method.
             throw new Exception($"A public instanced 'Send' method was not found in {Name}.");
         }
+
         PacketSystem.Register(this);
     }
 
@@ -23,6 +24,9 @@ public abstract class PacketHandler : ModType {
 
     protected void SendPacket(BinaryWriter p, int toClient = -1, int ignoreClient = -1) {
         if (p is ModPacket netPacket) {
+            if (PacketSystem._sent.IndexInRange(Type)) {
+                PacketSystem._sent[Type]++;
+            }
             netPacket.Send(toClient, ignoreClient);
         }
         else {
@@ -42,6 +46,11 @@ public abstract class PacketHandler : ModType {
     public ModPacket GetLegacyPacket(int capacity = byte.MaxValue + 1) {
         var packet = Aequus.Instance.GetPacket(capacity);
         packet.Write(Type);
+
+        if (PacketSystem._sent.IndexInRange(Type)) {
+            PacketSystem._sent[Type]++;
+        }
+
         return packet;
     }
 

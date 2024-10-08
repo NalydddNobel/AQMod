@@ -23,11 +23,12 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Net;
 
 public partial class PacketSystem : ModSystem {
-    private static HashSet<PacketType> logPacketType;
-
     public static ModPacket NewPacket => Aequus.Instance.GetPacket();
 
     private static Dictionary<PacketType, PacketHandler> handlerByLegacyType = new();
+
+    internal static int[] _sent = new int[(int)PacketType.Count];
+    internal static int[] _received = new int[(int)PacketType.Count];
 
     public static void Register(PacketHandler handler) {
         if (handlerByLegacyType.ContainsKey(handler.LegacyPacketType)) {
@@ -37,58 +38,39 @@ public partial class PacketSystem : ModSystem {
         handlerByLegacyType[handler.LegacyPacketType] = handler;
     }
 
-    public override void Load() {
-        logPacketType = new() {
-            PacketType.SpawnHostileOccultist,
-            PacketType.PhysicsGunBlock,
-            PacketType.RequestGlimmerEvent,
-            PacketType.GlimmerStatus,
-            PacketType.RemoveDemonSiege,
-            PacketType.Unused5,
-            PacketType.SpawnOmegaStarite,
-            PacketType.StartDemonSiege,
-            PacketType.RequestAnalysisQuest,
-            PacketType.SpawnPixelCameraClip,
-            PacketType.PlacePixelPainting,
-            PacketType.RegisterPhotoClip,
-            PacketType.AddBuilding,
-            PacketType.RemoveBuilding,
-        };
+    public override void ClearWorld() {
+        for (int i = 0; i < _sent.Length; i++) {
+            _sent[i] = 0;
+        }
+        for (int i = 0; i < _received.Length; i++) {
+            _received[i] = 0;
+        }
     }
 
     public override void Unload() {
         handlerByLegacyType?.Clear();
     }
 
-    public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1) {
-        var packet = Aequus.Instance.GetPacket(capacity);
-        packet.Write((byte)type);
-    }
-
     public static void Send(Action<ModPacket> action, PacketType type, int capacity = 256, int to = -1, int ignore = -1) {
         var packet = Aequus.Instance.GetPacket(capacity);
         packet.Write((byte)type);
+        if (_sent.IndexInRange((int)type)) {
+            _sent[(int)type]++;
+        }
         action(packet);
         packet.Send(to, ignore);
-    }
-
-    public static void SyncNecromancyOwner(int npc, int player) {
-        var p = Aequus.GetPacket(PacketType.SyncNecromancyOwner);
-        p.Write(npc);
-        p.Write(player);
-        p.Send();
     }
 
     public static PacketType ReadPacketType(BinaryReader reader) {
         return (PacketType)reader.ReadByte();
     }
 
-    public static void SyncNPC(NPC npc) {
-        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
-    }
-
     public static void HandlePacket(BinaryReader reader, int whoAmI) {
         var type = ReadPacketType(reader);
+
+        if (_received.IndexInRange((int)type)) {
+            _received[(int)type]++;
+        }
 
         var l = Aequus.Instance.Logger;
 #if LOG_PACKETS
