@@ -1,6 +1,7 @@
 SpawnpointPotion: {
-	// DisplayName: Beacon Potion
-	// Tooltip: Charges a beacon which acts as a spawnpoint
+	DisplayName: 信标药水
+	Tooltip: 充能后将你的当前位置设为重生点
+	MapIcon: 重生信标
 }
 
 MeadowMushroom: {
