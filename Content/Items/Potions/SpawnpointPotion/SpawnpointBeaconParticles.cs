@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Drawing;
 using Aequus.Common.Particles.New;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -54,6 +55,9 @@ internal class SpawnpointBeaconParticles : NewParticleSystem {
                     maxScale = 1.15f;
                     maxOpacity = 1f;
                 }
+                if (b.Owner != Main.myPlayer) {
+                    maxOpacity /= 2f;
+                }
 
                 if (b.Scale < maxScale) {
                     b.Scale += 0.02f;
@@ -74,9 +78,11 @@ internal class SpawnpointBeaconParticles : NewParticleSystem {
                 b.Timer++;
 
                 float size = (AequusTextures.SpawnpointPotionPortal.Width() / 2f + Main.rand.NextFloat(-6f, 2f)) * b.Scale;
-                if (Main.GameUpdateCount % 6 == 0 || Main.rand.NextBool(12)) {
+                int dustRate = 6 + (int)(12 - 12 * b.Opacity);
+                if (Main.GameUpdateCount % dustRate == 0 || Main.rand.NextBool(dustRate * 2)) {
                     Vector2 velocity = Main.rand.NextVector2Unit();
-                    Dust d = Dust.NewDustPerfect(b.Location.ToWorldCoordinates() + velocity * size, DustID.MagicMirror, Velocity: velocity.RotatedBy(MathHelper.PiOver2) * Main.rand.NextFloat(0.2f, 0.66f), Alpha: 200, Scale: 0.5f);
+                    float wave = MathF.Sin(b.Timer / 90f) * 8f % 1f;
+                    Dust d = Dust.NewDustPerfect(b.Location.ToWorldCoordinates() + velocity * size, DustID.MagicMirror, Velocity: velocity.RotatedBy(MathHelper.PiOver2) * wave * Main.rand.NextFloat(0.2f, 0.66f), Alpha: 200, Scale: 0.5f);
                     d.fadeIn = d.scale + 0.33f;
                 }
             }

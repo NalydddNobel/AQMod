@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1521)</summary>
+/// <summary>(Total Textures: 1522)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -769,6 +769,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SentryPotionBuff = new("Content/Items/Potions/Buff/Sentry/SentryPotionBuff");
     /// <summary>Full Path: Content/Items/Potions/SpawnpointPotion/SpawnpointPotion</summary>
     public static readonly RequestCache<Texture2D> SpawnpointPotion = new("Content/Items/Potions/SpawnpointPotion/SpawnpointPotion");
+    /// <summary>Full Path: Content/Items/Potions/SpawnpointPotion/SpawnpointPotionMapIcon</summary>
+    public static readonly RequestCache<Texture2D> SpawnpointPotionMapIcon = new("Content/Items/Potions/SpawnpointPotion/SpawnpointPotionMapIcon");
     /// <summary>Full Path: Content/Items/Potions/SpawnpointPotion/SpawnpointPotionPortal</summary>
     public static readonly RequestCache<Texture2D> SpawnpointPotionPortal = new("Content/Items/Potions/SpawnpointPotion/SpawnpointPotionPortal");
     /// <summary>Full Path: Content/Items/Tools/Consumable/OmniPaint/OmniPaint</summary>
