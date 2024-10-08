@@ -91,10 +91,9 @@ public partial class PacketSystem : ModSystem {
         var type = ReadPacketType(reader);
 
         var l = Aequus.Instance.Logger;
-        if (logPacketType.Contains(type)) {
-            l.Debug("Recieving Packet: " + type);
-        }
-
+#if LOG_PACKETS
+        l.Debug("Recieving Packet: " + type);
+#endif
         switch (type) {
             case PacketType.SendDebuffFlatDamage: {
                     int npc = reader.ReadInt32();

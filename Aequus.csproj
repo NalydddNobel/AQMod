@@ -47,6 +47,6 @@
 																
   <!-- Custom compiler flags for loading unfinished content. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-	<DefineConstants>POLLUTED_OCEAN;CUSTOM_RESOURCE_UI;CRAB_CREVICE_DISABLE;GEN;SEASONS</DefineConstants>
+	<DefineConstants>POLLUTED_OCEAN;CUSTOM_RESOURCE_UI;CRAB_CREVICE_DISABLE;GEN;SEASONS;LOG_PACKETS</DefineConstants>
   </PropertyGroup>
 </Project>

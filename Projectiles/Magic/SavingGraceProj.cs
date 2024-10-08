@@ -33,24 +33,28 @@ public class SavingGraceProj : ModProjectile {
         if (Projectile.alpha < 180 && Projectile.scale < 0.4f) {
             Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<MonoDust>(), Vector2.Zero, newColor: new Color(120, 255, 150, 0), Scale: 2f);
         }
+
         if (Projectile.alpha > 0) {
             Projectile.alpha -= 7;
             if (Projectile.alpha <= 0) {
                 Projectile.alpha = 0;
             }
         }
+
         if (Projectile.localAI[0] == 0) {
             var v = Vector2.Normalize(Projectile.velocity);
             Projectile.localAI[0] = v.X;
             Projectile.localAI[1] = v.Y;
             Projectile.scale /= (1 + Projectile.scale);
         }
-        if ((int)Projectile.ai[1] == 0) {
+
+        if ((int)Projectile.ai[1] == 0 && Main.myPlayer == Projectile.owner) {
             for (int i = -1; i <= 1; i += 2) {
                 Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity.RotatedBy(i * 0.3f) * 0.8f, Type, Projectile.damage / 2, Projectile.knockBack / 2f, Projectile.owner, Projectile.ai[0], 1f);
             }
             Projectile.ai[1]++;
         }
+
         Projectile.ai[0]++;
         int timer = (int)Projectile.ai[0];
         int timeBetweenTurns = 6;
@@ -100,19 +104,29 @@ public class SavingGraceProj : ModProjectile {
     }
 
     public void HealPlayer(int plr) {
-        SoundEngine.PlaySound(AequusSounds.savingGraceHeal, Main.player[plr].Center);
-        DoHealLine(Projectile.Center, Main.player[plr].Center);
-        if (plr != Projectile.owner)
-            DoHealLine(Projectile.Center, Main.player[Projectile.owner].Center);
+        Player owner = Main.player[Projectile.owner];
+        Player target = Main.player[plr];
 
+        SoundEngine.PlaySound(AequusSounds.savingGraceHeal, Main.player[plr].Center);
+
+        // Heal line to the target player.
+        DoHealLine(Projectile.Center, target.Center);
+        // Heal the target player. (Text is broadcasted automatically.)
         if (Main.myPlayer == plr) {
             Main.player[plr].Heal(Projectile.damage / 10);
         }
+
+        // If healing another player, restore mana to the owner of the projectile.
         if (Main.myPlayer == Projectile.owner && plr != Projectile.owner) {
             int healMana = 20;
-            Main.player[plr].ManaEffect(healMana);
-            Main.player[plr].statMana = Math.Min(Main.player[plr].statMana + healMana, Main.player[plr].statManaMax2);
+            owner.ManaEffect(healMana);
+
+            if (owner.statMana < owner.statManaMax) {
+                owner.statMana = Math.Min(owner.statMana + healMana, owner.statManaMax2);
+            }
         }
+
+        // Delete projectile afterwards.
         Projectile.Kill();
     }
 
