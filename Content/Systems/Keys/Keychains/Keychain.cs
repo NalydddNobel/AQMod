@@ -9,12 +9,6 @@ namespace Aequus.Content.Systems.Keys.Keychains;
 public partial class Keychain : ModItem, IItemSlotOverride, IStorageItem {
     public const int KEYS_FRAME_COUNT = 5;
 
-#if !DEBUG
-    public override bool IsLoadingEnabled(Mod mod) {
-        return false;
-    }
-#endif
-
     public override void Load() {
         if (!Main.dedServ) {
             KeyTextures = new Paletter(AequusTextures.PaletteKey, AequusTextures.KeychainKeysTemplate);
