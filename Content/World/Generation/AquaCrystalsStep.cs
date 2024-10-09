@@ -10,12 +10,6 @@ namespace Aequus.Content.World.Generation;
 public class AquaCrystalsStep : AGenStep {
     public override string InsertAfter => "Life Crystals";
 
-#if !AQUA_CRYSTAL
-    public override bool IsLoadingEnabled(Mod mod) {
-        return false;
-    }
-#endif
-
     public HashSet<int> IncreasedSpawnWalls = [];
 
     public override void Load() {

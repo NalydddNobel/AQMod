@@ -36,12 +36,6 @@ public class BreathCrystalPlayer : ModPlayer {
 
     const string TAG = "bCrystals";
 
-#if !AQUA_CRYSTAL
-    public override bool IsLoadingEnabled(Mod mod) {
-        return false;
-    }
-#endif
-
     public override void PostUpdateMiscEffects() {
         // Breath max is not reset by vanilla, so we need to keep track of our modifications.
 

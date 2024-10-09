@@ -7,12 +7,6 @@ namespace Aequus.Content.Items.Consumable.PermaPowerups.BreathCrystal;
 public class BreathCrystalTile : ModTile, IAddRecipes {
     public ModItem? PlaceItem { get; private set; }
 
-#if !AQUA_CRYSTAL
-    public override bool IsLoadingEnabled(Mod mod) {
-        return false;
-    }
-#endif
-
     public override void Load() {
         PlaceItem = new InstancedTileItem(this, Settings: new() {
             Rare = ItemRarityID.Green,
