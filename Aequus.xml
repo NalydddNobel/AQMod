@@ -2554,7 +2554,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1525)</summary>
+            <summary>(Total Textures: 1529)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3428,6 +3428,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.DamageOnKillClaw">
             <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PreventAcidVenom">
+            <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventAcidVenom</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PreventEvilBurn">
+            <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventEvilBurn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PreventFrostburn">
+            <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventFrostburn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PreventOnFire">
+            <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventOnFire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EclipseGlasses">
             <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses</summary>

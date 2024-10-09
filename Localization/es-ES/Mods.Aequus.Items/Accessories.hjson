@@ -222,3 +222,23 @@ WallOfFleshBackpack: {
 	// BackpackEnabled: Stomach Sack On
 	// BackpackDisabled: Stomach Sack Off
 }
+
+PreventAcidVenom: {
+	// DisplayName: Prevent Acid Venom
+	// Tooltip: ""
+}
+
+PreventEvilBurn: {
+	// DisplayName: Prevent Evil Burn
+	// Tooltip: ""
+}
+
+PreventFrostburn: {
+	// DisplayName: Prevent Frostburn
+	// Tooltip: ""
+}
+
+PreventOnFire: {
+	// DisplayName: Prevent On Fire
+	// Tooltip: ""
+}

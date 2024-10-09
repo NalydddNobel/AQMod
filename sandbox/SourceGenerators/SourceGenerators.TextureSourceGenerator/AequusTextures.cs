@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1525)</summary>
+/// <summary>(Total Textures: 1529)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -589,6 +589,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DamageOnKillBuff = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillBuff");
     /// <summary>Full Path: Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw</summary>
     public static readonly RequestCache<Texture2D> DamageOnKillClaw = new("Content/Items/Accessories/DamageOnKillClaw/DamageOnKillClaw");
+    /// <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventAcidVenom</summary>
+    public static readonly RequestCache<Texture2D> PreventAcidVenom = new("Content/Items/Accessories/DebuffPrevention/PreventAcidVenom");
+    /// <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventEvilBurn</summary>
+    public static readonly RequestCache<Texture2D> PreventEvilBurn = new("Content/Items/Accessories/DebuffPrevention/PreventEvilBurn");
+    /// <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventFrostburn</summary>
+    public static readonly RequestCache<Texture2D> PreventFrostburn = new("Content/Items/Accessories/DebuffPrevention/PreventFrostburn");
+    /// <summary>Full Path: Content/Items/Accessories/DebuffPrevention/PreventOnFire</summary>
+    public static readonly RequestCache<Texture2D> PreventOnFire = new("Content/Items/Accessories/DebuffPrevention/PreventOnFire");
     /// <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses</summary>
     public static readonly RequestCache<Texture2D> EclipseGlasses = new("Content/Items/Accessories/EventPrevention/EclipseGlasses");
     /// <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses_Face</summary>

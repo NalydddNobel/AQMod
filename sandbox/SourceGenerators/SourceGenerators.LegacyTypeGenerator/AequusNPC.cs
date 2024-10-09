@@ -16,6 +16,10 @@ public partial class AequusNPC {
         Content.Items.Accessories.Backpacks.PlanteraBackpack.ModifyNPCDrops(npc, loot);
         Content.Items.Accessories.Backpacks.WallOfFleshBackpack.ModifyNPCDrops(npc, loot);
         Content.Items.Accessories.DamageOnKillClaw.DamageOnKillClaw.AddNPCLoot(npc, this, loot);
+        Content.Items.Accessories.DebuffPrevention.PreventAcidVenom.AddLoot(npc, loot);
+        Content.Items.Accessories.DebuffPrevention.PreventEvilBurn.AddLoot(npc, loot);
+        Content.Items.Accessories.DebuffPrevention.PreventFrostburn.AddLoot(npc, loot);
+        Content.Items.Accessories.DebuffPrevention.PreventOnFire.AddLoot(npc, loot);
         Content.Items.Materials.PossessedShard.PossessedShard.ModifyNPCLoot(npc, loot);
     }
     
