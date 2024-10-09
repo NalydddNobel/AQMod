@@ -1,4 +1,24 @@
 // Equipment: Accessories
+PreventAcidVenom: {
+	DisplayName: 玻璃肩甲
+	Tooltip: "使你免疫{$BuffName.Venom}减益"
+}
+
+PreventEvilBurn: {
+	DisplayName: 信仰串珠
+	Tooltip: "使你免疫{$BuffName.CursedInferno}和{$BuffName.Ichor}减益"
+}
+
+PreventFrostburn: {
+	DisplayName: 炸冰
+	Tooltip: "使你免疫{$BuffName.Frostburn}减益"
+}
+
+PreventOnFire: {
+	DisplayName: 灭火器
+	Tooltip: "使你免疫{$BuffName.OnFire}减益"
+}
+
 AccessoryDamageEarring: {
 	DisplayName: 闪耀耳坠
 	Tooltip: 增加{0}%饰品伤害
